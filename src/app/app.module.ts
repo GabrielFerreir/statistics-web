@@ -4,6 +4,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
 import {MainModule} from "./main/main.module";
 import {SharedModule} from "./shared.module";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import {SharedModule} from "./shared.module";
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     SharedModule,
     MainModule
   ],

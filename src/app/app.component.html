@@ -2,9 +2,6 @@
   <button class="ui-button flat icon" (click)="menuOpen = true" uiRipple>
     <i class="material-icons">menu</i>
   </button>
-  <img class="logo"
-       src="http://smn.com.br/content/img/logotipo/light-lying.svg"
-       alt="">
   <span class="title">Home</span>
 </ui-toolbar>
 <ui-nav-drawer class="persistent" [(open)]="menuOpen">
@@ -20,4 +17,4 @@
     </div>
   </div>
 </ui-nav-drawer>
-<app-main></app-main>
+<router-outlet></router-outlet>
