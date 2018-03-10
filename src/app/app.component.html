@@ -1,5 +1,5 @@
-<ui-toolbar class="primary">
-  <button class="ui-button flat icon" uiRipple>
+<ui-toolbar class="fixed flat elevate-on-scroll primary elevate-on-s960">
+  <button class="ui-button flat icon" (click)="menuOpen = true" uiRipple>
     <i class="material-icons">menu</i>
   </button>
   <img class="logo"
@@ -7,4 +7,17 @@
        alt="">
   <span class="title">Home</span>
 </ui-toolbar>
+<ui-nav-drawer class="persistent" [(open)]="menuOpen">
+  <ui-toolbar class="flat">
+    <button (click)="menuOpen = false" class="ui-button flat icon" uiRipple>
+      <i class="material-icons">arrow_back</i>
+    </button>
+    <span class="title">Home</span>
+  </ui-toolbar>
+  <div class="ui-nav-drawer-overflow">
+    <div class="ui-list">
+      <a class="ui-list-item" uiRipple>Home</a>
+    </div>
+  </div>
+</ui-nav-drawer>
 <app-main></app-main>
