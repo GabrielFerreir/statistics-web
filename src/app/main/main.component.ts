@@ -11,6 +11,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   dados;
   res;
+  res2;
 
   constructor(private statistics: StatisticsService,
               private toolbarService: UiToolbarService) {
@@ -31,6 +32,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.res = this.statistics.countRepeat(this.dados.qualitativaOrdinaria);
+    this.res2 = this.statistics.countRepeat(this.dados.quantitativoDiscreto);
   }
 
   ngAfterViewInit() {
