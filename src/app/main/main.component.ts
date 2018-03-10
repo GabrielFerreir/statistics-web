@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {StatisticsService} from "./statistics.service";
 
 @Component({
   selector: 'app-main',
@@ -8,8 +9,9 @@ import {Component, OnInit} from '@angular/core';
 export class MainComponent implements OnInit {
 
   dados;
+  res;
 
-  constructor() {
+  constructor(private statistics: StatisticsService) {
     this.dados = {
       qualitativaOrdinaria: [
         'Ruim', 'Bom', 'Otimo', 'Bom', 'Regular', 'Otimo', 'Bom', 'Regular', 'Bom', 'Regular',
@@ -26,60 +28,10 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.countRepeat(this.dados.qualitativaOrdinaria);
+    this.res = this.statistics.countRepeat(this.dados.qualitativaOrdinaria);
+    console.log(this.res);
   }
 
-  countRepeat(info) {
-    const obj = [];
-    const func = {
-      insere: (group, qtd) => {
-        let condicao;
-        obj.forEach((el) => {
-          if (el.group === group) {
-            condicao = true;
-          }
-        });
-        if (!condicao) {
-          obj.push({group: group, qtd: qtd});
-        }
-      }
-    };
 
-      for (var i = 0; i < info.length; i++) {
-      let repeat = 0;
-      for (var j = 0; j < info.length; j++) {
-        if (info[i] === info[j]) {
-          repeat++;
-        }
-      }
-      func.insere(info[i], repeat);
-    }
-    console.log(obj);
-      this.percent(obj, info.length);
-      this.frequencyAmass(obj);
-      this.frequencyPercent(obj, info.length);
-  }
-
-  percent(obj, total) {
-    obj.forEach((el) => {
-      el.percent = el.qtd / total;
-    });
-  }
-
-  frequencyAmass(obj) {
-    let acm = 0;
-    obj.forEach((el) => {
-      acm += el.qtd;
-      el.fac = acm;
-    });
-  }
-
-  frequencyPercent(obj, total) {
-    let acm = 0;
-    obj.forEach((el) => {
-      acm += el.qtd / total;
-      el.facP = acm;
-    });
-  }
 
 }
