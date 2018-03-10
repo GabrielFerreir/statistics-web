@@ -1,17 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {StatisticsService} from "./statistics.service";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {StatisticsService} from './statistics.service';
+import {UiToolbarService} from 'ng-smn-ui';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
 
   dados;
   res;
 
-  constructor(private statistics: StatisticsService) {
+  constructor(private statistics: StatisticsService,
+              private toolbarService: UiToolbarService) {
     this.dados = {
       qualitativaOrdinaria: [
         'Ruim', 'Bom', 'Otimo', 'Bom', 'Regular', 'Otimo', 'Bom', 'Regular', 'Bom', 'Regular',
@@ -29,9 +31,11 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.res = this.statistics.countRepeat(this.dados.qualitativaOrdinaria);
-    console.log(this.res);
   }
 
+  ngAfterViewInit() {
+    this.toolbarService.activateExtendedToolbar(480);
+  }
 
 
 }

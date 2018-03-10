@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {MainModule} from "./main/main.module";
 import {SharedModule} from "./shared.module";
 import {AppRoutingModule} from "./app-routing.module";
+import {ComponentsModule} from "./components/components.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {AppRoutingModule} from "./app-routing.module";
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    MainModule
+    MainModule,
+    ComponentsModule
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

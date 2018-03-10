@@ -5,6 +5,7 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import { SMNUIModule } from 'ng-smn-ui';
+import {UiToolbarService} from 'ng-smn-ui';
 
 @NgModule({
   exports: [
@@ -14,6 +15,8 @@ import { SMNUIModule } from 'ng-smn-ui';
     HttpModule,
     HttpClientModule,
     RouterModule
-  ]
+  ],
+
+  providers: [ UiToolbarService ]
 })
 export class SharedModule { }

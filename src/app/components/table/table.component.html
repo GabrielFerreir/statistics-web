@@ -1,0 +1,40 @@
+<ui-card class="elevate-on-toolbar">
+  <ui-toolbar class="flat">
+    <span class="title">{{ title }}</span>
+  </ui-toolbar>
+  <ui-data-table class="responsive">
+    <tbody>
+    <tr>
+      <th uiDataTableOrderBy >Grupo</th>
+      <th uiDataTableOrderBy >N° Func</th>
+      <th uiDataTableOrderBy >Fe%</th>
+      <th uiDataTableOrderBy >F</th>
+      <th uiDataTableOrderBy >F%</th>
+    </tr>
+    <tr *ngFor="let item of data">
+      <td data-title="Grupo" >{{item.group}}</td>
+      <td data-title="N° Func" class="align-right"> {{item.qtd}} </td>
+      <td data-title="Fe%" class="align-right"> {{item.percent | percent }} </td>
+      <td data-title="F" class="align-right"> {{item.fac}} </td>
+      <td data-title="F%" class="align-right"> {{item.facP | percent }} </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="4" class="align-right">
+        <div class="ui-button-container align-right">
+                        <span class="pagination">
+                            1-10 de 10
+                        </span>
+          <button class="ui-button flat icon" uiRipple disabled>
+            <i class="material-icons">keyboard_arrow_left</i>
+          </button>
+          <button class="ui-button flat icon" uiRipple disabled>
+            <i class="material-icons">keyboard_arrow_right</i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tfoot>
+  </ui-data-table>
+</ui-card>
