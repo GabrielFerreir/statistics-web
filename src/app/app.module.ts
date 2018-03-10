@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {MainModule} from "./main/main.module";
+import {SharedModule} from "./shared.module";
 
 @NgModule({
   declarations: [
@@ -10,9 +11,11 @@ import {MainModule} from "./main/main.module";
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     MainModule
   ],
   providers: [],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
