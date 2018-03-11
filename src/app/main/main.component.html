@@ -1,5 +1,12 @@
-<div class="ui-s480">
-  <app-table [data]="res" [title]="'Qualitativa Ordinaria'"></app-table>
-  <div class="ui-divider"></div>
-  <app-table [data]="res2" [title]="'Qualitativa Ordinaria'"></app-table>
+<div class="ui-s840">
+  <div style="display: flex">
+    <div style="width: 50%; padding: 16px;">
+      <app-table [data]="res" [title]="'Qualitativa Ordinaria'"></app-table>
+    </div>
+    <div style="width: 50%; padding: 16px;">
+      <ui-card class="elevate-on-toolbar">
+        <google-chart [data]="charts01"></google-chart>
+      </ui-card>
+    </div>
+  </div>
 </div>

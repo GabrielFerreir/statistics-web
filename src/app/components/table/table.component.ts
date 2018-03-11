@@ -13,7 +13,6 @@ export class TableComponent implements OnInit {
   @Input('title') title;
 
   ngOnInit() {
-    console.log(this.data);
   }
 
 }

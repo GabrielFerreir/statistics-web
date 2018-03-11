@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {StatisticsService} from './statistics.service';
 import {UiToolbarService} from 'ng-smn-ui';
+import {ChartsService} from "./charts.service";
 
 @Component({
   selector: 'app-main',
@@ -12,8 +13,10 @@ export class MainComponent implements OnInit, AfterViewInit {
   dados;
   res;
   res2;
+  charts01;
 
   constructor(private statistics: StatisticsService,
+              private charts: ChartsService,
               private toolbarService: UiToolbarService) {
     this.dados = {
       qualitativaOrdinaria: [
@@ -33,6 +36,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.res = this.statistics.countRepeat(this.dados.qualitativaOrdinaria);
     this.res2 = this.statistics.countRepeat(this.dados.quantitativoDiscreto);
+    this.charts01 = this.charts.generateCharts(this.res, 'Qualitativa Ordinaria', 'PieChart', ['group', 'percent']);
   }
 
   ngAfterViewInit() {
