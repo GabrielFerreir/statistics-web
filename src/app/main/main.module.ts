@@ -5,11 +5,14 @@ import {StatisticsService} from "./statistics.service";
 import {ComponentsModule} from "../components/components.module";
 import {SharedModule} from "../shared.module";
 import {ChartsService} from "./charts.service";
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   imports: [
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    DashboardModule,
+
   ],
   declarations: [MainComponent],
   exports: [ MainComponent ],
