@@ -6,12 +6,14 @@ import {ComponentsModule} from "../components/components.module";
 import {SharedModule} from "../shared.module";
 import {ChartsService} from "./charts.service";
 import { DashboardModule } from './dashboard/dashboard.module';
+import { DataInsertionModule } from './data-insertion/data-insertion.module';
 
 @NgModule({
   imports: [
     SharedModule,
     ComponentsModule,
     DashboardModule,
+    DataInsertionModule
 
   ],
   declarations: [MainComponent],

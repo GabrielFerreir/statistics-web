@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataInsertionComponent implements OnInit {
 
-  constructor() { }
+  info: any;
+
+  constructor() {
+    this.info = {};
+  }
 
   ngOnInit() {
   }
