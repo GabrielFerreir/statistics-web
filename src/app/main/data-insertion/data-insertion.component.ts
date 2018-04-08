@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-data-insertion',
@@ -8,11 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class DataInsertionComponent implements OnInit {
 
   info: any;
-
   selectSufixo: any[];
 
 
-  constructor() {
+  constructor(private element: ElementRef) {
     this.info = {
       dados: []
     };
@@ -31,18 +33,19 @@ export class DataInsertionComponent implements OnInit {
   }
 
   insertData() {
+    
     if (this.info.currentDado && this.info.currentDado.length) {
+      const dataTratada = this.info.currentDado.trim().toLowerCase();
       let isExists = false;
       this.info.dados.forEach((dado) => {
-        if (dado.name === this.info.currentDado) {
+        if (dado.name === dataTratada) {
           dado.qtd++;
           isExists = true;
         }
       });
       if (!isExists) {
-        console.log('!isExists');
         const obj = {
-          name: this.info.currentDado,
+          name: dataTratada,
           qtd: 1
         }
         this.info.dados.push(obj);
@@ -59,5 +62,20 @@ export class DataInsertionComponent implements OnInit {
       this.info.dados.splice(index, 1);
     }
 
+  onSubmit(form, info) {
+    console.log(info)
+    console.log(form);
+    // this.saving = true;
+    for (const control in form.controls) {
+        if (form.controls.hasOwnProperty(control)) {
+            form.controls[control].markAsTouched();
+            form.controls[control].markAsDirty();
+        }
+    }
+    if (!form.valid) {
+      UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
+      return false;
+    }
+  }
 
 }

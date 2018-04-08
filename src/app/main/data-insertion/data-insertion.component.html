@@ -17,7 +17,7 @@
       </div>
     </ui-toolbar>
     <ui-card-content>
-      <form #formLancamentos="ngForm" class="js-form-lancamento ui-validate on-dirty on-submit">
+      <form #form="ngForm" class="ui-validate on-dirty on-submit">
         <ui-input-container>
           <input id="title" #title="ngModel" type="text" [(ngModel)]="info.title" uiInput name="title" required>
           <label for="title">Titulo</label>
@@ -70,7 +70,7 @@
     </ui-card-content>
   </ui-card>
   <div class="ui-fab-container">
-    <a class="ui-button accent fab" uiRipple (click)="onSubmit()">
+    <a class="ui-button accent fab" uiRipple (click)="onSubmit(form, info)">
       <i class="material-icons">send</i>
     </a>
   </div>
