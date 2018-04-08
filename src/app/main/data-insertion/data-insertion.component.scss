@@ -1,0 +1,19 @@
+@import '~ng-smn-ui/core/variables';
+
+.input-legend {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+        ui-input-container {
+            max-width: 200px;
+        }
+}
+
+@include mobile() {
+    .input-legend {
+            ui-input-container {
+                max-width: 100%;
+            }
+        }
+
+}
