@@ -1,70 +1,74 @@
 <div class="ui-s840">
-    <ui-card class="elevate-on-toolbar">
-        <ui-toolbar class="flat">
-            <button class="ui-button flat icon" type="button" uiRipple (click)="_location.back()">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            <span class="title">Entrada de dados</span>
-            <div class="align-right">
-              <ui-switch-container>
-                <div class="info">
-                    Amostra
-                </div>
-                <ui-switch class="action">
-                    <input type="checkbox"
-                           name="switchTest"
-                           [checked]="switchTest == 'S'"
-                           (change)="info.amostra=$event.target.checked ? 'S':'N'">
-                </ui-switch>
-            </ui-switch-container>
-            </div>
-        </ui-toolbar>
-        <ui-card-content>
-          <form #formLancamentos="ngForm" class="js-form-lancamento ui-validate on-dirty on-submit">
-            <ui-input-container>
-              <input id="title" #title="ngModel" type="text"
-                [(ngModel)]="info.title"
-                uiInput
-                name="title"
-                required>
-              <label for="title">Titulo</label>
-              <div class="ui-messages">
-                <div *ngIf="title.errors && title.dirty">
-                  <div class="ui-message error"
-                     [hidden]="!title.pristine && !title.errors.required">
-                    Digite o titulo
-                  </div>
-                </div>
-              </div>
-            </ui-input-container>
-            <div class="ui-flex-container break-on-s840">
-              <ui-option-container class="v-space-4 b-space-16">
-                <ui-option>
-                    <input name="legenda" type="checkbox" [(ngModel)]="info.lengenda" [checked]="info.lengenda">
-                    <span>Legenda</span>
-                </ui-option>
-            </ui-option-container>
-            <div class="input-legend">
-              <ui-input-container>
-                <ui-select id="sufixo" #sufixo="ngModel"
-                           name="sufixo"
-                           [(ngModel)]="info.sufixo"
-                           [options]="selectSufixo"
-                           value="id"
-                           label="nome"
-                           uiInput></ui-select>
-                <label for="sufixo">
-                    Sufixo
-                </label>
-            </ui-input-container>
-            </div>
-            </div>
-          </form>
-        </ui-card-content>
-      </ui-card>
-      <div class="ui-fab-container">
-        <a class="ui-button accent fab" uiRipple (click)="onSubmit()">
-            <i class="material-icons">send</i>
-        </a>
+  <ui-card class="elevate-on-toolbar">
+    <ui-toolbar class="flat">
+      <button class="ui-button flat icon" type="button" uiRipple (click)="_location.back()">
+        <i class="material-icons">arrow_back</i>
+      </button>
+      <span class="title">Entrada de dados</span>
+      <div class="align-right">
+        <ui-switch-container>
+          <div class="info">
+            Amostra
+          </div>
+          <ui-switch class="action">
+            <input type="checkbox" name="switchTest" [checked]="switchTest == 'S'" (change)="info.amostra=$event.target.checked ? 'S':'N'">
+          </ui-switch>
+        </ui-switch-container>
       </div>
+    </ui-toolbar>
+    <ui-card-content>
+      <form #formLancamentos="ngForm" class="js-form-lancamento ui-validate on-dirty on-submit">
+        <ui-input-container>
+          <input id="title" #title="ngModel" type="text" [(ngModel)]="info.title" uiInput name="title" required>
+          <label for="title">Titulo</label>
+          <div class="ui-messages">
+            <div *ngIf="title.errors && title.dirty">
+              <div class="ui-message error" [hidden]="!title.pristine && !title.errors.required">
+                Digite o titulo
+              </div>
+            </div>
+          </div>
+        </ui-input-container>
+        <div class="ui-flex-container break-on-s840">
+          <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+              <input name="legenda" type="checkbox" [(ngModel)]="info.lengenda" [checked]="info.lengenda">
+              <span>Legenda</span>
+            </ui-option>
+          </ui-option-container>
+          <div class="input-legend">
+            <ui-input-container>
+              <ui-select id="sufixo" #sufixo="ngModel" name="sufixo" [(ngModel)]="info.sufixo" [options]="selectSufixo" value="id" label="nome"
+                uiInput></ui-select>
+              <label for="sufixo">
+                Sufixo
+              </label>
+            </ui-input-container>
+          </div>
+
+        </div>
+        <ui-chips>
+          <ui-input-container>
+            <input id="dado" #dado="ngModel" type="text" [(ngModel)]="info.currentDado" uiInput name="dado" (keydown.enter)="insertData()">
+            <label for="dado">Dado</label>
+          </ui-input-container>
+
+          <div *ngFor="let dadoInserido of info.dados; let index = index" class="ui-chip">
+            <div class="icon chip-cont">
+              {{ dadoInserido.qtd }}
+            </div>
+              {{ dadoInserido.name }}
+            <div class="close ripple-rounded" uiRipple (click)="removeData(index)">
+              <i class="material-icons">add_circle</i>
+            </div>
+          </div>
+        </ui-chips>
+      </form>
+    </ui-card-content>
+  </ui-card>
+  <div class="ui-fab-container">
+    <a class="ui-button accent fab" uiRipple (click)="onSubmit()">
+      <i class="material-icons">send</i>
+    </a>
+  </div>
 </div>
