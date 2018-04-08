@@ -38,7 +38,7 @@
           </ui-option-container>
           <div class="input-legend">
             <ui-input-container>
-              <ui-select id="sufixo" #sufixo="ngModel" name="sufixo" [(ngModel)]="info.sufixo" [options]="selectSufixo" value="id" label="nome"
+              <ui-select id="sufixo" #sufixo="ngModel" name="sufixo" [(ngModel)]="info.sufixo" [options]="selectSufixo" value="nome" label="nome"
                 uiInput></ui-select>
               <label for="sufixo">
                 Sufixo
@@ -57,13 +57,16 @@
             <div class="icon chip-cont">
               {{ dadoInserido.qtd }}
             </div>
-              {{ dadoInserido.name }}
+              {{ dadoInserido.name }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}
             <div class="close ripple-rounded" uiRipple (click)="removeData(index)">
               <i class="material-icons">add_circle</i>
             </div>
           </div>
         </ui-chips>
       </form>
+      <!-- <pre>
+          {{ info | json }}
+      </pre> -->
     </ui-card-content>
   </ui-card>
   <div class="ui-fab-container">
