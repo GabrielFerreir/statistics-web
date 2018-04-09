@@ -14,9 +14,9 @@
     <tr *ngFor="let item of data">
       <td data-title="Grupo" >{{item.group}}</td>
       <td data-title="N° Func" class="align-right"> {{item.qtd}} </td>
-      <td data-title="Fe%" class="align-right"> {{item.percent | percent }} </td>
+      <td data-title="Fe%" class="align-right"> {{item.percent | percent: '1.2-2' }} </td>
       <td data-title="F" class="align-right"> {{item.fac}} </td>
-      <td data-title="F%" class="align-right"> {{item.facP | percent }} </td>
+      <td data-title="F%" class="align-right"> {{item.facP | percent: '1.2-2' }} </td>
     </tr>
     </tbody>
     <tfoot>
