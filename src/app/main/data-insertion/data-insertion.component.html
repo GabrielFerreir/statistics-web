@@ -57,7 +57,7 @@
             <div class="icon chip-cont">
               {{ dadoInserido.qtd }}
             </div>
-              {{ dadoInserido.name }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}
+              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}
             <div class="close ripple-rounded" uiRipple (click)="removeData(index)">
               <i class="material-icons">add_circle</i>
             </div>

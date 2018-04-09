@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
 import {Location} from '@angular/common';
+import { StatisticsService } from '../statistics.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +16,9 @@ export class DataInsertionComponent implements OnInit {
   selectSufixo: any[];
 
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef,
+              private statisticsService: StatisticsService,
+              private router: Router) {
     this.info = {
       dados: []
     };
@@ -38,14 +42,14 @@ export class DataInsertionComponent implements OnInit {
       const dataTratada = this.info.currentDado.trim().toLowerCase();
       let isExists = false;
       this.info.dados.forEach((dado) => {
-        if (dado.name === dataTratada) {
+        if (dado.group === dataTratada) {
           dado.qtd++;
           isExists = true;
         }
       });
       if (!isExists) {
         const obj = {
-          name: dataTratada,
+          group: dataTratada,
           qtd: 1
         }
         this.info.dados.push(obj);
@@ -64,7 +68,7 @@ export class DataInsertionComponent implements OnInit {
 
   onSubmit(form, info) {
     console.log(info)
-    console.log(form);
+    // console.log(form);
     // this.saving = true;
     for (const control in form.controls) {
         if (form.controls.hasOwnProperty(control)) {
@@ -76,6 +80,13 @@ export class DataInsertionComponent implements OnInit {
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
+
+    this.statisticsService.qualitativaNominal(this.info);
+    this.router.navigate(['/dashboard']);
   }
+
+  
+
+
 
 }
