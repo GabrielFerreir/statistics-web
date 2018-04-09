@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // this.res = this.statistics.countRepeat(this.dados.qualitativaOrdinaria);
     // this.res2 = this.statistics.countRepeat(this.dados.quantitativoDiscreto);
-    // this.charts01 = this.charts.generateCharts(this.res, 'Qualitativa Ordinaria', 'PieChart', ['group', 'percent']);
+    this.charts01 = this.charts.generateCharts(this.dados.dados, 'Qualitativa Ordinaria', 'PieChart', ['group', 'percent']);
   }
 
   ngAfterViewInit() {
