@@ -14,7 +14,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
 
   info: any;
   selectSufixo: any[];
-  isChipDown = false;
+  // isChipDown = false;
+
+  dragDrop: any;
 
 
   constructor(private element: ElementRef,
@@ -24,6 +26,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     this.info = {
       content: []
     };
+    this.dragDrop = {};
 
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
@@ -122,27 +125,34 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     });
   }
 
-  chipDown() {
+  chipDown(el) {
     console.log('DOWN');
-    this.isChipDown = true;
+    this.dragDrop.isChipDown = true;
+    this.dragDrop.chipSelected = el[1];
+    // console.log(event);
   }
 
   chipMove() {
-    if (this.isChipDown) {
-      console.log('MOVE');
+    if (this.dragDrop.isChipDown) {
+      const position = {x: event['clientX'], y: event['clientY']};
+      console.log(this.dragDrop.chipSelected);
+      this.dragDrop.chipSelected.style.position = 'fixed';
+      this.dragDrop.chipSelected.style.top = `${position.y}px`;
+      this.dragDrop.chipSelected.style.left = `${position.x}px`;
+      console.log(event);
     }
   }
 
   chipUp() {
-    this.isChipDown = false;
-    console.log(this.isChipDown);
+    this.dragDrop.isChipDown = false;
+    console.log(this.dragDrop.isChipDown);
   }
 
-  addListenerMulti(element, eventNames, listener) {
+  addListenerMulti(el, eventNames, listener) {
     const self = this;
     const events = eventNames.split(' ');
     for (let i = 0; i < events.length; i++) {
-      element.addEventListener(events[i], listener.bind(self), false);
+      el.addEventListener(events[i], listener.bind(self, [this, el]), false);
     }
   }
 
