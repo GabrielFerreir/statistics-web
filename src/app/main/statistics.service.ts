@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class StatisticsService {
@@ -46,13 +46,7 @@ export class StatisticsService {
   }
 
   percent(obj) {
-
-    let total = 0;
-    obj.forEach((q) => {
-      total += q.qtd;
-    })
-
-
+    const total = this.totalItems(obj, 'qtd');
     obj.forEach((el) => {
       el.percent = el.qtd / total;
     });
@@ -67,11 +61,7 @@ export class StatisticsService {
   }
 
   frequencyPercent(obj) {
-    let total = 0;
-    obj.forEach((q) => {
-      total += q.qtd;
-    })
-
+    const total = this.totalItems(obj, 'qtd');
     let acm = 0;
     obj.forEach((el) => {
       acm += el.qtd / total;
@@ -99,22 +89,22 @@ export class StatisticsService {
     let error;
 
     info.dados.forEach((dado) => {
-      if(isQuantitativa === null) {
+      if (isQuantitativa === null) {
         isQuantitativa = !isNaN(dado.group);
       } else {
-        if(isQuantitativa !== !isNaN(dado.group)) {
+        if (isQuantitativa !== !isNaN(dado.group)) {
           error = true;
           return;
         }
       }
     });
-    if(error) {
+    if (error) {
       console.log('Não conseguimos identificar se a variavel é quanti ou quali');
       return;
-    } 
+    }
     console.log(isQuantitativa ? 'Quantitativa' : 'Qualitativa');
-    if(isQuantitativa) {
-      if(info.dados.length > 10) {
+    if (isQuantitativa) {
+      if (info.dados.length > 10) {
         console.log('Quantivativa continua');
       } else {
         console.log('Quantivativa discreta');
@@ -125,6 +115,15 @@ export class StatisticsService {
       console.log('Todas as variaveis quali estão sendo tratadas como nominal');
       this.qualitativaNominal(info);
     }
+  }
+
+  totalItems(array, property) {
+    let total = 0;
+    array.forEach((obj) => {
+      total += obj[property];
+    });
+
+    return total;
   }
 
 }
