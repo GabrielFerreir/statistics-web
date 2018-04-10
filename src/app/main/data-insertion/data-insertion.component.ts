@@ -113,11 +113,10 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       chips = data;
       if (chips.length) {
         chips.forEach((chip) => {
-          console.log('Adicionou');
-          // Removendo eventos
-          this.removeListenerMulti(chip, 'mousedown touchstart', this.chipDown);
-          // Adicionando eventos
-          this.addListenerMulti(chip, 'mousedown touchdown', this.chipDown);
+          if (!chip.getAttribute('eventActive')) {
+            chip.setAttribute('eventActive', 'true');
+            this.addListenerMulti(chip, 'mousedown touchdown', this.chipDown);
+          }
         });
       }
     });
@@ -126,32 +125,24 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   chipDown() {
     console.log('DOWN');
     this.isChipDown = true;
-    console.log(this.isChipDown);
   }
 
   chipMove() {
-    console.log('Move', this);
-    // if (this.isChipDown) {
-    //   console.log('MOVE');
-    // }
-  }
-
-  chipUp() {
-    console.log('UP');
-    // this.isChipDown = false;
-  }
-
-  addListenerMulti(element, eventNames, listener) {
-    const events = eventNames.split(' ');
-    for (let i = 0; i < events.length; i++) {
-      element.addEventListener(events[i], listener, false);
+    if (this.isChipDown) {
+      console.log('MOVE');
     }
   }
 
-  removeListenerMulti(element, eventNames, listener) {
+  chipUp() {
+    this.isChipDown = false;
+    console.log(this.isChipDown);
+  }
+
+  addListenerMulti(element, eventNames, listener) {
+    const self = this;
     const events = eventNames.split(' ');
     for (let i = 0; i < events.length; i++) {
-      element.removeEventListener(events[i], listener, false);
+      element.addEventListener(events[i], listener.bind(self), false);
     }
   }
 
