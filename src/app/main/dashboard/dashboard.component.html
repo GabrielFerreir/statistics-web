@@ -1,7 +1,7 @@
 <div class="ui-s840">
-  <div style="display: flex" *ngIf="this.dados.dados">
-    <div style="width: 50%; padding: 16px;">
-      <app-table [data]="dados.dados" [title]="'Qualitativa Nominal'"></app-table>
+  <div style="display: flex" *ngIf="dados.content">
+    <div style="padding: 16px;">
+      <app-table [data]="dados.content" [title]="dados.title"></app-table>
     </div>
     <div style="width: 50%; padding: 16px;">
       <ui-card class="elevate-on-toolbar">
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <ui-card class="elevate-on-toolbar" *ngIf="!this.dados.dados">
+  <ui-card class="elevate-on-toolbar" *ngIf="!dados.content">
     <ui-card-content>
       <div style="padding: 32px 0; text-align: center;">
           Nenhum dado foi encontrado!

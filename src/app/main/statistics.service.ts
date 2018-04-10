@@ -70,16 +70,16 @@ export class StatisticsService {
   }
 
   qualitativaNominal(info) {
-    this.percent(info.dados);
-    this.frequencyAmass(info.dados);
-    this.frequencyPercent(info.dados);
+    this.percent(info.content);
+    this.frequencyAmass(info.content);
+    this.frequencyPercent(info.content);
     this.response = info;
   }
 
   quantitativaDiscreta(info) {
-    this.percent(info.dados);
-    this.frequencyAmass(info.dados);
-    this.frequencyPercent(info.dados);
+    this.percent(info.content);
+    this.frequencyAmass(info.content);
+    this.frequencyPercent(info.content);
     this.response = info;
   }
 
@@ -88,7 +88,7 @@ export class StatisticsService {
     let isQuantitativa = null;
     let error;
 
-    info.dados.forEach((dado) => {
+    info.content.forEach((dado) => {
       if (isQuantitativa === null) {
         isQuantitativa = !isNaN(dado.group);
       } else {
@@ -104,7 +104,7 @@ export class StatisticsService {
     }
     console.log(isQuantitativa ? 'Quantitativa' : 'Qualitativa');
     if (isQuantitativa) {
-      if (info.dados.length > 10) {
+      if (info.content.length > 10) {
         console.log('Quantivativa continua');
       } else {
         console.log('Quantivativa discreta');

@@ -21,7 +21,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
               private router: Router,
               private toolbarService: UiToolbarService) {
     this.info = {
-      dados: []
+      content: []
     };
 
     this.selectSufixo = [
@@ -42,33 +42,35 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   }
 
   insertData() {
-    
     if (this.info.currentDado && this.info.currentDado.length) {
       const dataTratada = this.info.currentDado.trim().toLowerCase();
+
       let isExists = false;
-      this.info.dados.forEach((dado) => {
+      this.info.content.forEach((dado) => {
         if (dado.group === dataTratada) {
           dado.qtd++;
           isExists = true;
         }
       });
+
       if (!isExists) {
         const obj = {
           group: dataTratada,
           qtd: 1
-        }
-        this.info.dados.push(obj);
+        };
+        this.info.content.push(obj);
+        console.log(this.info.content);
       }
       this.info.currentDado = null;
     }
   }
 
   removeData(index) {
-    if(this.info.dados[index].qtd > 1) {
-      this.info.dados[index].qtd--;
+    if(this.info.content[index].qtd > 1) {
+      this.info.content[index].qtd--;
       return;
     }
-      this.info.dados.splice(index, 1);
+      this.info.content.splice(index, 1);
     }
 
   onSubmit(form, info) {
@@ -89,7 +91,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/dashboard']);
   }
 
-  
+
 
 
 
