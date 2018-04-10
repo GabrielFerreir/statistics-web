@@ -1,8 +1,8 @@
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import {Component, OnInit, ElementRef, AfterViewInit} from '@angular/core';
 import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
 import {Location} from '@angular/common';
-import { StatisticsService } from '../statistics.service';
-import { Router } from '@angular/router';
+import {StatisticsService} from '../statistics.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,6 +14,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
 
   info: any;
   selectSufixo: any[];
+  isChipDown = false;
 
 
   constructor(private element: ElementRef,
@@ -25,10 +26,10 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     };
 
     this.selectSufixo = [
-      { id: 1, nome: 'Sem sufixo' },
-      { id: 2, nome: 'Metro' },
-      { id: 3, nome: 'Kg' },
-      { id: 4, nome: 'Centimetros' }
+      {id: 1, nome: 'Sem sufixo'},
+      {id: 2, nome: 'Metro'},
+      {id: 3, nome: 'Kg'},
+      {id: 4, nome: 'Centimetros'}
     ];
 
   }
@@ -39,6 +40,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.toolbarService.activateExtendedToolbar(480);
+
+    this.addListenerMulti(document, 'mousemove touchmove', this.chipMove);
+    this.addListenerMulti(document, 'mouseup touchend', this.chipUp);
   }
 
   insertData() {
@@ -63,25 +67,26 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       }
       this.info.currentDado = null;
     }
+    this.initDragDrop();
   }
 
   removeData(index) {
-    if(this.info.content[index].qtd > 1) {
+    if (this.info.content[index].qtd > 1) {
       this.info.content[index].qtd--;
       return;
     }
-      this.info.content.splice(index, 1);
-    }
+    this.info.content.splice(index, 1);
+  }
 
   onSubmit(form, info) {
-    console.log(info)
+    console.log(info);
     // console.log(form);
     // this.saving = true;
     for (const control in form.controls) {
-        if (form.controls.hasOwnProperty(control)) {
-            form.controls[control].markAsTouched();
-            form.controls[control].markAsDirty();
-        }
+      if (form.controls.hasOwnProperty(control)) {
+        form.controls[control].markAsTouched();
+        form.controls[control].markAsDirty();
+      }
     }
     if (!form.valid) {
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
@@ -92,7 +97,63 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   }
 
 
+  /* DRAG-DROP */
+  initDragDrop() {
+    const self = this;
+    let chips: any;
+    const timeOut = () => {
+      return () => new Promise(resolve => setTimeout(() => {
+        const introChips = self.element.nativeElement.querySelectorAll('.js-chips-dado');
+        resolve(introChips);
+      }));
+    };
 
+
+    timeOut()().then((data) => {
+      chips = data;
+      if (chips.length) {
+        chips.forEach((chip) => {
+          console.log('Adicionou');
+          // Removendo eventos
+          this.removeListenerMulti(chip, 'mousedown touchstart', this.chipDown);
+          // Adicionando eventos
+          this.addListenerMulti(chip, 'mousedown touchdown', this.chipDown);
+        });
+      }
+    });
+  }
+
+  chipDown() {
+    console.log('DOWN');
+    this.isChipDown = true;
+    console.log(this.isChipDown);
+  }
+
+  chipMove() {
+    console.log('Move', this);
+    // if (this.isChipDown) {
+    //   console.log('MOVE');
+    // }
+  }
+
+  chipUp() {
+    console.log('UP');
+    // this.isChipDown = false;
+  }
+
+  addListenerMulti(element, eventNames, listener) {
+    const events = eventNames.split(' ');
+    for (let i = 0; i < events.length; i++) {
+      element.addEventListener(events[i], listener, false);
+    }
+  }
+
+  removeListenerMulti(element, eventNames, listener) {
+    const events = eventNames.split(' ');
+    for (let i = 0; i < events.length; i++) {
+      element.removeEventListener(events[i], listener, false);
+    }
+  }
 
 
 }
