@@ -85,4 +85,46 @@ export class StatisticsService {
     this.frequencyPercent(info.dados);
     this.response = info;
   }
+
+  quantitativaDiscreta(info) {
+    this.percent(info.dados);
+    this.frequencyAmass(info.dados);
+    this.frequencyPercent(info.dados);
+    this.response = info;
+  }
+
+  identifyTypeVariable(info) {
+    console.log(info);
+    let isQuantitativa = null;
+    let error;
+
+    info.dados.forEach((dado) => {
+      if(isQuantitativa === null) {
+        isQuantitativa = !isNaN(dado.group);
+      } else {
+        if(isQuantitativa !== !isNaN(dado.group)) {
+          error = true;
+          return;
+        }
+      }
+    });
+    if(error) {
+      console.log('Não conseguimos identificar se a variavel é quanti ou quali');
+      return;
+    } 
+    console.log(isQuantitativa ? 'Quantitativa' : 'Qualitativa');
+    if(isQuantitativa) {
+      if(info.dados.length > 10) {
+        console.log('Quantivativa continua');
+      } else {
+        console.log('Quantivativa discreta');
+        this.quantitativaDiscreta(info);
+      }
+    } else {
+      console.log('Identificou que a variavel é quali');
+      console.log('Todas as variaveis quali estão sendo tratadas como nominal');
+      this.qualitativaNominal(info);
+    }
+  }
+
 }

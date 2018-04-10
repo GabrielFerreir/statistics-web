@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
 import {Location} from '@angular/common';
 import { StatisticsService } from '../statistics.service';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './data-insertion.component.html',
   styleUrls: ['./data-insertion.component.scss']
 })
-export class DataInsertionComponent implements OnInit {
+export class DataInsertionComponent implements OnInit, AfterViewInit {
 
   info: any;
   selectSufixo: any[];
@@ -18,7 +18,8 @@ export class DataInsertionComponent implements OnInit {
 
   constructor(private element: ElementRef,
               private statisticsService: StatisticsService,
-              private router: Router) {
+              private router: Router,
+              private toolbarService: UiToolbarService) {
     this.info = {
       dados: []
     };
@@ -34,6 +35,10 @@ export class DataInsertionComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ngAfterViewInit() {
+    this.toolbarService.activateExtendedToolbar(480);
   }
 
   insertData() {
@@ -80,8 +85,7 @@ export class DataInsertionComponent implements OnInit {
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
-
-    this.statisticsService.qualitativaNominal(this.info);
+    this.statisticsService.identifyTypeVariable(this.info);
     this.router.navigate(['/dashboard']);
   }
 
