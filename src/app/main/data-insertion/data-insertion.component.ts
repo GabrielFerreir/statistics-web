@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ElementRef, AfterViewInit, Renderer2} from '@angular/core';
 import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
 import {Location} from '@angular/common';
 import {StatisticsService} from '../statistics.service';
@@ -22,7 +22,8 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   constructor(private element: ElementRef,
               private statisticsService: StatisticsService,
               private router: Router,
-              private toolbarService: UiToolbarService) {
+              private toolbarService: UiToolbarService,
+              private renderer: Renderer2) {
     this.info = {
       content: []
     };
@@ -135,6 +136,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   chipMove() {
     if (this.dragDrop.isChipDown) {
       const position = {x: event['clientX'], y: event['clientY']};
+      this.generateSombra();
       console.log(this.dragDrop.chipSelected);
       this.dragDrop.chipSelected.style.position = 'fixed';
       this.dragDrop.chipSelected.style.top = `${position.y}px`;
@@ -153,6 +155,27 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     const events = eventNames.split(' ');
     for (let i = 0; i < events.length; i++) {
       el.addEventListener(events[i], listener.bind(self, [this, el]), false);
+    }
+  }
+
+  generateSombra() {
+    if (!this.dragDrop.sombra) {
+      this.dragDrop.sombra = true;
+      const configSombra = {
+        width: this.dragDrop.chipSelected.offsetWidth,
+        height: this.dragDrop.chipSelected.offsetHeight
+      };
+      const sombra = this.renderer.createElement('div');
+      // sombra.classList.add('drag-drop-shadow');
+      sombra.classList.add('ui-chip');
+      sombra.style.width = `${configSombra.width}px`;
+      sombra.style.height = `${configSombra.height}px`;
+      console.log(sombra);
+      console.log(configSombra);
+      // this.renderer.appendChild(this.dragDrop.chipSelected, sombra);
+      this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, sombra, this.dragDrop.chipSelected);
+      // referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+
     }
   }
 
