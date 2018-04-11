@@ -130,24 +130,44 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     console.log('DOWN');
     this.dragDrop.isChipDown = true;
     this.dragDrop.chipSelected = el[1];
-    // console.log(event);
+    this.dragDrop.offsetX = event['offsetX'];
+    this.dragDrop.offsetY = event['offsetY'];
+    // const el = event.target
+    // event.target.classList.add('ui-chip');
+    console.log(event);
+    el[1].classList.add('selected');
   }
 
   chipMove() {
     if (this.dragDrop.isChipDown) {
       const position = {x: event['clientX'], y: event['clientY']};
       this.generateSombra();
+      this.identifyLocalDrop(position);
       // console.log(this.dragDrop.chipSelected);
       this.dragDrop.chipSelected.style.position = 'fixed';
-      this.dragDrop.chipSelected.style.top = `${position.y}px`;
-      this.dragDrop.chipSelected.style.left = `${position.x}px`;
+      this.dragDrop.chipSelected.style.top = `${position.y - this.dragDrop.offsetY}px`;
+      this.dragDrop.chipSelected.style.left = `${position.x - this.dragDrop.offsetX}px`;
       // console.log(event);
     }
   }
 
-  chipUp() {
-    this.dragDrop.isChipDown = false;
-    console.log(this.dragDrop.isChipDown);
+  identifyLocalDrop(position) {
+    // console.log(position.x - this.dragDrop.offsetX);
+    console.log(this.element.nativeElement.querySelectorAll('.js-chips-dado'));
+    const chips = this.element.nativeElement.querySelectorAll('.js-chips-dado');
+    chips.forEach((chip) => {
+      console.log(chip.classList.contains('selected'));
+    });
+
+  }
+
+  chipUp(el) {
+    if (this.dragDrop.isChipDown) {
+      this.dragDrop.isChipDown = false;
+      // console.log(this.dragDrop.isChipDown);
+      this.dragDrop.chipSelected.classList.remove('selected');
+
+    }
   }
 
   addListenerMulti(el, eventNames, listener) {
