@@ -53,13 +53,15 @@
             <label for="dado">Dado</label>
           </ui-input-container>
 
-          <div *ngFor="let dadoInserido of info.content; let index = index" class="ui-chip js-chips-dado">
-            <div class="icon chip-cont">
-              {{ dadoInserido.qtd }}
-            </div>
+          <div class="container-chips">
+            <div *ngFor="let dadoInserido of info.content; let index = index" class="ui-chip js-chips-dado">
+              <div class="icon chip-cont">
+                {{ dadoInserido.qtd }}
+              </div>
               {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}
-            <div class="close ripple-rounded" uiRipple (click)="removeData(index)">
-              <i class="material-icons">add_circle</i>
+              <div class="close ripple-rounded" uiRipple (click)="removeData(index)">
+                <i class="material-icons">add_circle</i>
+              </div>
             </div>
           </div>
         </ui-chips>
