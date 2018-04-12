@@ -30,13 +30,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
         {group: 'Azul1', qtd: 1},
         {group: 'Azul2', qtd: 1},
         {group: 'Azul3', qtd: 1},
-        {group: 'Azul4', qtd: 1},
-        {group: 'Azul5', qtd: 1},
-        {group: 'Azul6', qtd: 1},
-        {group: 'Azul7', qtd: 1},
-        {group: 'Azul8', qtd: 1},
-        {group: 'Azul9', qtd: 1},
-        {group: 'Azul10', qtd: 1}
+        {group: 'Azul4', qtd: 1}
       ]
     };
     this.dragDrop = {};
@@ -224,14 +218,12 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.dragDrop.isChipDown = false;
       this.dragDrop.chipSelected.classList.remove('selected');
       this.dragDrop.chipSelected.style = '';
-
-      this.info.content.splice(this.dragDrop.shadow.getAttribute('data-value') - 1, 0, this.dragDrop.value);
       this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.chipSelected, this.dragDrop.shadow);
       this.removeSombra();
       this.enableScroll();
       this.dragDrop = {};
-      this.initDragDrop();
-      console.log(this.info.content);
+      this.organizeArray();
+      // console.log(this.info.content);
     }
   }
 
@@ -256,7 +248,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   }
 
   moveShadow(before) {
-    this.dragDrop.shadow.setAttribute('data-value', before.getAttribute('data-value'));
     this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.shadow, before);
   }
 
@@ -303,4 +294,15 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     return document.querySelector('html').scrollTop;
   }
 
+  organizeArray() {
+    const chips = this.element.nativeElement.querySelectorAll('.js-chips-dado');
+    const newArray = [];
+    for(let i = 0; i < chips.length; i++) {
+      const obj = this.info.content[chips[i].getAttribute('data-value')];;
+      chips[i].setAttribute('data-value', i);
+      newArray.push(obj);
+      
+    }
+    this.info.content = newArray;
+  }
 }
