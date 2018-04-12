@@ -4,8 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
-import { SMNUIModule } from 'ng-smn-ui';
-import {UiToolbarService} from 'ng-smn-ui';
+import { SMNUIModule, UiToolbarService } from 'ng-smn-ui';
 
 @NgModule({
   exports: [

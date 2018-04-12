@@ -131,7 +131,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
         chips.forEach((chip) => {
           if (!chip.getAttribute('eventActive')) {
             chip.setAttribute('eventActive', 'true');
-            this.addListenerMulti(chip, 'mousedown touchdown', this.chipDown);
+            this.addListenerMulti(chip, 'mousedown touchstart', this.chipDown);
           }
         });
       }
@@ -139,22 +139,37 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   }
 
   chipDown(el) {
-    console.log('DOWN');
-    this.dragDrop.isChipDown = true;
-    this.dragDrop.chipSelected = el[1];
-    this.dragDrop.offsetX = event['offsetX'];
-    this.dragDrop.offsetY = event['offsetY'];
-    // const el = event.target
-    // event.target.classList.add('ui-chip');
-    console.log(event);
-    el[1].classList.add('selected');
-    this.buildShadow();
+    if (this.info.ordinal) {
+      this.dragDrop.isChipDown = true;
+      this.dragDrop.chipSelected = el[1];
+      console.log(event);
+      const elTarget = <any>event.target;
+      this.dragDrop.offsetX = event['offsetX'] || event['targetTouches'][0].pageX - elTarget.getBoundingClientRect().left;
+      this.dragDrop.offsetY = event['offsetY'] || event['targetTouches'][0].pageY - elTarget.getBoundingClientRect().top;
+      // console.log(this.dragDrop.offsetX);
+      // const el = event.target
+      // event.target.classList.add('ui-chip');
+      console.log(event);
+      el[1].classList.add('selected');
+      this.buildShadow();
+    }
   }
 
   chipMove() {
     if (this.dragDrop.isChipDown) {
       this.dragDrop.isMoved = true;
-      const position = {x: event['clientX'] - this.dragDrop.offsetX, y: event['clientY'] - this.dragDrop.offsetY};
+      this.disableScroll();
+      const x = event['clientX'] || event['changedTouches'][0]['clientX'];
+      const y = event['clientY'] || event['changedTouches'][0]['clientY'];
+      // console.log(typeof this.dragDrop.offsetX);
+      // console.log(this.dragDrop.offsetX);
+      // console.log(x - this.dragDrop.offsetX);
+      const position = {
+        x: x - this.dragDrop.offsetX,
+        y: y - this.dragDrop.offsetY
+      };
+      // console.log(event['changedTouches'][0]['clientX']);
+      // console.log('movo', position);
       const before = this.identifyLocalDrop(position);
       this.moveShadow(before);
       this.dragDrop.chipSelected.style.position = 'fixed';
@@ -173,7 +188,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < chips.length; i++) {
       if (!chips[i].classList.contains('selected')) {
 
-        if (chips[i].getBoundingClientRect().y + chips[i].getBoundingClientRect().height  > position.y) {
+        if (chips[i].getBoundingClientRect().y + chips[i].getBoundingClientRect().height > position.y) {
           if (!isFindY) {
             isFindY = true;
             lineY = chips[i].getBoundingClientRect().y;
@@ -199,6 +214,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.dragDrop.chipSelected.style = '';
       this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.chipSelected, this.dragDrop.shadow);
       this.removeSombra();
+      this.enableScroll()
       this.dragDrop = {};
     }
   }
@@ -238,5 +254,32 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     }
   }
 
+  disableScroll() {
+    if (window.addEventListener) { // older FF
+      window.addEventListener('DOMMouseScroll', this.preventDefault, false);
+    }
+    window.onwheel = this.preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = this.preventDefault; // older browsers, IE
+    window.ontouchmove = this.preventDefault; // mobile
+    // document.onkeydown = this.preventDefaultForScrollKeys;
+  }
+
+  enableScroll() {
+    if (window.removeEventListener) {
+      window.removeEventListener('DOMMouseScroll', this.preventDefault, false);
+    }
+    window.onmousewheel = document.onmousewheel = null;
+    window.onwheel = null;
+    window.ontouchmove = null;
+    document.onkeydown = null;
+  }
+
+  preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+    e.returnValue = false;
+  }
 
 }
