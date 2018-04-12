@@ -3,6 +3,7 @@ import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
 import {Location} from '@angular/common';
 import {StatisticsService} from '../statistics.service';
 import {Router} from '@angular/router';
+import {forEach} from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -145,13 +146,14 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       console.log(event);
       const elTarget = <any>event.target;
       this.dragDrop.offsetX = event['offsetX'] || event['targetTouches'][0].pageX - elTarget.getBoundingClientRect().left;
-      this.dragDrop.offsetY = event['offsetY'] || event['targetTouches'][0].pageY - elTarget.getBoundingClientRect().top;
+      this.dragDrop.offsetY = (event['offsetY'] || event['targetTouches'][0].pageY - elTarget.getBoundingClientRect().top);
       // console.log(this.dragDrop.offsetX);
       // const el = event.target
       // event.target.classList.add('ui-chip');
       console.log(event);
       el[1].classList.add('selected');
       this.buildShadow();
+      console.log(this.getScrollY());
     }
   }
 
@@ -166,10 +168,8 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       // console.log(x - this.dragDrop.offsetX);
       const position = {
         x: x - this.dragDrop.offsetX,
-        y: y - this.dragDrop.offsetY
+        y: y - this.dragDrop.offsetY + this.getScrollY()
       };
-      // console.log(event['changedTouches'][0]['clientX']);
-      // console.log('movo', position);
       const before = this.identifyLocalDrop(position);
       this.moveShadow(before);
       this.dragDrop.chipSelected.style.position = 'fixed';
@@ -204,6 +204,23 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    if (!isFind) {
+      let lastChip;
+      chips.forEach((chip, index) => {
+        if (chip.getBoundingClientRect().y === lineY) {
+          lastChip = index;
+        }
+      });
+      return chips[lastChip + 1];
+      /*
+        CASO ELE NÂO ENCONTRE UM ELEMENTO MAIOR NA MESMA LINHA
+        ELE VAI PEGAR O ULTIMO ELEMENTO DA LINHA MAIS 1
+        ASSIM ELE ENCONTRARA O ELEMENTO DA LINHA SEGUINTE
+        OU RETORNARA UNDEFINED QUE FARA COM QUE ELE SEJA INSERIDO
+        NA ULTIMA POSIÇÃO.
+      */
+    }
+
     return before;
   }
 
@@ -214,7 +231,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.dragDrop.chipSelected.style = '';
       this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.chipSelected, this.dragDrop.shadow);
       this.removeSombra();
-      this.enableScroll()
+      this.enableScroll();
       this.dragDrop = {};
     }
   }
@@ -280,6 +297,10 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       e.preventDefault();
     }
     e.returnValue = false;
+  }
+
+  getScrollY() {
+    return document.querySelector('html').scrollTop;
   }
 
 }
