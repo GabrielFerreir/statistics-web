@@ -136,29 +136,36 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     // event.target.classList.add('ui-chip');
     console.log(event);
     el[1].classList.add('selected');
+    this.buildShadow();
   }
 
   chipMove() {
     if (this.dragDrop.isChipDown) {
-      const position = {x: event['clientX'], y: event['clientY']};
-      this.generateSombra();
-      this.identifyLocalDrop(position);
-      // console.log(this.dragDrop.chipSelected);
+      const position = {x: event['clientX'] - this.dragDrop.offsetX, y: event['clientY'] - this.dragDrop.offsetY};
+      const before = this.identifyLocalDrop(position);
+      this.moveShadow(before);
       this.dragDrop.chipSelected.style.position = 'fixed';
-      this.dragDrop.chipSelected.style.top = `${position.y - this.dragDrop.offsetY}px`;
-      this.dragDrop.chipSelected.style.left = `${position.x - this.dragDrop.offsetX}px`;
-      // console.log(event);
+      this.dragDrop.chipSelected.style.top = `${position.y}px`;
+      this.dragDrop.chipSelected.style.left = `${position.x}px`;
+      this.dragDrop.sombra = false;
     }
   }
 
   identifyLocalDrop(position) {
-    // console.log(position.x - this.dragDrop.offsetX);
-    console.log(this.element.nativeElement.querySelectorAll('.js-chips-dado'));
+    let before;
+    let isFind = false;
     const chips = this.element.nativeElement.querySelectorAll('.js-chips-dado');
-    chips.forEach((chip) => {
-      console.log(chip.classList.contains('selected'));
-    });
-
+    for (let i = 0; i < chips.length; i++) {
+      if (!chips[i].classList.contains('selected')) {
+        if (chips[i].getBoundingClientRect().x > position.x) {
+          if (!isFind) {
+            isFind = true;
+            before = chips[i];
+          }
+        }
+      }
+    }
+    return before;
   }
 
   chipUp(el) {
@@ -166,7 +173,10 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.dragDrop.isChipDown = false;
       // console.log(this.dragDrop.isChipDown);
       this.dragDrop.chipSelected.classList.remove('selected');
-
+      // this.dragDrop.sombra = false;
+      this.dragDrop.chipSelected.style = '';
+      this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.chipSelected, this.dragDrop.shadow);
+      this.removeSombra();
     }
   }
 
@@ -178,21 +188,30 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  generateSombra() {
-    if (!this.dragDrop.sombra) {
-      this.dragDrop.sombra = true;
-      const configSombra = {
-        width: this.dragDrop.chipSelected.offsetWidth,
-        height: this.dragDrop.chipSelected.offsetHeight
-      };
-      const sombra = this.renderer.createElement('div');
-      sombra.classList.add('ui-chip');
-      sombra.style.width = `${configSombra.width}px`;
-      sombra.style.height = `${configSombra.height}px`;
-      // console.log(sombra);
-      // console.log(configSombra);
-      this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, sombra, this.dragDrop.chipSelected);
+  buildShadow() {
+    const configSombra = {
+      width: this.dragDrop.chipSelected.offsetWidth,
+      height: this.dragDrop.chipSelected.offsetHeight
+    };
+    const shadow = this.renderer.createElement('div');
+    shadow.classList.add('ui-chip', 'js-dragdrop-shadow');
+    shadow.style.width = `${configSombra.width}px`;
+    shadow.style.height = `${configSombra.height}px`;
+    this.dragDrop.shadow = shadow;
+  }
 
+  moveShadow(before) {
+      this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.shadow, before);
+  }
+
+  removeSombra() {
+    const container = this.element.nativeElement.querySelector('.container-chips');
+    let shadow;
+    if (container) {
+      shadow = container.querySelector('.js-dragdrop-shadow');
+    }
+    if (shadow) {
+      container.removeChild(shadow);
     }
   }
 

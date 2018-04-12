@@ -6,6 +6,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import { SMNUIModule } from 'ng-smn-ui';
 import {UiToolbarService} from 'ng-smn-ui';
+
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 
