@@ -25,7 +25,18 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
               private toolbarService: UiToolbarService,
               private renderer: Renderer2) {
     this.info = {
-      content: []
+      content: [
+        {group: 'Azul1', qtd: 1},
+        {group: 'Azul2', qtd: 1},
+        {group: 'Azul3', qtd: 1},
+        {group: 'Azul4', qtd: 1},
+        {group: 'Azul5', qtd: 1},
+        {group: 'Azul6', qtd: 1},
+        {group: 'Azul7', qtd: 1},
+        {group: 'Azul8', qtd: 1},
+        {group: 'Azul9', qtd: 1},
+        {group: 'Azul10', qtd: 1}
+      ]
     };
     this.dragDrop = {};
 
@@ -47,6 +58,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
 
     this.addListenerMulti(document, 'mousemove touchmove', this.chipMove);
     this.addListenerMulti(document, 'mouseup touchend', this.chipUp);
+    this.initDragDrop();
   }
 
   insertData() {
@@ -141,6 +153,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
 
   chipMove() {
     if (this.dragDrop.isChipDown) {
+      this.dragDrop.isMoved = true;
       const position = {x: event['clientX'] - this.dragDrop.offsetX, y: event['clientY'] - this.dragDrop.offsetY};
       const before = this.identifyLocalDrop(position);
       this.moveShadow(before);
@@ -154,10 +167,21 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   identifyLocalDrop(position) {
     let before;
     let isFind = false;
+    let isFindY = false;
+    let lineY;
     const chips = this.element.nativeElement.querySelectorAll('.js-chips-dado');
     for (let i = 0; i < chips.length; i++) {
       if (!chips[i].classList.contains('selected')) {
-        if (chips[i].getBoundingClientRect().x > position.x) {
+
+        if (chips[i].getBoundingClientRect().y + chips[i].getBoundingClientRect().height  > position.y) {
+          if (!isFindY) {
+            isFindY = true;
+            lineY = chips[i].getBoundingClientRect().y;
+          }
+        }
+
+
+        if (chips[i].getBoundingClientRect().x > position.x && chips[i].getBoundingClientRect().y === lineY) {
           if (!isFind) {
             isFind = true;
             before = chips[i];
@@ -169,14 +193,13 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   }
 
   chipUp(el) {
-    if (this.dragDrop.isChipDown) {
+    if (this.dragDrop.isChipDown && this.dragDrop.isMoved) {
       this.dragDrop.isChipDown = false;
-      // console.log(this.dragDrop.isChipDown);
       this.dragDrop.chipSelected.classList.remove('selected');
-      // this.dragDrop.sombra = false;
       this.dragDrop.chipSelected.style = '';
       this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.chipSelected, this.dragDrop.shadow);
       this.removeSombra();
+      this.dragDrop = {};
     }
   }
 
@@ -201,7 +224,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   }
 
   moveShadow(before) {
-      this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.shadow, before);
+    this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.shadow, before);
   }
 
   removeSombra() {
