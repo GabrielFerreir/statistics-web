@@ -69,7 +69,7 @@ export class StatisticsService {
     });
   }
 
-  qualitativaNominal(info) {
+  qualitativa(info) {
     this.percent(info.content);
     this.frequencyAmass(info.content);
     this.frequencyPercent(info.content);
@@ -102,7 +102,6 @@ export class StatisticsService {
       console.log('Não conseguimos identificar se a variavel é quanti ou quali');
       return;
     }
-    console.log(isQuantitativa ? 'Quantitativa' : 'Qualitativa');
     if (isQuantitativa) {
       if (info.content.length > 10) {
         console.log('Quantivativa continua');
@@ -111,9 +110,14 @@ export class StatisticsService {
         this.quantitativaDiscreta(info);
       }
     } else {
-      console.log('Identificou que a variavel é quali');
-      console.log('Todas as variaveis quali estão sendo tratadas como nominal');
-      this.qualitativaNominal(info);
+      if(info.ordinal) {
+        console.log('Qualitativa ordinal');
+        this.qualitativa(info);
+      } else {
+        console.log('Qualitativa nominal');
+        this.qualitativa(info);
+      }
+      
     }
   }
 
