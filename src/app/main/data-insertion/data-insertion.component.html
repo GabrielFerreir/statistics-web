@@ -54,7 +54,7 @@
           </ui-input-container>
 
           <div class="container-chips">
-            <div *ngFor="let dadoInserido of info.content; let index = index" class="ui-chip js-chips-dado">
+            <div *ngFor="let dadoInserido of info.content; let index = index" [attr.data-value]="index" class="ui-chip js-chips-dado">
               <div class="icon chip-cont">
                 {{ dadoInserido.qtd }}
               </div>

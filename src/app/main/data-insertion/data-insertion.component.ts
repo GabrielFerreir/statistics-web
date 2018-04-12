@@ -143,17 +143,15 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     if (this.info.ordinal) {
       this.dragDrop.isChipDown = true;
       this.dragDrop.chipSelected = el[1];
-      console.log(event);
       const elTarget = <any>event.target;
       this.dragDrop.offsetX = event['offsetX'] || event['targetTouches'][0].pageX - elTarget.getBoundingClientRect().left;
       this.dragDrop.offsetY = (event['offsetY'] || event['targetTouches'][0].pageY - elTarget.getBoundingClientRect().top);
-      // console.log(this.dragDrop.offsetX);
-      // const el = event.target
-      // event.target.classList.add('ui-chip');
-      console.log(event);
       el[1].classList.add('selected');
       this.buildShadow();
-      console.log(this.getScrollY());
+      // console.log();
+      this.dragDrop.value = JSON.parse(JSON.stringify(this.info.content[el[1].getAttribute('data-value')]));
+      this.dragDrop.forDelete = el[1].getAttribute('data-value');
+      console.log(this.dragDrop);
     }
   }
 
@@ -163,9 +161,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.disableScroll();
       const x = event['clientX'] || event['changedTouches'][0]['clientX'];
       const y = event['clientY'] || event['changedTouches'][0]['clientY'];
-      // console.log(typeof this.dragDrop.offsetX);
-      // console.log(this.dragDrop.offsetX);
-      // console.log(x - this.dragDrop.offsetX);
       const position = {
         x: x - this.dragDrop.offsetX,
         y: y - this.dragDrop.offsetY + this.getScrollY()
@@ -229,10 +224,14 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.dragDrop.isChipDown = false;
       this.dragDrop.chipSelected.classList.remove('selected');
       this.dragDrop.chipSelected.style = '';
+
+      this.info.content.splice(this.dragDrop.shadow.getAttribute('data-value') - 1, 0, this.dragDrop.value);
       this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.chipSelected, this.dragDrop.shadow);
       this.removeSombra();
       this.enableScroll();
       this.dragDrop = {};
+      this.initDragDrop();
+      console.log(this.info.content);
     }
   }
 
@@ -257,6 +256,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   }
 
   moveShadow(before) {
+    this.dragDrop.shadow.setAttribute('data-value', before.getAttribute('data-value'));
     this.renderer.insertBefore(this.dragDrop.chipSelected.parentNode, this.dragDrop.shadow, before);
   }
 
