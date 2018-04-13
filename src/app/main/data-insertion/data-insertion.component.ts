@@ -15,8 +15,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
 
   info: any;
   selectSufixo: any[];
-  // isChipDown = false;
-
   dragDrop: any;
 
 
@@ -26,15 +24,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
               private toolbarService: UiToolbarService,
               private renderer: Renderer2) {
     this.info = {
-      content: [
-        {group: 'Azul1', qtd: 1},
-        {group: 'Azul2', qtd: 1},
-        {group: 'Azul3', qtd: 1},
-        {group: 'Azul4', qtd: 1}
-      ]
+      content: []
     };
     this.dragDrop = {};
-
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
       {id: 2, nome: 'Metro'},
@@ -50,7 +42,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.toolbarService.activateExtendedToolbar(480);
-
     this.addListenerMulti(document, 'mousemove touchmove', this.chipMove);
     this.addListenerMulti(document, 'mouseup touchend', this.chipUp);
     this.initDragDrop();
@@ -59,7 +50,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   insertData() {
     if (this.info.currentDado && this.info.currentDado.length) {
       const dataTratada = this.info.currentDado.trim().toLowerCase();
-
       let isExists = false;
       this.info.content.forEach((dado) => {
         if (dado.group === dataTratada) {
@@ -67,7 +57,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
           isExists = true;
         }
       });
-
       if (!isExists) {
         const obj = {
           group: dataTratada,
@@ -118,8 +107,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
         resolve(introChips);
       }));
     };
-
-
     timeOut()().then((data) => {
       chips = data;
       if (chips.length) {
@@ -164,36 +151,32 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.dragDrop.chipSelected.style.position = 'fixed';
       this.dragDrop.chipSelected.style.top = `${position.y}px`;
       this.dragDrop.chipSelected.style.left = `${position.x}px`;
-      this.dragDrop.sombra = false;
     }
   }
 
   identifyLocalDrop(position) {
     let before;
-    let isFind = false;
+    let isFindX = false;
     let isFindY = false;
     let lineY;
     const chips = this.element.nativeElement.querySelectorAll('.js-chips-dado');
     for (let i = 0; i < chips.length; i++) {
       if (!chips[i].classList.contains('selected')) {
-
         if (chips[i].getBoundingClientRect().y + chips[i].getBoundingClientRect().height > position.y) {
           if (!isFindY) {
             isFindY = true;
             lineY = chips[i].getBoundingClientRect().y;
           }
         }
-
-
         if (chips[i].getBoundingClientRect().x > position.x && chips[i].getBoundingClientRect().y === lineY) {
-          if (!isFind) {
-            isFind = true;
+          if (!isFindX) {
+            isFindX = true;
             before = chips[i];
           }
         }
       }
     }
-    if (!isFind) {
+    if (!isFindX) {
       let lastChip;
       chips.forEach((chip, index) => {
         if (chip.getBoundingClientRect().y === lineY) {
@@ -209,7 +192,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
         NA ULTIMA POSIÇÃO.
       */
     }
-
     return before;
   }
 
@@ -223,7 +205,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
       this.enableScroll();
       this.dragDrop = {};
       this.organizeArray();
-      // console.log(this.info.content);
     }
   }
 
@@ -297,11 +278,10 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
   organizeArray() {
     const chips = this.element.nativeElement.querySelectorAll('.js-chips-dado');
     const newArray = [];
-    for(let i = 0; i < chips.length; i++) {
-      const obj = this.info.content[chips[i].getAttribute('data-value')];;
+    for (let i = 0; i < chips.length; i++) {
+      const obj = this.info.content[chips[i].getAttribute('data-value')];
       chips[i].setAttribute('data-value', i);
       newArray.push(obj);
-      
     }
     this.info.content = newArray;
   }
