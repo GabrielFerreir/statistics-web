@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, AfterViewInit, Renderer2} from '@angular/core';
+import {Component, OnInit, ElementRef, AfterViewInit, Renderer2, OnDestroy} from '@angular/core';
 import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
 import {Location} from '@angular/common';
 import {StatisticsService} from '../statistics.service';
@@ -11,7 +11,7 @@ import {forEach} from '@angular/router/src/utils/collection';
   templateUrl: './data-insertion.component.html',
   styleUrls: ['./data-insertion.component.scss']
 })
-export class DataInsertionComponent implements OnInit, AfterViewInit {
+export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy {
 
   info: any;
   selectSufixo: any[];
@@ -45,6 +45,10 @@ export class DataInsertionComponent implements OnInit, AfterViewInit {
     this.addListenerMulti(document, 'mousemove touchmove', this.chipMove);
     this.addListenerMulti(document, 'mouseup touchend', this.chipUp);
     this.initDragDrop();
+  }
+
+  ngOnDestroy() {
+    this.toolbarService.deactivateExtendedToolbar();
   }
 
   insertData() {
