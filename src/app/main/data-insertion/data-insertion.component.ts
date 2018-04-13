@@ -24,7 +24,15 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               private toolbarService: UiToolbarService,
               private renderer: Renderer2) {
     this.info = {
-      content: []
+      title: "Exercicio 1",
+      content: [
+        {group: "4", qtd: 5, percent: 0.25, fac: 5, facP: 0.25},
+        {group: "5", qtd: 2, percent: 0.1, fac: 7, facP: 0.35},
+        {group: "6", qtd: 1, percent: 0.05, fac: 8, facP: 0.39999999999999997},
+        {group: "7", qtd: 6, percent: 0.3, fac: 14, facP: 0.7},
+        {group: "8", qtd: 1, percent: 0.05, fac: 15, facP: 0.75},
+        {group: "9", qtd: 5, percent: 0.25, fac: 20, facP: 1}
+      ]
     };
     this.dragDrop = {};
     this.selectSufixo = [

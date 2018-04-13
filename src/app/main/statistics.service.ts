@@ -80,6 +80,7 @@ export class StatisticsService {
     this.percent(info.content);
     this.frequencyAmass(info.content);
     this.frequencyPercent(info.content);
+    this.desvioPadrao(info);
     this.response = info;
   }
 
@@ -130,4 +131,36 @@ export class StatisticsService {
     return total;
   }
 
+  mediaPonderada(info) {
+    const media = 0;
+    let numerador = 0;
+    let denominador = 0;
+console.log('media', info)
+    info.forEach(num => {
+      numerador += num.group * num.qtd
+    });
+    info.forEach(num => {
+      denominador += num.qtd;
+    });
+    return numerador / denominador;
+  }
+  desvioPadrao(info) {
+    // SOMATORIA DE VALOR 
+    console.log(info);
+    console.log(this.mediaPonderada(info.content));
+    let numerador = 0;
+    let denominador = 0;
+
+    info.content.forEach(num => {
+      numerador += Math.pow(num.group - this.mediaPonderada(info.content), 2) * num.qtd; 
+    });
+
+    info.content.forEach(num => {
+      denominador += num.qtd;
+    });
+    if(info.amostra === 'S') {
+      denominador--;
+    }
+    info.desvioPadrao = Math.sqrt(numerador / denominador) ;
+  }
 }
