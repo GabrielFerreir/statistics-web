@@ -11,7 +11,7 @@
             Amostra
           </div>
           <ui-switch class="action">
-            <input type="checkbox" name="switchTest" [checked]="switchTest == 'S'" (change)="info.amostra=$event.target.checked ? 'S':'N'">
+            <input type="checkbox" name="switchTest" [checked]="info.amostra == 'S'" (change)="info.amostra=$event.target.checked ? 'S':'N'">
           </ui-switch>
         </ui-switch-container>
       </div>

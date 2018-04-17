@@ -22,7 +22,8 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               private statisticsService: StatisticsService,
               private router: Router,
               private toolbarService: UiToolbarService,
-              private renderer: Renderer2) {
+              private renderer: Renderer2,
+              public _location: Location) {
     this.info = {
       title: "Exercicio 1",
       content: [
