@@ -10,7 +10,7 @@ function loadServer() {
     const app = express();
     let filesPath;
 
-    filesPath = require('path').join(__dirname, '/dist-prod');
+    filesPath = require('path').join(__dirname, '/dist');
 
     app.use(compression());
     app.use(express.static(filesPath));
