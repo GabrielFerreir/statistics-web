@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
 
 @Injectable()
 export class StatisticsService {
@@ -8,6 +9,14 @@ export class StatisticsService {
   constructor() {
     this.response = {};
   }
+
+  /*
+    0 - Quali nominal
+    1 - Quali ordinal
+
+    2 - Quanti discreta
+    3 - Quanti continua
+  */
 
   getDados() {
     return this.response;
@@ -81,9 +90,23 @@ export class StatisticsService {
     this.frequencyAmass(info.content);
     this.frequencyPercent(info.content);
     this.desvioPadrao(info);
+    info.media = this.mediaPonderada(info.content);
+    this.mediana(info);
     this.response = info;
   }
 
+  quantitativaContinua(info) {
+    this.percent(info.content);
+    this.frequencyAmass(info.content);
+    this.frequencyPercent(info.content);
+    this.desvioPadrao(info);
+    info.media = this.mediaPonderada(info.content);
+    info.mediana = this.mediana(info);
+    // info.content = this.orderBy(info);
+    this.buildInterval(info);
+    this.response = info;
+  }
+  
   identifyTypeVariable(info) {
     console.log(info);
     let isQuantitativa = null;
@@ -106,16 +129,22 @@ export class StatisticsService {
     if (isQuantitativa) {
       if (info.content.length > 10) {
         console.log('Quantivativa continua');
+        info.type = 3;
+        this.quantitativaContinua(info);
+        
       } else {
         console.log('Quantivativa discreta');
+        info.type = 2;
         this.quantitativaDiscreta(info);
       }
     } else {
       if(info.ordinal) {
         console.log('Qualitativa ordinal');
+        info.type = 1;
         this.qualitativa(info);
       } else {
         console.log('Qualitativa nominal');
+        info.type = 0;
         this.qualitativa(info);
       }
       
@@ -131,23 +160,11 @@ export class StatisticsService {
     return total;
   }
 
-  mediaPonderada(info) {
-    const media = 0;
-    let numerador = 0;
-    let denominador = 0;
-console.log('media', info)
-    info.forEach(num => {
-      numerador += num.group * num.qtd
-    });
-    info.forEach(num => {
-      denominador += num.qtd;
-    });
-    return numerador / denominador;
-  }
   desvioPadrao(info) {
     // SOMATORIA DE VALOR 
     console.log(info);
     console.log(this.mediaPonderada(info.content));
+
     let numerador = 0;
     let denominador = 0;
 
@@ -162,5 +179,102 @@ console.log('media', info)
       denominador--;
     }
     info.desvioPadrao = Math.sqrt(numerador / denominador) ;
+  }
+
+  mediaPonderada(info) {
+    const media = 0;
+    let numerador = 0;
+    let denominador = 0;
+    info.forEach(num => {
+      numerador += num.group * num.qtd
+    });
+    info.forEach(num => {
+      denominador += num.qtd;
+    });
+    return numerador / denominador;
+  }
+
+  mediana(info) {
+    console.log('MEDIANA');
+    console.log(info);
+    let somatorio = info.content[info.content.length - 1].fac;
+
+    if(somatorio % 2 === 0) {
+      const pos = [(somatorio / 2) - 1, (somatorio / 2)];
+      let arrayData = [];
+
+      info.content.forEach((num, index) => {
+        for(let i = 0; i < num.qtd; i++) {
+          arrayData.push(num.group);
+        }
+      });  
+      return (parseFloat(arrayData[pos[0]]) + parseFloat(arrayData[pos[1]])) / 2;
+    } else {
+      return (somatorio + 1) / 2;
+    }
+  }
+
+  orderBy(el) {
+    let response = el.sort((a, b) => {
+      return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0)
+    });
+    return response;
+  }
+
+  buildInterval(info) {
+    const contentOrdenado = this.orderBy(info.content);
+    console.log('ORDENADO', contentOrdenado);
+    let amplitude = parseFloat(contentOrdenado[contentOrdenado.length - 1].group) - parseFloat(contentOrdenado[0].group);
+    console.log('AMPLITUDE', amplitude);
+
+    // CLASSE
+
+    let K = Math.sqrt(contentOrdenado.length);
+    console.log('K', K);
+
+    
+    let classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
+    console.log(classes);
+
+    // INCREMENTA
+    amplitude++;
+
+    let intervalo;
+    let qtdGrupos;
+    let find;
+    do{
+      for(let i = 0; i < classes.length; i++) {
+        const res = amplitude / classes[i];
+        if(Number.isInteger(res)) {
+          find = true;
+          intervalo = res;
+          qtdGrupos = classes[i];
+
+        }
+      }
+      amplitude++;
+    } while(!find);
+
+    
+
+    console.log(intervalo);
+
+    let res = [];
+
+    console.log(contentOrdenado);
+
+    for(let i = 0; i < qtdGrupos; i++) {
+      contentOrdenado.forEach(num => {
+        console.log(num);
+
+      });
+    }
+
+    
+
+
+
+
+    // parseFloat(contentOrdenado[0].group
   }
 }

@@ -26,12 +26,26 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
     this.info = {
       title: "Exercicio 1",
       content: [
-        {group: "4", qtd: 5, percent: 0.25, fac: 5, facP: 0.25},
-        {group: "5", qtd: 2, percent: 0.1, fac: 7, facP: 0.35},
-        {group: "6", qtd: 1, percent: 0.05, fac: 8, facP: 0.39999999999999997},
-        {group: "7", qtd: 6, percent: 0.3, fac: 14, facP: 0.7},
-        {group: "8", qtd: 1, percent: 0.05, fac: 15, facP: 0.75},
-        {group: "9", qtd: 5, percent: 0.25, fac: 20, facP: 1}
+        {group: 20, qtd: 1 },
+        {group: 25, qtd: 1 },
+        {group: 28, qtd: 1 },
+        {group: 31, qtd: 1 },
+        {group: 32, qtd: 1 },
+        {group: 32, qtd: 1 },
+        {group: 32, qtd: 1 },
+        {group: 35, qtd: 1 },
+        {group: 37, qtd: 1 },
+        {group: 42, qtd: 1 },
+        {group: 42, qtd: 1 },
+        {group: 46, qtd: 1 },
+        {group: 47, qtd: 1 },
+        {group: 48, qtd: 1 },
+        {group: 50, qtd: 1 },
+        {group: 52, qtd: 1 },
+        {group: 54, qtd: 1 },
+        {group: 55, qtd: 1 },
+        {group: 57, qtd: 1 },
+        {group: 60, qtd: 1 }
       ]
     };
     this.dragDrop = {};
