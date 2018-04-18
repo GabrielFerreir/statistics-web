@@ -103,7 +103,7 @@ export class StatisticsService {
     info.media = this.mediaPonderada(info.content);
     info.mediana = this.mediana(info);
     // info.content = this.orderBy(info);
-    this.buildInterval(info);
+    info.content = this.buildInterval(info);
     this.response = info;
   }
 
@@ -229,11 +229,11 @@ export class StatisticsService {
 
     // CLASSE
 
-    let K = Math.sqrt(contentOrdenado.length);
+    const K = Math.sqrt(contentOrdenado.length);
     console.log('K', K);
 
 
-    let classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
+    const classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
     console.log(classes);
 
     // INCREMENTA
@@ -265,7 +265,7 @@ export class StatisticsService {
     // MONTANDO O INTERVALO
     let lastValue = contentOrdenado[0].group;
     for (let i = 1; i <= qtdGrupos; i++) {
-      groupValue.push({min: lastValue, max: lastValue + intervalo});
+      groupValue.push({id: i, min: lastValue, max: lastValue + intervalo});
       lastValue = lastValue + intervalo;
     }
     console.log(groupValue);
@@ -279,7 +279,29 @@ export class StatisticsService {
       });
     });
 
-    console.log(contentOrdenado);
+
+    const res = [];
+    groupValue.forEach((group) => {
+      const temp = [];
+      contentOrdenado.forEach((obj) => {
+        if (group.id === obj.class.id) {
+          temp.push(obj);
+        }
+      });
+      const soma = { fac: 0, facP: 0, percent: 0, qtd: 0, group: '' };
+      temp.forEach((obje) => {
+        soma.fac = obje.fac;
+        soma.facP = obje.facP;
+        soma.percent += obje.percent;
+        soma.qtd += obje.qtd;
+        soma.group = `De ${group.min} á ${group.max}`;
+      });
+
+      res.push(soma);
+    });
+    console.log('RES', res);
+
+    return res;
 
   }
 }
