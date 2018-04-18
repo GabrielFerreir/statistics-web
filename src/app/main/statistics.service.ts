@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { createOfflineCompileUrlResolver } from '@angular/compiler';
+import {createOfflineCompileUrlResolver} from '@angular/compiler';
 
 @Injectable()
 export class StatisticsService {
@@ -106,7 +106,7 @@ export class StatisticsService {
     this.buildInterval(info);
     this.response = info;
   }
-  
+
   identifyTypeVariable(info) {
     console.log(info);
     let isQuantitativa = null;
@@ -131,14 +131,14 @@ export class StatisticsService {
         console.log('Quantivativa continua');
         info.type = 3;
         this.quantitativaContinua(info);
-        
+
       } else {
         console.log('Quantivativa discreta');
         info.type = 2;
         this.quantitativaDiscreta(info);
       }
     } else {
-      if(info.ordinal) {
+      if (info.ordinal) {
         console.log('Qualitativa ordinal');
         info.type = 1;
         this.qualitativa(info);
@@ -147,7 +147,7 @@ export class StatisticsService {
         info.type = 0;
         this.qualitativa(info);
       }
-      
+
     }
   }
 
@@ -161,7 +161,7 @@ export class StatisticsService {
   }
 
   desvioPadrao(info) {
-    // SOMATORIA DE VALOR 
+    // SOMATORIA DE VALOR
     console.log(info);
     console.log(this.mediaPonderada(info.content));
 
@@ -169,16 +169,16 @@ export class StatisticsService {
     let denominador = 0;
 
     info.content.forEach(num => {
-      numerador += Math.pow(num.group - this.mediaPonderada(info.content), 2) * num.qtd; 
+      numerador += Math.pow(num.group - this.mediaPonderada(info.content), 2) * num.qtd;
     });
 
     info.content.forEach(num => {
       denominador += num.qtd;
     });
-    if(info.amostra === 'S') {
+    if (info.amostra === 'S') {
       denominador--;
     }
-    info.desvioPadrao = Math.sqrt(numerador / denominador) ;
+    info.desvioPadrao = Math.sqrt(numerador / denominador);
   }
 
   mediaPonderada(info) {
@@ -186,7 +186,7 @@ export class StatisticsService {
     let numerador = 0;
     let denominador = 0;
     info.forEach(num => {
-      numerador += num.group * num.qtd
+      numerador += num.group * num.qtd;
     });
     info.forEach(num => {
       denominador += num.qtd;
@@ -199,15 +199,15 @@ export class StatisticsService {
     console.log(info);
     let somatorio = info.content[info.content.length - 1].fac;
 
-    if(somatorio % 2 === 0) {
+    if (somatorio % 2 === 0) {
       const pos = [(somatorio / 2) - 1, (somatorio / 2)];
       let arrayData = [];
 
       info.content.forEach((num, index) => {
-        for(let i = 0; i < num.qtd; i++) {
+        for (let i = 0; i < num.qtd; i++) {
           arrayData.push(num.group);
         }
-      });  
+      });
       return (parseFloat(arrayData[pos[0]]) + parseFloat(arrayData[pos[1]])) / 2;
     } else {
       return (somatorio + 1) / 2;
@@ -216,7 +216,7 @@ export class StatisticsService {
 
   orderBy(el) {
     let response = el.sort((a, b) => {
-      return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0)
+      return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0);
     });
     return response;
   }
@@ -232,7 +232,7 @@ export class StatisticsService {
     let K = Math.sqrt(contentOrdenado.length);
     console.log('K', K);
 
-    
+
     let classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
     console.log(classes);
 
@@ -242,39 +242,44 @@ export class StatisticsService {
     let intervalo;
     let qtdGrupos;
     let find;
-    do{
-      for(let i = 0; i < classes.length; i++) {
-        const res = amplitude / classes[i];
-        if(Number.isInteger(res)) {
-          find = true;
-          intervalo = res;
-          qtdGrupos = classes[i];
+    do {
+      // for (let i = 0; i < classes.length; i++) {
+      // Pegando o maior numero entre as classes encontradas
+      const res = amplitude / classes[2];
+      if (Number.isInteger(res)) {
+        find = true;
+        intervalo = res;
+        qtdGrupos = classes[2];
 
-        }
+        // }
       }
       amplitude++;
-    } while(!find);
+    } while (!find);
 
-    
+    console.log('Grupos', qtdGrupos);
+    console.log('Intervalo', intervalo);
+    console.log('Ordenado', contentOrdenado);
 
-    console.log(intervalo);
+    // ARRAY COM O VALOR MIN E MAX DE CADA CLASSE
+    const groupValue = [];
+    // MONTANDO O INTERVALO
+    let lastValue = contentOrdenado[0].group;
+    for (let i = 1; i <= qtdGrupos; i++) {
+      groupValue.push({min: lastValue, max: lastValue + intervalo});
+      lastValue = lastValue + intervalo;
+    }
+    console.log(groupValue);
 
-    let res = [];
+    // DEFININDO CLASSE PARA CADA OBJETO
+    contentOrdenado.forEach((obj) => {
+      groupValue.forEach((group) => {
+        if (obj.group >= group.min && obj.group < group.max) {
+          obj.class = group;
+        }
+      });
+    });
 
     console.log(contentOrdenado);
 
-    for(let i = 0; i < qtdGrupos; i++) {
-      contentOrdenado.forEach(num => {
-        console.log(num);
-
-      });
-    }
-
-    
-
-
-
-
-    // parseFloat(contentOrdenado[0].group
   }
 }
