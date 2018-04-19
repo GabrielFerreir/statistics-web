@@ -108,7 +108,6 @@ export class StatisticsService {
     const buildInterval = this.buildInterval(info);
     info.content = buildInterval.content;
     info.intervalo = buildInterval.intervalo;
-
     info.mediana = this.mediana(info);
     this.response = info;
   }
@@ -197,8 +196,8 @@ export class StatisticsService {
 
   mediana(info) {
     console.log('Mediana', info);
-    let somatorio = info.content[info.content.length - 1].fac;
-    if(info.type === 2) {
+    const somatorio = info.content[info.content.length - 1].fac;
+    if (info.type === 2) {
       if (somatorio % 2 === 0) {
         const pos = [(somatorio / 2) - 1, (somatorio / 2)];
         let arrayData = [];
@@ -211,15 +210,15 @@ export class StatisticsService {
       } else {
         return (somatorio + 1) / 2;
       }
-    } else if(info.type === 3) {
+    } else if (info.type === 3) {
       console.log('EXECUTA A MEDIANA DA CONTINUA');
       if (somatorio % 2 === 0) {
         console.log('VAI TER DUAS MEDIANAS');
       } else {
         let limiteInferior = 0;
-        let pos = (somatorio + 1) / 2;
+        const pos = (somatorio + 1) / 2;
 
-        let arrayData = [];
+        const arrayData = [];
 
         info.content.forEach((num, index) => {
           for (let i = 0; i < num.qtd; i++) {
@@ -227,25 +226,26 @@ export class StatisticsService {
           }
         });
 
+
         limiteInferior = arrayData[pos].class.min;
 
         let freqAA; // Frequencia acumulada anterior
         let freq;   // Frequencia acumulada
         info.content.forEach(obj => {
-          if(arrayData[pos].class.id > obj.class.id) {
+          if (arrayData[pos].class.id > obj.class.id) {
             freqAA = obj.fac;
-          } else if(arrayData[pos].class.id >= obj.class.id) {
+          } else if (arrayData[pos].class.id >= obj.class.id) {
             freq = obj.fac;
           }
         });
 
         console.log('Limite inferior:', limiteInferior);
         console.log('Frequencia anterior acumulada', freqAA);
-        console.log('Frequencia acumulada', freq);      
+        console.log('Frequencia acumulada', freq);
 
-        let pre = ((somatorio / 2) - freqAA) / freq;
+        const pre = ((somatorio / 2) - freqAA) / freq;
 
-        console.log('PRE', pre)
+        console.log('PRE', pre);
 
         return limiteInferior + (pre * info.intervalo);
       }
@@ -297,8 +297,8 @@ export class StatisticsService {
     // MONTANDO O INTERVALO
     let lastValue = contentOrdenado[0].group;
     for (let i = 1; i <= qtdGrupos; i++) {
-      groupValue.push({id: i, min: lastValue, max: lastValue + intervalo});
-      lastValue = lastValue + intervalo;
+      groupValue.push({id: i, min: parseFloat(lastValue), max: parseFloat(lastValue) + parseFloat(intervalo)});
+      lastValue = parseFloat(lastValue) + parseFloat(intervalo);
     }
 
     // DEFININDO CLASSE PARA CADA OBJETO
@@ -318,14 +318,13 @@ export class StatisticsService {
     groupValue.forEach((group) => {
       const temp = [];
       contentOrdenado.forEach((obj) => {
-        console.log(group.id);
-        console.log(obj['class']['id']);
-
-        if (group.id === obj['class']['id']) {
+        if (group.id === obj.class.id) {
           temp.push(obj);
         }
       });
-      const soma = { fac: 0, facP: 0, percent: 0, qtd: 0, group: '', class: {min: 0, max: 0, id: 0} };
+
+
+      const soma = {fac: 0, facP: 0, percent: 0, qtd: 0, group: '', class: {min: 0, max: 0, id: 0}};
       temp.forEach((obje) => {
         soma.fac = obje.fac;
         soma.facP = obje.facP;
@@ -336,12 +335,11 @@ export class StatisticsService {
           min: group.min,
           max: group.max,
           id: group.id
-        }
+        };
       });
 
       res.push(soma);
     });
-
 
 
     return {content: res, intervalo: intervalo};
