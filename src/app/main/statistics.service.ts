@@ -91,7 +91,8 @@ export class StatisticsService {
     this.frequencyPercent(info.content);
     this.desvioPadrao(info);
     info.media = this.mediaPonderada(info.content);
-    this.mediana(info);
+    info.concienteDeVariacao = this.concienteDeVariacao(info);
+    info.mediana = this.mediana(info);
     this.response = info;
   }
 
@@ -101,14 +102,18 @@ export class StatisticsService {
     this.frequencyPercent(info.content);
     this.desvioPadrao(info);
     info.media = this.mediaPonderada(info.content);
+    info.concienteDeVariacao = this.concienteDeVariacao(info);
+    // info.content = this.buildInterval(info);
+    // console.log(this.buildInterval(info));
+    const buildInterval = this.buildInterval(info);
+    info.content = buildInterval.content;
+    info.intervalo = buildInterval.intervalo;
+
     info.mediana = this.mediana(info);
-    // info.content = this.orderBy(info);
-    info.content = this.buildInterval(info);
     this.response = info;
   }
 
   identifyTypeVariable(info) {
-    console.log(info);
     let isQuantitativa = null;
     let error;
 
@@ -123,7 +128,7 @@ export class StatisticsService {
       }
     });
     if (error) {
-      console.log('Não conseguimos identificar se a variavel é quanti ou quali');
+      console.error('Não conseguimos identificar se a variavel é quanti ou quali');
       return;
     }
     if (isQuantitativa) {
@@ -161,10 +166,6 @@ export class StatisticsService {
   }
 
   desvioPadrao(info) {
-    // SOMATORIA DE VALOR
-    console.log(info);
-    console.log(this.mediaPonderada(info.content));
-
     let numerador = 0;
     let denominador = 0;
 
@@ -195,23 +196,63 @@ export class StatisticsService {
   }
 
   mediana(info) {
-    console.log('MEDIANA');
-    console.log(info);
+    console.log('Mediana', info);
     let somatorio = info.content[info.content.length - 1].fac;
+    if(info.type === 2) {
+      if (somatorio % 2 === 0) {
+        const pos = [(somatorio / 2) - 1, (somatorio / 2)];
+        let arrayData = [];
+        info.content.forEach((num, index) => {
+          for (let i = 0; i < num.qtd; i++) {
+            arrayData.push(num.group);
+          }
+        });
+        return (parseFloat(arrayData[pos[0]]) + parseFloat(arrayData[pos[1]])) / 2;
+      } else {
+        return (somatorio + 1) / 2;
+      }
+    } else if(info.type === 3) {
+      console.log('EXECUTA A MEDIANA DA CONTINUA');
+      if (somatorio % 2 === 0) {
+        console.log('VAI TER DUAS MEDIANAS');
+      } else {
+        let limiteInferior = 0;
+        let pos = (somatorio + 1) / 2;
 
-    if (somatorio % 2 === 0) {
-      const pos = [(somatorio / 2) - 1, (somatorio / 2)];
-      let arrayData = [];
+        let arrayData = [];
 
-      info.content.forEach((num, index) => {
-        for (let i = 0; i < num.qtd; i++) {
-          arrayData.push(num.group);
-        }
-      });
-      return (parseFloat(arrayData[pos[0]]) + parseFloat(arrayData[pos[1]])) / 2;
-    } else {
-      return (somatorio + 1) / 2;
+        info.content.forEach((num, index) => {
+          for (let i = 0; i < num.qtd; i++) {
+            arrayData.push(num);
+          }
+        });
+
+        limiteInferior = arrayData[pos].class.min;
+
+        let freqAA; // Frequencia acumulada anterior
+        let freq;   // Frequencia acumulada
+        info.content.forEach(obj => {
+          if(arrayData[pos].class.id > obj.class.id) {
+            freqAA = obj.fac;
+          } else if(arrayData[pos].class.id >= obj.class.id) {
+            freq = obj.fac;
+          }
+        });
+
+        console.log('Limite inferior:', limiteInferior);
+        console.log('Frequencia anterior acumulada', freqAA);
+        console.log('Frequencia acumulada', freq);      
+
+        let pre = ((somatorio / 2) - freqAA) / freq;
+
+        console.log('PRE', pre)
+
+        return limiteInferior + (pre * info.intervalo);
+      }
+
+
     }
+
   }
 
   orderBy(el) {
@@ -223,18 +264,13 @@ export class StatisticsService {
 
   buildInterval(info) {
     const contentOrdenado = this.orderBy(info.content);
-    console.log('ORDENADO', contentOrdenado);
     let amplitude = parseFloat(contentOrdenado[contentOrdenado.length - 1].group) - parseFloat(contentOrdenado[0].group);
-    console.log('AMPLITUDE', amplitude);
 
     // CLASSE
 
     const K = Math.sqrt(contentOrdenado.length);
-    console.log('K', K);
-
 
     const classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
-    console.log(classes);
 
     // INCREMENTA
     amplitude++;
@@ -256,10 +292,6 @@ export class StatisticsService {
       amplitude++;
     } while (!find);
 
-    console.log('Grupos', qtdGrupos);
-    console.log('Intervalo', intervalo);
-    console.log('Ordenado', contentOrdenado);
-
     // ARRAY COM O VALOR MIN E MAX DE CADA CLASSE
     const groupValue = [];
     // MONTANDO O INTERVALO
@@ -268,7 +300,6 @@ export class StatisticsService {
       groupValue.push({id: i, min: lastValue, max: lastValue + intervalo});
       lastValue = lastValue + intervalo;
     }
-    console.log(groupValue);
 
     // DEFININDO CLASSE PARA CADA OBJETO
     contentOrdenado.forEach((obj) => {
@@ -281,27 +312,43 @@ export class StatisticsService {
 
 
     const res = [];
+
+    console.log('GROUPVALUE', groupValue);
+
     groupValue.forEach((group) => {
       const temp = [];
       contentOrdenado.forEach((obj) => {
-        if (group.id === obj.class.id) {
+        console.log(group.id);
+        console.log(obj['class']['id']);
+
+        if (group.id === obj['class']['id']) {
           temp.push(obj);
         }
       });
-      const soma = { fac: 0, facP: 0, percent: 0, qtd: 0, group: '' };
+      const soma = { fac: 0, facP: 0, percent: 0, qtd: 0, group: '', class: {min: 0, max: 0, id: 0} };
       temp.forEach((obje) => {
         soma.fac = obje.fac;
         soma.facP = obje.facP;
         soma.percent += obje.percent;
         soma.qtd += obje.qtd;
         soma.group = `De ${group.min} á ${group.max}`;
+        soma.class = {
+          min: group.min,
+          max: group.max,
+          id: group.id
+        }
       });
 
       res.push(soma);
     });
-    console.log('RES', res);
 
-    return res;
 
+
+    return {content: res, intervalo: intervalo};
+
+  }
+
+  concienteDeVariacao(info) {
+    return info.desvioPadrao / info.media;
   }
 }
