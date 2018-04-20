@@ -220,33 +220,14 @@ export class StatisticsService {
       }
     } else if (info.type === 3) {
       console.log('EXECUTA A MEDIANA DA CONTINUA');
-      if (somatorio % 2 === 0) {
-        const pos = [(somatorio / 2) - 1, (somatorio / 2)];
-        console.log(pos);
-        const arrayData = [];
-        info.content.forEach((num, index) => {
-          for (let i = 0; i < num.qtd; i++) {
-            arrayData.push(num);
-          }
-        });
+        let pos = (somatorio) / 2;
 
-        const limiteInferior = arrayData[pos[0]].class.min;
-        const freqAA = info.content[arrayData[pos[0]].class.id - 1].fac;
-        const freq = info.content[arrayData[pos[0]].class.id].fac;
 
-        const limiteInferior2 = arrayData[pos[1]].class.min;
-        const freqAA2 = info.content[arrayData[pos[1]].class.id - 1].fac;
-        const freq2 = info.content[arrayData[pos[1]].class.id].fac;
+        if(!Number.isInteger(pos)) {
+           pos = (somatorio + 1) / 2;
+        }
 
-        const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
-        const pre2 = ((parseFloat(somatorio) / 2) - parseFloat(freqAA2)) / parseFloat(freq2);
 
-        const R1 = limiteInferior + (pre * info.intervalo);
-        const R2 = limiteInferior2 + (pre2 * info.intervalo);
-
-        return (R1 + R2) / 2;
-      } else {
-        const pos = (somatorio + 1) / 2;
 
         const arrayData = [];
         info.content.forEach((num, index) => {
@@ -258,19 +239,17 @@ export class StatisticsService {
         console.log(arrayData);
         const limiteInferior = arrayData[pos].class.min;
         const freqAA = info.content[arrayData[pos].class.id - 1].fac;
-        console.log('Frequencia ANterior', freqAA);
-        console.log('FREQUENCIA ANTERIOR', info.content[arrayData[pos].class.id - 1]);
         const freq = info.content[arrayData[pos].class.id].fac;
+
+        console.log('Frequencia ANterior', freqAA);
         console.log('Frequencia', freq);
+        console.log('Limete inferior', limiteInferior);
+        console.log('Somatorio', somatorio);
 
         const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
 
         return limiteInferior + (pre * info.intervalo);
       }
-
-
-    }
-
   }
 
   moda(info) {
