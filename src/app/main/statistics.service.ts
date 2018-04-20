@@ -90,8 +90,8 @@ export class StatisticsService {
     this.frequencyAmass(info.content);
     this.frequencyPercent(info.content);
     this.desvioPadrao(info);
-    info.media = this.mediaPonderada(info.content);
     info.moda = this.moda(info.content);
+    info.media = this.mediaPonderada(info.content);
     info.concienteDeVariacao = this.concienteDeVariacao(info);
     info.mediana = this.mediana(info);
     this.response = info;
@@ -264,8 +264,10 @@ export class StatisticsService {
       } else {
         let limiteInferior = 0;
         const pos = (somatorio + 1) / 2;
-        const arrayData = [];
 
+        console.log('POS', pos);
+
+        const arrayData = [];
         info.content.forEach((num, index) => {
           for (let i = 0; i < num.qtd; i++) {
             arrayData.push(num);
@@ -274,14 +276,34 @@ export class StatisticsService {
         limiteInferior = arrayData[pos].class.min;
         let freqAA; // Frequencia acumulada anterior
         let freq;   // Frequencia acumulada
-        info.content.forEach(obj => {
-          if (arrayData[pos].class.id > obj.class.id) {
-            freqAA = obj.fac;
-          } else if (arrayData[pos].class.id >= obj.class.id) {
-            freq = obj.fac;
-          }
-        });
-        const pre = ((somatorio / 2) - freqAA) / freq;
+
+        console.log('INFO CONTENT', info.content);
+        console.log('ARRAY DATA', arrayData);
+        // console.log(arrayData[pos]);
+
+        freqAA = info.content[arrayData[pos].class.id - 1].fac;
+        freq = info.content[arrayData[pos].class.id].fac;
+
+
+
+
+        // info.content.forEach(obj => {
+        //   console.log('OBJETO', obj);
+        //   if (arrayData[pos].class.id > obj.class.id) {
+        //     freqAA = obj.fac;
+        //   } else if (arrayData[pos].class.id >= obj.class.id) {
+        //     freq = obj.fac;
+        //   }
+        // });
+
+        console.log(somatorio);
+        console.log(freqAA);
+        console.log(freq);
+        //
+        const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
+        console.log('PRE', pre);
+        console.log(limiteInferior);
+        console.log(info.intervalo);
         return limiteInferior + (pre * info.intervalo);
       }
 
@@ -291,13 +313,11 @@ export class StatisticsService {
   }
 
   moda(info) {
-    console.log('MODA', info);
-    const arrayValues = [];
+    let arrayValues = [];
     for (let i = 0; i < info.length; i++) {
       arrayValues[i] = info[i].group;
-    }
-    ;
-    const aux = {};
+    };
+    let aux = {};
     arrayValues.map(index => {
       if (!aux[index]) {
         aux[index] = 1;
@@ -312,7 +332,7 @@ export class StatisticsService {
         maior = aux[x];
       }
     }
-    const maiores = [];
+    let maiores = [];
     for (let y in aux) {
       if (aux[y] === maior) {
         maiores.push(y);
@@ -419,31 +439,14 @@ export class StatisticsService {
         };
 
         const anterior = res[res.length - 1];
-        // console.log('OBJE', obje);
-        // console.log('Anterior', temp[index - 1]);
-        // anterior = temp[index - 1];
-        // if (!temp[index - 1]) {
-          // console.log('Anterior-2', res[res.length - 1]);
-
-        // }
-
-        console.log('ANTERIOR', anterior);
 
         if (anterior) {
           soma.fac = anterior['fac'] + soma.qtd;
         } else {
           soma.fac = soma.qtd;
         }
-
         soma.facP = ((100 * soma.fac) / qtdDeElementos) / 100;
       });
-
-
-      console.log('Qtd de Elementos', qtdDeElementos);
-
-
-
-
 
       res.push(soma);
     });
