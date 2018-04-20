@@ -295,7 +295,8 @@ export class StatisticsService {
     const arrayValues = [];
     for (let i = 0; i < info.length; i++) {
       arrayValues[i] = info[i].group;
-    };
+    }
+    ;
     const aux = {};
     arrayValues.map(index => {
       if (!aux[index]) {
@@ -380,28 +381,69 @@ export class StatisticsService {
 
     console.log('GROUPVALUE', groupValue);
 
+    console.log('CONTENT ORDENADO', contentOrdenado);
+
     groupValue.forEach((group) => {
-      const temp = [];
+      let temp = [];
+      let qtdDeElementos = 0;
       contentOrdenado.forEach((obj) => {
+        qtdDeElementos += obj.qtd;
         if (group.id === obj.class.id) {
           temp.push(obj);
         }
       });
+      if (!temp.length) {
+        temp = [{
+          group: {id: group.id, qtd: 0, percent: 0}
+        }];
+      }
 
-
-      const soma = {fac: 0, facP: 0, percent: 0, qtd: 0, group: '', class: {min: 0, max: 0, id: 0}};
-      temp.forEach((obje) => {
-        soma.fac = obje.fac;
-        soma.facP = obje.facP;
-        soma.percent += obje.percent;
-        soma.qtd += obje.qtd;
+      const soma = {
+        fac: 0,
+        facP: 0,
+        percent: 0,
+        qtd: 0,
+        group: '',
+        class: {min: 0, max: 0, id: 0}
+      };
+      temp.forEach((obje, index) => {
+        soma.fac = 1;
+        soma.facP = 1;
+        soma.percent += obje.percent || 0;
+        soma.qtd += obje.qtd || 0;
         soma.group = `De ${group.min} á ${group.max}`;
         soma.class = {
           min: group.min,
           max: group.max,
           id: group.id
         };
+
+        const anterior = res[res.length - 1];
+        // console.log('OBJE', obje);
+        // console.log('Anterior', temp[index - 1]);
+        // anterior = temp[index - 1];
+        // if (!temp[index - 1]) {
+          // console.log('Anterior-2', res[res.length - 1]);
+
+        // }
+
+        console.log('ANTERIOR', anterior);
+
+        if (anterior) {
+          soma.fac = anterior['fac'] + soma.qtd;
+        } else {
+          soma.fac = soma.qtd;
+        }
+
+        soma.facP = ((100 * soma.fac) / qtdDeElementos) / 100;
       });
+
+
+      console.log('Qtd de Elementos', qtdDeElementos);
+
+
+
+
 
       res.push(soma);
     });
