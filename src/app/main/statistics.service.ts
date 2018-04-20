@@ -91,6 +91,7 @@ export class StatisticsService {
     this.frequencyPercent(info.content);
     this.desvioPadrao(info);
     info.media = this.mediaPonderada(info.content);
+    info.moda = this.moda(info.content);
     info.concienteDeVariacao = this.concienteDeVariacao(info);
     info.mediana = this.mediana(info);
     this.response = info;
@@ -286,6 +287,36 @@ export class StatisticsService {
 
     }
 
+  }
+
+  moda(info) {
+    console.log('MODA', info);
+    let arrayValues = [];
+    for (let i = 0; i < info.length; i++) {
+      arrayValues[i] = info[i].group;
+    };
+    let aux = {};
+    arrayValues.map(index => {
+      if (!aux[index]) {
+        aux[index] = 1;
+      } else {
+        aux[index]++;
+      }
+    });
+    let maior = null;
+    console.log(maior);
+    for (let x in aux) {
+      if (aux[x] > maior) {
+        maior = aux[x];
+      }
+    }
+    let maiores = [];
+    for (let y in aux) {
+      if (aux[y] === maior) {
+        maiores.push(y);
+      }
+    }
+    return maiores;
   }
 
   orderBy(el) {
