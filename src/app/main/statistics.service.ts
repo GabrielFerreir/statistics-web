@@ -110,6 +110,7 @@ export class StatisticsService {
     info.content = buildInterval.content;
     info.intervalo = buildInterval.intervalo;
     info.mediana = this.mediana(info);
+    info.moda = 'CULPA O LEO';
     this.response = info;
   }
 
@@ -291,11 +292,11 @@ export class StatisticsService {
 
   moda(info) {
     console.log('MODA', info);
-    let arrayValues = [];
+    const arrayValues = [];
     for (let i = 0; i < info.length; i++) {
       arrayValues[i] = info[i].group;
     };
-    let aux = {};
+    const aux = {};
     arrayValues.map(index => {
       if (!aux[index]) {
         aux[index] = 1;
@@ -310,7 +311,7 @@ export class StatisticsService {
         maior = aux[x];
       }
     }
-    let maiores = [];
+    const maiores = [];
     for (let y in aux) {
       if (aux[y] === maior) {
         maiores.push(y);
@@ -320,7 +321,7 @@ export class StatisticsService {
   }
 
   orderBy(el) {
-    let response = el.sort((a, b) => {
+    const response = el.sort((a, b) => {
       return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0);
     });
     return response;
