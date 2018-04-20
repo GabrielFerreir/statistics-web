@@ -221,10 +221,8 @@ export class StatisticsService {
     } else if (info.type === 3) {
       console.log('EXECUTA A MEDIANA DA CONTINUA');
       if (somatorio % 2 === 0) {
-        // VOU REFATORAR, UM DIA
-        // PEGAR R1
-        let limiteInferior = 0;
         const pos = [(somatorio / 2) - 1, (somatorio / 2)];
+        console.log(pos);
         const arrayData = [];
         info.content.forEach((num, index) => {
           for (let i = 0; i < num.qtd; i++) {
@@ -232,78 +230,41 @@ export class StatisticsService {
           }
         });
 
+        const limiteInferior = arrayData[pos[0]].class.min;
+        const freqAA = info.content[arrayData[pos[0]].class.id - 1].fac;
+        const freq = info.content[arrayData[pos[0]].class.id].fac;
 
-        limiteInferior = arrayData[pos[0]].class.min;
-        let freqAA; // Frequencia acumulada anterior
-        let freq;   // Frequencia acumulada
-        info.content.forEach(obj => {
-          if (arrayData[pos[0]].class.id > obj.class.id) {
-            freqAA = obj.fac;
-          } else if (arrayData[pos[0]].class.id >= obj.class.id) {
-            freq = obj.fac;
-          }
-        });
-        const r1 = ((somatorio / 2) - freqAA) / freq;
-        console.log('R1', r1);
-        // PEGAR R2
+        const limiteInferior2 = arrayData[pos[1]].class.min;
+        const freqAA2 = info.content[arrayData[pos[1]].class.id - 1].fac;
+        const freq2 = info.content[arrayData[pos[1]].class.id].fac;
 
-        limiteInferior = arrayData[pos[1]].class.min;
-        info.content.forEach(obj => {
-          if (arrayData[pos[1]].class.id > obj.class.id) {
-            freqAA = obj.fac;
-          } else if (arrayData[pos[1]].class.id >= obj.class.id) {
-            freq = obj.fac;
-          }
-        });
+        const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
+        const pre2 = ((parseFloat(somatorio) / 2) - parseFloat(freqAA2)) / parseFloat(freq2);
 
-        const r2 = ((somatorio / 2) - freqAA) / freq;
-        console.log('R2', r2);
+        const R1 = limiteInferior + (pre * info.intervalo);
+        const R2 = limiteInferior2 + (pre2 * info.intervalo);
 
-        return (r1 + r2) / 2;
-
+        return (R1 + R2) / 2;
       } else {
-        let limiteInferior = 0;
         const pos = (somatorio + 1) / 2;
 
-        console.log('POS', pos);
-
         const arrayData = [];
         info.content.forEach((num, index) => {
           for (let i = 0; i < num.qtd; i++) {
             arrayData.push(num);
           }
         });
-        limiteInferior = arrayData[pos].class.min;
-        let freqAA; // Frequencia acumulada anterior
-        let freq;   // Frequencia acumulada
 
-        console.log('INFO CONTENT', info.content);
-        console.log('ARRAY DATA', arrayData);
-        // console.log(arrayData[pos]);
+        console.log(arrayData);
+        const limiteInferior = arrayData[pos].class.min;
+        const freqAA = info.content[arrayData[pos].class.id - 1].fac;
+        console.log('Frequencia ANterior', freqAA);
+        console.log('FREQUENCIA ANTERIOR', info.content[arrayData[pos].class.id - 1]);
+        const freq = info.content[arrayData[pos].class.id].fac;
+        console.log('Frequencia', freq);
 
-        freqAA = info.content[arrayData[pos].class.id - 1].fac;
-        freq = info.content[arrayData[pos].class.id].fac;
-
-
-
-
-        // info.content.forEach(obj => {
-        //   console.log('OBJETO', obj);
-        //   if (arrayData[pos].class.id > obj.class.id) {
-        //     freqAA = obj.fac;
-        //   } else if (arrayData[pos].class.id >= obj.class.id) {
-        //     freq = obj.fac;
-        //   }
-        // });
-
-        console.log(somatorio);
-        console.log(freqAA);
-        console.log(freq);
-        //
         const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
-        console.log('PRE', pre);
-        console.log(limiteInferior);
-        console.log(info.intervalo);
+
         return limiteInferior + (pre * info.intervalo);
       }
 
@@ -313,33 +274,29 @@ export class StatisticsService {
   }
 
   moda(info) {
-    let arrayValues = [];
+    console.log('MODA', info);
+    // let arrayValues = [];
+    let maior = 1;
     for (let i = 0; i < info.length; i++) {
-      arrayValues[i] = info[i].group;
-    };
-    let aux = {};
-    arrayValues.map(index => {
-      if (!aux[index]) {
-        aux[index] = 1;
-      } else {
-        aux[index]++;
-      }
-    });
-    let maior = null;
-    console.log(maior);
-    for (let x in aux) {
-      if (aux[x] > maior) {
-        maior = aux[x];
+      if (info[i].qtd > maior) {
+        maior = info[i].qtd;
       }
     }
-    let maiores = [];
-    for (let y in aux) {
-      if (aux[y] === maior) {
-        maiores.push(y);
+    const maiores = [];
+    let acm;
+    for (let i in info) {
+      if (maior == info[i].qtd) {
+        maiores.push(info[i].group);
+        acm++;
       }
     }
+    if (acm == info.length) {
+      return 'Não há modal';
+    }
+    console.log(maiores);
     return maiores;
   }
+
 
   orderBy(el) {
     const response = el.sort((a, b) => {
