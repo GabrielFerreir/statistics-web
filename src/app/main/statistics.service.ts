@@ -200,7 +200,7 @@ export class StatisticsService {
     if (info.type === 2) {
       if (somatorio % 2 === 0) {
         const pos = [(somatorio / 2) - 1, (somatorio / 2)];
-        let arrayData = [];
+        const arrayData = [];
         info.content.forEach((num, index) => {
           for (let i = 0; i < num.qtd; i++) {
             arrayData.push(num.group);
@@ -208,18 +208,22 @@ export class StatisticsService {
         });
         return (parseFloat(arrayData[pos[0]]) + parseFloat(arrayData[pos[1]])) / 2;
       } else {
-        return (somatorio + 1) / 2;
+        const arrayData = [];
+        info.content.forEach((num, index) => {
+          for (let i = 0; i < num.qtd; i++) {
+            arrayData.push(num);
+          }
+        });
+        return arrayData[(arrayData.length + 1) / 2].group;
       }
     } else if (info.type === 3) {
       console.log('EXECUTA A MEDIANA DA CONTINUA');
       if (somatorio % 2 === 0) {
-        console.log('VAI TER DUAS MEDIANAS');
-      } else {
+        // VOU REFATORAR, UM DIA
+        // PEGAR R1
         let limiteInferior = 0;
-        const pos = (somatorio + 1) / 2;
-
+        const pos = [(somatorio / 2) - 1, (somatorio / 2)];
         const arrayData = [];
-
         info.content.forEach((num, index) => {
           for (let i = 0; i < num.qtd; i++) {
             arrayData.push(num);
@@ -227,8 +231,45 @@ export class StatisticsService {
         });
 
 
-        limiteInferior = arrayData[pos].class.min;
+        limiteInferior = arrayData[pos[0]].class.min;
+        let freqAA; // Frequencia acumulada anterior
+        let freq;   // Frequencia acumulada
+        info.content.forEach(obj => {
+          if (arrayData[pos[0]].class.id > obj.class.id) {
+            freqAA = obj.fac;
+          } else if (arrayData[pos[0]].class.id >= obj.class.id) {
+            freq = obj.fac;
+          }
+        });
+        const r1 = ((somatorio / 2) - freqAA) / freq;
+        console.log('R1', r1);
+        // PEGAR R2
 
+        limiteInferior = arrayData[pos[1]].class.min;
+        info.content.forEach(obj => {
+          if (arrayData[pos[1]].class.id > obj.class.id) {
+            freqAA = obj.fac;
+          } else if (arrayData[pos[1]].class.id >= obj.class.id) {
+            freq = obj.fac;
+          }
+        });
+
+        const r2 = ((somatorio / 2) - freqAA) / freq;
+        console.log('R2', r2);
+
+        return (r1 + r2) / 2;
+
+      } else {
+        let limiteInferior = 0;
+        const pos = (somatorio + 1) / 2;
+        const arrayData = [];
+
+        info.content.forEach((num, index) => {
+          for (let i = 0; i < num.qtd; i++) {
+            arrayData.push(num);
+          }
+        });
+        limiteInferior = arrayData[pos].class.min;
         let freqAA; // Frequencia acumulada anterior
         let freq;   // Frequencia acumulada
         info.content.forEach(obj => {
@@ -238,15 +279,7 @@ export class StatisticsService {
             freq = obj.fac;
           }
         });
-
-        console.log('Limite inferior:', limiteInferior);
-        console.log('Frequencia anterior acumulada', freqAA);
-        console.log('Frequencia acumulada', freq);
-
         const pre = ((somatorio / 2) - freqAA) / freq;
-
-        console.log('PRE', pre);
-
         return limiteInferior + (pre * info.intervalo);
       }
 
