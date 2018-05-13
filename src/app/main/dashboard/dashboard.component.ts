@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {StatisticsService} from '../statistics.service';
-import {UiToolbarService} from 'ng-smn-ui';
+// import {UiToolbarService} from 'ng-smn-ui';
+import { UiToolbarService } from '../../smn-ui/toolbar/toolbar.service'
 import {ChartsService} from '../charts.service';
 
 @Component({

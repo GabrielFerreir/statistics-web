@@ -1,21 +1,23 @@
-import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpModule} from '@angular/http';
+import {NgModule} from '@angular/core';
+import {SMNUIModule, UiSnackbar, UiToolbarService} from './smn-ui/smn-ui.module';
+import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
-import { SMNUIModule, UiToolbarService } from 'ng-smn-ui';
 
 @NgModule({
+  declarations: [],
   exports: [
     FormsModule,
     BrowserModule,
     SMNUIModule,
     HttpModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
-
-  providers: [ UiToolbarService ]
+  providers: [ UiToolbarService ],
+  bootstrap: []
 })
-export class SharedModule { }
+export class SharedModule {
+}

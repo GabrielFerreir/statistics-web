@@ -1,15 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import { UiToolbarService } from 'ng-smn-ui';
-
-
+import { UiToolbarService } from './smn-ui/smn-ui.module';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   menuOpen;
 
   constructor(private titleService: Title,
@@ -20,4 +18,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.toolbarService.registerMainToolbar(document.getElementById('app-header'));
   }
+
 }
+
+

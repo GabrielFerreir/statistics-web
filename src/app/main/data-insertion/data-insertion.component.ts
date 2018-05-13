@@ -1,5 +1,6 @@
 import {Component, OnInit, ElementRef, AfterViewInit, Renderer2, OnDestroy} from '@angular/core';
-import {UiToolbarService, UiElement, UiSnackbar} from 'ng-smn-ui/index';
+import {UiToolbarService, UiElement, UiSnackbar} from '../../smn-ui/smn-ui.module';
+
 import {Location} from '@angular/common';
 import {StatisticsService} from '../statistics.service';
 import {Router} from '@angular/router';
