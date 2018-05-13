@@ -190,7 +190,7 @@ ui-toolbar {
             @media (max-width: #{$size}px) {
                 &.elevate-on-s#{$size} {
                     header {
-                        height: 48px !important;
+                        height: 56px !important;
                         @include desktop {
                             height: 64px !important;
                         }
@@ -216,7 +216,7 @@ ui-toolbar {
                     }
 
                     .ui-toolbar-space {
-                        height: 48px !important;
+                        height: 56px !important;
                         @include desktop {
                             height: 64px !important;
                         }
