@@ -219,36 +219,37 @@ export class StatisticsService {
       }
     } else if (info.type === 3) {
       console.log('EXECUTA A MEDIANA DA CONTINUA');
-        let pos = (somatorio) / 2;
+
+      let pos = (somatorio) / 2;
 
 
-        if(!Number.isInteger(pos)) {
-           pos = (somatorio + 1) / 2;
-        }
-
-
-
-        const arrayData = [];
-        info.content.forEach((num, index) => {
-          for (let i = 0; i < num.qtd; i++) {
-            arrayData.push(num);
-          }
-        });
-
-        console.log(arrayData);
-        const limiteInferior = arrayData[pos].class.min;
-        const freqAA = info.content[arrayData[pos].class.id - 1].fac;
-        const freq = info.content[arrayData[pos].class.id].fac;
-
-        console.log('Frequencia ANterior', freqAA);
-        console.log('Frequencia', freq);
-        console.log('Limete inferior', limiteInferior);
-        console.log('Somatorio', somatorio);
-
-        const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
-
-        return limiteInferior + (pre * info.intervalo);
+      if (!Number.isInteger(pos)) {
+        pos = (somatorio + 1) / 2;
       }
+
+
+      const arrayData = [];
+      info.content.forEach((num, index) => {
+        for (let i = 0; i < num.qtd; i++) {
+          arrayData.push(num);
+        }
+      });
+
+      console.log(arrayData);
+      const limiteInferior = arrayData[pos].class.min;
+      const freqAA = info.content[arrayData[pos].class.id - 2].fac;
+      const freq = info.content[arrayData[pos].class.id - 1].qtd;
+
+      // console.log('Limite inferior', limiteInferior);
+      // console.log('Somatorio', somatorio);
+      //
+      // console.log('Frequencia ANterior', freqAA);
+      // console.log('Frequencia', freq);
+
+      const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
+
+      return limiteInferior + (pre * info.intervalo);
+    }
   }
 
   moda(info) {
@@ -300,9 +301,9 @@ export class StatisticsService {
     console.log('-------------');
 
     const classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
-    console.log('-------------')
+    console.log('-------------');
     console.log(classes);
-    console.log('-------------')
+    console.log('-------------');
 
     // INCREMENTA
     amplitude++;
@@ -313,12 +314,12 @@ export class StatisticsService {
     do {
       // for (let i = 0; i < classes.length; i++) {
       // Pegando o maior numero entre as classes encontradas
-      const res = amplitude / classes[0];
+      const res = amplitude / classes[2];
       if (Number.isInteger(res)) {
         find = true;
         intervalo = res;
 
-        qtdGrupos = classes[0];
+        qtdGrupos = classes[2];
 
         // }
       }

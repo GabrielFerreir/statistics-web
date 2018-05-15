@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {StatisticsService} from '../statistics.service';
 import {Router} from '@angular/router';
 import {forEach} from '@angular/router/src/utils/collection';
+import {MockService} from './mock.service';
 
 
 @Component({
@@ -24,42 +25,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               private router: Router,
               private toolbarService: UiToolbarService,
               private renderer: Renderer2,
-              public _location: Location) {
-    this.info = {
-      title: "Exercicio 1",
-      content: [
-        {group: '590', qtd: 1 },
-        {group: '430', qtd: 1 },
-        {group: '430', qtd: 1 },
-        {group: '320', qtd: 1 },
-        {group: '320', qtd: 1 },
-        {group: '500', qtd: 1 },
-        {group: '310', qtd: 1 },
-        {group: '390', qtd: 1 },
-        {group: '390', qtd: 1 },
-        {group: '450', qtd: 1 },
-        {group: '570', qtd: 1 },
-        {group: '570', qtd: 1 },
-        {group: '580', qtd: 1 },
-        {group: '410', qtd: 1 },
-        {group: '380', qtd: 1 },
-        {group: '380', qtd: 1 },
-        {group: '510', qtd: 1 },
-        {group: '510', qtd: 1 },
-        {group: '335', qtd: 1 },
-        {group: '515', qtd: 1 },
-        {group: '600', qtd: 1 },
-        {group: '300', qtd: 1 },
-        {group: '437', qtd: 1 },
-        {group: '578', qtd: 1 },
-        {group: '572', qtd: 1 },
-        {group: '480', qtd: 1 },
-        {group: '462', qtd: 1 },
-        {group: '413', qtd: 1 },
-        {group: '457', qtd: 1 },
-        {group: '530', qtd: 1 },
-      ]
-    };
+              public _location: Location,
+              private MOCK: MockService) {
+    this.info = this.MOCK.vContinua;
     this.dragDrop = {};
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
