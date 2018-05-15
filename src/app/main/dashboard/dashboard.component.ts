@@ -3,6 +3,7 @@ import {StatisticsService} from '../statistics.service';
 // import {UiToolbarService} from 'ng-smn-ui';
 import { UiToolbarService } from '../../smn-ui/toolbar/toolbar.service'
 import {ChartsService} from '../charts.service';
+import {GraphicService} from '../../components/graphic/graphic.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +15,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   dados;
 
+  MOCK = {
+    legend: ['Visitas', 'Vendas'],
+    items: [
+      {indice: '09/05', value: [7, 3]},
+      {indice: '10/05', value: [3, 3]},
+      {indice: '11/05', value: [8, 6]},
+      {indice: '12/05', value: [12, 8]},
+      {indice: '13/05', value: [2, 1]}
+    ]
+  };
+
   constructor(private statistics: StatisticsService,
               private charts: ChartsService,
-              private toolbarService: UiToolbarService) {
+              private toolbarService: UiToolbarService,
+              public graphicService: GraphicService) {
     this.dados = this.statistics.getDados();
     console.log(this.dados);
   }

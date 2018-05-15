@@ -5,7 +5,7 @@ import {
     Validators,
     ValidatorFn,
 } from '@angular/forms';
-import {Observable} from 'rxjs-compat/Observable';
+import {Observable} from 'rxjs/Observable';
 
 export type ValidationResult = {[validator: string]: string | boolean};
 

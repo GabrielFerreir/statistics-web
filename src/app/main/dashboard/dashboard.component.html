@@ -1,20 +1,45 @@
 <div class="ui-s840">
-  <div style="display: flex" *ngIf="dados.content">
-    <div style="padding: 16px;">
+
+
+  <div class="content" *ngIf="dados.content">
+    <div class="content__card">
       <app-table [data]="dados.content" [title]="dados.title"></app-table>
     </div>
-    <div style="width: 50%; padding: 16px;">
+    <div class="content__card">
       <ui-card class="elevate-on-toolbar">
-        <google-chart [data]="charts01"></google-chart>
+        <smn-graphic [data]="MOCK.items"
+                     [legend]="MOCK.legend"
+                     [config]="{
+                   colorSelected: '#263238',
+                   lineColor: '#E0E0E0',
+                   colors: ['#78909C', '#546E7A'],
+                   noSpace: true
+             }"
+                     [title]="'Grafico'"
+                     [subtitle]="'Elementos de um grafico'">
+          <section class="menu-info">
+            <div class="menu-info__header">
+              {{ graphicService.info.legend }}
+            </div>
+            <div class="menu-info__header">
+              <b>Quantidade: {{ graphicService.info.value }}</b>
+            </div>
+            <div class="menu-info__header">
+              Data: {{ graphicService.info.column }}
+            </div>
+          </section>
+        </smn-graphic>
       </ui-card>
     </div>
   </div>
 
+
   <ui-card class="elevate-on-toolbar" *ngIf="!dados.content">
     <ui-card-content>
       <div style="padding: 32px 0; text-align: center;">
-          Nenhum dado foi encontrado!
+        Nenhum dado foi encontrado!
       </div>
     </ui-card-content>
   </ui-card>
+
 </div>

@@ -1,6 +1,5 @@
 import {OnDestroy, ChangeDetectorRef, Pipe, PipeTransform} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
-
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/repeatWhen';
