@@ -102,11 +102,10 @@ export class StatisticsService {
     this.frequencyAmass(info.content);
     this.frequencyPercent(info.content);
     this.desvioPadrao(info);
-    info.media = this.mediaPonderada(info.content);
+    // info.media = this.mediaPonderada(info.content);
     info.concienteDeVariacao = this.concienteDeVariacao(info);
-    // info.content = this.buildInterval(info);
-    // console.log(this.buildInterval(info));
     const buildInterval = this.buildInterval(info);
+    info.media = this.mediaContinua(buildInterval);
     info.content = buildInterval.content;
     info.intervalo = buildInterval.intervalo;
     info.mediana = this.mediana(info);
@@ -276,7 +275,6 @@ export class StatisticsService {
     return maiores;
   }
 
-
   orderBy(el) {
     const response = el.sort((a, b) => {
       return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0);
@@ -408,4 +406,14 @@ export class StatisticsService {
   concienteDeVariacao(info) {
     return info.desvioPadrao / info.media;
   }
+
+  mediaContinua(groups) {
+    let acm = 0;
+    groups.content.forEach((group) => {
+      const value = ((parseFloat(group.class.max) + parseFloat(group.class.min)) / 2) * group.qtd;
+      acm += value;
+    });
+    return acm / groups.content[groups.content.length - 1].fac;
+  }
+
 }
