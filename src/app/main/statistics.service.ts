@@ -315,7 +315,7 @@ export class StatisticsService {
     do {
       // for (let i = 0; i < classes.length; i++) {
       // Pegando o maior numero entre as classes encontradas
-      const res = amplitude / classes[2];
+      const res = amplitude / classes[0];
       if (Number.isInteger(res)) {
         find = true;
         intervalo = res;
