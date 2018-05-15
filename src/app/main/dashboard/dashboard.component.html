@@ -2,21 +2,37 @@
 
 
   <div class="content" *ngIf="dados.content">
+
+    <ui-card class="content__cards elevate-on-toolbar">
+      <section class="content__cards__card">
+        <h1 class="content__cards__card__title">Média</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.media }}</h1>
+      </section>
+      <section class="content__cards__card">
+        <h1 class="content__cards__card__title">Mediana</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.mediana }}</h1>
+      </section>
+      <section class="content__cards__card">
+        <h1 class="content__cards__card__title">Moda</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.moda }}</h1>
+      </section>
+      <section class="content__cards__card">
+        <h1 class="content__cards__card__title">Desvio Padrao</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.desvioPadrao | number:'1.2-2'}}</h1>
+      </section>
+    </ui-card>
+
     <div class="content__card">
       <app-table [data]="dados.content" [title]="dados.title"></app-table>
     </div>
     <div class="content__card">
       <ui-card class="elevate-on-toolbar">
-        <smn-graphic [data]="MOCK.items"
-                     [legend]="MOCK.legend"
-                     [config]="{
+        <smn-graphic [data]="MOCK.items" [legend]="MOCK.legend" [config]="{
                    colorSelected: '#263238',
                    lineColor: '#E0E0E0',
                    colors: ['#78909C', '#546E7A'],
                    noSpace: true
-             }"
-                     [title]="MOCK.title"
-                     [subtitle]="'Elementos de um grafico'">
+             }" [title]="MOCK.title" [subtitle]="'Elementos de um grafico'">
           <section class="menu-info">
             <div class="menu-info__header">
               {{ graphicService.info.legend }}
@@ -32,12 +48,6 @@
       </ui-card>
     </div>
 
-    <section class="content__cards">
-      <section class="content__cards__card">
-        <h1 class="content__card__card__title">Média</h1>
-        <h1 class="content__card__card__subtitle">41,5</h1>
-      </section>
-    </section>
   </div>
 
 

@@ -21,6 +21,34 @@
       padding: 16px;
     }
 
+    &__cards {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      background-color: transparent;
+      box-shadow: none;
+      &__card {
+        background-color: #F5F5F5;
+        padding: 16px 32px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        width: 200px;
+        &__title {
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          opacity: 0.87;
+          padding-bottom: 8px;
+          color: rgba(0,0,0,0.64);
+        }
+
+        &__subtitle {
+          text-align: center;
+          font-size: 16px;
+          color: rgba(0,0,0,0.87);
+        }
+      }
+    }
+
   }
 }
 
