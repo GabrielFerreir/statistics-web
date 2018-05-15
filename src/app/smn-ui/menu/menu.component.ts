@@ -44,7 +44,6 @@ export class UiMenuComponent implements OnDestroy {
             x: event.clientX,
             y: event.clientY + window.pageYOffset
         };
-        console.log(coordinate);
         if (this.element) {
             const position = UiElement.position(this.element);
             coordinate = {
