@@ -109,7 +109,7 @@ export class StatisticsService {
     info.content = buildInterval.content;
     info.intervalo = buildInterval.intervalo;
     info.mediana = this.mediana(info);
-    info.moda = 'CULPA O LEO';
+    info.moda = this.modaDadosAgrupados(buildInterval);
     this.response = info;
   }
 
@@ -235,7 +235,7 @@ export class StatisticsService {
         }
       });
 
-      console.log(arrayData);
+      // console.log(arrayData);
       const limiteInferior = arrayData[pos].class.min;
       const freqAA = info.content[arrayData[pos].class.id - 2].fac;
       const freq = info.content[arrayData[pos].class.id - 1].qtd;
@@ -415,6 +415,56 @@ export class StatisticsService {
       acm += value;
     });
     return acm / groups.content[groups.content.length - 1].fac;
+  }
+
+  modaDadosAgrupados(groups) {
+    console.log('//////////////////////');
+    console.log(groups);
+
+    const classeModal = [];
+
+    let acm = 0;
+    groups.content.forEach((group) => {
+      console.log(group);
+      acm = group.qtd > acm ? group.qtd : acm;
+    });
+
+    groups.content.forEach((group) => {
+      if (group.qtd === acm) {
+        classeModal.push(group);
+      }
+    });
+    console.log(acm);
+    console.log(classeModal);
+
+    const res = []
+    classeModal.forEach((modal) => {
+      const limiteInferior = modal.class.min;
+      const d1 = modal.qtd - this.findClassForId(groups.content, modal.class.id - 1).qtd;
+      const d2 = modal.qtd - this.findClassForId(groups.content, modal.class.id + 1).qtd;
+      const amplitude = modal.class.max - modal.class.min;
+      console.log('----------------');
+      console.log(modal);
+      console.log('Limite inferior: ', limiteInferior);
+      console.log('d1', d1);
+      console.log('d2', d2);
+      console.log(amplitude);
+
+      const response = limiteInferior + (d1 / d1 + d2) * amplitude;
+      res.push(response);
+    });
+    return res;
+  }
+
+  findClassForId(classes, id) {
+    let res;
+    classes.forEach((classe) => {
+      if (classe.class.id === id) {
+        res = classe;
+        return;
+      }
+    });
+    return res;
   }
 
 }
