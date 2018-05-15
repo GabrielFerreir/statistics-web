@@ -286,13 +286,25 @@ export class StatisticsService {
 
   buildInterval(info) {
     const contentOrdenado = this.orderBy(info.content);
+
+    console.log(info.content);
+
     let amplitude = parseFloat(contentOrdenado[contentOrdenado.length - 1].group) - parseFloat(contentOrdenado[0].group);
 
     // CLASSE
 
+    console.log('TOTAL', contentOrdenado.length);
+
     const K = Math.sqrt(contentOrdenado.length);
 
+    console.log('-------------');
+    console.log(K);
+    console.log('-------------');
+
     const classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
+    console.log('-------------')
+    console.log(classes);
+    console.log('-------------')
 
     // INCREMENTA
     amplitude++;
@@ -307,7 +319,8 @@ export class StatisticsService {
       if (Number.isInteger(res)) {
         find = true;
         intervalo = res;
-        qtdGrupos = classes[2];
+
+        qtdGrupos = classes[0];
 
         // }
       }
