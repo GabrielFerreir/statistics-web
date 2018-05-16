@@ -220,14 +220,7 @@ export class StatisticsService {
     } else if (info.type === 3) {
       console.log('EXECUTA A MEDIANA DA CONTINUA');
 
-      let pos = (somatorio) / 2;
-
-
-      if (!Number.isInteger(pos)) {
-        pos = (somatorio + 1) / 2;
-      }
-
-
+      // MONTANDO DADOS
       const arrayData = [];
       info.content.forEach((num, index) => {
         for (let i = 0; i < num.qtd; i++) {
@@ -235,20 +228,57 @@ export class StatisticsService {
         }
       });
 
+
+      if (somatorio % 2 === 0) {
+        const res = [];
+        const pos = [somatorio / 2, somatorio / 2 + 1];
+        pos.forEach((position) => {
+          const limiteInferior = arrayData[position].class.min;
+          const freqAA = info.content[arrayData[position].class.id - 2].fac;
+          const freq = info.content[arrayData[position].class.id - 1].qtd;
+          const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
+          res.push(limiteInferior + (pre * info.intervalo));
+        });
+        return res[0] === res[1] ? res[0] : res;
+      } else {
+        const pos = (somatorio + 1) / 2;
+        const limiteInferior = arrayData[pos].class.min;
+        const freqAA = info.content[arrayData[pos].class.id - 2].fac;
+        const freq = info.content[arrayData[pos].class.id - 1].qtd;
+
+        const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
+
+        return limiteInferior + (pre * info.intervalo);
+      }
+      // let pos = (somatorio) / 2;
+
+
+      // if (!Number.isInteger(pos)) {
+      //   pos = (somatorio + 1) / 2;
+      // }
+
+
+      // const arrayData = [];
+      // info.content.forEach((num, index) => {
+      //   for (let i = 0; i < num.qtd; i++) {
+      //     arrayData.push(num);
+      //   }
+      // });
+
       // console.log(arrayData);
-      const limiteInferior = arrayData[pos].class.min;
-      const freqAA = info.content[arrayData[pos].class.id - 2].fac;
-      const freq = info.content[arrayData[pos].class.id - 1].qtd;
+      // const limiteInferior = arrayData[pos].class.min;
+      // const freqAA = info.content[arrayData[pos].class.id - 2].fac;
+      // const freq = info.content[arrayData[pos].class.id - 1].qtd;
 
       // console.log('Limite inferior', limiteInferior);
       // console.log('Somatorio', somatorio);
       //
       // console.log('Frequencia ANterior', freqAA);
       // console.log('Frequencia', freq);
-
-      const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
-
-      return limiteInferior + (pre * info.intervalo);
+      //
+      // const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
+      //
+      // return limiteInferior + (pre * info.intervalo);
     }
   }
 
@@ -438,7 +468,7 @@ export class StatisticsService {
 
     console.log('Classe modal', classeModal);
 
-    const modaConvencional = []
+    const modaConvencional = [];
 
     classeModal.forEach((modal) => {
       const value = ((modal.class.max - modal.class.min) / 2) + modal.class.min;

@@ -27,7 +27,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               private renderer: Renderer2,
               public _location: Location,
               private MOCK: MockService) {
-    this.info = this.MOCK.vContinua;
+    this.info = this.MOCK.vContinua2;
     this.dragDrop = {};
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
