@@ -110,6 +110,7 @@ export class StatisticsService {
     info.intervalo = buildInterval.intervalo;
     info.mediana = this.mediana(info);
     info.moda = this.modaDadosAgrupados(buildInterval);
+    info.modaPearson = this.modaPearson(info.mediana, info.media);
     this.response = info;
   }
 
@@ -250,35 +251,6 @@ export class StatisticsService {
 
         return limiteInferior + (pre * info.intervalo);
       }
-      // let pos = (somatorio) / 2;
-
-
-      // if (!Number.isInteger(pos)) {
-      //   pos = (somatorio + 1) / 2;
-      // }
-
-
-      // const arrayData = [];
-      // info.content.forEach((num, index) => {
-      //   for (let i = 0; i < num.qtd; i++) {
-      //     arrayData.push(num);
-      //   }
-      // });
-
-      // console.log(arrayData);
-      // const limiteInferior = arrayData[pos].class.min;
-      // const freqAA = info.content[arrayData[pos].class.id - 2].fac;
-      // const freq = info.content[arrayData[pos].class.id - 1].qtd;
-
-      // console.log('Limite inferior', limiteInferior);
-      // console.log('Somatorio', somatorio);
-      //
-      // console.log('Frequencia ANterior', freqAA);
-      // console.log('Frequencia', freq);
-      //
-      // const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
-      //
-      // return limiteInferior + (pre * info.intervalo);
     }
   }
 
@@ -475,7 +447,9 @@ export class StatisticsService {
       modaConvencional.push(value);
     });
 
-    const modaPearson = [];
+    return modaConvencional;
+
+    // const modaPearson = [];
 
     // const res = []
     // classeModal.forEach((modal) => {
@@ -505,6 +479,11 @@ export class StatisticsService {
       }
     });
     return res;
+  }
+
+  modaPearson(mediana, media) {
+    // QUANDO SÂO DUAS MEDIANAS?
+    return (3 * mediana) - (2 * media);
   }
 
 }
