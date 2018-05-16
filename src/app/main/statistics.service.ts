@@ -435,25 +435,35 @@ export class StatisticsService {
       }
     });
     console.log(acm);
-    console.log(classeModal);
 
-    const res = []
+    console.log('Classe modal', classeModal);
+
+    const modaConvencional = []
+
     classeModal.forEach((modal) => {
-      const limiteInferior = modal.class.min;
-      const d1 = modal.qtd - this.findClassForId(groups.content, modal.class.id - 1).qtd;
-      const d2 = modal.qtd - this.findClassForId(groups.content, modal.class.id + 1).qtd;
-      const amplitude = modal.class.max - modal.class.min;
-      console.log('----------------');
-      console.log(modal);
-      console.log('Limite inferior: ', limiteInferior);
-      console.log('d1', d1);
-      console.log('d2', d2);
-      console.log(amplitude);
-
-      const response = limiteInferior + (d1 / d1 + d2) * amplitude;
-      res.push(response);
+      const value = ((modal.class.max - modal.class.min) / 2) + modal.class.min;
+      modaConvencional.push(value);
     });
-    return res;
+
+    const modaPearson = [];
+
+    // const res = []
+    // classeModal.forEach((modal) => {
+    //   const limiteInferior = modal.class.min;
+    //   const d1 = modal.qtd - this.findClassForId(groups.content, modal.class.id - 1).qtd;
+    //   const d2 = modal.qtd - this.findClassForId(groups.content, modal.class.id + 1).qtd;
+    //   const amplitude = modal.class.max - modal.class.min;
+    //   console.log('----------------');
+    //   console.log(modal);
+    //   console.log('Limite inferior: ', limiteInferior);
+    //   console.log('d1', d1);
+    //   console.log('d2', d2);
+    //   console.log(amplitude);
+
+    //   const response = limiteInferior + (d1 / d1 + d2) * amplitude;
+    //   res.push(response);
+    // });
+    // return res;
   }
 
   findClassForId(classes, id) {
