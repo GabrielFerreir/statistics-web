@@ -197,7 +197,6 @@ export class StatisticsService {
   }
 
   mediana(info) {
-    console.log('Mediana', info);
     const somatorio = info.content[info.content.length - 1].fac;
     if (info.type === 2) {
       if (somatorio % 2 === 0) {
@@ -219,7 +218,6 @@ export class StatisticsService {
         return arrayData[(arrayData.length + 1) / 2].group;
       }
     } else if (info.type === 3) {
-      console.log('EXECUTA A MEDIANA DA CONTINUA');
 
       // MONTANDO DADOS
       const arrayData = [];
@@ -255,7 +253,6 @@ export class StatisticsService {
   }
 
   moda(info) {
-    console.log('MODA', info);
     // let arrayValues = [];
     let maior = 1;
     for (let i = 0; i < info.length; i++) {
@@ -274,7 +271,6 @@ export class StatisticsService {
     if (acm == info.length) {
       return 'Não há modal';
     }
-    console.log(maiores);
     return maiores;
   }
 
@@ -287,25 +283,14 @@ export class StatisticsService {
 
   buildInterval(info) {
     const contentOrdenado = this.orderBy(info.content);
-
-    console.log(info.content);
-
     let amplitude = parseFloat(contentOrdenado[contentOrdenado.length - 1].group) - parseFloat(contentOrdenado[0].group);
 
     // CLASSE
 
-    console.log('TOTAL', contentOrdenado.length);
 
     const K = Math.sqrt(contentOrdenado.length);
 
-    console.log('-------------');
-    console.log(K);
-    console.log('-------------');
-
     const classes = [Math.trunc(K) - 1, Math.trunc(K), Math.trunc(K) + 1];
-    console.log('-------------');
-    console.log(classes);
-    console.log('-------------');
 
     // INCREMENTA
     amplitude++;
@@ -348,10 +333,6 @@ export class StatisticsService {
 
 
     const res = [];
-
-    console.log('GROUPVALUE', groupValue);
-
-    console.log('CONTENT ORDENADO', contentOrdenado);
 
     groupValue.forEach((group) => {
       let temp = [];
@@ -420,14 +401,11 @@ export class StatisticsService {
   }
 
   modaDadosAgrupados(groups) {
-    console.log('//////////////////////');
-    console.log(groups);
 
     const classeModal = [];
 
     let acm = 0;
     groups.content.forEach((group) => {
-      console.log(group);
       acm = group.qtd > acm ? group.qtd : acm;
     });
 
@@ -436,9 +414,6 @@ export class StatisticsService {
         classeModal.push(group);
       }
     });
-    console.log(acm);
-
-    console.log('Classe modal', classeModal);
 
     const modaConvencional = [];
 
@@ -457,12 +432,7 @@ export class StatisticsService {
     //   const d1 = modal.qtd - this.findClassForId(groups.content, modal.class.id - 1).qtd;
     //   const d2 = modal.qtd - this.findClassForId(groups.content, modal.class.id + 1).qtd;
     //   const amplitude = modal.class.max - modal.class.min;
-    //   console.log('----------------');
-    //   console.log(modal);
-    //   console.log('Limite inferior: ', limiteInferior);
-    //   console.log('d1', d1);
-    //   console.log('d2', d2);
-    //   console.log(amplitude);
+
 
     //   const response = limiteInferior + (d1 / d1 + d2) * amplitude;
     //   res.push(response);
