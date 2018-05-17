@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {createOfflineCompileUrlResolver} from '@angular/compiler';
 import {UtilsService} from '../functions/utils.service';
 import {TableService} from '../functions/table.service';
+import {DesvioPadraoService} from '../functions/desvio-padrao.service';
 
 @Injectable()
 export class StatisticsService {
@@ -9,7 +10,8 @@ export class StatisticsService {
   response: Object;
 
   constructor(private utils: UtilsService,
-              private table: TableService) {
+              private table: TableService,
+              private desvioPadraoService: DesvioPadraoService) {
     this.response = {};
   }
 
@@ -111,6 +113,10 @@ export class StatisticsService {
 
     Object.assign(info, table);
 
+    const DP = this.desvioPadraoService.init(info).finish();
+
+    console.log('Desvio padrão', DP);
+
     this.desvioPadrao(info);
     // info.media = this.mediaPonderada(info.content);
     info.concienteDeVariacao = this.concienteDeVariacao(info);
@@ -186,6 +192,7 @@ export class StatisticsService {
     info.content.forEach(num => {
       denominador += num.qtd;
     });
+
     if (info.amostra === 'S') {
       denominador--;
     }
@@ -193,7 +200,6 @@ export class StatisticsService {
   }
 
   mediaPonderada(info) {
-    const media = 0;
     let numerador = 0;
     let denominador = 0;
     info.forEach(num => {
