@@ -291,4 +291,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
     }
     this.info.content = newArray;
   }
+
+
+  teste() {
+    // this.statisticsService.teste();
+  }
 }

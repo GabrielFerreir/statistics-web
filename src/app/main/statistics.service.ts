@@ -1,12 +1,15 @@
 import {Injectable} from '@angular/core';
 import {createOfflineCompileUrlResolver} from '@angular/compiler';
+import {UtilsService} from '../functions/utils.service';
+import {TableService} from '../functions/table.service';
 
 @Injectable()
 export class StatisticsService {
 
   response: Object;
 
-  constructor() {
+  constructor(private utils: UtilsService,
+              private table: TableService) {
     this.response = {};
   }
 
@@ -98,6 +101,11 @@ export class StatisticsService {
   }
 
   quantitativaContinua(info) {
+    console.log(info);
+
+    console.log('RETORNO', this.teste(info));
+
+
     this.percent(info.content);
     this.frequencyAmass(info.content);
     this.frequencyPercent(info.content);
@@ -153,7 +161,6 @@ export class StatisticsService {
         info.type = 0;
         this.qualitativa(info);
       }
-
     }
   }
 
@@ -456,4 +463,52 @@ export class StatisticsService {
     return (3 * mediana) - (2 * media);
   }
 
+
+  teste(info) {
+    return this.table.init(info)
+        .runAll()
+          .finish();
+  }
+
 }
+
+// class Table {
+//   response: any;
+//
+//   constructor(content) {
+//     this.response = Object.assign({}, content);
+//   }
+//
+//   setPercent() {
+//     // this.response.percent = 3;
+//     console.log(this.response);
+//     // const total = this.totalItems(obj, 'qtd');
+//     // obj.forEach((el) => {
+//     //   el.percent = el.qtd / total;
+//     // });
+//     return this;
+//   }
+//
+//   setFrequencyAmass() {
+//     this.response.frequencyAmass = 5;
+//     return this;
+//   }
+//
+//   setFrequencyPercent() {
+//     this.response.frequencyAmass = 3;
+//     return this;
+//   }
+//
+//   runAll() {
+//     this.setPercent()
+//       .setFrequencyAmass()
+//       .setFrequencyPercent();
+//     return this;
+//   }
+//
+//   finish() {
+//     console.log(this.response);
+//   }
+// }
+
+
