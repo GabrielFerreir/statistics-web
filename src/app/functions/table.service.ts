@@ -24,20 +24,29 @@ export class TableService {
     return this;
   }
 
-  // setFrequencyAmass() {
-  //   this.response.frequencyAmass = 5;
-  //   return this;
-  // }
-  //
-  // setFrequencyPercent() {
-  //   this.response.frequencyAmass = 3;
-  //   return this;
-  // }
+  setFrequencyAmass() {
+    let acm = 0;
+    this.response.content.forEach((el) => {
+      acm += el.qtd;
+      el.fac = acm;
+    });
+    return this;
+  }
+
+  setFrequencyPercent() {
+    const total = this.utils.totalItems(this.response.content, 'qtd');
+    let acm = 0;
+    this.response.content.forEach((el) => {
+      acm += el.qtd / total;
+      el.facP = acm;
+    });
+    return this;
+  }
 
   runAll() {
     this.setPercent()
-      // .setFrequencyAmass()
-      // .setFrequencyPercent();
+      .setFrequencyAmass()
+      .setFrequencyPercent();
     return this;
   }
 

@@ -105,10 +105,12 @@ export class StatisticsService {
 
     console.log('RETORNO', this.teste(info));
 
+    const table = this.table.init(info)
+      .runAll()
+      .finish();
 
-    this.percent(info.content);
-    this.frequencyAmass(info.content);
-    this.frequencyPercent(info.content);
+    Object.assign(info, table);
+
     this.desvioPadrao(info);
     // info.media = this.mediaPonderada(info.content);
     info.concienteDeVariacao = this.concienteDeVariacao(info);
