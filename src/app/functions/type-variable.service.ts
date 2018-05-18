@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {TableService} from './table.service';
 import {StatisticsService} from '../main/statistics.service';
 import {DesvioPadraoService} from './desvio-padrao.service';
+import {ModaService} from './moda.service';
+import {MediaService} from './media.service';
+import {MedianaService} from './mediana.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,10 @@ export class TypeVariableService {
   constructor(
     private statisticsService: StatisticsService,
     private tableService: TableService,
-    private desvioPadraoService: DesvioPadraoService) {
+    private desvioPadraoService: DesvioPadraoService,
+    private modaService: ModaService,
+    private mediaService: MediaService,
+    private medianaService: MedianaService) {
   }
 
   /*
@@ -92,11 +98,17 @@ export class TypeVariableService {
       .finish();
 
     const desvioPadrao = this.desvioPadraoService.init(this.response).finish();
+    const moda = this.modaService.comum(content);
+    const media = this.mediaService.ponderada(content);
+    const mediana = this.medianaService.comum(content);
 
     const response = {
       title: this.response.title,
       content: content,
-      DPR: desvioPadrao
+      DPR: desvioPadrao,
+      moda: moda,
+      media: media,
+      mediana: mediana
     };
     this.response = response;
     return this;

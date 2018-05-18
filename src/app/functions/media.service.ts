@@ -7,13 +7,13 @@ export class MediaService {
 
   constructor() { }
 
-  ponderada(info) {
+  ponderada(content) {
 
-    const numerador = info.reduce((res, num) => {
+    const numerador = content.reduce((res, num) => {
       return res + (num.group * num.qtd);
     }, 0);
 
-    const denominador = info.reduce((res, num) => {
+    const denominador = content.reduce((res, num) => {
       return res + num.qtd;
     }, 0);
 
