@@ -33,6 +33,7 @@ export class MedianaService {
   continua(groups, interval) {
     const somatorio = groups[groups.length - 1].fac;
     const arrayData = this.utilsService.listingItens(groups);
+    console.log('arrayData', arrayData);
 
 
     if (somatorio % 2 === 0) {
