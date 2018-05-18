@@ -3,6 +3,7 @@ import {createOfflineCompileUrlResolver} from '@angular/compiler';
 import {UtilsService} from '../functions/utils.service';
 import {TableService} from '../functions/table.service';
 import {DesvioPadraoService} from '../functions/desvio-padrao.service';
+import {DataGroupsService} from '../functions/data-groups.service';
 
 @Injectable()
 export class StatisticsService {
@@ -11,7 +12,8 @@ export class StatisticsService {
 
   constructor(private utils: UtilsService,
               private table: TableService,
-              private desvioPadraoService: DesvioPadraoService) {
+              private desvioPadraoService: DesvioPadraoService,
+              private dataGroups: DataGroupsService) {
     this.response = {};
   }
 
@@ -114,6 +116,10 @@ export class StatisticsService {
     Object.assign(info, table);
 
     const DP = this.desvioPadraoService.init(info).finish();
+
+    const group = this.dataGroups.init(table).runAll().finish();
+
+    console.log('GROUP', group);
 
     console.log('Desvio padrão', DP);
 
@@ -300,6 +306,7 @@ export class StatisticsService {
     const contentOrdenado = this.orderBy(info.content);
     let amplitude = parseFloat(contentOrdenado[contentOrdenado.length - 1].group) - parseFloat(contentOrdenado[0].group);
 
+
     // CLASSE
 
 
@@ -327,6 +334,12 @@ export class StatisticsService {
       }
       amplitude++;
     } while (!find);
+
+    console.log('Amplitude', amplitude);
+    console.log('qtdGrupos', qtdGrupos);
+    console.log('intervalo', intervalo);
+
+
 
     // ARRAY COM O VALOR MIN E MAX DE CADA CLASSE
     const groupValue = [];
