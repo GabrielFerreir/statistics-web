@@ -29,38 +29,6 @@ export class StatisticsService {
     return this.response;
   }
 
-  countRepeat(info) {
-    const obj = [];
-    const func = {
-      insere: (group, qtd) => {
-        let condicao;
-        obj.forEach((el) => {
-          if (el.group === group) {
-            condicao = true;
-          }
-        });
-        if (!condicao) {
-          obj.push({group: group, qtd: qtd});
-        }
-      }
-    };
-
-    for (var i = 0; i < info.length; i++) {
-      let repeat = 0;
-      for (var j = 0; j < info.length; j++) {
-        if (info[i] === info[j]) {
-          repeat++;
-        }
-      }
-      func.insere(info[i], repeat);
-    }
-    this.percent(obj);
-    this.frequencyAmass(obj);
-    this.frequencyPercent(obj);
-
-    return obj;
-  }
-
   // TABLE
   percent(obj) {
     const total = this.totalItems(obj, 'qtd');
@@ -222,6 +190,7 @@ export class StatisticsService {
     return numerador / denominador;
   }
 
+  // MEDIANA
   mediana(info) {
     const somatorio = info.content[info.content.length - 1].fac;
     if (info.type === 2) {
@@ -479,68 +448,57 @@ export class StatisticsService {
     // return res;
   }
 
-  findClassForId(classes, id) {
-    let res;
-    classes.forEach((classe) => {
-      if (classe.class.id === id) {
-        res = classe;
-        return;
-      }
-    });
-    return res;
-  }
 
   modaPearson(mediana, media) {
     // QUANDO SÂO DUAS MEDIANAS?
     return (3 * mediana) - (2 * media);
   }
 
+  // findClassForId(classes, id) {
+  //   let res;
+  //   classes.forEach((classe) => {
+  //     if (classe.class.id === id) {
+  //       res = classe;
+  //       return;
+  //     }
+  //   });
+  //   return res;
+  // }
 
-  teste(info) {
-    return this.table.init(info)
-        .runAll()
-          .finish();
-  }
+  // countRepeat(info) {
+  //   const obj = [];
+  //   const func = {
+  //     insere: (group, qtd) => {
+  //       let condicao;
+  //       obj.forEach((el) => {
+  //         if (el.group === group) {
+  //           condicao = true;
+  //         }
+  //       });
+  //       if (!condicao) {
+  //         obj.push({group: group, qtd: qtd});
+  //       }
+  //     }
+  //   };
+  //
+  //   for (var i = 0; i < info.length; i++) {
+  //     let repeat = 0;
+  //     for (var j = 0; j < info.length; j++) {
+  //       if (info[i] === info[j]) {
+  //         repeat++;
+  //       }
+  //     }
+  //     func.insere(info[i], repeat);
+  //   }
+  //   this.percent(obj);
+  //   this.frequencyAmass(obj);
+  //   this.frequencyPercent(obj);
+  //
+  //   return obj;
+  // }
+
+
 
 }
-
-// class Table {
-//   response: any;
-//
-//   constructor(content) {
-//     this.response = Object.assign({}, content);
-//   }
-//
-//   setPercent() {
-//     // this.response.percent = 3;
-//     console.log(this.response);
-//     // const total = this.totalItems(obj, 'qtd');
-//     // obj.forEach((el) => {
-//     //   el.percent = el.qtd / total;
-//     // });
-//     return this;
-//   }
-//
-//   setFrequencyAmass() {
-//     this.response.frequencyAmass = 5;
-//     return this;
-//   }
-//
-//   setFrequencyPercent() {
-//     this.response.frequencyAmass = 3;
-//     return this;
-//   }
-//
-//   runAll() {
-//     this.setPercent()
-//       .setFrequencyAmass()
-//       .setFrequencyPercent();
-//     return this;
-//   }
-//
-//   finish() {
-//     console.log(this.response);
-//   }
-// }
 
 
