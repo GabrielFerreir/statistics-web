@@ -5,6 +5,7 @@ import {DesvioPadraoService} from './desvio-padrao.service';
 import {ModaService} from './moda.service';
 import {MediaService} from './media.service';
 import {MedianaService} from './mediana.service';
+import {DataGroupsService} from './data-groups.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class TypeVariableService {
     private desvioPadraoService: DesvioPadraoService,
     private modaService: ModaService,
     private mediaService: MediaService,
-    private medianaService: MedianaService) {
+    private medianaService: MedianaService,
+    private dataGroupsService: DataGroupsService) {
   }
 
   /*
@@ -97,7 +99,7 @@ export class TypeVariableService {
       .runAll()
       .finish();
 
-    const desvioPadrao = this.desvioPadraoService.init(this.response).finish();
+    const DPR = this.desvioPadraoService.init(this.response).finish();
     const moda = this.modaService.comum(content);
     const media = this.mediaService.ponderada(content);
     const mediana = this.medianaService.comum(content);
@@ -105,7 +107,7 @@ export class TypeVariableService {
     const response = {
       title: this.response.title,
       content: content,
-      DPR: desvioPadrao,
+      DPR: DPR,
       moda: moda,
       media: media,
       mediana: mediana
@@ -117,6 +119,16 @@ export class TypeVariableService {
 
   continua() {
     console.log('CONTINUA');
+    const content = this.tableService.init(this.response)
+      .runAll()
+      .finish();
+
+    const DPR = this.desvioPadraoService.init(this.response).finish();
+
+    const groups = this.dataGroupsService.init(this.response).runAll().finish();
+
+    console.log('GROUPS', groups);
+
   }
 
   setInService() {

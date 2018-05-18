@@ -17,8 +17,8 @@ export class DataGroupsService {
   constructor() {
   }
 
-  init(content) {
-    this.response = JSON.parse(JSON.stringify(content));
+  init(info) {
+    this.response = JSON.parse(JSON.stringify(info));
     return this;
   }
 
@@ -150,7 +150,7 @@ export class DataGroupsService {
 
   finish() {
     console.log(this);
-    return this.response;
+    return this.response.content;
   }
 
 
