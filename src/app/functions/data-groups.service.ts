@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,10 @@ export class DataGroupsService {
   amplitude: number;
   classe: number;
   intervalClass: number;
-  groupValues: any[];
+  groupValues: any[] = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   init(content) {
     this.response = JSON.parse(JSON.stringify(content));
@@ -53,13 +54,12 @@ export class DataGroupsService {
         this.amplitude++;
       }
     } while (!checker);
-
-    this.intervalClass = this.amplitude - this.classe;
+    return this;
   }
 
   defineLimits() {
     let lastValue = parseFloat(this.response.content[0].group);
-    for (let i = 0; i <= this.classe; i++) {
+    for (let i = 1; i <= this.classe; i++) {
 
       this.groupValues.push({
         id: i,
@@ -69,6 +69,7 @@ export class DataGroupsService {
 
       lastValue = lastValue + this.intervalClass;
     }
+    return this;
   }
 
   setLimitsInObjects() {
@@ -79,27 +80,78 @@ export class DataGroupsService {
         }
       });
     });
+
+    return this;
   }
 
+  generateGroups() {
+    const res = [];
 
+    this.groupValues.forEach((group) => {
+      let temp = [];
+      let qtdELementos = 0;
+
+      this.response.content.forEach((obj) => {
+        qtdELementos += obj.qtd;
+        if (group.id === obj.class.id) {
+          temp.push(obj);
+        }
+      });
+
+      // CASO NÂO TENHA NENHUM ELEMENTO NO GRUPO
+      if (!temp.length) {
+        temp = [{group: {id: group.id, qtd: 0, percent: 0}}];
+      }
+
+      const soma = {
+        fac: 0, facP: 0, percent: 0,
+        qtd: 0, group: '', class: {min: 0, max: 0, id: 0}
+      };
+
+      temp.forEach((obje, index) => {
+        soma.fac = 1;
+        soma.facP = 1;
+        soma.percent += obje.percent || 0;
+        soma.qtd += obje.qtd || 0;
+        soma.group = `De ${group.min} á ${group.max}`;
+        soma.class = {
+          min: group.min,
+          max: group.max,
+          id: group.id
+        };
+
+        const anterior = res[res.length - 1];
+
+        if (anterior) {
+          soma.fac = anterior['fac'] + soma.qtd;
+        } else {
+          soma.fac = soma.qtd;
+        }
+        soma.facP = ((100 * soma.fac) / qtdELementos) / 100;
+      });
+
+      res.push(soma);
+    });
+
+    this.response.content = res;
+    return this;
+  }
 
   runAll() {
     this.orderBy()
       .getAmplitude()
       .getClassNumber()
-      .getIntervalClass();
-
+      .getIntervalClass()
+      .defineLimits()
+      .setLimitsInObjects()
+      .generateGroups();
     return this;
   }
 
-
-
   finish() {
     console.log(this);
-    console.log(this.response);
     return this.response;
   }
-
 
 
 }
