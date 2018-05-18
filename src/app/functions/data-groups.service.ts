@@ -17,28 +17,29 @@ export class DataGroupsService {
   constructor() {
   }
 
-  init(info) {
-    this.response = JSON.parse(JSON.stringify(info));
+  init(content) {
+    // this.response = JSON.parse(JSON.stringify(info));
+    this.response = content;
     return this;
   }
 
   orderBy() {
-    this.response.content.sort((a, b) => {
+    this.response.sort((a, b) => {
       return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0);
     });
     return this;
   }
 
   getAmplitude() {
-    const lastItem = this.response.content[this.response.content.length - 1].group;
-    const firstItem = this.response.content[0].group;
+    const lastItem = this.response[this.response.length - 1].group;
+    const firstItem = this.response[0].group;
     this.amplitude = (lastItem - firstItem) + 1; // POR QUE?
 
     return this;
   }
 
   getClassNumber() {
-    const K = Math.trunc(Math.sqrt(this.response.content.length));
+    const K = Math.trunc(Math.sqrt(this.response.length));
     const classes = [K - 1, K, K + 1];
     this.classe = classes[this.NUM_CLASS];
     return this;
@@ -58,7 +59,7 @@ export class DataGroupsService {
   }
 
   defineLimits() {
-    let lastValue = parseFloat(this.response.content[0].group);
+    let lastValue = parseFloat(this.response[0].group);
     for (let i = 1; i <= this.classe; i++) {
 
       this.groupValues.push({
@@ -73,7 +74,7 @@ export class DataGroupsService {
   }
 
   setLimitsInObjects() {
-    this.response.content.forEach((obj) => {
+    this.response.forEach((obj) => {
       this.groupValues.forEach((group) => {
         if (obj.group >= group.min && obj.group < group.max) {
           obj.class = group;
@@ -91,7 +92,7 @@ export class DataGroupsService {
       let temp = [];
       let qtdELementos = 0;
 
-      this.response.content.forEach((obj) => {
+      this.response.forEach((obj) => {
         qtdELementos += obj.qtd;
         if (group.id === obj.class.id) {
           temp.push(obj);
@@ -133,7 +134,7 @@ export class DataGroupsService {
       res.push(soma);
     });
 
-    this.response.content = res;
+    this.response = res;
     return this;
   }
 
@@ -150,7 +151,7 @@ export class DataGroupsService {
 
   finish() {
     console.log(this);
-    return this.response.content;
+    return this.response;
   }
 
 

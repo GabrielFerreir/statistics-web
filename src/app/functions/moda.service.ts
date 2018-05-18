@@ -32,11 +32,11 @@ export class ModaService {
     const classeModal = [];
 
     let acm = 0;
-    groups.content.forEach((group) => {
+    groups.forEach((group) => {
       acm = group.qtd > acm ? group.qtd : acm;
     });
 
-    groups.content.forEach((group) => {
+    groups.forEach((group) => {
       if (group.qtd === acm) {
         classeModal.push(group);
       }
@@ -50,5 +50,9 @@ export class ModaService {
     });
 
     return modaConvencional;
+  }
+
+  pearson(mediana, media) {
+    return (3 * mediana) - (2 * media);
   }
 }

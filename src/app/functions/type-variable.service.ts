@@ -124,11 +124,25 @@ export class TypeVariableService {
       .finish();
 
     const DPR = this.desvioPadraoService.init(this.response).finish();
+    const groups = this.dataGroupsService.init(content).runAll().finish();
+    const media = this.mediaService.continua(groups);
+    const moda = this.modaService.continua(groups);
+    const mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
+    const pearson = this.modaService.pearson(mediana, media);
 
-    const groups = this.dataGroupsService.init(this.response).runAll().finish();
-
-    console.log('GROUPS', groups);
-
+    const response = {
+      title: this.response.title,
+      content: groups,
+      DPR: DPR,
+      media: media,
+      mediana: mediana,
+      moda: {
+        comum : moda,
+        pearson: pearson
+      },
+    };
+    this.response = response;
+    return this;
   }
 
   setInService() {
