@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 export class TypeVariableService {
 
   MAX_VALUE_FOR_DISCRETA = 10;
+  type: number;
 
   constructor() {
   }
@@ -15,7 +16,7 @@ export class TypeVariableService {
     1 | Discreta
     0 | Quali
    */
-  identify(content, ordinal) {
+  identify(content, ordinal?) {
     let isQuantitativa = null;
     let error;
 
@@ -25,26 +26,27 @@ export class TypeVariableService {
       } else {
         if (isQuantitativa !== !isNaN(dado.group)) {
           error = true;
-          return;
         }
       }
     });
 
     if (error) {
       console.error('Não conseguimos identificar se a variavel é quanti ou quali');
-      return;
+      return this;
     }
 
     if (isQuantitativa) {
       const res = content.length > this.MAX_VALUE_FOR_DISCRETA ? 2 : 1;
-      return res;
+      this.type = res;
+      return this;
     } else {
-      return 0;
+      this.type = 0;
+      return this;
     }
   }
 
-  callFunction(type) {
-    switch (type) {
+  callFunction() {
+    switch (this.type) {
       case 0:
         this.qualitativa();
         break;
@@ -71,5 +73,9 @@ export class TypeVariableService {
     console.log('CONTINUA');
   }
 
+  run(info) {
+    this.identify(info.content)
+      .callFunction();
+  }
 
 }

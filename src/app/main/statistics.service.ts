@@ -81,8 +81,6 @@ export class StatisticsService {
   quantitativaContinua(info) {
     console.log(info);
 
-    console.log('RETORNO', this.teste(info));
-
     const table = this.table.init(info)
       .runAll()
       .finish();

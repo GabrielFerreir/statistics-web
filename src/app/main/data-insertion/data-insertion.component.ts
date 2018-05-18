@@ -6,6 +6,7 @@ import {StatisticsService} from '../statistics.service';
 import {Router} from '@angular/router';
 import {forEach} from '@angular/router/src/utils/collection';
 import {MockService} from './mock.service';
+import {TypeVariableService} from '../../functions/type-variable.service';
 
 
 @Component({
@@ -26,8 +27,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               private toolbarService: UiToolbarService,
               private renderer: Renderer2,
               public _location: Location,
-              private MOCK: MockService) {
-    this.info = this.MOCK.vContinua2;
+              private MOCK: MockService,
+              private typeVariable: TypeVariableService) {
+    this.info = this.MOCK.quali;
     this.dragDrop = {};
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
@@ -99,6 +101,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
       return false;
     }
     this.statisticsService.identifyTypeVariable(this.info);
+
+    this.typeVariable.run(this.info);
+
     this.router.navigate(['/dashboard']);
   }
 
@@ -292,8 +297,4 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
     this.info.content = newArray;
   }
 
-
-  teste() {
-    // this.statisticsService.teste();
-  }
 }

@@ -64,6 +64,16 @@ export class MockService {
     ]
   };
 
+  quali = {
+    title: 'Exercicio 3',
+    content: [
+      {group: 'Bom', qtd: 5},
+      {group: 'Regular', qtd: 5},
+      {group: 'Ruim', qtd: 0},
+      {group: 'Muito bom', qtd: 5},
+    ]
+  }
+
   constructor() {
   }
 }
