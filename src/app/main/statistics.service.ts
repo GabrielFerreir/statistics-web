@@ -61,6 +61,7 @@ export class StatisticsService {
     return obj;
   }
 
+  // TABLE
   percent(obj) {
     const total = this.totalItems(obj, 'qtd');
     obj.forEach((el) => {
@@ -68,6 +69,7 @@ export class StatisticsService {
     });
   }
 
+  // TABLE
   frequencyAmass(obj) {
     let acm = 0;
     obj.forEach((el) => {
@@ -76,6 +78,7 @@ export class StatisticsService {
     });
   }
 
+  // TABLE
   frequencyPercent(obj) {
     const total = this.totalItems(obj, 'qtd');
     let acm = 0;
@@ -187,6 +190,7 @@ export class StatisticsService {
     return total;
   }
 
+  // DESVIO-PADRAO
   desvioPadrao(info) {
     let numerador = 0;
     let denominador = 0;
@@ -205,6 +209,7 @@ export class StatisticsService {
     info.desvioPadrao = Math.sqrt(numerador / denominador);
   }
 
+  // MEDIA
   mediaPonderada(info) {
     let numerador = 0;
     let denominador = 0;
@@ -273,6 +278,7 @@ export class StatisticsService {
     }
   }
 
+  // MODA
   moda(info) {
     // let arrayValues = [];
     let maior = 1;
@@ -295,6 +301,7 @@ export class StatisticsService {
     return maiores;
   }
 
+  // DATA-GROUPS
   orderBy(el) {
     const response = el.sort((a, b) => {
       return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0);
@@ -302,6 +309,7 @@ export class StatisticsService {
     return response;
   }
 
+  // DATA-GROUPS
   buildInterval(info) {
     const contentOrdenado = this.orderBy(info.content);
     let amplitude = parseFloat(contentOrdenado[contentOrdenado.length - 1].group) - parseFloat(contentOrdenado[0].group);
@@ -420,6 +428,7 @@ export class StatisticsService {
     return info.desvioPadrao / info.media;
   }
 
+  // MEDIA
   mediaContinua(groups) {
     let acm = 0;
     groups.content.forEach((group) => {
@@ -429,6 +438,7 @@ export class StatisticsService {
     return acm / groups.content[groups.content.length - 1].fac;
   }
 
+  // MODA
   modaDadosAgrupados(groups) {
 
     const classeModal = [];
