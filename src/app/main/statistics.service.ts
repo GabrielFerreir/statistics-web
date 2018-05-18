@@ -498,6 +498,13 @@ export class StatisticsService {
   //   return obj;
   // }
 
+  set(object) {
+    this.response = object;
+  }
+  get() {
+    return this.response;
+  }
+
 
 }
 

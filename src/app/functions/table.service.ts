@@ -51,7 +51,7 @@ export class TableService {
   }
 
   finish() {
-    return this.response;
+    return this.response.content;
   }
 
 }

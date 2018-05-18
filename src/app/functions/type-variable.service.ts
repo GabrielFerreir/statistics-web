@@ -1,4 +1,7 @@
 import {Injectable} from '@angular/core';
+import {TableService} from './table.service';
+import {StatisticsService} from '../main/statistics.service';
+import {DesvioPadraoService} from './desvio-padrao.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +10,12 @@ export class TypeVariableService {
 
   MAX_VALUE_FOR_DISCRETA = 10;
   type: number;
+  response: any;
 
-  constructor() {
+  constructor(
+    private statisticsService: StatisticsService,
+    private tableService: TableService,
+    private desvioPadraoService: DesvioPadraoService) {
   }
 
   /*
@@ -58,24 +65,58 @@ export class TypeVariableService {
         break;
       default:
         console.error('Tipo invalido');
+        this.response = null;
     }
+    return this;
   }
 
   qualitativa() {
+    const content = this.tableService.init(this.response)
+      .runAll()
+      .finish();
+    console.log(content);
     console.log('QUALITATIVA');
+
+    const response = {
+      title: this.response.title,
+      content: content
+    };
+    this.response = response;
+    return this;
   }
 
   discreta() {
     console.log('DISCRETA');
+    const content = this.tableService.init(this.response)
+      .runAll()
+      .finish();
+
+    const desvioPadrao = this.desvioPadraoService.init(this.response).finish();
+
+    const response = {
+      title: this.response.title,
+      content: content,
+      DPR: desvioPadrao
+    };
+    this.response = response;
+    return this;
+
   }
 
   continua() {
     console.log('CONTINUA');
   }
 
+  setInService() {
+    console.log(this.response);
+    this.statisticsService.set(this.response);
+  }
+
   run(info) {
-    this.identify(info.content)
-      .callFunction();
+    this.response = JSON.parse(JSON.stringify(info));
+    this.identify(this.response.content)
+      .callFunction()
+      .setInService();
   }
 
 }

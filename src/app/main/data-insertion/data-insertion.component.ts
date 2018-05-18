@@ -100,7 +100,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
-    this.statisticsService.identifyTypeVariable(this.info);
+    // this.statisticsService.identifyTypeVariable(this.info);
 
     this.typeVariable.run(this.info);
 
