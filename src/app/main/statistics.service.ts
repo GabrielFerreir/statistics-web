@@ -56,6 +56,7 @@ export class StatisticsService {
     });
   }
 
+  // TYPE-VARIABLES *
   qualitativa(info) {
     this.percent(info.content);
     this.frequencyAmass(info.content);
@@ -63,6 +64,7 @@ export class StatisticsService {
     this.response = info;
   }
 
+  // TYPE-VARIABLES *
   quantitativaDiscreta(info) {
     this.percent(info.content);
     this.frequencyAmass(info.content);
@@ -75,6 +77,7 @@ export class StatisticsService {
     this.response = info;
   }
 
+  // TYPE-VARIABLES *
   quantitativaContinua(info) {
     console.log(info);
 
@@ -107,6 +110,7 @@ export class StatisticsService {
     this.response = info;
   }
 
+  // TYPE-VARIABLES
   identifyTypeVariable(info) {
     let isQuantitativa = null;
     let error;
@@ -317,7 +321,6 @@ export class StatisticsService {
     console.log('intervalo', intervalo);
 
 
-
     // ARRAY COM O VALOR MIN E MAX DE CADA CLASSE
     const groupValue = [];
     // MONTANDO O INTERVALO
@@ -496,7 +499,6 @@ export class StatisticsService {
   //
   //   return obj;
   // }
-
 
 
 }
