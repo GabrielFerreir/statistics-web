@@ -7,7 +7,7 @@ export class DataGroupsService {
 
   response: any;
 
-  NUM_CLASS = 2;
+  NUM_CLASS = 0;
 
   amplitude: number;
   classe: number;

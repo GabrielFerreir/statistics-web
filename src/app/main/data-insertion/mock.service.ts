@@ -74,6 +74,52 @@ export class MockService {
     ]
   }
 
+  vContinua3 = {
+    title: 'Exercicio 3',
+    content: [
+      {group: '20', qtd: 1},
+      {group: '25', qtd: 2},
+      {group: '26', qtd: 1},
+      {group: '28', qtd: 2},
+      {group: '30', qtd: 3},
+      {group: '32', qtd: 1},
+      {group: '34', qtd: 1},
+      {group: '35', qtd: 1},
+      {group: '41', qtd: 1},
+      {group: '42', qtd: 1},
+      {group: '44', qtd: 1},
+      {group: '45', qtd: 1},
+      {group: '47', qtd: 1},
+      {group: '48', qtd: 3},
+      {group: '52', qtd: 1},
+      {group: '53', qtd: 1},
+      {group: '55', qtd: 1},
+      {group: '62', qtd: 1}
+    ]
+  }
+
+  vContinua4 = {
+    title: 'Exercicio 4',
+    content: [
+      {group: '10', qtd: 1},
+      {group: '11', qtd: 1},
+      {group: '12', qtd: 2},
+      {group: '13', qtd: 1},
+      {group: '14', qtd: 2},
+      {group: '15', qtd: 1},
+      {group: '17', qtd: 1},
+      {group: '18', qtd: 1},
+      {group: '30', qtd: 1},
+      {group: '35', qtd: 1},
+      {group: '34', qtd: 1},
+      {group: '32', qtd: 2},
+      {group: '31', qtd: 2},
+      {group: '37', qtd: 1},
+      {group: '38', qtd: 1},
+      {group: '39', qtd: 1},
+    ]
+  }
+
   constructor() {
   }
 }

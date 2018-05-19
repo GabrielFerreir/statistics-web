@@ -46,16 +46,12 @@ export class MedianaService {
         const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
         res.push(limiteInferior + (pre * interval));
       });
-
       return (res[0] + res[1]) / 2;
-
-      return res[0] === res[1] ? res[0] : res;
     } else {
       const pos = (somatorio + 1) / 2;
       const limiteInferior = arrayData[pos].class.min;
       const freqAA = groups[arrayData[pos].class.id - 2].fac;
       const freq = groups[arrayData[pos].class.id - 1].qtd;
-
       const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
 
       return limiteInferior + (pre * interval);
