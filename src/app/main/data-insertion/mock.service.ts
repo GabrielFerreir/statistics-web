@@ -72,7 +72,7 @@ export class MockService {
       {group: 'Ruim', qtd: 0},
       {group: 'Muito bom', qtd: 5},
     ]
-  }
+  };
 
   vContinua3 = {
     title: 'Exercicio 3',
@@ -96,7 +96,7 @@ export class MockService {
       {group: '55', qtd: 1},
       {group: '62', qtd: 1}
     ]
-  }
+  };
 
   vContinua4 = {
     title: 'Exercicio 4',
@@ -118,7 +118,40 @@ export class MockService {
       {group: '38', qtd: 1},
       {group: '39', qtd: 1},
     ]
-  }
+  };
+
+  EXEMPLO_8_1 = {
+    title: 'Exemplo 8.1',
+    content: [
+      {group: 7, qtd: 1},
+      {group: 13, qtd: 1},
+      {group: 5, qtd: 1},
+      {group: 12, qtd: 1},
+      {group: 16, qtd: 1},
+      {group: 4, qtd: 1},
+      {group: 9, qtd: 1},
+      {group: 15, qtd: 1},
+      {group: 6, qtd: 1}
+    ]
+  };
+
+  EXEMPLO_8_2 = {
+    title: 'Exemplo 8.2',
+    content: [
+      {group: 2, qtd: 1},
+      {group: 3, qtd: 1},
+      {group: 4, qtd: 1},
+      {group: 8, qtd: 1},
+      {group: 9, qtd: 1},
+      {group: 10, qtd: 1},
+      {group: 11, qtd: 1},
+      {group: 12, qtd: 1},
+      {group: 16, qtd: 1},
+      {group: 19, qtd: 1}
+    ]
+  };
+
+
 
   constructor() {
   }

@@ -6,6 +6,7 @@ import {ModaService} from './moda.service';
 import {MediaService} from './media.service';
 import {MedianaService} from './mediana.service';
 import {DataGroupsService} from './data-groups.service';
+import {MedidasParatrizesService} from './medidas-paratrizes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class TypeVariableService {
     private modaService: ModaService,
     private mediaService: MediaService,
     private medianaService: MedianaService,
-    private dataGroupsService: DataGroupsService) {
+    private dataGroupsService: DataGroupsService,
+    private medidasSeparatrizesService: MedidasParatrizesService) {
   }
 
   /*
@@ -103,6 +105,8 @@ export class TypeVariableService {
     const moda = this.modaService.comum(content);
     const media = this.mediaService.ponderada(content);
     const mediana = this.medianaService.comum(content);
+
+    this.medidasSeparatrizesService.comum(content);
 
     const response = {
       title: this.response.title,

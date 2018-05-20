@@ -26,4 +26,11 @@ export class UtilsService {
     });
     return arrayData;
   }
+
+  orderBy(el) {
+    const response = el.sort((a, b) => {
+      return (parseFloat(a.group) < parseFloat(b.group)) ? -1 : ((parseFloat(a.group) > parseFloat(b.group)) ? 1 : 0);
+    });
+    return response;
+  }
 }

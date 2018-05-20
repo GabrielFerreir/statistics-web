@@ -29,7 +29,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               public _location: Location,
               private MOCK: MockService,
               private typeVariable: TypeVariableService) {
-    this.info = this.MOCK.vContinua2;
+    this.info = this.MOCK.EXEMPLO_8_1;
     this.dragDrop = {};
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
@@ -103,6 +103,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
     // this.statisticsService.identifyTypeVariable(this.info);
 
     this.typeVariable.run(this.info);
+
 
     this.router.navigate(['/dashboard']);
   }
