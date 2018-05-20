@@ -134,6 +134,8 @@ export class TypeVariableService {
     const mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
     const pearson = this.modaService.pearson(mediana, media);
 
+    const quartil = this.medidasSeparatrizesService.continua(groups, 1);
+
     const response = {
       title: this.response.title,
       content: groups,

@@ -33,4 +33,13 @@ export class UtilsService {
     });
     return response;
   }
+
+
+  findClassForId(classes, id) {
+    for (let i = 0; i < classes.length; i++) {
+      if (classes[i].class.id === id) {
+        return classes[i];
+      }
+    }
+  }
 }

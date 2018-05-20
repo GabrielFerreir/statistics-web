@@ -46,6 +46,23 @@ export class MedidasParatrizesService {
       const Q3 = this.findMediana(maiores);
       return [Q1, Q2, Q3];
     }
+  }
+
+  continua(content, quartil) {
+    const somatorio = content[content.length - 1].fac;
+    const qk = quartil * somatorio / 4;
+    const classeDoQuartil = this.findClassByFac(content, qk);
+    console.log('QUARTIL');
+    console.log(qk);
+    console.log(classeDoQuartil);
+    const classeAnteior = this.utilsService.findClassForId(content, classeDoQuartil.class.id - 1);
+    const faa = classeAnteior ? classeAnteior.fac : 0;
+    const fqk = classeDoQuartil.qtd;
+    const lqk = classeDoQuartil.class.min;
+    const hqk = classeDoQuartil.class.max - classeDoQuartil.class.min;
+    const Q = lqk + ((qk - faa) / fqk) * hqk;
+    console.log('Quatil', Q);
+    return Q;
 
   }
 
@@ -73,6 +90,13 @@ export class MedidasParatrizesService {
     } else {
       return content[((somatorio + 1) / 2) - 1].group;
     }
+  }
 
+  findClassByFac(content, valor) {
+    for (let i = 0; i < content.length; i++) {
+      if (valor < content[i].fac) {
+        return content[i];
+      }
+    }
   }
 }
