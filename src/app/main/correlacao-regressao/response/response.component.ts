@@ -48,9 +48,9 @@ export class ResponseComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (type === 1) {
-      console.log(this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, value, null));
+      this.calc.result = this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, value, null);
     } else {
-      console.log(this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, null, value));
+      this.calc.result = this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, null, value);
     }
   }
 

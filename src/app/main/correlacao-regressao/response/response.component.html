@@ -42,6 +42,7 @@
     </ui-card-content>
 
     <ui-card-content>
+      <span *ngIf="calc.result">Resultado: {{ calc.result }}</span><br>
       <span>Correlação: {{ calc.correlacao}}</span><br>
       <span>Nivel: {{ calc.nivel}}</span><br>
       <span>Equação: Y = - {{ calc.A }} * X + {{ calc.B }}</span><br>
