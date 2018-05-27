@@ -6,5 +6,69 @@
       </button>
       <span class="title">Correlação/Regressão</span>
     </ui-toolbar>
+
+    <ui-card-content>
+      <div class="ui-flex-container break-on-s840">
+        <ui-input-container>
+          <input id="x" #x="ngModel" type="number" [(ngModel)]="info.x" uiInput name="x" required>
+          <label for="x">X</label>
+          <div class="ui-messages">
+            <div *ngIf="x.errors && x.dirty">
+              <div class="ui-message error" [hidden]="!x.pristine && !x.errors.required">
+                Digite o X
+              </div>
+            </div>
+          </div>
+        </ui-input-container>
+        <ui-input-container>
+          <input id="y" #y="ngModel" type="number" [(ngModel)]="info.y" uiInput name="y" required>
+          <label for="y">Y</label>
+          <div class="ui-messages">
+            <div *ngIf="y.errors && y.dirty">
+              <div class="ui-message error" [hidden]="!y.pristine && !y.errors.required">
+                Digite o Y
+              </div>
+            </div>
+          </div>
+        </ui-input-container>
+      </div>
+      <div class="ui-button-container align-right">
+        <button class="ui-button primary" (click)="addInfo(info)">Adicionar</button>
+      </div>
+    </ui-card-content>
+
+    <hr>
+
+    <ui-card-content>
+      <ui-data-table class="responsive">
+        <tbody>
+        <tr>
+          <th>Xs</th>
+          <th>Ys</th>
+        </tr>
+        <tr *ngFor="let item of list">
+          <td data-title="Xs" >{{item.x}}</td>
+          <td data-title="Ys"> {{item.y}} </td>
+        </tr>
+        <tr *ngIf="list && !list.length">
+          <td colspan="2" style="text-align: center;">Não existem informações</td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+        </tfoot>
+
+      </ui-data-table>
+    </ui-card-content>
+
+    <pre>
+      {{ list | json }}
+    </pre>
   </ui-card>
+
+  <div class="ui-fab-container">
+    <a class="ui-button accent fab" uiRipple (click)="onSubmit(list)">
+      <i class="material-icons">send</i>
+    </a>
+  </div>
 </div>
