@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {UiElement, UiToolbarService} from '../../smn-ui/smn-ui.module';
 import {Location} from '@angular/common';
+import {DistribuicaoUniformeService} from './distribuicao-uniforme.service';
 
 @Component({
   selector: 'app-distribuicao-uniforme',
@@ -9,9 +10,14 @@ import {Location} from '@angular/common';
 })
 export class DistribuicaoUniformeComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  info: any;
+
   constructor(private element: ElementRef,
               private toolbarService: UiToolbarService,
-              public _location: Location) { }
+              public _location: Location,
+              private uniformeService: DistribuicaoUniformeService) {
+    this.info = {};
+  }
 
   ngOnInit() {
   }
@@ -22,5 +28,21 @@ export class DistribuicaoUniformeComponent implements OnInit, AfterViewInit, OnD
 
   ngOnDestroy() {
     this.toolbarService.deactivateExtendedToolbar();
+  }
+
+
+  onSubmit(form, values) {
+    for (const control in form.controls) {
+      if (form.controls.hasOwnProperty(control)) {
+        form.controls[control].markAsTouched();
+        form.controls[control].markAsDirty();
+      }
+    }
+    if (!form.valid) {
+      UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
+      return false;
+    }
+
+    console.log(this.uniformeService.calculate(values.intervaloA, values.intervaloB, values.menor, values.maior));
   }
 }
