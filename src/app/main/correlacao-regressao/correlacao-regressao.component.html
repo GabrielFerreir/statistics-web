@@ -6,7 +6,6 @@
       </button>
       <span class="title">Correlação/Regressão</span>
     </ui-toolbar>
-
     <ui-card-content>
       <div class="ui-flex-container break-on-s840">
         <ui-input-container>
@@ -36,34 +35,25 @@
         <button class="ui-button primary" (click)="addInfo(info)">Adicionar</button>
       </div>
     </ui-card-content>
+    <ui-data-table class="responsive">
+      <tbody>
+      <tr>
+        <th>Xs</th>
+        <th>Ys</th>
+      </tr>
+      <tr *ngFor="let item of list">
+        <td data-title="Xs" >{{item.x}}</td>
+        <td data-title="Ys"> {{item.y}} </td>
+      </tr>
+      <tr *ngIf="list && !list.length">
+        <td colspan="2" style="text-align: center;">Não existem informações</td>
+      </tr>
+      </tbody>
 
-    <hr>
+      <tfoot>
+      </tfoot>
 
-    <ui-card-content>
-      <ui-data-table class="responsive">
-        <tbody>
-        <tr>
-          <th>Xs</th>
-          <th>Ys</th>
-        </tr>
-        <tr *ngFor="let item of list">
-          <td data-title="Xs" >{{item.x}}</td>
-          <td data-title="Ys"> {{item.y}} </td>
-        </tr>
-        <tr *ngIf="list && !list.length">
-          <td colspan="2" style="text-align: center;">Não existem informações</td>
-        </tr>
-        </tbody>
-
-        <tfoot>
-        </tfoot>
-
-      </ui-data-table>
-    </ui-card-content>
-
-    <pre>
-      {{ list | json }}
-    </pre>
+    </ui-data-table>
   </ui-card>
 
   <div class="ui-fab-container">

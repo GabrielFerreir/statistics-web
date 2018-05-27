@@ -1,0 +1,51 @@
+<div class="ui-s840">
+  <ui-card class="elevate-on-toolbar">
+    <ui-toolbar class="flat">
+      <button class="ui-button flat icon" type="button" uiRipple (click)="_location.back()">
+        <i class="material-icons">arrow_back</i>
+      </button>
+      <span class="title">Correlação/Regressão</span>
+    </ui-toolbar>
+    <ui-card-content>
+      <form #form="ngForm" class="ui-validate on-dirty on-submit">
+      <div class="ui-flex-container">
+        <ui-input-container>
+          <ui-select id="letter" #letter="ngModel" name="letter" [(ngModel)]="calc.letter" [options]="letters" value="id" label="nome"
+                     uiInput required></ui-select>
+          <label for="letter">
+            Letra
+          </label>
+          <div class="ui-messages">
+            <div *ngIf="letter.errors && letter.dirty">
+              <div class="ui-message error" [hidden]="!letter.pristine && !letter.errors.required">
+                Selecione uma letra
+              </div>
+            </div>
+          </div>
+        </ui-input-container>
+        <ui-input-container>
+          <input id="value" #value="ngModel" type="number" [(ngModel)]="calc.value" uiInput name="value" required>
+          <label for="value">Valor</label>
+          <div class="ui-messages">
+            <div *ngIf="value.errors && value.dirty">
+              <div class="ui-message error" [hidden]="!value.pristine && !value.errors.required">
+                Digite o Valor
+              </div>
+            </div>
+          </div>
+        </ui-input-container>
+      </div>
+        <div class="ui-button-container align-right">
+          <button class="ui-button primary" (click)="onSubmit(form, calc.letter, calc.value)">Calcular</button>
+        </div>
+      </form>
+    </ui-card-content>
+
+    <ui-card-content>
+      <span>Correlação: {{ calc.correlacao}}</span><br>
+      <span>Nivel: {{ calc.nivel}}</span><br>
+      <span>Equação: Y = - {{ calc.A }} * X + {{ calc.B }}</span><br>
+    </ui-card-content>
+
+  </ui-card>
+</div>

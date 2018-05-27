@@ -14,11 +14,21 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
 
   info: any;
   list: any;
+
+  letters = [
+    {id: 1, nome: 'X'},
+    {id: 2, nome: 'Y'}
+  ];
+
+  calc: any;
+
   constructor(private element: ElementRef,
               private toolbarService: UiToolbarService,
               public _location: Location,
-              private correlacaoService: CorrelacaoRegressaoService) {
+              private correlacaoService: CorrelacaoRegressaoService,
+              private router: Router) {
     this.info = {};
+    this.calc = {};
     this.list = [
       {x: 300000, y: 10},
       {x: 400000, y: 8},
@@ -46,6 +56,7 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
 
   onSubmit(values) {
     this.correlacaoService.calculate(values);
+    this.router.navigate(['/correlacao-regressao/response']);
   }
 
 
