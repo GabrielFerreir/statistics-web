@@ -59,12 +59,19 @@
           </ui-input-container>
         </div>
 
-        <pre>
-          {{ info | json }}
-        </pre>
-
       </form>
     </ui-card-content>
+
+    <div *ngIf="response">
+      <ui-card-title>Resultado</ui-card-title>
+      <ui-card-content>
+        <span>Media: {{ response.media }}</span><br>
+        <span>CV: {{ response.CV }}</span><br>
+        <span>DP: {{ response.DP }}</span><br>
+        <span>Probalidade: {{ response.probalidade }}</span><br>
+      </ui-card-content>
+    </div>
+
   </ui-card>
 
   <div class="ui-fab-container">

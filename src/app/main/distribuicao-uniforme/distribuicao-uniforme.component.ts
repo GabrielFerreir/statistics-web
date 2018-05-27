@@ -11,6 +11,7 @@ import {DistribuicaoUniformeService} from './distribuicao-uniforme.service';
 export class DistribuicaoUniformeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   info: any;
+  response: any;
 
   constructor(private element: ElementRef,
               private toolbarService: UiToolbarService,
@@ -43,6 +44,7 @@ export class DistribuicaoUniformeComponent implements OnInit, AfterViewInit, OnD
       return false;
     }
 
+    this.response = this.uniformeService.calculate(values.intervaloA, values.intervaloB, values.menor, values.maior);
     console.log(this.uniformeService.calculate(values.intervaloA, values.intervaloB, values.menor, values.maior));
   }
 }
