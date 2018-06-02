@@ -24,29 +24,42 @@ export class MedidasParatrizesService {
 
   constructor(private utilsService: UtilsService) { }
 
-  comum(content) {
-    console.log('Medida separatriz');
-    content = this.utilsService.orderBy(content);
-    const somatorio = content.length;
-    if (somatorio % 2 === 0) {
-      const v1 = content[somatorio / 2];
-      const v2 = content[(somatorio / 2) - 1];
-      const Q2 = (v1.group + v2.group) / 2;
-      const menores = this.buildArray(content, '<', (somatorio / 2) + 1);
-      const Q1 = this.findMediana((menores));
-
-      const maiores = this.buildArray(content, '>', (somatorio / 2));
-      const Q3 = this.findMediana(maiores);
-      return [Q1, Q2, Q3];
-    } else {
-      const Q2 = content[((somatorio + 1) / 2) - 1];
-      const menores = this.buildArray(content, '<', (somatorio + 1) / 2);
-      const maiores = this.buildArray(content, '>', (somatorio + 1) / 2);
-      const Q1 = this.findMediana((menores));
-      const Q3 = this.findMediana(maiores);
-      return [Q1, Q2, Q3];
+  comum(content, type, value) {
+    const unitaryValue = 100 / type;
+    const findValue = value * unitaryValue;
+    const size = content[content.length - 1].fac;
+    const pos = (findValue * size) / 100;
+    for (let i = 0; i < content.length; i++) {
+      if (pos <= content[i].fac) {
+        console.log('RESPOSTA: ', content[i].group);
+        return content[i].group;
+      }
     }
   }
+
+  // comum(content) {
+  //   console.log('Medida separatriz');
+    // content = this.utilsService.orderBy(content);
+    // const somatorio = content.length;
+    // if (somatorio % 2 === 0) {
+    //   const v1 = content[somatorio / 2];
+    //   const v2 = content[(somatorio / 2) - 1];
+    //   const Q2 = (v1.group + v2.group) / 2;
+    //   const menores = this.buildArray(content, '<', (somatorio / 2) + 1);
+    //   const Q1 = this.findMediana((menores));
+    //
+    //   const maiores = this.buildArray(content, '>', (somatorio / 2));
+    //   const Q3 = this.findMediana(maiores);
+    //   return [Q1, Q2, Q3];
+    // } else {
+    //   const Q2 = content[((somatorio + 1) / 2) - 1];
+    //   const menores = this.buildArray(content, '<', (somatorio + 1) / 2);
+    //   const maiores = this.buildArray(content, '>', (somatorio + 1) / 2);
+    //   const Q1 = this.findMediana((menores));
+    //   const Q3 = this.findMediana(maiores);
+    //   return [Q1, Q2, Q3];
+    // }
+  // }
 
   continua(content, quartil) {
     const somatorio = content[content.length - 1].fac;

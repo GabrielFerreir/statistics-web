@@ -106,7 +106,7 @@ export class TypeVariableService {
     const media = this.mediaService.ponderada(content);
     const mediana = this.medianaService.comum(content);
 
-    this.medidasSeparatrizesService.comum(content);
+    this.medidasSeparatrizesService.comum(content, 5, 2);
 
     const response = {
       title: this.response.title,
