@@ -18,6 +18,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
 
   info: any;
   selectSufixo: any[];
+  selectMedidaSeparatriz: any[];
   dragDrop: any;
 
 
@@ -31,6 +32,13 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               private typeVariable: TypeVariableService) {
     this.info = this.MOCK.EXEMPLO_8_1;
     this.dragDrop = {};
+
+    this.selectMedidaSeparatriz = [
+      {id: 1, nome: 'Quartil'},
+      {id: 2, nome: 'Quintil'},
+      {id: 3, nome: 'Percentil'}
+    ];
+
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
       {id: 2, nome: 'Metro'},

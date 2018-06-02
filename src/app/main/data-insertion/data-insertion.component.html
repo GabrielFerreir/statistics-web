@@ -6,14 +6,9 @@
       </button>
       <span class="title">Entrada de dados</span>
       <div class="align-right">
-        <ui-switch-container>
-          <div class="info">
-            Amostra
-          </div>
-          <ui-switch class="action">
-            <input type="checkbox" name="switchTest" [checked]="info.amostra == 'S'" (change)="info.amostra=$event.target.checked ? 'S':'N'">
-          </ui-switch>
-        </ui-switch-container>
+        <button class="ui-button flat icon" uiRipple>
+          <i class="material-icons">cloud_upload</i>
+        </button>
       </div>
     </ui-toolbar>
     <ui-card-content>
@@ -30,13 +25,42 @@
           </div>
         </ui-input-container>
         <div class="ui-flex-container break-on-s840">
+          <ui-input-container>
+            <ui-select id="medidaSeparatriz"
+                       #medidaSeparatriz="ngModel"
+                       name="medidaSeparatriz"
+                       [(ngModel)]="info.medidaSeparatriz"
+                       [options]="selectMedidaSeparatriz"
+                       value="id" label="nome"
+                       uiInput></ui-select>
+            <label for="medidaSeparatriz">
+              Medida Separatriz
+            </label>
+          </ui-input-container>
+          <ui-input-container>
+            <input id="valueMedidaSeparatriz"
+                   #valueMedidaSeparatriz="ngModel"
+                   type="number"
+                   [(ngModel)]="info.valueMedidaSeparatriz"
+                   uiInput
+                   name="valueMedidaSeparatriz" required>
+            <label for="valueMedidaSeparatriz">Valor</label>
+          </ui-input-container>
+        </div>
+        <div class="ui-flex-container break-on-s840">
           <ui-option-container class="v-space-4 b-space-16">
             <ui-option>
               <input name="legenda" type="checkbox" [(ngModel)]="info.ordinal" [checked]="info.ordinal">
               <span>Ordinal</span>
             </ui-option>
           </ui-option-container>
-          <div class="input-legend">
+
+          <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+              <input name="legenda" type="checkbox" [(ngModel)]="info.amostra" [checked]="info.amostra">
+              <span>Amostra</span>
+            </ui-option>
+          </ui-option-container>
             <ui-input-container>
               <ui-select id="sufixo" #sufixo="ngModel" name="sufixo" [(ngModel)]="info.sufixo" [options]="selectSufixo" value="nome" label="nome"
                 uiInput></ui-select>
@@ -44,7 +68,6 @@
                 Sufixo
               </label>
             </ui-input-container>
-          </div>
 
         </div>
         <ui-chips>
@@ -66,9 +89,6 @@
           </div>
         </ui-chips>
       </form>
-      <!-- <pre>
-          {{ info | json }}
-      </pre> -->
     </ui-card-content>
   </ui-card>
   <div class="ui-fab-container">
