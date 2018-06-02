@@ -6,7 +6,7 @@
     <ui-card class="content__cards elevate-on-toolbar">
       <section class="content__cards__card">
         <h1 class="content__cards__card__title">Média</h1>
-        <h1 class="content__cards__card__subtitle">{{ dados.media }}</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.media | number:'1.2-2' }}</h1>
       </section>
       <section class="content__cards__card">
         <h1 class="content__cards__card__title">Mediana</h1>
@@ -14,11 +14,15 @@
       </section>
       <section class="content__cards__card" (click)="nextModa()">
         <h1 class="content__cards__card__title">Moda {{ dados.moda[numModa].title }}</h1>
-        <h1 class="content__cards__card__subtitle">{{ dados.moda[numModa].value }}</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.moda[numModa].value || dados.moda }}</h1>
       </section>
       <section class="content__cards__card">
         <h1 class="content__cards__card__title">Desvio Padrao</h1>
         <h1 class="content__cards__card__subtitle">{{ dados.DPR | number:'1.2-2' }}</h1>
+      </section>
+      <section class="content__cards__card" *ngIf="dados.medidaSeparatriz">
+        <h1 class="content__cards__card__title">Medida Separatriz</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.medidaSeparatriz | number:'1.2-2' }}</h1>
       </section>
     </ui-card>
 
