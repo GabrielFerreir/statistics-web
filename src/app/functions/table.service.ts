@@ -13,6 +13,7 @@ export class TableService {
 
   init(content) {
     this.response = JSON.parse(JSON.stringify(content));
+    this.utils.orderBy(this.response.content);
     return this;
   }
 
