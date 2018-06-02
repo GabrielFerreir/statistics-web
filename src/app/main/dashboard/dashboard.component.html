@@ -3,7 +3,7 @@
 
   <div class="content" *ngIf="dados.content">
 
-    <ui-card class="content__cards elevate-on-toolbar" *ngIf="dados.type === 3 || dados.type === 2">
+    <ui-card class="content__cards elevate-on-toolbar">
       <section class="content__cards__card">
         <h1 class="content__cards__card__title">Média</h1>
         <h1 class="content__cards__card__subtitle">{{ dados.media }}</h1>
@@ -12,13 +12,13 @@
         <h1 class="content__cards__card__title">Mediana</h1>
         <h1 class="content__cards__card__subtitle">{{ dados.mediana }}</h1>
       </section>
-      <section class="content__cards__card">
-        <h1 class="content__cards__card__title">Moda</h1>
-        <h1 class="content__cards__card__subtitle">{{ dados.moda }}</h1>
+      <section class="content__cards__card" (click)="nextModa()">
+        <h1 class="content__cards__card__title">Moda {{ dados.moda[numModa].title }}</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.moda[numModa].value }}</h1>
       </section>
       <section class="content__cards__card">
         <h1 class="content__cards__card__title">Desvio Padrao</h1>
-        <h1 class="content__cards__card__subtitle">{{ dados.desvioPadrao | number:'1.2-2'}}</h1>
+        <h1 class="content__cards__card__subtitle">{{ dados.DPR | number:'1.2-2' }}</h1>
       </section>
     </ui-card>
 
@@ -27,12 +27,16 @@
     </div>
     <div class="content__card">
       <ui-card class="elevate-on-toolbar">
-        <smn-graphic [data]="MOCK.items" [legend]="MOCK.legend" [config]="{
+        <smn-graphic [data]="graphic"
+                     [legend]="[]"
+                     [config]="{
                    colorSelected: '#263238',
                    lineColor: '#E0E0E0',
                    colors: ['#78909C', '#546E7A'],
                    noSpace: true
-             }" [title]="MOCK.title" [subtitle]="'Elementos de um grafico'">
+             }"
+                     [title]="'Grafico'"
+                     [subtitle]="'Elementos de um grafico'">
           <section class="menu-info">
             <div class="menu-info__header">
               {{ graphicService.info.legend }}
@@ -47,10 +51,7 @@
         </smn-graphic>
       </ui-card>
     </div>
-
   </div>
-
-
   <ui-card class="elevate-on-toolbar" *ngIf="!dados.content">
     <ui-card-content>
       <div style="padding: 32px 0; text-align: center;">

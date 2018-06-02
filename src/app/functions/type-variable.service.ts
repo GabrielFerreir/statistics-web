@@ -154,10 +154,10 @@ export class TypeVariableService {
       media: media,
       mediana: mediana,
       medidaSeparatriz: medidaSeparatriz,
-      moda: {
-        comum : moda,
-        pearson: pearson
-      },
+      moda: [
+        {title: 'comum', value: moda},
+        {title: 'pearson', value: pearson},
+      ],
     };
     this.response = response;
     return this;
