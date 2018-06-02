@@ -105,8 +105,13 @@ export class TypeVariableService {
     const moda = this.modaService.comum(content);
     const media = this.mediaService.ponderada(content);
     const mediana = this.medianaService.comum(content);
-
-    const medidaSeparatriz = this.medidasSeparatrizesService.comum(content, 5, 2);
+    let medidaSeparatriz = null;
+    if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
+      medidaSeparatriz = this.medidasSeparatrizesService.comum(
+        content,
+        this.response.medidaSeparatriz,
+        this.response.valueMedidaSeparatriz);
+    }
 
     const response = {
       title: this.response.title,
@@ -134,8 +139,13 @@ export class TypeVariableService {
     const moda = this.modaService.continua(groups);
     const mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
     const pearson = this.modaService.pearson(mediana, media);
-
-    const medidaSeparatriz = this.medidasSeparatrizesService.continua(groups, 4, 1);
+    let medidaSeparatriz = null;
+    if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
+      medidaSeparatriz = this.medidasSeparatrizesService.continua(
+        groups,
+        this.response.medidaSeparatriz,
+        this.response.valueMedidaSeparatriz);
+    }
 
     const response = {
       title: this.response.title,
@@ -160,6 +170,7 @@ export class TypeVariableService {
 
   run(info) {
     this.response = JSON.parse(JSON.stringify(info));
+    console.log(this.response);
     this.identify(this.response.content)
       .callFunction()
       .setInService();

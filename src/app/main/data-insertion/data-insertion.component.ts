@@ -34,9 +34,10 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
     this.dragDrop = {};
 
     this.selectMedidaSeparatriz = [
-      {id: 1, nome: 'Quartil'},
-      {id: 2, nome: 'Quintil'},
-      {id: 3, nome: 'Percentil'}
+      {id: 4, nome: 'Quartil'},
+      {id: 5, nome: 'Quintil'},
+      {id: 10, nome: 'Decil'},
+      {id: 100, nome: 'Percentil'}
     ];
 
     this.selectSufixo = [
