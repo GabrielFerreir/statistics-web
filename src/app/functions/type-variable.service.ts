@@ -106,7 +106,7 @@ export class TypeVariableService {
     const media = this.mediaService.ponderada(content);
     const mediana = this.medianaService.comum(content);
 
-    this.medidasSeparatrizesService.comum(content, 5, 2);
+    const medidaSeparatriz = this.medidasSeparatrizesService.comum(content, 5, 2);
 
     const response = {
       title: this.response.title,
@@ -114,7 +114,8 @@ export class TypeVariableService {
       DPR: DPR,
       moda: moda,
       media: media,
-      mediana: mediana
+      mediana: mediana,
+      medidaSeparatriz: medidaSeparatriz
     };
     this.response = response;
     return this;
@@ -134,7 +135,7 @@ export class TypeVariableService {
     const mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
     const pearson = this.modaService.pearson(mediana, media);
 
-    const quartil = this.medidasSeparatrizesService.continua(groups, 1);
+    const medidaSeparatriz = this.medidasSeparatrizesService.continua(groups, 4, 1);
 
     const response = {
       title: this.response.title,
@@ -142,6 +143,7 @@ export class TypeVariableService {
       DPR: DPR,
       media: media,
       mediana: mediana,
+      medidaSeparatriz: medidaSeparatriz,
       moda: {
         comum : moda,
         pearson: pearson
