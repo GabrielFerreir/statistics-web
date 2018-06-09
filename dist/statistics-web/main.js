@@ -98,7 +98,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-toolbar class=\"fixed flat elevate-on-scroll primary elevate-on-s960\" id=\"app-header\">\n  <button class=\"ui-button flat icon\" (click)=\"menuOpen = true\" uiRipple>\n    <i class=\"material-icons\">menu</i>\n  </button>\n  <span class=\"title\">Home</span>\n</ui-toolbar>\n<ui-nav-drawer class=\"persistent\" [(open)]=\"menuOpen\">\n  <ui-toolbar class=\"flat\">\n    <button (click)=\"menuOpen = false\" class=\"ui-button flat icon\" uiRipple>\n      <i class=\"material-icons\">arrow_back</i>\n    </button>\n    <span class=\"title\">Home</span>\n  </ui-toolbar>\n  <div class=\"ui-nav-drawer-overflow\">\n    <div class=\"ui-list\">\n      <a class=\"ui-list-item\" uiRipple routerLink='/'>Home</a>\n      <a class=\"ui-list-item\" uiRipple routerLink='/insert'>Inserir dados</a>\n      <a class=\"ui-list-item\" uiRipple routerLink='/correlacao-regressao'>Correlação/Regressão</a>\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-uniforme'>Distribuição uniforme</a>\n    </div>\n  </div>\n</ui-nav-drawer>\n<router-outlet></router-outlet>\n"
+module.exports = "<ui-toolbar class=\"fixed flat elevate-on-scroll primary elevate-on-s960\" id=\"app-header\">\r\n  <button class=\"ui-button flat icon\" (click)=\"menuOpen = true\" uiRipple>\r\n    <i class=\"material-icons\">menu</i>\r\n  </button>\r\n  <span class=\"title\">Home</span>\r\n</ui-toolbar>\r\n<ui-nav-drawer class=\"persistent\" [(open)]=\"menuOpen\">\r\n  <ui-toolbar class=\"flat\">\r\n    <button (click)=\"menuOpen = false\" class=\"ui-button flat icon\" uiRipple>\r\n      <i class=\"material-icons\">arrow_back</i>\r\n    </button>\r\n    <span class=\"title\">Home</span>\r\n  </ui-toolbar>\r\n  <div class=\"ui-nav-drawer-overflow\">\r\n    <div class=\"ui-list\">\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/'>Home</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/insert'>Inserir dados</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/correlacao-regressao'>Correlação/Regressão</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-uniforme'>Distribuição uniforme</a>\r\n    </div>\r\n  </div>\r\n</ui-nav-drawer>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -270,7 +270,7 @@ var ComponentsModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"container\">\n  <section class=\"container__title\" *ngIf=\"title\">{{ title }}</section>\n  <div class=\"container__subtitle\" *ngIf=\"subtitle\">{{ subtitle }}</div>\n  <section class=\"container__content\">\n    <svg class=\"full-graphic\"></svg>\n\n    <section class=\"legends\" *ngIf=\"legend\">\n      <section class=\"legends__legend\" *ngFor=\"let leg of legend; let index = index\">\n        <div class=\"legends__legend__color\"\n             [ngStyle]=\"{'background-color': config.colors[index] ? config.colors[index] : '#CDCDCD' }\">\n        </div>\n        {{ leg }}\n      </section>\n    </section>\n  </section>\n</section>\n\n<ui-menu class=\"menu-info\" #menuInfo>\n  <ng-content></ng-content>\n</ui-menu>\n\n"
+module.exports = "<section class=\"container\">\r\n  <section class=\"container__title\" *ngIf=\"title\">{{ title }}</section>\r\n  <div class=\"container__subtitle\" *ngIf=\"subtitle\">{{ subtitle }}</div>\r\n  <section class=\"container__content\">\r\n    <svg class=\"full-graphic\"></svg>\r\n\r\n    <section class=\"legends\" *ngIf=\"legend\">\r\n      <section class=\"legends__legend\" *ngFor=\"let leg of legend; let index = index\">\r\n        <div class=\"legends__legend__color\"\r\n             [ngStyle]=\"{'background-color': config.colors[index] ? config.colors[index] : '#CDCDCD' }\">\r\n        </div>\r\n        {{ leg }}\r\n      </section>\r\n    </section>\r\n  </section>\r\n</section>\r\n\r\n<ui-menu class=\"menu-info\" #menuInfo>\r\n  <ng-content></ng-content>\r\n</ui-menu>\r\n\r\n"
 
 /***/ }),
 
@@ -697,7 +697,7 @@ var GraphicService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-card class=\"elevate-on-toolbar\">\n  <ui-toolbar class=\"flat\">\n    <span class=\"title\">{{ title }}</span>\n  </ui-toolbar>\n  <ui-data-table class=\"responsive\">\n    <tbody>\n    <tr>\n      <th uiDataTableOrderBy >Grupo</th>\n      <th uiDataTableOrderBy >N° Func</th>\n      <th uiDataTableOrderBy >Fe%</th>\n      <th uiDataTableOrderBy >F</th>\n      <th uiDataTableOrderBy >F%</th>\n    </tr>\n    <tr *ngFor=\"let item of data\">\n      <td data-title=\"Grupo\" >{{item.group}}</td>\n      <td data-title=\"N° Func\" class=\"align-right\"> {{item.qtd}} </td>\n      <td data-title=\"Fe%\" class=\"align-right\"> {{item.percent | percent: '1.2-2' }} </td>\n      <td data-title=\"F\" class=\"align-right\"> {{item.fac}} </td>\n      <td data-title=\"F%\" class=\"align-right\"> {{item.facP | percent: '1.2-2' }} </td>\n    </tr>\n    </tbody>\n    <tfoot>\n    <tr>\n      <td colspan=\"4\" class=\"align-right\">\n        <div class=\"ui-button-container align-right\">\n                        <span class=\"pagination\">\n                            1-10 de 10\n                        </span>\n          <button class=\"ui-button flat icon\" uiRipple disabled>\n            <i class=\"material-icons\">keyboard_arrow_left</i>\n          </button>\n          <button class=\"ui-button flat icon\" uiRipple disabled>\n            <i class=\"material-icons\">keyboard_arrow_right</i>\n          </button>\n        </div>\n      </td>\n    </tr>\n    </tfoot>\n  </ui-data-table>\n</ui-card>\n"
+module.exports = "<ui-card class=\"elevate-on-toolbar\">\r\n  <ui-toolbar class=\"flat\">\r\n    <span class=\"title\">{{ title }}</span>\r\n  </ui-toolbar>\r\n  <ui-data-table class=\"responsive\">\r\n    <tbody>\r\n    <tr>\r\n      <th uiDataTableOrderBy >Grupo</th>\r\n      <th uiDataTableOrderBy >N° Func</th>\r\n      <th uiDataTableOrderBy >Fe%</th>\r\n      <th uiDataTableOrderBy >F</th>\r\n      <th uiDataTableOrderBy >F%</th>\r\n    </tr>\r\n    <tr *ngFor=\"let item of data\">\r\n      <td data-title=\"Grupo\" >{{item.group}}</td>\r\n      <td data-title=\"N° Func\" class=\"align-right\"> {{item.qtd}} </td>\r\n      <td data-title=\"Fe%\" class=\"align-right\"> {{item.percent | percent: '1.2-2' }} </td>\r\n      <td data-title=\"F\" class=\"align-right\"> {{item.fac}} </td>\r\n      <td data-title=\"F%\" class=\"align-right\"> {{item.facP | percent: '1.2-2' }} </td>\r\n    </tr>\r\n    </tbody>\r\n    <tfoot></tfoot>\r\n  </ui-data-table>\r\n</ui-card>\r\n"
 
 /***/ }),
 
@@ -788,9 +788,17 @@ var DataGroupsService = /** @class */ (function () {
         this.groupValues = [];
     }
     DataGroupsService.prototype.init = function (content) {
-        // this.response = JSON.parse(JSON.stringify(info));
-        this.response = content;
+        this.resetService();
+        this.response = JSON.parse(JSON.stringify(content));
         return this;
+    };
+    DataGroupsService.prototype.resetService = function () {
+        this.response = {};
+        this.NUM_CLASS = 0;
+        this.amplitude = null;
+        this.classe = null;
+        this.intervalClass = 0;
+        this.groupValues = [];
     };
     DataGroupsService.prototype.orderBy = function () {
         this.response.sort(function (a, b) {
@@ -902,7 +910,6 @@ var DataGroupsService = /** @class */ (function () {
         return this;
     };
     DataGroupsService.prototype.finish = function () {
-        console.log(this);
         return this.response;
     };
     DataGroupsService = __decorate([
@@ -1145,93 +1152,34 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var MedidasParatrizesService = /** @class */ (function () {
     function MedidasParatrizesService(utilsService) {
         this.utilsService = utilsService;
-        this.teste = {
-            title: 'Exemplo 8.1',
-            content: [
-                { group: 7, qtd: 1 },
-                { group: 13, qtd: 1 },
-                { group: 5, qtd: 1 },
-                { group: 12, qtd: 1 },
-                { group: 16, qtd: 1 },
-                { group: 4, qtd: 1 },
-                { group: 9, qtd: 1 },
-                { group: 15, qtd: 1 },
-                { group: 6, qtd: 1 }
-            ]
-        };
     }
-    MedidasParatrizesService.prototype.comum = function (content) {
-        console.log('Medida separatriz');
-        content = this.utilsService.orderBy(content);
-        var somatorio = content.length;
-        if (somatorio % 2 === 0) {
-            var v1 = content[somatorio / 2];
-            var v2 = content[(somatorio / 2) - 1];
-            var Q2 = (v1.group + v2.group) / 2;
-            var menores = this.buildArray(content, '<', (somatorio / 2) + 1);
-            var Q1 = this.findMediana((menores));
-            var maiores = this.buildArray(content, '>', (somatorio / 2));
-            var Q3 = this.findMediana(maiores);
-            return [Q1, Q2, Q3];
-        }
-        else {
-            var Q2 = content[((somatorio + 1) / 2) - 1];
-            var menores = this.buildArray(content, '<', (somatorio + 1) / 2);
-            var maiores = this.buildArray(content, '>', (somatorio + 1) / 2);
-            var Q1 = this.findMediana((menores));
-            var Q3 = this.findMediana(maiores);
-            return [Q1, Q2, Q3];
-        }
+    MedidasParatrizesService.prototype.comum = function (content, type, value) {
+        var unitaryValue = 100 / type;
+        var findValue = value * unitaryValue;
+        var size = content[content.length - 1].fac;
+        var pos = (findValue * size) / 100;
+        return this.findGroup(pos, content).group;
     };
-    MedidasParatrizesService.prototype.continua = function (content, quartil) {
-        var somatorio = content[content.length - 1].fac;
-        var qk = quartil * somatorio / 4;
-        var classeDoQuartil = this.findClassByFac(content, qk);
-        console.log('QUARTIL');
-        console.log(qk);
-        console.log(classeDoQuartil);
-        var classeAnteior = this.utilsService.findClassForId(content, classeDoQuartil.class.id - 1);
-        var faa = classeAnteior ? classeAnteior.fac : 0;
-        var fqk = classeDoQuartil.qtd;
-        var lqk = classeDoQuartil.class.min;
-        var hqk = classeDoQuartil.class.max - classeDoQuartil.class.min;
-        var Q = lqk + ((qk - faa) / fqk) * hqk;
-        console.log('Quatil', Q);
-        return Q;
-    };
-    MedidasParatrizesService.prototype.buildArray = function (content, condicao, valor) {
-        // ARRAY, <>, Number
-        return content.filter(function (item, index) {
-            if (condicao === '>') {
-                return index + 1 > valor ? true : false;
-            }
-            else if (condicao === '<') {
-                return index + 1 < valor ? true : false;
-            }
-            else {
-                console.error('Condicao invalida');
-            }
-        });
-    };
-    MedidasParatrizesService.prototype.findMediana = function (content) {
-        var somatorio = content.length;
-        if (somatorio % 2 === 0) {
-            var v1 = content[somatorio / 2].group;
-            console.log('v1', v1);
-            var v2 = content[(somatorio / 2) - 1].group;
-            console.log('v2', v2);
-            return (v1 + v2) / 2;
-        }
-        else {
-            return content[((somatorio + 1) / 2) - 1].group;
-        }
-    };
-    MedidasParatrizesService.prototype.findClassByFac = function (content, valor) {
+    MedidasParatrizesService.prototype.findGroup = function (position, content) {
         for (var i = 0; i < content.length; i++) {
-            if (valor < content[i].fac) {
+            if (position <= content[i].fac) {
+                console.log('RESPOSTA: ', content[i].group);
                 return content[i];
             }
         }
+    };
+    MedidasParatrizesService.prototype.continua = function (content, type, value) {
+        var unitaryValue = 100 / type;
+        var findValue = value * unitaryValue;
+        var size = content[content.length - 1].fac;
+        var pos = (findValue * size) / 100;
+        var group = this.findGroup(pos, content);
+        var limiteInferior = group.class.min;
+        var freqAAnt = this.utilsService.findClassForId(content, group.class.id - 1).fac;
+        var qtd = group.qtd;
+        var h = group.class.max - group.class.min;
+        var middle = (pos - freqAAnt) / qtd;
+        return limiteInferior + (middle * h);
     };
     MedidasParatrizesService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -1353,6 +1301,7 @@ var TableService = /** @class */ (function () {
     }
     TableService.prototype.init = function (content) {
         this.response = JSON.parse(JSON.stringify(content));
+        this.utils.orderBy(this.response.content);
         return this;
     };
     TableService.prototype.setPercent = function () {
@@ -1521,14 +1470,18 @@ var TypeVariableService = /** @class */ (function () {
         var moda = this.modaService.comum(content);
         var media = this.mediaService.ponderada(content);
         var mediana = this.medianaService.comum(content);
-        this.medidasSeparatrizesService.comum(content);
+        var medidaSeparatriz = null;
+        if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
+            medidaSeparatriz = this.medidasSeparatrizesService.comum(content, this.response.medidaSeparatriz, this.response.valueMedidaSeparatriz);
+        }
         var response = {
             title: this.response.title,
             content: content,
             DPR: DPR,
             moda: moda,
             media: media,
-            mediana: mediana
+            mediana: mediana,
+            medidaSeparatriz: medidaSeparatriz
         };
         this.response = response;
         return this;
@@ -1544,17 +1497,21 @@ var TypeVariableService = /** @class */ (function () {
         var moda = this.modaService.continua(groups);
         var mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
         var pearson = this.modaService.pearson(mediana, media);
-        var quartil = this.medidasSeparatrizesService.continua(groups, 1);
+        var medidaSeparatriz = null;
+        if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
+            medidaSeparatriz = this.medidasSeparatrizesService.continua(groups, this.response.medidaSeparatriz, this.response.valueMedidaSeparatriz);
+        }
         var response = {
             title: this.response.title,
             content: groups,
             DPR: DPR,
             media: media,
             mediana: mediana,
-            moda: {
-                comum: moda,
-                pearson: pearson
-            },
+            medidaSeparatriz: medidaSeparatriz,
+            moda: [
+                { title: 'comum', value: moda },
+                { title: 'pearson', value: pearson },
+            ],
         };
         this.response = response;
         return this;
@@ -1565,6 +1522,7 @@ var TypeVariableService = /** @class */ (function () {
     };
     TypeVariableService.prototype.run = function (info) {
         this.response = JSON.parse(JSON.stringify(info));
+        console.log(this.response);
         this.identify(this.response.content)
             .callFunction()
             .setInService();
@@ -1662,7 +1620,7 @@ var UtilsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\n  <ui-card class=\"elevate-on-toolbar\">\n    <ui-toolbar class=\"flat\">\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\n        <i class=\"material-icons\">arrow_back</i>\n      </button>\n      <span class=\"title\">Correlação/Regressão</span>\n    </ui-toolbar>\n    <ui-card-content>\n      <div class=\"ui-flex-container break-on-s840\">\n        <ui-input-container>\n          <input id=\"x\" #x=\"ngModel\" type=\"number\" [(ngModel)]=\"info.x\" uiInput name=\"x\" required>\n          <label for=\"x\">X</label>\n          <div class=\"ui-messages\">\n            <div *ngIf=\"x.errors && x.dirty\">\n              <div class=\"ui-message error\" [hidden]=\"!x.pristine && !x.errors.required\">\n                Digite o X\n              </div>\n            </div>\n          </div>\n        </ui-input-container>\n        <ui-input-container>\n          <input id=\"y\" #y=\"ngModel\" type=\"number\" [(ngModel)]=\"info.y\" uiInput name=\"y\" required>\n          <label for=\"y\">Y</label>\n          <div class=\"ui-messages\">\n            <div *ngIf=\"y.errors && y.dirty\">\n              <div class=\"ui-message error\" [hidden]=\"!y.pristine && !y.errors.required\">\n                Digite o Y\n              </div>\n            </div>\n          </div>\n        </ui-input-container>\n      </div>\n      <div class=\"ui-button-container align-right\">\n        <button class=\"ui-button primary\" (click)=\"addInfo(info)\">Adicionar</button>\n      </div>\n    </ui-card-content>\n    <ui-data-table class=\"responsive\">\n      <tbody>\n      <tr>\n        <th>Xs</th>\n        <th>Ys</th>\n      </tr>\n      <tr *ngFor=\"let item of list\">\n        <td data-title=\"Xs\" >{{item.x}}</td>\n        <td data-title=\"Ys\"> {{item.y}} </td>\n      </tr>\n      <tr *ngIf=\"list && !list.length\">\n        <td colspan=\"2\" style=\"text-align: center;\">Não existem informações</td>\n      </tr>\n      </tbody>\n\n      <tfoot>\n      </tfoot>\n\n    </ui-data-table>\n  </ui-card>\n\n  <div class=\"ui-fab-container\">\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(list)\">\n      <i class=\"material-icons\">send</i>\n    </a>\n  </div>\n</div>\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <div class=\"ui-flex-container break-on-s840\">\r\n        <ui-input-container>\r\n          <input id=\"x\" #x=\"ngModel\" type=\"number\" [(ngModel)]=\"info.x\" uiInput name=\"x\" required>\r\n          <label for=\"x\">X</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"x.errors && x.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!x.pristine && !x.errors.required\">\r\n                Digite o X\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <ui-input-container>\r\n          <input id=\"y\" #y=\"ngModel\" type=\"number\" [(ngModel)]=\"info.y\" uiInput name=\"y\" required>\r\n          <label for=\"y\">Y</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"y.errors && y.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!y.pristine && !y.errors.required\">\r\n                Digite o Y\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n      </div>\r\n      <div class=\"ui-button-container align-right\">\r\n        <button class=\"ui-button primary\" (click)=\"addInfo(info)\">Adicionar</button>\r\n      </div>\r\n    </ui-card-content>\r\n    <ui-data-table class=\"responsive\">\r\n      <tbody>\r\n      <tr>\r\n        <th>Xs</th>\r\n        <th>Ys</th>\r\n      </tr>\r\n      <tr *ngFor=\"let item of list\">\r\n        <td data-title=\"Xs\" >{{item.x}}</td>\r\n        <td data-title=\"Ys\"> {{item.y}} </td>\r\n      </tr>\r\n      <tr *ngIf=\"list && !list.length\">\r\n        <td colspan=\"2\" style=\"text-align: center;\">Não existem informações</td>\r\n      </tr>\r\n      </tbody>\r\n\r\n      <tfoot>\r\n      </tfoot>\r\n\r\n    </ui-data-table>\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(list)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1931,7 +1889,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\n  <ui-card class=\"elevate-on-toolbar\">\n    <ui-toolbar class=\"flat\">\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\n        <i class=\"material-icons\">arrow_back</i>\n      </button>\n      <span class=\"title\">Correlação/Regressão</span>\n    </ui-toolbar>\n    <ui-card-content>\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\n      <div class=\"ui-flex-container\">\n        <ui-input-container>\n          <ui-select id=\"letter\" #letter=\"ngModel\" name=\"letter\" [(ngModel)]=\"calc.letter\" [options]=\"letters\" value=\"id\" label=\"nome\"\n                     uiInput required></ui-select>\n          <label for=\"letter\">\n            Letra\n          </label>\n          <div class=\"ui-messages\">\n            <div *ngIf=\"letter.errors && letter.dirty\">\n              <div class=\"ui-message error\" [hidden]=\"!letter.pristine && !letter.errors.required\">\n                Selecione uma letra\n              </div>\n            </div>\n          </div>\n        </ui-input-container>\n        <ui-input-container>\n          <input id=\"value\" #value=\"ngModel\" type=\"number\" [(ngModel)]=\"calc.value\" uiInput name=\"value\" required>\n          <label for=\"value\">Valor</label>\n          <div class=\"ui-messages\">\n            <div *ngIf=\"value.errors && value.dirty\">\n              <div class=\"ui-message error\" [hidden]=\"!value.pristine && !value.errors.required\">\n                Digite o Valor\n              </div>\n            </div>\n          </div>\n        </ui-input-container>\n      </div>\n        <div class=\"ui-button-container align-right\">\n          <button class=\"ui-button primary\" (click)=\"onSubmit(form, calc.letter, calc.value)\">Calcular</button>\n        </div>\n      </form>\n    </ui-card-content>\n\n    <ui-card-content>\n      <span *ngIf=\"calc.result\">Resultado: {{ calc.result }}</span><br>\n      <span>Correlação: {{ calc.correlacao}}</span><br>\n      <span>Nivel: {{ calc.nivel}}</span><br>\n      <span>Equação: Y = - {{ calc.A }} * X + {{ calc.B }}</span><br>\n    </ui-card-content>\n\n  </ui-card>\n</div>\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n      <div class=\"ui-flex-container\">\r\n        <ui-input-container>\r\n          <ui-select id=\"letter\" #letter=\"ngModel\" name=\"letter\" [(ngModel)]=\"calc.letter\" [options]=\"letters\" value=\"id\" label=\"nome\"\r\n                     uiInput required></ui-select>\r\n          <label for=\"letter\">\r\n            Letra\r\n          </label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"letter.errors && letter.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!letter.pristine && !letter.errors.required\">\r\n                Selecione uma letra\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <ui-input-container>\r\n          <input id=\"value\" #value=\"ngModel\" type=\"number\" [(ngModel)]=\"calc.value\" uiInput name=\"value\" required>\r\n          <label for=\"value\">Valor</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"value.errors && value.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!value.pristine && !value.errors.required\">\r\n                Digite o Valor\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n      </div>\r\n        <div class=\"ui-button-container align-right\">\r\n          <button class=\"ui-button primary\" (click)=\"onSubmit(form, calc.letter, calc.value)\">Calcular</button>\r\n        </div>\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <ui-card-content>\r\n      <span *ngIf=\"calc.result\">Resultado: {{ calc.result }}</span><br>\r\n      <span>Correlação: {{ calc.correlacao}}</span><br>\r\n      <span>Nivel: {{ calc.nivel}}</span><br>\r\n      <span>Equação: Y = - {{ calc.A }} * X + {{ calc.B }}</span><br>\r\n    </ui-card-content>\r\n\r\n  </ui-card>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2040,7 +1998,7 @@ var ResponseComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\n\n\n  <div class=\"content\" *ngIf=\"dados.content\">\n\n    <ui-card class=\"content__cards elevate-on-toolbar\" *ngIf=\"dados.type === 3 || dados.type === 2\">\n      <section class=\"content__cards__card\">\n        <h1 class=\"content__cards__card__title\">Média</h1>\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.media }}</h1>\n      </section>\n      <section class=\"content__cards__card\">\n        <h1 class=\"content__cards__card__title\">Mediana</h1>\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.mediana }}</h1>\n      </section>\n      <section class=\"content__cards__card\">\n        <h1 class=\"content__cards__card__title\">Moda</h1>\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.moda }}</h1>\n      </section>\n      <section class=\"content__cards__card\">\n        <h1 class=\"content__cards__card__title\">Desvio Padrao</h1>\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.desvioPadrao | number:'1.2-2'}}</h1>\n      </section>\n    </ui-card>\n\n    <div class=\"content__card\">\n      <app-table [data]=\"dados.content\" [title]=\"dados.title\"></app-table>\n    </div>\n    <div class=\"content__card\">\n      <ui-card class=\"elevate-on-toolbar\">\n        <smn-graphic [data]=\"MOCK.items\" [legend]=\"MOCK.legend\" [config]=\"{\n                   colorSelected: '#263238',\n                   lineColor: '#E0E0E0',\n                   colors: ['#78909C', '#546E7A'],\n                   noSpace: true\n             }\" [title]=\"MOCK.title\" [subtitle]=\"'Elementos de um grafico'\">\n          <section class=\"menu-info\">\n            <div class=\"menu-info__header\">\n              {{ graphicService.info.legend }}\n            </div>\n            <div class=\"menu-info__header\">\n              <b>Quantidade: {{ graphicService.info.value }}</b>\n            </div>\n            <div class=\"menu-info__header\">\n              Data: {{ graphicService.info.column }}\n            </div>\n          </section>\n        </smn-graphic>\n      </ui-card>\n    </div>\n\n  </div>\n\n\n  <ui-card class=\"elevate-on-toolbar\" *ngIf=\"!dados.content\">\n    <ui-card-content>\n      <div style=\"padding: 32px 0; text-align: center;\">\n        Nenhum dado foi encontrado!\n      </div>\n    </ui-card-content>\n  </ui-card>\n\n</div>"
+module.exports = "<div class=\"ui-s840\">\r\n  <div class=\"content\" *ngIf=\"dados.content\">\r\n\r\n    <ui-card class=\"content__cards elevate-on-toolbar\">\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Média</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.media | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Mediana</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.mediana }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" (click)=\"nextModa()\">\r\n        <h1 class=\"content__cards__card__title\">Moda {{ dados.moda[numModa].title }}</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.moda[numModa].value || dados.moda }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Desvio Padrao</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.DPR | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" *ngIf=\"dados.medidaSeparatriz\">\r\n        <h1 class=\"content__cards__card__title\">Medida Separatriz</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.medidaSeparatriz | number:'1.2-2' }}</h1>\r\n      </section>\r\n    </ui-card>\r\n\r\n    <div class=\"content__card\">\r\n      <app-table [data]=\"dados.content\" [title]=\"dados.title\"></app-table>\r\n    </div>\r\n    <div class=\"content__card\">\r\n      <ui-card class=\"elevate-on-toolbar\">\r\n        <smn-graphic [data]=\"graphic\"\r\n                     [legend]=\"[]\"\r\n                     [config]=\"{\r\n                   colorSelected: '#263238',\r\n                   lineColor: '#E0E0E0',\r\n                   colors: ['#78909C', '#546E7A'],\r\n                   noSpace: true\r\n             }\"\r\n                     [title]=\"'Grafico'\"\r\n                     [subtitle]=\"'Elementos de um grafico'\">\r\n          <section class=\"menu-info\">\r\n            <div class=\"menu-info__header\">\r\n              {{ graphicService.info.legend }}\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              <b>Quantidade: {{ graphicService.info.value }}</b>\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              Data: {{ graphicService.info.column }}\r\n            </div>\r\n          </section>\r\n        </smn-graphic>\r\n      </ui-card>\r\n    </div>\r\n  </div>\r\n  <ui-card class=\"elevate-on-toolbar\" *ngIf=\"!dados.content\">\r\n    <ui-card-content>\r\n      <div style=\"padding: 32px 0; text-align: center;\">\r\n        Nenhum dado foi encontrado!\r\n      </div>\r\n    </ui-card-content>\r\n  </ui-card>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2051,7 +2009,7 @@ module.exports = "<div class=\"ui-s840\">\n\n\n  <div class=\"content\" *ngIf=\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* https://material.io/guidelines/motion/duration-easing.html#duration-easing-natural-easing-curves */\n/* Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette */\n/* https://material.io/guidelines/resources/shadows.html */\n.menu-info {\n  display: flex;\n  flex-wrap: wrap;\n  min-width: 100px;\n  max-width: 200px; }\n.menu-info__header {\n    width: 100%;\n    text-align: center;\n    padding: 8px;\n    font-size: 14px; }\n:host .content {\n  display: flex;\n  flex-wrap: wrap; }\n:host .content__card {\n    width: 50%;\n    padding: 16px; }\n:host .content__cards {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    background-color: transparent;\n    box-shadow: none; }\n:host .content__cards__card {\n      background-color: #F5F5F5;\n      padding: 16px 32px;\n      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n      width: 200px; }\n:host .content__cards__card__title {\n        text-align: center;\n        font-size: 14px;\n        font-weight: 500;\n        opacity: 0.87;\n        padding-bottom: 8px;\n        color: rgba(0, 0, 0, 0.64); }\n:host .content__cards__card__subtitle {\n        text-align: center;\n        font-size: 16px;\n        color: rgba(0, 0, 0, 0.87); }\n@media (max-width: 375px), only screen and (min-width: 376px) and (max-width: 763px) {\n  :host .content__card {\n    width: 100%; }\n  :host .content__cards {\n    flex-wrap: wrap; }\n    :host .content__cards__card {\n      width: 100%;\n      margin: 8px; } }\n"
+module.exports = "/* https://material.io/guidelines/motion/duration-easing.html#duration-easing-natural-easing-curves */\n/* Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette */\n/* https://material.io/guidelines/resources/shadows.html */\n.menu-info {\n  display: flex;\n  flex-wrap: wrap;\n  min-width: 100px;\n  max-width: 200px; }\n.menu-info__header {\n    width: 100%;\n    text-align: center;\n    padding: 8px;\n    font-size: 14px; }\n:host .content {\n  display: flex;\n  flex-wrap: wrap; }\n:host .content__card {\n    width: 50%;\n    padding: 16px; }\n:host .content__cards {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    background-color: transparent;\n    box-shadow: none; }\n:host .content__cards__card {\n      background-color: #F5F5F5;\n      padding: 16px 8px;\n      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n      width: 100%;\n      margin: 0 8px; }\n:host .content__cards__card__title {\n        text-align: center;\n        font-size: 14px;\n        font-weight: 500;\n        opacity: 0.87;\n        padding-bottom: 8px;\n        color: rgba(0, 0, 0, 0.64); }\n:host .content__cards__card__subtitle {\n        text-align: center;\n        font-size: 16px;\n        color: rgba(0, 0, 0, 0.87); }\n@media (max-width: 375px), only screen and (min-width: 376px) and (max-width: 763px) {\n  :host .content__card {\n    width: 100%; }\n  :host .content__cards {\n    flex-wrap: wrap; }\n    :host .content__cards__card {\n      width: 100%;\n      margin: 8px; } }\n"
 
 /***/ }),
 
@@ -2069,6 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _statistics_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../statistics.service */ "./src/app/main/statistics.service.ts");
 /* harmony import */ var _smn_ui_toolbar_toolbar_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../smn-ui/toolbar/toolbar.service */ "./src/app/smn-ui/toolbar/toolbar.service.ts");
 /* harmony import */ var _components_graphic_graphic_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/graphic/graphic.service */ "./src/app/components/graphic/graphic.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2082,31 +2041,45 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(statistics, toolbarService, graphicService) {
+    function DashboardComponent(statistics, toolbarService, graphicService, router) {
         this.statistics = statistics;
         this.toolbarService = toolbarService;
         this.graphicService = graphicService;
-        this.MOCK = {
-            legend: ['']
-        };
+        this.router = router;
+        this.numModa = 0;
         this.dados = this.statistics.getDados();
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.dados.content) {
-            var graphic = this.dados.content.map(function (dado) {
+            this.graphic = this.dados.content.map(function (dado) {
                 return {
                     indice: _this.dados.type !== 3 ? dado.group : dado.class.id,
                     value: [dado.qtd]
                 };
             });
-            this.MOCK.items = graphic;
-            this.MOCK.title = this.dados.title;
+        }
+        else {
+            this.router.navigate(['/insert']);
         }
     };
     DashboardComponent.prototype.ngAfterViewInit = function () {
         this.toolbarService.activateExtendedToolbar(480);
+    };
+    DashboardComponent.prototype.ngOnDestroy = function () {
+        this.toolbarService.deactivateExtendedToolbar();
+    };
+    DashboardComponent.prototype.nextModa = function () {
+        if (typeof this.dados === 'object') {
+            if (this.numModa < this.dados.moda.length - 1) {
+                this.numModa++;
+            }
+            else {
+                this.numModa = 0;
+            }
+        }
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2116,7 +2089,8 @@ var DashboardComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_statistics_service__WEBPACK_IMPORTED_MODULE_1__["StatisticsService"],
             _smn_ui_toolbar_toolbar_service__WEBPACK_IMPORTED_MODULE_2__["UiToolbarService"],
-            _components_graphic_graphic_service__WEBPACK_IMPORTED_MODULE_3__["GraphicService"]])
+            _components_graphic_graphic_service__WEBPACK_IMPORTED_MODULE_3__["GraphicService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -2184,7 +2158,7 @@ var DashboardModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\n  <ui-card class=\"elevate-on-toolbar\">\n    <ui-toolbar class=\"flat\">\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\n        <i class=\"material-icons\">arrow_back</i>\n      </button>\n      <span class=\"title\">Entrada de dados</span>\n      <div class=\"align-right\">\n        <ui-switch-container>\n          <div class=\"info\">\n            Amostra\n          </div>\n          <ui-switch class=\"action\">\n            <input type=\"checkbox\" name=\"switchTest\" [checked]=\"info.amostra == 'S'\" (change)=\"info.amostra=$event.target.checked ? 'S':'N'\">\n          </ui-switch>\n        </ui-switch-container>\n      </div>\n    </ui-toolbar>\n    <ui-card-content>\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\n        <ui-input-container>\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\n          <label for=\"title\">Titulo</label>\n          <div class=\"ui-messages\">\n            <div *ngIf=\"title.errors && title.dirty\">\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\n                Digite o titulo\n              </div>\n            </div>\n          </div>\n        </ui-input-container>\n        <div class=\"ui-flex-container break-on-s840\">\n          <ui-option-container class=\"v-space-4 b-space-16\">\n            <ui-option>\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\n              <span>Ordinal</span>\n            </ui-option>\n          </ui-option-container>\n          <div class=\"input-legend\">\n            <ui-input-container>\n              <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\" value=\"nome\" label=\"nome\"\n                uiInput></ui-select>\n              <label for=\"sufixo\">\n                Sufixo\n              </label>\n            </ui-input-container>\n          </div>\n\n        </div>\n        <ui-chips>\n          <ui-input-container>\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\" (keydown.enter)=\"insertData()\">\n            <label for=\"dado\">Dado</label>\n          </ui-input-container>\n\n          <div class=\"container-chips\">\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\" class=\"ui-chip js-chips-dado\">\n              <div class=\"icon chip-cont\">\n                {{ dadoInserido.qtd }}\n              </div>\n              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\n                <i class=\"material-icons\">add_circle</i>\n              </div>\n            </div>\n          </div>\n        </ui-chips>\n      </form>\n      <!-- <pre>\n          {{ info | json }}\n      </pre> -->\n    </ui-card-content>\n  </ui-card>\n  <div class=\"ui-fab-container\">\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\n      <i class=\"material-icons\">send</i>\n    </a>\n  </div>\n\n</div>\n\n<br><br><br><br><br>\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Entrada de dados</span>\r\n      <div class=\"align-right\">\r\n        <button class=\"ui-button flat icon\" uiRipple>\r\n          <i class=\"material-icons\">cloud_upload</i>\r\n        </button>\r\n      </div>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <ui-input-container>\r\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\r\n          <label for=\"title\">Titulo</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"title.errors && title.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\r\n                Digite o titulo\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"medidaSeparatriz\"\r\n                       #medidaSeparatriz=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.medidaSeparatriz\"\r\n                       [options]=\"selectMedidaSeparatriz\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"medidaSeparatriz\">\r\n              Medida Separatriz\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"valueMedidaSeparatriz\"\r\n                   #valueMedidaSeparatriz=\"ngModel\"\r\n                   type=\"number\"\r\n                   [(ngModel)]=\"info.valueMedidaSeparatriz\"\r\n                   uiInput\r\n                   name=\"valueMedidaSeparatriz\">\r\n            <label for=\"valueMedidaSeparatriz\">Valor</label>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option>\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\r\n              <span>Ordinal</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option>\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.amostra\" [checked]=\"info.amostra\">\r\n              <span>Amostra</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n            <ui-input-container>\r\n              <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\" value=\"nome\" label=\"nome\"\r\n                uiInput></ui-select>\r\n              <label for=\"sufixo\">\r\n                Sufixo\r\n              </label>\r\n            </ui-input-container>\r\n\r\n        </div>\r\n        <ui-chips>\r\n          <ui-input-container>\r\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\" (keydown.enter)=\"insertData()\">\r\n            <label for=\"dado\">Dado</label>\r\n          </ui-input-container>\r\n\r\n          <div class=\"container-chips\">\r\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\" class=\"ui-chip js-chips-dado\">\r\n              <div class=\"icon chip-cont\">\r\n                {{ dadoInserido.qtd }}\r\n              </div>\r\n              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\r\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\r\n                <i class=\"material-icons\">add_circle</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-chips>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n\r\n<br><br><br><br><br>\r\n"
 
 /***/ }),
 
@@ -2242,8 +2216,14 @@ var DataInsertionComponent = /** @class */ (function () {
         this._location = _location;
         this.MOCK = MOCK;
         this.typeVariable = typeVariable;
-        this.info = this.MOCK.vContinua;
+        this.info = this.MOCK.EXEMPLO_8_1;
         this.dragDrop = {};
+        this.selectMedidaSeparatriz = [
+            { id: 4, nome: 'Quartil' },
+            { id: 5, nome: 'Quintil' },
+            { id: 10, nome: 'Decil' },
+            { id: 100, nome: 'Percentil' }
+        ];
         this.selectSufixo = [
             { id: 1, nome: 'Sem sufixo' },
             { id: 2, nome: 'Metro' },
@@ -2731,7 +2711,7 @@ var MockService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\n  <ui-card class=\"elevate-on-toolbar\">\n    <ui-toolbar class=\"flat\">\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\n        <i class=\"material-icons\">arrow_back</i>\n      </button>\n      <span class=\"title\">Distribuição uniforme</span>\n    </ui-toolbar>\n    <ui-card-content>\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\n\n        <div class=\"ui-flex-container break-on-s840\">\n          <ui-input-container>\n            <input id=\"intervaloA\" #intervaloA=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloA\" uiInput name=\"intervaloA\" required>\n            <label for=\"intervaloA\">Intervalo A</label>\n            <div class=\"ui-messages\">\n              <div *ngIf=\"intervaloA.errors && intervaloA.dirty\">\n                <div class=\"ui-message error\" [hidden]=\"!intervaloA.pristine && !intervaloA.errors.required\">\n                  Digite o intervalo A\n                </div>\n              </div>\n            </div>\n          </ui-input-container>\n          <ui-input-container>\n            <input id=\"intervaloB\" #intervaloB=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloB\" uiInput name=\"intervaloB\" required>\n            <label for=\"intervaloB\">Intervalo B</label>\n            <div class=\"ui-messages\">\n              <div *ngIf=\"intervaloB.errors && intervaloB.dirty\">\n                <div class=\"ui-message error\" [hidden]=\"!intervaloB.pristine && !intervaloB.errors.required\">\n                  Digite o intervalo B\n                </div>\n              </div>\n            </div>\n          </ui-input-container>\n        </div>\n\n        <div class=\"ui-flex-container break-on-s840\">\n          <ui-input-container>\n            <input id=\"maior\" #maior=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maior\" uiInput name=\"maior\" required>\n            <label for=\"maior\">Maior que</label>\n            <div class=\"ui-messages\">\n              <div *ngIf=\"maior.errors && maior.dirty\">\n                <div class=\"ui-message error\" [hidden]=\"!maior.pristine && !maior.errors.required\">\n                  Digite o \"maior que\"\n                </div>\n              </div>\n            </div>\n          </ui-input-container>\n          <ui-input-container>\n            <input id=\"menor\" #menor=\"ngModel\" type=\"number\" [(ngModel)]=\"info.menor\" uiInput name=\"menor\" required>\n            <label for=\"menor\">Menor que</label>\n            <div class=\"ui-messages\">\n              <div *ngIf=\"menor.errors && menor.dirty\">\n                <div class=\"ui-message error\" [hidden]=\"!menor.pristine && !menor.errors.required\">\n                  Digite o \"menor que\"\n                </div>\n              </div>\n            </div>\n          </ui-input-container>\n        </div>\n\n      </form>\n    </ui-card-content>\n\n    <div *ngIf=\"response\">\n      <ui-card-title>Resultado</ui-card-title>\n      <ui-card-content>\n        <span>Media: {{ response.media }}</span><br>\n        <span>CV: {{ response.CV }}</span><br>\n        <span>DP: {{ response.DP }}</span><br>\n        <span>Probalidade: {{ response.probalidade }}</span><br>\n      </ui-card-content>\n    </div>\n\n  </ui-card>\n\n  <div class=\"ui-fab-container\">\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\n      <i class=\"material-icons\">send</i>\n    </a>\n  </div>\n</div>\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Distribuição uniforme</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"intervaloA\" #intervaloA=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloA\" uiInput name=\"intervaloA\" required>\r\n            <label for=\"intervaloA\">Intervalo A</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"intervaloA.errors && intervaloA.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!intervaloA.pristine && !intervaloA.errors.required\">\r\n                  Digite o intervalo A\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"intervaloB\" #intervaloB=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloB\" uiInput name=\"intervaloB\" required>\r\n            <label for=\"intervaloB\">Intervalo B</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"intervaloB.errors && intervaloB.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!intervaloB.pristine && !intervaloB.errors.required\">\r\n                  Digite o intervalo B\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"maior\" #maior=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maior\" uiInput name=\"maior\" required>\r\n            <label for=\"maior\">Maior que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"maior.errors && maior.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!maior.pristine && !maior.errors.required\">\r\n                  Digite o \"maior que\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"menor\" #menor=\"ngModel\" type=\"number\" [(ngModel)]=\"info.menor\" uiInput name=\"menor\" required>\r\n            <label for=\"menor\">Menor que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"menor.errors && menor.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!menor.pristine && !menor.errors.required\">\r\n                  Digite o \"menor que\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <div *ngIf=\"response\">\r\n      <ui-card-title>Resultado</ui-card-title>\r\n      <ui-card-content>\r\n        <span>Media: {{ response.media }}</span><br>\r\n        <span>CV: {{ response.CV }}</span><br>\r\n        <span>DP: {{ response.DP }}</span><br>\r\n        <span>Probalidade: {{ response.probalidade }}</span><br>\r\n      </ui-card-content>\r\n    </div>\r\n\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2888,7 +2868,7 @@ var DistribuicaoUniformeService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = "<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -2914,6 +2894,7 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MainComponent", function() { return MainComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _smn_ui_toolbar_toolbar_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../smn-ui/toolbar/toolbar.service */ "./src/app/smn-ui/toolbar/toolbar.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2924,10 +2905,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MainComponent = /** @class */ (function () {
-    function MainComponent() {
+    function MainComponent(toolbarService) {
+        this.toolbarService = toolbarService;
     }
-    MainComponent.prototype.ngOnInit = function () {
+    MainComponent.prototype.ngAfterViewInit = function () {
+        this.toolbarService.activateExtendedToolbar(480);
+    };
+    MainComponent.prototype.ngOnDestroy = function () {
+        this.toolbarService.deactivateExtendedToolbar();
     };
     MainComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2935,7 +2922,7 @@ var MainComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./main.component.html */ "./src/app/main/main.component.html"),
             styles: [__webpack_require__(/*! ./main.component.scss */ "./src/app/main/main.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_smn_ui_toolbar_toolbar_service__WEBPACK_IMPORTED_MODULE_1__["UiToolbarService"]])
     ], MainComponent);
     return MainComponent;
 }());
@@ -3132,7 +3119,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-card class=\"suggestions\" tabindex=\"-1\" [ngClass]=\"{'has-secondary': !!secondary}\" (uiInfiniteLoad)=\"loadMoreEmit()\">\n    <div class=\"suggestions-wrap\">\n        <div class=\"ui-progress\" [ngClass]=\"{'hide': !loading, 'accent': accentClass}\" style=\"position: absolute\">\n            <div class=\"indeterminate\"></div>\n        </div>\n        <ul class=\"ui-list\">\n            <li class=\"multi-line\" uiRipple\n                *ngFor=\"let item of list; let index = index\"\n                (click)=\"selectItem(item)\"\n                [ngClass]=\"{'focused': index === focusedIndex, 'accent': accentClass}\"\n                [style.transition-delay]=\"(index > 5 ? 0: 100 + (index * 50)) + 'ms'\">\n                <div class=\"lines\" *ngIf=\"secondary\">\n                    <div class=\"primary\">{{item[primary] || item[secondary]}}</div>\n                    <div class=\"secondary\">{{item[primary] ? item[secondary] : null}}</div>\n                </div>\n                <span *ngIf=\"!secondary\" class=\"primary\">{{item[primary] || item}}</span>\n            </li>\n            <li *ngIf=\"!list.length\" class=\"not-found\">\n                <span *ngIf=\"ngModel\">Nenhum registro encontrado para \"{{ngModel}}\"</span>\n                <span *ngIf=\"!ngModel\">Nenhum registro encontrado</span>\n            </li>\n        </ul>\n    </div>\n</ui-card>\n"
+module.exports = "<ui-card class=\"suggestions\" tabindex=\"-1\" [ngClass]=\"{'has-secondary': !!secondary}\" (uiInfiniteLoad)=\"loadMoreEmit()\">\r\n    <div class=\"suggestions-wrap\">\r\n        <div class=\"ui-progress\" [ngClass]=\"{'hide': !loading, 'accent': accentClass}\" style=\"position: absolute\">\r\n            <div class=\"indeterminate\"></div>\r\n        </div>\r\n        <ul class=\"ui-list\">\r\n            <li class=\"multi-line\" uiRipple\r\n                *ngFor=\"let item of list; let index = index\"\r\n                (click)=\"selectItem(item)\"\r\n                [ngClass]=\"{'focused': index === focusedIndex, 'accent': accentClass}\"\r\n                [style.transition-delay]=\"(index > 5 ? 0: 100 + (index * 50)) + 'ms'\">\r\n                <div class=\"lines\" *ngIf=\"secondary\">\r\n                    <div class=\"primary\">{{item[primary] || item[secondary]}}</div>\r\n                    <div class=\"secondary\">{{item[primary] ? item[secondary] : null}}</div>\r\n                </div>\r\n                <span *ngIf=\"!secondary\" class=\"primary\">{{item[primary] || item}}</span>\r\n            </li>\r\n            <li *ngIf=\"!list.length\" class=\"not-found\">\r\n                <span *ngIf=\"ngModel\">Nenhum registro encontrado para \"{{ngModel}}\"</span>\r\n                <span *ngIf=\"!ngModel\">Nenhum registro encontrado</span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</ui-card>\r\n"
 
 /***/ }),
 
@@ -3590,7 +3577,7 @@ var animationLetter = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["t
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<img [src]=\"image\" (load)=\"loadedImage()\" *ngIf=\"image\">\n<div class=\"wrap\" [class.grayscale]=\"grayscale\">\n    <div class=\"empty\" [ngStyle]=\"{'background-color': color, 'color': isBright(color) ? '#000' : '#FFF'}\">\n        {{name.charAt(0)}}\n    </div>\n    <div class=\"profile\" [style.background-image]=\"'url(' + newImage + ')'\" [@image] *ngIf=\"showImage\"></div>\n    <div class=\"profile\" [style.background-image]=\"'url(' + image + ')'\" [@image] *ngIf=\"grayscale\"></div>\n</div>\n"
+module.exports = "<img [src]=\"image\" (load)=\"loadedImage()\" *ngIf=\"image\">\r\n<div class=\"wrap\" [class.grayscale]=\"grayscale\">\r\n    <div class=\"empty\" [ngStyle]=\"{'background-color': color, 'color': isBright(color) ? '#000' : '#FFF'}\">\r\n        {{name.charAt(0)}}\r\n    </div>\r\n    <div class=\"profile\" [style.background-image]=\"'url(' + newImage + ')'\" [@image] *ngIf=\"showImage\"></div>\r\n    <div class=\"profile\" [style.background-image]=\"'url(' + image + ')'\" [@image] *ngIf=\"grayscale\"></div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3723,7 +3710,7 @@ var UiAvatarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template>\n    <div class=\"wrap-bottom-sheet\">\n        <div class=\"overlay\"></div>\n        <ui-card>\n            <ng-content>\n            </ng-content>\n        </ui-card>\n    </div>\n</ng-template>\n"
+module.exports = "<ng-template>\r\n    <div class=\"wrap-bottom-sheet\">\r\n        <div class=\"overlay\"></div>\r\n        <ui-card>\r\n            <ng-content>\r\n            </ng-content>\r\n        </ui-card>\r\n    </div>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -3991,7 +3978,7 @@ var UiAddCalendarDirective = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"label\">\n    <button class=\"month-label\">\n        <span>{{months[calendar.month] + ' de ' + calendar.year | uiCapitalize}}</span>\n    </button>\n</div>\n<div class=\"week-header\">\n    <div class=\"week-day\" *ngFor=\"let day of days\">{{day.charAt(0).toUpperCase()}}</div>\n</div>\n<div class=\"days\">\n    <div class=\"day\" *ngFor=\"let day of calendar.days\">\n        <button type=\"button\"\n                class=\"ui-button icon\"\n                (click)=\"!isDisabled(day.value) && chooseDate(day.value)\"\n                [disabled]=\"isDisabled(day.value)\"\n                [ngClass]=\"{'primary': isDay(day.value) || day.today, 'flat': !isDay(day.value)}\"\n                *ngIf=\"day.month === calendar.month\">\n            {{day.date}}\n        </button>\n    </div>\n</div>\n"
+module.exports = "<div class=\"label\">\r\n    <button class=\"month-label\">\r\n        <span>{{months[calendar.month] + ' de ' + calendar.year | uiCapitalize}}</span>\r\n    </button>\r\n</div>\r\n<div class=\"week-header\">\r\n    <div class=\"week-day\" *ngFor=\"let day of days\">{{day.charAt(0).toUpperCase()}}</div>\r\n</div>\r\n<div class=\"days\">\r\n    <div class=\"day\" *ngFor=\"let day of calendar.days\">\r\n        <button type=\"button\"\r\n                class=\"ui-button icon\"\r\n                (click)=\"!isDisabled(day.value) && chooseDate(day.value)\"\r\n                [disabled]=\"isDisabled(day.value)\"\r\n                [ngClass]=\"{'primary': isDay(day.value) || day.today, 'flat': !isDay(day.value)}\"\r\n                *ngIf=\"day.month === calendar.month\">\r\n            {{day.date}}\r\n        </button>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4161,7 +4148,7 @@ var UiCalendarContentComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header *ngIf=\"!hideHeader\">\n    <div>\n        <div class=\"year\" >{{chosenDate && chosenDate.getFullYear()}}</div>\n        <span class=\"date-empty\" *ngIf=\"!chosenDate\">Selecione uma data</span>\n        <div class=\"date\" *ngIf=\"chosenDate\">\n            <span class=\"week-day\">{{shortDays[chosenDate.getDay()] | uiCapitalize}},</span> {{chosenDate.getDate()}} de {{months[chosenDate.getMonth()] | uiCapitalize}}\n        </div>\n    </div>\n</header>\n<div>\n    <div class=\"content\">\n        <div class=\"controls\">\n            <button class=\"prev ui-button icon flat\"\n                    (click)=\"prevMonth()\"\n                    [hidden]=\"!(!minDate || (calendar && calendar.days[0].time > minDate.getTime()))\"\n                    tabindex=\"0\"><i class=\"material-icons\">keyboard_arrow_left</i></button>\n            <button class=\"next ui-button icon flat\"\n                    (click)=\"nextMonth()\"\n                    [hidden]=\"!(!maxDate || (calendar && calendar.days[calendar.days.length - 1].time < maxDate.getTime()))\"\n                    tabindex=\"2\"><i class=\"material-icons\">keyboard_arrow_right</i></button>\n        </div>\n        <div class=\"calendar-cover\">\n            <div addCalendar></div>\n        </div>\n    </div>\n    <div class=\"actions ui-button-container align-right\" *ngIf=\"confirmSelection\">\n        <button class=\"ui-button flat primary\" (click)=\"cancelDate()\">Cancelar</button>\n        <button class=\"ui-button flat primary\" (click)=\"selectDate(chosenDate)\">Ok</button>\n    </div>\n</div>\n"
+module.exports = "<header *ngIf=\"!hideHeader\">\r\n    <div>\r\n        <div class=\"year\" >{{chosenDate && chosenDate.getFullYear()}}</div>\r\n        <span class=\"date-empty\" *ngIf=\"!chosenDate\">Selecione uma data</span>\r\n        <div class=\"date\" *ngIf=\"chosenDate\">\r\n            <span class=\"week-day\">{{shortDays[chosenDate.getDay()] | uiCapitalize}},</span> {{chosenDate.getDate()}} de {{months[chosenDate.getMonth()] | uiCapitalize}}\r\n        </div>\r\n    </div>\r\n</header>\r\n<div>\r\n    <div class=\"content\">\r\n        <div class=\"controls\">\r\n            <button class=\"prev ui-button icon flat\"\r\n                    (click)=\"prevMonth()\"\r\n                    [hidden]=\"!(!minDate || (calendar && calendar.days[0].time > minDate.getTime()))\"\r\n                    tabindex=\"0\"><i class=\"material-icons\">keyboard_arrow_left</i></button>\r\n            <button class=\"next ui-button icon flat\"\r\n                    (click)=\"nextMonth()\"\r\n                    [hidden]=\"!(!maxDate || (calendar && calendar.days[calendar.days.length - 1].time < maxDate.getTime()))\"\r\n                    tabindex=\"2\"><i class=\"material-icons\">keyboard_arrow_right</i></button>\r\n        </div>\r\n        <div class=\"calendar-cover\">\r\n            <div addCalendar></div>\r\n        </div>\r\n    </div>\r\n    <div class=\"actions ui-button-container align-right\" *ngIf=\"confirmSelection\">\r\n        <button class=\"ui-button flat primary\" (click)=\"cancelDate()\">Cancelar</button>\r\n        <button class=\"ui-button flat primary\" (click)=\"selectDate(chosenDate)\">Ok</button>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4472,7 +4459,7 @@ var fadeAnimation = Object(_angular_animations__WEBPACK_IMPORTED_MODULE_0__["tri
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header *ngIf=\"!hideHeader\" [class.time-error]=\"!validate()\">\n    <div>\n        <span class=\"time-empty\" *ngIf=\"isEmpty()\">Selecione um horário</span>\n        <span *ngIf=\"!isEmpty() && !validate()\">Horário inválido</span>\n        <div class=\"time\" *ngIf=\"!isEmpty() && validate()\" (click)=\"getPositionPointer()\">\n            <span (click)=\"activeSelection = 'hours'\" [class.time-focused]=\"activeSelection === 'hours'\">{{formatToLpad(hour)}}</span>:<span (click)=\"activeSelection = 'minutes'\" [class.time-focused]=\"activeSelection === 'minutes'\">{{formatToLpad(minute)}}</span>\n        </div>\n    </div>\n</header>\n<div>\n    <div class=\"content\">\n        <div class=\"clock-cover\">\n            <div class=\"clock-wrap\" [class.has-pointer]=\"hasHourAndMinute() && validate()\">\n                <div class=\"pointer\"\n                     *ngIf=\"hasHourAndMinute() && validate()\"\n                     [ngStyle]=\"{'transform': 'rotate(' + pointerRotation + 'deg)', 'top':  getPositionTopPointer()}\"\n                     [@fade]>\n                    <div class=\"ball\" [class.show-core]=\"activeSelection === 'minutes' && minute % 5 !== 0\"></div>\n                </div>\n                <div *ngIf=\"activeSelection === 'hours'\" [@explosion]>\n                    <div class=\"hour\"\n                         *ngFor=\"let hour of hours\"\n                         [style.transform]=\"'rotate(' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'\"\n                         (click)=\"selectHour(hour)\">\n                        <button class=\"ui-button icon flat\" [style.transform]=\"'rotate(-' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'\">{{hour}}</button>\n                    </div>\n                </div>\n                <div *ngIf=\"activeSelection === 'minutes'\" [@explosion]>\n                    <div class=\"minute\"\n                         *ngFor=\"let minute of minutes; let index = index\"\n                         [style.transform]=\"'rotate(' + (30 * (index >= 12 ? index - 12 : index )) + 'deg)'\"\n                         (click)=\"selectMinute(minute)\">\n                        <button class=\"ui-button icon flat\" [style.transform]=\"'rotate(-' + (30 * (index >= 12 ? index - 12 : index )) + 'deg)'\">{{minute}}</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"actions ui-button-container align-right\" *ngIf=\"confirmSelection\">\n        <button class=\"ui-button flat primary\" uiRipple (click)=\"cancelTime()\">Cancelar</button>\n        <button class=\"ui-button flat primary\" uiRipple (click)=\"selectTime(true)\" [disabled]=\"!hasHourAndMinute()\">Ok</button>\n    </div>\n</div>\n"
+module.exports = "<header *ngIf=\"!hideHeader\" [class.time-error]=\"!validate()\">\r\n    <div>\r\n        <span class=\"time-empty\" *ngIf=\"isEmpty()\">Selecione um horário</span>\r\n        <span *ngIf=\"!isEmpty() && !validate()\">Horário inválido</span>\r\n        <div class=\"time\" *ngIf=\"!isEmpty() && validate()\" (click)=\"getPositionPointer()\">\r\n            <span (click)=\"activeSelection = 'hours'\" [class.time-focused]=\"activeSelection === 'hours'\">{{formatToLpad(hour)}}</span>:<span (click)=\"activeSelection = 'minutes'\" [class.time-focused]=\"activeSelection === 'minutes'\">{{formatToLpad(minute)}}</span>\r\n        </div>\r\n    </div>\r\n</header>\r\n<div>\r\n    <div class=\"content\">\r\n        <div class=\"clock-cover\">\r\n            <div class=\"clock-wrap\" [class.has-pointer]=\"hasHourAndMinute() && validate()\">\r\n                <div class=\"pointer\"\r\n                     *ngIf=\"hasHourAndMinute() && validate()\"\r\n                     [ngStyle]=\"{'transform': 'rotate(' + pointerRotation + 'deg)', 'top':  getPositionTopPointer()}\"\r\n                     [@fade]>\r\n                    <div class=\"ball\" [class.show-core]=\"activeSelection === 'minutes' && minute % 5 !== 0\"></div>\r\n                </div>\r\n                <div *ngIf=\"activeSelection === 'hours'\" [@explosion]>\r\n                    <div class=\"hour\"\r\n                         *ngFor=\"let hour of hours\"\r\n                         [style.transform]=\"'rotate(' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'\"\r\n                         (click)=\"selectHour(hour)\">\r\n                        <button class=\"ui-button icon flat\" [style.transform]=\"'rotate(-' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'\">{{hour}}</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"activeSelection === 'minutes'\" [@explosion]>\r\n                    <div class=\"minute\"\r\n                         *ngFor=\"let minute of minutes; let index = index\"\r\n                         [style.transform]=\"'rotate(' + (30 * (index >= 12 ? index - 12 : index )) + 'deg)'\"\r\n                         (click)=\"selectMinute(minute)\">\r\n                        <button class=\"ui-button icon flat\" [style.transform]=\"'rotate(-' + (30 * (index >= 12 ? index - 12 : index )) + 'deg)'\">{{minute}}</button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"actions ui-button-container align-right\" *ngIf=\"confirmSelection\">\r\n        <button class=\"ui-button flat primary\" uiRipple (click)=\"cancelTime()\">Cancelar</button>\r\n        <button class=\"ui-button flat primary\" uiRipple (click)=\"selectTime(true)\" [disabled]=\"!hasHourAndMinute()\">Ok</button>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4721,7 +4708,7 @@ var UiClockComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-card>\n    <div class=\"colors\">\n        <div class=\"color\"\n             *ngFor=\"let color of colors\"\n             tabindex=\"1\"\n             [class.selected]=\"color.name === colorSelected.name\"\n             [ngStyle]=\"{'background-color': getColor(color.name, color.name === colorSelected.name ? value : 500), 'border': color.hasBorder ? '1px solid #424242' : 'none'}\"\n             (click)=\"selectColor(color)\">\n            <i class=\"material-icons\" [style.color]=\"getColorText(color.name, color.name === colorSelected.name ? value : 500)\" *ngIf=\"color.selected\">done</i>\n        </div>\n        <div class=\"color remove\" [class.selected]=\"!colorSelected.name\" (click)=\"deselectColors()\" tabindex=\"1\">\n            <i class=\"material-icons secondary-text\">block</i>\n        </div>\n    </div>\n    <ui-card-content [hidden]=\"!colorSelected.name\" *ngIf=\"!colorSelected.hideSlider\">\n        <ui-slider [range]=\"hues\"\n                   [(value)]=\"value\"\n                   [hideBalloon]=\"true\"\n                   [color]=\"getColor(colorSelected.name, value)\"\n                   [text-color]=\"getColorText(colorSelected.name, value)\"\n                   #hueColor></ui-slider>\n    </ui-card-content>\n</ui-card>\n"
+module.exports = "<ui-card>\r\n    <div class=\"colors\">\r\n        <div class=\"color\"\r\n             *ngFor=\"let color of colors\"\r\n             tabindex=\"1\"\r\n             [class.selected]=\"color.name === colorSelected.name\"\r\n             [ngStyle]=\"{'background-color': getColor(color.name, color.name === colorSelected.name ? value : 500), 'border': color.hasBorder ? '1px solid #424242' : 'none'}\"\r\n             (click)=\"selectColor(color)\">\r\n            <i class=\"material-icons\" [style.color]=\"getColorText(color.name, color.name === colorSelected.name ? value : 500)\" *ngIf=\"color.selected\">done</i>\r\n        </div>\r\n        <div class=\"color remove\" [class.selected]=\"!colorSelected.name\" (click)=\"deselectColors()\" tabindex=\"1\">\r\n            <i class=\"material-icons secondary-text\">block</i>\r\n        </div>\r\n    </div>\r\n    <ui-card-content [hidden]=\"!colorSelected.name\" *ngIf=\"!colorSelected.hideSlider\">\r\n        <ui-slider [range]=\"hues\"\r\n                   [(value)]=\"value\"\r\n                   [hideBalloon]=\"true\"\r\n                   [color]=\"getColor(colorSelected.name, value)\"\r\n                   [text-color]=\"getColorText(colorSelected.name, value)\"\r\n                   #hueColor></ui-slider>\r\n    </ui-card-content>\r\n</ui-card>\r\n"
 
 /***/ }),
 
@@ -5930,7 +5917,7 @@ var palette = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-table-overflow\">\n    <table class=\"ui-data-table\">\n        <ng-content></ng-content>\n    </table>\n</div>\n<table class=\"ui-data-table\" #tableFooter>\n</table>\n"
+module.exports = "<div class=\"ui-table-overflow\">\r\n    <table class=\"ui-data-table\">\r\n        <ng-content></ng-content>\r\n    </table>\r\n</div>\r\n<table class=\"ui-data-table\" #tableFooter>\r\n</table>\r\n"
 
 /***/ }),
 
@@ -6528,7 +6515,7 @@ var UiDialogTriggerDirective = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template>\n    <div class=\"wrap-dialog\">\n        <div class=\"overlay\"></div>\n        <ui-card>\n            <ng-content>\n            </ng-content>\n        </ui-card>\n    </div>\n</ng-template>\n"
+module.exports = "<ng-template>\r\n    <div class=\"wrap-dialog\">\r\n        <div class=\"overlay\"></div>\r\n        <ui-card>\r\n            <ng-content>\r\n            </ng-content>\r\n        </ui-card>\r\n    </div>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -7372,7 +7359,7 @@ var UiLazyLoadDirective = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!item.childs && !item.url\" class=\"ui-list-item disabled\">\n    <span *ngIf=\"!!item.icon\" class=\"icon\">\n        <i *ngIf=\"item.icon.material\" class=\"material-icons\">{{item.icon.material}}</i>\n        <img *ngIf=\"!!item.icon.img\" [src]=\"item.icon.img\" style=\"width:24px;height:24px\"/>\n    </span>\n    {{item.name}}\n</div>\n<a *ngIf=\"!item.childs && item.url\" class=\"ui-list-item\" uiRipple\n   [routerLink]=\"item.url ? [item.url] : null\"\n   [routerLinkActive]=\"['active']\">{{item.name}}\n</a>\n<div *ngIf=\"item.childs\">\n    <div class=\"ui-list-item\" uiRipple [uiListItem]=\"childs\">\n                    <span *ngIf=\"!!item.icon\" class=\"icon\">\n                        <i *ngIf=\"item.icon.material\" class=\"material-icons\">{{item.icon.material}}</i>\n                        <img *ngIf=\"!!item.icon.img\" [src]=\"item.icon.img\" style=\"width:24px;height:24px\"/>\n                    </span>\n        {{item.name}}\n        <span class=\"arrow\"><i class=\"material-icons\">keyboard_arrow_down</i></span>\n    </div>\n    <div class=\"ui-list-item-group\" #childs>\n        <div>\n            <ui-list-items [items]=\"item.childs\"></ui-list-items>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div *ngIf=\"!item.childs && !item.url\" class=\"ui-list-item disabled\">\r\n    <span *ngIf=\"!!item.icon\" class=\"icon\">\r\n        <i *ngIf=\"item.icon.material\" class=\"material-icons\">{{item.icon.material}}</i>\r\n        <img *ngIf=\"!!item.icon.img\" [src]=\"item.icon.img\" style=\"width:24px;height:24px\"/>\r\n    </span>\r\n    {{item.name}}\r\n</div>\r\n<a *ngIf=\"!item.childs && item.url\" class=\"ui-list-item\" uiRipple\r\n   [routerLink]=\"item.url ? [item.url] : null\"\r\n   [routerLinkActive]=\"['active']\">{{item.name}}\r\n</a>\r\n<div *ngIf=\"item.childs\">\r\n    <div class=\"ui-list-item\" uiRipple [uiListItem]=\"childs\">\r\n                    <span *ngIf=\"!!item.icon\" class=\"icon\">\r\n                        <i *ngIf=\"item.icon.material\" class=\"material-icons\">{{item.icon.material}}</i>\r\n                        <img *ngIf=\"!!item.icon.img\" [src]=\"item.icon.img\" style=\"width:24px;height:24px\"/>\r\n                    </span>\r\n        {{item.name}}\r\n        <span class=\"arrow\"><i class=\"material-icons\">keyboard_arrow_down</i></span>\r\n    </div>\r\n    <div class=\"ui-list-item-group\" #childs>\r\n        <div>\r\n            <ui-list-items [items]=\"item.childs\"></ui-list-items>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -7427,7 +7414,7 @@ var UiListItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor=\"let item of items\">\n    <ui-list-item [item]=\"item\"></ui-list-item>\n</div>\n"
+module.exports = "<div *ngFor=\"let item of items\">\r\n    <ui-list-item [item]=\"item\"></ui-list-item>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -7585,7 +7572,7 @@ function getHeight(element) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container>\n    <div class=\"ui-list\">\n        <ng-content></ng-content>\n        <ui-list-items [items]=\"list\"></ui-list-items>\n    </div>\n</ng-container>\n"
+module.exports = "<ng-container>\r\n    <div class=\"ui-list\">\r\n        <ng-content></ng-content>\r\n        <ui-list-items [items]=\"list\"></ui-list-items>\r\n    </div>\r\n</ng-container>\r\n"
 
 /***/ }),
 
@@ -7859,7 +7846,7 @@ var UiMenuTriggerDirective = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template>\n    <div class=\"wrap-menu\">\n        <ui-card>\n            <ng-content>\n            </ng-content>\n        </ui-card>\n    </div>\n</ng-template>\n\n"
+module.exports = "<ng-template>\r\n    <div class=\"wrap-menu\">\r\n        <ui-card>\r\n            <ng-content>\r\n            </ng-content>\r\n        </ui-card>\r\n    </div>\r\n</ng-template>\r\n\r\n"
 
 /***/ }),
 
@@ -8034,7 +8021,7 @@ var UiMenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\n    <ng-content></ng-content>\n</nav>\n<div class=\"ui-nav-drawer-overlay\" (click)=\"closeMenuOverlay()\"></div>\n"
+module.exports = "<nav>\r\n    <ng-content></ng-content>\r\n</nav>\r\n<div class=\"ui-nav-drawer-overlay\" (click)=\"closeMenuOverlay()\"></div>\r\n"
 
 /***/ }),
 
@@ -8258,7 +8245,7 @@ var UiNavDrawerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<svg class=\"spinner-container\" viewBox=\"0 0 44 44\">\n    <circle class=\"path\" cx=\"22\" cy=\"22\" r=\"20\" fill=\"none\" stroke-width=\"4\"></circle>\n</svg>\n"
+module.exports = "<svg class=\"spinner-container\" viewBox=\"0 0 44 44\">\r\n    <circle class=\"path\" cx=\"22\" cy=\"22\" r=\"20\" fill=\"none\" stroke-width=\"4\"></circle>\r\n</svg>\r\n"
 
 /***/ }),
 
@@ -8511,7 +8498,7 @@ function getMousePosition(e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "{{label}}\n"
+module.exports = "{{label}}\r\n"
 
 /***/ }),
 
@@ -8679,7 +8666,7 @@ var UiSelectFilterPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"selected\">{{selected}}</div>\n<ng-template>\n    <div class=\"wrap-select\">\n        <div class=\"wrap-select-inner\">\n            <div class=\"selected\" tabindex=\"0\" (click)=\"close()\">{{selected}}</div>\n            <div class=\"ui-divider\"></div>\n            <div *ngIf=\"chosen\">\n                <div class=\"input-select-space\">\n                    <input type=\"text\" [(ngModel)]=\"search\" class=\"input-select\">\n                </div>\n                <div class=\"ui-divider\"></div>\n            </div>\n            <div class=\"options\">\n                <ng-content></ng-content>\n                <ui-select-option *ngFor=\"let item of optionsExternal\" [value]=\"value\" [label]=\"label\"\n                                  uiRipple></ui-select-option>\n                <ui-select-option *ngFor=\"let item of options | selectFilter : search : label\" [value]=\"item[value]\"\n                                  [label]=\"item[label]\" [internal]=\"true\"\n                                  uiRipple></ui-select-option>\n            </div>\n        </div>\n    </div>\n</ng-template>\n\n<div [hidden]=\"!options || !isMobile()\">\n    <select #selectNative\n            style=\"transform: scale(1); position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0\"\n            [(ngModel)]=\"selectedNative\"\n            (change)=\"onChangeSelect(selectedNative)\">\n        <option *ngFor=\"let option of options\" [ngValue]=\"option\">\n            {{option ? option[label] : null}}\n        </option>\n    </select>\n</div>\n"
+module.exports = "<div class=\"selected\">{{selected}}</div>\r\n<ng-template>\r\n    <div class=\"wrap-select\">\r\n        <div class=\"wrap-select-inner\">\r\n            <div class=\"selected\" tabindex=\"0\" (click)=\"close()\">{{selected}}</div>\r\n            <div class=\"ui-divider\"></div>\r\n            <div *ngIf=\"chosen\">\r\n                <div class=\"input-select-space\">\r\n                    <input type=\"text\" [(ngModel)]=\"search\" class=\"input-select\">\r\n                </div>\r\n                <div class=\"ui-divider\"></div>\r\n            </div>\r\n            <div class=\"options\">\r\n                <ng-content></ng-content>\r\n                <ui-select-option *ngFor=\"let item of optionsExternal\" [value]=\"value\" [label]=\"label\"\r\n                                  uiRipple></ui-select-option>\r\n                <ui-select-option *ngFor=\"let item of options | selectFilter : search : label\" [value]=\"item[value]\"\r\n                                  [label]=\"item[label]\" [internal]=\"true\"\r\n                                  uiRipple></ui-select-option>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ng-template>\r\n\r\n<div [hidden]=\"!options || !isMobile()\">\r\n    <select #selectNative\r\n            style=\"transform: scale(1); position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0\"\r\n            [(ngModel)]=\"selectedNative\"\r\n            (change)=\"onChangeSelect(selectedNative)\">\r\n        <option *ngFor=\"let option of options\" [ngValue]=\"option\">\r\n            {{option ? option[label] : null}}\r\n        </option>\r\n    </select>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -8956,7 +8943,7 @@ var UiSelectComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<label>\n    <ng-content></ng-content>\n</label>\n"
+module.exports = "<label>\r\n    <ng-content></ng-content>\r\n</label>\r\n"
 
 /***/ }),
 
@@ -9039,7 +9026,7 @@ var UiOptionComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<label>\n    <ng-content></ng-content>\n</label>\n"
+module.exports = "<label>\r\n    <ng-content></ng-content>\r\n</label>\r\n"
 
 /***/ }),
 
@@ -9345,7 +9332,7 @@ var UiSliderMultiHandleComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"track off\"></div>\n<div class=\"points\" [ngClass]=\"{'disabled': disabled, 'show': mouseDown}\">\n    <div class=\"point\" *ngFor=\"let value of range\"></div>\n</div>\n<div class=\"track on\"\n     [ngClass]=\"{'disabled': disabled}\"\n     [ngStyle]=\"{'left': getPercentageLeft ? getPercentageLeft() + '%' : 0,\n                 'right': getPercentageRight ? getPercentageRight() + '%' : '',\n                 'width': getPercentage ? getPercentage() + '%': '',\n                 'background-color': color || ''}\">\n    <div class=\"balloon-wrap\" *ngIf=\"!hideBalloon\">\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"  x=\"0px\" y=\"0px\" width=\"36px\" height=\"36px\" viewBox=\"0 0 36 36\" enable-background=\"new 0 0 36 36\" xml:space=\"preserve\">\n            <path [style.fill]=\"color || ''\" d=\"M31.948,13.996c-0.146-5.378-4.016-8.907-4.016-8.907C23.222,0.624,18.163,0.993,18,1.006\n                c-0.163-0.013-5.222-0.382-9.931,4.083c0,0-3.87,3.528-4.016,8.907c0,0-0.497,3.41,1.572,7.205c0,0,0.864,2.126,4.765,6.678\n                c0,0,3.406,3.846,7.595,7.089v0.024c0.005-0.004,0.01-0.008,0.015-0.012c0.005,0.004,0.01,0.008,0.015,0.012v-0.024\n                c4.19-3.244,7.595-7.089,7.595-7.089c3.901-4.552,4.765-6.678,4.765-6.678C32.445,17.405,31.948,13.996,31.948,13.996z\"/>\n        </svg>\n        <div class=\"value\" [style.color]=\"textColor || ''\">\n            {{viewFormat(multiHandle ? direction === 'begin' ? begin : end : value)}}\n        </div>\n    </div>\n    <div class=\"thumb-container left\" tabindex=\"1\" *ngIf=\"multiHandle\" [style.background-color]=\"color || ''\">\n        <div class=\"thumb\"></div>\n    </div>\n    <div class=\"thumb-container right\" tabindex=\"1\" [style.background-color]=\"color || ''\">\n        <div class=\"thumb\"></div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"track off\"></div>\r\n<div class=\"points\" [ngClass]=\"{'disabled': disabled, 'show': mouseDown}\">\r\n    <div class=\"point\" *ngFor=\"let value of range\"></div>\r\n</div>\r\n<div class=\"track on\"\r\n     [ngClass]=\"{'disabled': disabled}\"\r\n     [ngStyle]=\"{'left': getPercentageLeft ? getPercentageLeft() + '%' : 0,\r\n                 'right': getPercentageRight ? getPercentageRight() + '%' : '',\r\n                 'width': getPercentage ? getPercentage() + '%': '',\r\n                 'background-color': color || ''}\">\r\n    <div class=\"balloon-wrap\" *ngIf=\"!hideBalloon\">\r\n        <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"  x=\"0px\" y=\"0px\" width=\"36px\" height=\"36px\" viewBox=\"0 0 36 36\" enable-background=\"new 0 0 36 36\" xml:space=\"preserve\">\r\n            <path [style.fill]=\"color || ''\" d=\"M31.948,13.996c-0.146-5.378-4.016-8.907-4.016-8.907C23.222,0.624,18.163,0.993,18,1.006\r\n                c-0.163-0.013-5.222-0.382-9.931,4.083c0,0-3.87,3.528-4.016,8.907c0,0-0.497,3.41,1.572,7.205c0,0,0.864,2.126,4.765,6.678\r\n                c0,0,3.406,3.846,7.595,7.089v0.024c0.005-0.004,0.01-0.008,0.015-0.012c0.005,0.004,0.01,0.008,0.015,0.012v-0.024\r\n                c4.19-3.244,7.595-7.089,7.595-7.089c3.901-4.552,4.765-6.678,4.765-6.678C32.445,17.405,31.948,13.996,31.948,13.996z\"/>\r\n        </svg>\r\n        <div class=\"value\" [style.color]=\"textColor || ''\">\r\n            {{viewFormat(multiHandle ? direction === 'begin' ? begin : end : value)}}\r\n        </div>\r\n    </div>\r\n    <div class=\"thumb-container left\" tabindex=\"1\" *ngIf=\"multiHandle\" [style.background-color]=\"color || ''\">\r\n        <div class=\"thumb\"></div>\r\n    </div>\r\n    <div class=\"thumb-container right\" tabindex=\"1\" [style.background-color]=\"color || ''\">\r\n        <div class=\"thumb\"></div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -9624,7 +9611,7 @@ var UiSmartListItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-content>\n</ng-content>\n"
+module.exports = "<ng-content>\r\n</ng-content>\r\n"
 
 /***/ }),
 
@@ -10155,7 +10142,7 @@ var SMNUIModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-snackbar *ngFor=\"let bar of bars\" [bar]=\"bar\" [ngClass]=\"{'center': bar.center}\">\n    {{bar.text}}\n</ui-snackbar>\n"
+module.exports = "<ui-snackbar *ngFor=\"let bar of bars\" [bar]=\"bar\" [ngClass]=\"{'center': bar.center}\">\r\n    {{bar.text}}\r\n</ui-snackbar>\r\n"
 
 /***/ }),
 
@@ -10232,7 +10219,7 @@ var UiSnackbarContainerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text\">\n    {{bar.text}}\n</div>\n<div class=\"action\" *ngIf=\"bar.action && bar.actionText\">\n    <button class=\"ui-button accent flat\" (click)=\"bar.action(hide)\" uiRipple>\n        {{bar.actionText}}\n    </button>\n</div>\n"
+module.exports = "<div class=\"text\">\r\n    {{bar.text}}\r\n</div>\r\n<div class=\"action\" *ngIf=\"bar.action && bar.actionText\">\r\n    <button class=\"ui-button accent flat\" (click)=\"bar.action(hide)\" uiRipple>\r\n        {{bar.actionText}}\r\n    </button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -10422,7 +10409,7 @@ var UiSnackbar = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-container\">\n    <ng-content></ng-content>\n</div>\n"
+module.exports = "<div class=\"page-container\">\r\n    <ng-content></ng-content>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -10624,7 +10611,7 @@ var UiTabsPagesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tabs\">\n    <div class=\"overflow\" (scroll)=\"tabsScroll()\">\n        <ng-content></ng-content>\n        <div class=\"indicator\"></div>\n    </div>\n    <div class=\"arrows\">\n        <div class=\"left\" [class.show]=\"showLeftArrow\">\n            <div class=\"ui-button icon flat\" uiRipple (click)=\"tabsScroll(-200)\">\n                <i class=\"material-icons\">keyboard_arrow_left</i>\n            </div>\n        </div>\n        <div class=\"right\" [class.show]=\"showRightArrow\">\n            <div class=\"ui-button icon flat\" uiRipple (click)=\"tabsScroll(200)\">\n                <i class=\"material-icons\">keyboard_arrow_right</i>\n            </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"tabs\">\r\n    <div class=\"overflow\" (scroll)=\"tabsScroll()\">\r\n        <ng-content></ng-content>\r\n        <div class=\"indicator\"></div>\r\n    </div>\r\n    <div class=\"arrows\">\r\n        <div class=\"left\" [class.show]=\"showLeftArrow\">\r\n            <div class=\"ui-button icon flat\" uiRipple (click)=\"tabsScroll(-200)\">\r\n                <i class=\"material-icons\">keyboard_arrow_left</i>\r\n            </div>\r\n        </div>\r\n        <div class=\"right\" [class.show]=\"showRightArrow\">\r\n            <div class=\"ui-button icon flat\" uiRipple (click)=\"tabsScroll(200)\">\r\n                <i class=\"material-icons\">keyboard_arrow_right</i>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -11081,7 +11068,7 @@ var UiTimePickerService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n    <ng-content></ng-content>\n</header>\n<div class=\"ui-toolbar-space\"></div>\n"
+module.exports = "<header>\r\n    <ng-content></ng-content>\r\n</header>\r\n<div class=\"ui-toolbar-space\"></div>\r\n"
 
 /***/ }),
 
@@ -14459,7 +14446,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/gabriel/Documentos/projects/statistics-web/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\GABRIEL\Documents\projects\statistics-web\src\main.ts */"./src/main.ts");
 
 
 /***/ })

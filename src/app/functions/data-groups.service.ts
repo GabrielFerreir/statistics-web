@@ -18,9 +18,18 @@ export class DataGroupsService {
   }
 
   init(content) {
-    // this.response = JSON.parse(JSON.stringify(info));
-    this.response = content;
+    this.resetService();
+    this.response = JSON.parse(JSON.stringify(content));
     return this;
+  }
+
+  resetService() {
+    this.response = {};
+    this.NUM_CLASS = 0;
+    this.amplitude = null;
+    this.classe = null;
+    this.intervalClass = 0;
+    this.groupValues = [];
   }
 
   orderBy() {
@@ -34,7 +43,6 @@ export class DataGroupsService {
     const lastItem = this.response[this.response.length - 1].group;
     const firstItem = this.response[0].group;
     this.amplitude = (lastItem - firstItem) + 1; // POR QUE?
-
     return this;
   }
 
@@ -61,7 +69,6 @@ export class DataGroupsService {
   defineLimits() {
     let lastValue = parseFloat(this.response[0].group);
     for (let i = 1; i <= this.classe; i++) {
-
       this.groupValues.push({
         id: i,
         min: lastValue,
@@ -150,7 +157,6 @@ export class DataGroupsService {
   }
 
   finish() {
-    console.log(this);
     return this.response;
   }
 
