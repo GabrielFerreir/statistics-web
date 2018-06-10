@@ -181,7 +181,6 @@ export class TypeVariableService {
       this.callFunction()
         .setInService();
     } else if (this.response.tipoDeVariavel === 4) {
-      console.log('CAIU AQUI');
       this.type = 2;
       this.callFunction()
         .setInService();
