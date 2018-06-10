@@ -41,12 +41,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_correlacao_regressao_correlacao_regressao_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./main/correlacao-regressao/correlacao-regressao.component */ "./src/app/main/correlacao-regressao/correlacao-regressao.component.ts");
 /* harmony import */ var _main_distribuicao_uniforme_distribuicao_uniforme_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main/distribuicao-uniforme/distribuicao-uniforme.component */ "./src/app/main/distribuicao-uniforme/distribuicao-uniforme.component.ts");
 /* harmony import */ var _main_correlacao_regressao_response_response_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./main/correlacao-regressao/response/response.component */ "./src/app/main/correlacao-regressao/response/response.component.ts");
+/* harmony import */ var _main_distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./main/distribuicao-binomial/distribuicao-binomial.component */ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -70,6 +72,7 @@ var routes = [
                 ]
             },
             { path: 'distribuicao-uniforme', component: _main_distribuicao_uniforme_distribuicao_uniforme_component__WEBPACK_IMPORTED_MODULE_6__["DistribuicaoUniformeComponent"] },
+            { path: 'distribuicao-binomial', component: _main_distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_8__["DistribuicaoBinomialComponent"] },
         ]
     }
 ];
@@ -98,7 +101,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-toolbar class=\"fixed flat elevate-on-scroll primary elevate-on-s960\" id=\"app-header\">\r\n  <button class=\"ui-button flat icon\" (click)=\"menuOpen = true\" uiRipple>\r\n    <i class=\"material-icons\">menu</i>\r\n  </button>\r\n  <span class=\"title\">Home</span>\r\n</ui-toolbar>\r\n<ui-nav-drawer class=\"persistent\" [(open)]=\"menuOpen\">\r\n  <ui-toolbar class=\"flat\">\r\n    <button (click)=\"menuOpen = false\" class=\"ui-button flat icon\" uiRipple>\r\n      <i class=\"material-icons\">arrow_back</i>\r\n    </button>\r\n    <span class=\"title\">Home</span>\r\n  </ui-toolbar>\r\n  <div class=\"ui-nav-drawer-overflow\">\r\n    <div class=\"ui-list\">\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/'>Home</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/insert'>Inserir dados</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/correlacao-regressao'>Correlação/Regressão</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-uniforme'>Distribuição uniforme</a>\r\n    </div>\r\n  </div>\r\n</ui-nav-drawer>\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<ui-toolbar class=\"fixed flat elevate-on-scroll primary elevate-on-s960\" id=\"app-header\">\r\n  <button class=\"ui-button flat icon\" (click)=\"menuOpen = true\" uiRipple>\r\n    <i class=\"material-icons\">menu</i>\r\n  </button>\r\n  <span class=\"title\">Home</span>\r\n</ui-toolbar>\r\n<ui-nav-drawer class=\"persistent\" [(open)]=\"menuOpen\">\r\n  <ui-toolbar class=\"flat\">\r\n    <button (click)=\"menuOpen = false\" class=\"ui-button flat icon\" uiRipple>\r\n      <i class=\"material-icons\">arrow_back</i>\r\n    </button>\r\n    <span class=\"title\">Home</span>\r\n  </ui-toolbar>\r\n  <div class=\"ui-nav-drawer-overflow\">\r\n    <div class=\"ui-list\">\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/'>Home</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/insert'>Inserir dados</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/correlacao-regressao'>Correlação/Regressão</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-uniforme'>Distribuição uniforme</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-binomial'>Distribuição binomial</a>\r\n    </div>\r\n  </div>\r\n</ui-nav-drawer>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -1620,7 +1623,7 @@ var UtilsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <div class=\"ui-flex-container break-on-s840\">\r\n        <ui-input-container>\r\n          <input id=\"x\" #x=\"ngModel\" type=\"number\" [(ngModel)]=\"info.x\" uiInput name=\"x\" required>\r\n          <label for=\"x\">X</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"x.errors && x.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!x.pristine && !x.errors.required\">\r\n                Digite o X\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <ui-input-container>\r\n          <input id=\"y\" #y=\"ngModel\" type=\"number\" [(ngModel)]=\"info.y\" uiInput name=\"y\" required>\r\n          <label for=\"y\">Y</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"y.errors && y.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!y.pristine && !y.errors.required\">\r\n                Digite o Y\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n      </div>\r\n      <div class=\"ui-button-container align-right\">\r\n        <button class=\"ui-button primary\" (click)=\"addInfo(info)\">Adicionar</button>\r\n      </div>\r\n    </ui-card-content>\r\n    <ui-data-table class=\"responsive\">\r\n      <tbody>\r\n      <tr>\r\n        <th>Xs</th>\r\n        <th>Ys</th>\r\n      </tr>\r\n      <tr *ngFor=\"let item of list\">\r\n        <td data-title=\"Xs\" >{{item.x}}</td>\r\n        <td data-title=\"Ys\"> {{item.y}} </td>\r\n      </tr>\r\n      <tr *ngIf=\"list && !list.length\">\r\n        <td colspan=\"2\" style=\"text-align: center;\">Não existem informações</td>\r\n      </tr>\r\n      </tbody>\r\n\r\n      <tfoot>\r\n      </tfoot>\r\n\r\n    </ui-data-table>\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(list)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <div class=\"ui-flex-container break-on-s840\">\r\n        <ui-input-container>\r\n          <input id=\"x\" #x=\"ngModel\" type=\"number\" [(ngModel)]=\"info.x\" uiInput name=\"x\" required>\r\n          <label for=\"x\">X</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"x.errors && x.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!x.pristine && !x.errors.required\">\r\n                Digite o X\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <ui-input-container>\r\n          <input id=\"y\" #y=\"ngModel\" type=\"number\" [(ngModel)]=\"info.y\" uiInput name=\"y\" required>\r\n          <label for=\"y\">Y</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"y.errors && y.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!y.pristine && !y.errors.required\">\r\n                Digite o Y\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n      </div>\r\n      <div class=\"ui-button-container align-right\">\r\n        <button class=\"ui-button primary\" (click)=\"addInfo(info)\">Adicionar</button>\r\n      </div>\r\n    </ui-card-content>\r\n    <ui-data-table class=\"responsive\">\r\n      <tbody>\r\n      <tr>\r\n        <th>Xs</th>\r\n        <th>Ys</th>\r\n        <th></th>\r\n      </tr>\r\n      <tr *ngFor=\"let item of list; let index = index\">\r\n        <td data-title=\"Xs\" >{{item.x}}</td>\r\n        <td data-title=\"Ys\"> {{item.y}} </td>\r\n        <td data-title=\"Excluir\" class=\"align-right\">\r\n          <button class=\"ui-button flat icon error\" (click)=\"removeInfo(index)\"><i class=\"material-icons\">clear</i></button>\r\n        </td>\r\n      </tr>\r\n      <tr *ngIf=\"list && !list.length\">\r\n        <td colspan=\"2\" style=\"text-align: center;\">Não existem informações</td>\r\n      </tr>\r\n      </tbody>\r\n\r\n      <tfoot>\r\n      </tfoot>\r\n\r\n    </ui-data-table>\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(list)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1695,6 +1698,10 @@ var CorrelacaoRegressaoComponent = /** @class */ (function () {
     CorrelacaoRegressaoComponent.prototype.addInfo = function (info) {
         var inset = JSON.parse(JSON.stringify(info));
         this.list.push(inset);
+    };
+    CorrelacaoRegressaoComponent.prototype.removeInfo = function (index) {
+        console.log(index);
+        this.list.splice(index, 1);
     };
     CorrelacaoRegressaoComponent.prototype.onSubmit = function (values) {
         this.correlacaoService.calculate(values);
@@ -1998,7 +2005,7 @@ var ResponseComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <div class=\"content\" *ngIf=\"dados.content\">\r\n\r\n    <ui-card class=\"content__cards elevate-on-toolbar\">\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Média</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.media | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Mediana</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.mediana }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" (click)=\"nextModa()\">\r\n        <h1 class=\"content__cards__card__title\">Moda {{ dados.moda[numModa].title }}</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.moda[numModa].value || dados.moda }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Desvio Padrao</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.DPR | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" *ngIf=\"dados.medidaSeparatriz\">\r\n        <h1 class=\"content__cards__card__title\">Medida Separatriz</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.medidaSeparatriz | number:'1.2-2' }}</h1>\r\n      </section>\r\n    </ui-card>\r\n\r\n    <div class=\"content__card\">\r\n      <app-table [data]=\"dados.content\" [title]=\"dados.title\"></app-table>\r\n    </div>\r\n    <div class=\"content__card\">\r\n      <ui-card class=\"elevate-on-toolbar\">\r\n        <smn-graphic [data]=\"graphic\"\r\n                     [legend]=\"[]\"\r\n                     [config]=\"{\r\n                   colorSelected: '#263238',\r\n                   lineColor: '#E0E0E0',\r\n                   colors: ['#78909C', '#546E7A'],\r\n                   noSpace: true\r\n             }\"\r\n                     [title]=\"'Grafico'\"\r\n                     [subtitle]=\"'Elementos de um grafico'\">\r\n          <section class=\"menu-info\">\r\n            <div class=\"menu-info__header\">\r\n              {{ graphicService.info.legend }}\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              <b>Quantidade: {{ graphicService.info.value }}</b>\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              Data: {{ graphicService.info.column }}\r\n            </div>\r\n          </section>\r\n        </smn-graphic>\r\n      </ui-card>\r\n    </div>\r\n  </div>\r\n  <ui-card class=\"elevate-on-toolbar\" *ngIf=\"!dados.content\">\r\n    <ui-card-content>\r\n      <div style=\"padding: 32px 0; text-align: center;\">\r\n        Nenhum dado foi encontrado!\r\n      </div>\r\n    </ui-card-content>\r\n  </ui-card>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n\r\n\r\n  <div class=\"content\" *ngIf=\"dados.content\">\r\n\r\n    <ui-card class=\"content__cards elevate-on-toolbar\">\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Média</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.media | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Mediana</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.mediana }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" (click)=\"nextModa()\">\r\n        <h1 class=\"content__cards__card__title\">Moda {{ dados.moda[numModa].title }}</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.moda[numModa].value || dados.moda }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Desvio Padrao</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.DPR | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" *ngIf=\"dados.medidaSeparatriz\">\r\n        <h1 class=\"content__cards__card__title\">Medida Separatriz</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.medidaSeparatriz | number:'1.2-2' }}</h1>\r\n      </section>\r\n    </ui-card>\r\n\r\n    <div class=\"content__card\">\r\n      <app-table [data]=\"dados.content\" [title]=\"dados.title\"></app-table>\r\n    </div>\r\n    <div class=\"content__card\">\r\n      <ui-card class=\"elevate-on-toolbar\">\r\n        <smn-graphic [data]=\"graphic\"\r\n                     [legend]=\"[]\"\r\n                     [config]=\"{\r\n                   colorSelected: '#263238',\r\n                   lineColor: '#E0E0E0',\r\n                   colors: ['#78909C', '#546E7A'],\r\n                   noSpace: true\r\n             }\"\r\n                     [title]=\"'Grafico'\"\r\n                     [subtitle]=\"'Elementos de um grafico'\">\r\n          <section class=\"menu-info\">\r\n            <div class=\"menu-info__header\">\r\n              {{ graphicService.info.legend }}\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              <b>Quantidade: {{ graphicService.info.value }}</b>\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              Data: {{ graphicService.info.column }}\r\n            </div>\r\n          </section>\r\n        </smn-graphic>\r\n      </ui-card>\r\n    </div>\r\n  </div>\r\n  <ui-card class=\"elevate-on-toolbar\" *ngIf=\"!dados.content\">\r\n    <ui-card-content>\r\n      <div style=\"padding: 32px 0; text-align: center;\">\r\n        Nenhum dado foi encontrado!\r\n      </div>\r\n    </ui-card-content>\r\n  </ui-card>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2158,7 +2165,7 @@ var DashboardModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Entrada de dados</span>\r\n      <div class=\"align-right\">\r\n        <button class=\"ui-button flat icon\" uiRipple>\r\n          <i class=\"material-icons\">cloud_upload</i>\r\n        </button>\r\n      </div>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <ui-input-container>\r\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\r\n          <label for=\"title\">Titulo</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"title.errors && title.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\r\n                Digite o titulo\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"medidaSeparatriz\"\r\n                       #medidaSeparatriz=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.medidaSeparatriz\"\r\n                       [options]=\"selectMedidaSeparatriz\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"medidaSeparatriz\">\r\n              Medida Separatriz\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"valueMedidaSeparatriz\"\r\n                   #valueMedidaSeparatriz=\"ngModel\"\r\n                   type=\"number\"\r\n                   [(ngModel)]=\"info.valueMedidaSeparatriz\"\r\n                   uiInput\r\n                   name=\"valueMedidaSeparatriz\">\r\n            <label for=\"valueMedidaSeparatriz\">Valor</label>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option>\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\r\n              <span>Ordinal</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option>\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.amostra\" [checked]=\"info.amostra\">\r\n              <span>Amostra</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n            <ui-input-container>\r\n              <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\" value=\"nome\" label=\"nome\"\r\n                uiInput></ui-select>\r\n              <label for=\"sufixo\">\r\n                Sufixo\r\n              </label>\r\n            </ui-input-container>\r\n\r\n        </div>\r\n        <ui-chips>\r\n          <ui-input-container>\r\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\" (keydown.enter)=\"insertData()\">\r\n            <label for=\"dado\">Dado</label>\r\n          </ui-input-container>\r\n\r\n          <div class=\"container-chips\">\r\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\" class=\"ui-chip js-chips-dado\">\r\n              <div class=\"icon chip-cont\">\r\n                {{ dadoInserido.qtd }}\r\n              </div>\r\n              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\r\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\r\n                <i class=\"material-icons\">add_circle</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-chips>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n\r\n<br><br><br><br><br>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Entrada de dados</span>\r\n      <div class=\"align-right\">\r\n        <button class=\"ui-button flat icon\" uiRipple>\r\n          <i class=\"material-icons\">cloud_upload</i>\r\n        </button>\r\n      </div>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <ui-input-container>\r\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\r\n          <label for=\"title\">Titulo</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"title.errors && title.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\r\n                Digite o titulo\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"medidaSeparatriz\"\r\n                       #medidaSeparatriz=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.medidaSeparatriz\"\r\n                       [options]=\"selectMedidaSeparatriz\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"medidaSeparatriz\">\r\n              Medida Separatriz\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"valueMedidaSeparatriz\"\r\n                   #valueMedidaSeparatriz=\"ngModel\"\r\n                   type=\"number\"\r\n                   [(ngModel)]=\"info.valueMedidaSeparatriz\"\r\n                   uiInput\r\n                   name=\"valueMedidaSeparatriz\">\r\n            <label for=\"valueMedidaSeparatriz\">Valor</label>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option>\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\r\n              <span>Ordinal</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option>\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.amostra\" [checked]=\"info.amostra\">\r\n              <span>Amostra</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n            <ui-input-container>\r\n              <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\" value=\"nome\" label=\"nome\"\r\n                uiInput></ui-select>\r\n              <label for=\"sufixo\">\r\n                Sufixo\r\n              </label>\r\n            </ui-input-container>\r\n\r\n        </div>\r\n        <ui-chips>\r\n          <ui-input-container>\r\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\" (keydown.enter)=\"insertData()\">\r\n            <label for=\"dado\">Dado</label>\r\n          </ui-input-container>\r\n\r\n          <div class=\"container-chips\">\r\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\" class=\"ui-chip js-chips-dado\">\r\n              <div class=\"icon chip-cont\">\r\n                {{ dadoInserido.qtd }}\r\n              </div>\r\n              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\r\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\r\n                <i class=\"material-icons\">add_circle</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-chips>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n\r\n</div>\r\n\r\n<br><br><br><br><br>\r\n"
 
 /***/ }),
 
@@ -2704,6 +2711,248 @@ var MockService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.html":
+/*!*********************************************************************************!*\
+  !*** ./src/app/main/distribuicao-binomial/distribuicao-binomial.component.html ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"ui-s840\">\r\n    <ui-card class=\"elevate-on-toolbar\">\r\n        <ui-toolbar class=\"flat\">\r\n            <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n            <span class=\"title\">Distribuição binomial</span>\r\n        </ui-toolbar>\r\n        <ui-card-content>\r\n            <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n\r\n                <div class=\"ui-flex-container break-on-s840\">\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"totalProb\" #totalProb=\"ngModel\" type=\"number\" [(ngModel)]=\"info.totalProb\" uiInput name=\"totalProb\" required>\r\n                        <label for=\"totalProb\">Total de probabilidades</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"totalProb.errors && totalProb.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!totalProb.pristine && !totalProb.errors.required\">\r\n                                    Digite o Total de probabilidades\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"totalSucess\" #totalSucess=\"ngModel\" type=\"number\" [(ngModel)]=\"info.totalSucess\" uiInput name=\"totalSucess\" required>\r\n                        <label for=\"totalSucess\">Total de sucessos desejados</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"totalSucess.errors && totalSucess.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!totalSucess.pristine && !totalSucess.errors.required\">\r\n                                    Digite o Total de sucessos desejados\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                </div>\r\n\r\n                <div class=\"ui-flex-container break-on-s840\">\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"probSucess\" #probSucess=\"ngModel\" type=\"number\" [(ngModel)]=\"info.probSucess\" uiInput name=\"probSucess\" required>\r\n                        <label for=\"probSucess\">Probabilidade de Sucesso</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"probSucess.errors && probSucess.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!probSucess.pristine && !probSucess.errors.required\">\r\n                                    Digite o valor de \"Probabilidade de Sucesso\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"probFracasso\" #probFracasso=\"ngModel\" type=\"number\" [(ngModel)]=\"info.probFracasso\" uiInput name=\"probFracasso\"\r\n                            required>\r\n                        <label for=\"probFracasso\">Probabilidade de Fracasso</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"probFracasso.errors && probFracasso.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!probFracasso.pristine && !probFracasso.errors.required\">\r\n                                    Digite o valor de \"Probabilidade de Fracasso\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                </div>\r\n\r\n                <div class=\"ui-flex-container break-on-s840\">\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"pelomenos\" #pelomenos=\"ngModel\" type=\"number\" [(ngModel)]=\"info.pelomenos\" uiInput name=\"pelomenos\" required>\r\n                        <label for=\"pelomenos\">Pelo Menos</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"pelomenos.errors && pelomenos.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!pelomenos.pristine && !pelomenos.errors.required\">\r\n                                    Digite o valor de \"Pelo Menos\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n                    <ui-input-container>\r\n                        <input id=\"maximo\" #maximo=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maximo\" uiInput name=\"maximo\" required>\r\n                        <label for=\"maximo\">No Máximo</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"maximo.errors && maximo.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!maximo.pristine && !maximo.errors.required\">\r\n                                    Digite o valor de \"No Máximo\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n                </div>\r\n\r\n            </form>\r\n        </ui-card-content>\r\n\r\n        <div *ngIf=\"response\">\r\n            <ui-card-title>Resultado</ui-card-title>\r\n            <ui-card-content>\r\n                <ui-data-table  class=\"responsive\">\r\n                    <tbody >\r\n                        <tr >\r\n                            <th>Probabilidade = {{info.totalProb}}</th>\r\n                            <th>De {{info.pelomenos}} á {{info.totalProb}}></th>\r\n                            <th>Até {{info.maximo}}</th>\r\n                        </tr>\r\n                        <tr >\r\n                            <td>{{ response.probabilidadeTotal }}</td>\r\n                            <td>{{ response.pelomenos }} </td>\r\n                            <td>{{ response.maximo }} </td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <tfoot>\r\n                        \r\n                    </tfoot>\r\n                </ui-data-table>                \r\n            </ui-card-content>\r\n        </div>\r\n\r\n    </ui-card>\r\n\r\n    <div class=\"ui-fab-container\">\r\n        <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.scss":
+/*!*********************************************************************************!*\
+  !*** ./src/app/main/distribuicao-binomial/distribuicao-binomial.component.scss ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/main/distribuicao-binomial/distribuicao-binomial.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: DistribuicaoBinomialComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DistribuicaoBinomialComponent", function() { return DistribuicaoBinomialComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../smn-ui/smn-ui.module */ "./src/app/smn-ui/smn-ui.module.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _distribuicao_binomial_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./distribuicao-binomial.service */ "./src/app/main/distribuicao-binomial/distribuicao-binomial.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var DistribuicaoBinomialComponent = /** @class */ (function () {
+    function DistribuicaoBinomialComponent(element, toolbarService, _location, binomialService) {
+        this.element = element;
+        this.toolbarService = toolbarService;
+        this._location = _location;
+        this.binomialService = binomialService;
+        this.info = {};
+    }
+    DistribuicaoBinomialComponent.prototype.ngOnInit = function () {
+    };
+    DistribuicaoBinomialComponent.prototype.ngAfterViewInit = function () {
+        this.toolbarService.activateExtendedToolbar(480);
+    };
+    DistribuicaoBinomialComponent.prototype.ngOnDestroy = function () {
+        this.toolbarService.deactivateExtendedToolbar();
+    };
+    DistribuicaoBinomialComponent.prototype.onSubmit = function (form, values) {
+        for (var control in form.controls) {
+            if (form.controls.hasOwnProperty(control)) {
+                form.controls[control].markAsTouched();
+                form.controls[control].markAsDirty();
+            }
+        }
+        if (!form.valid) {
+            _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_1__["UiElement"].focus(this.element.nativeElement.querySelector('form .ng-invalid'));
+            return false;
+        }
+        this.response = this.binomialService.calculate(values.totalProb, values.totalSucess, values.probSucess, values.probFracasso, values.pelomenos, values.maximo);
+        console.log(this.binomialService.calculate(values.totalProb, values.totalSucess, values.probSucess, values.probFracasso, values.pelomenos, values.maximo));
+    };
+    DistribuicaoBinomialComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-distribuicao-binomial',
+            template: __webpack_require__(/*! ./distribuicao-binomial.component.html */ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.html"),
+            styles: [__webpack_require__(/*! ./distribuicao-binomial.component.scss */ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"],
+            _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_1__["UiToolbarService"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"],
+            _distribuicao_binomial_service__WEBPACK_IMPORTED_MODULE_3__["DistribuicaoBinomialService"]])
+    ], DistribuicaoBinomialComponent);
+    return DistribuicaoBinomialComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/main/distribuicao-binomial/distribuicao-binomial.service.ts":
+/*!*****************************************************************************!*\
+  !*** ./src/app/main/distribuicao-binomial/distribuicao-binomial.service.ts ***!
+  \*****************************************************************************/
+/*! exports provided: DistribuicaoBinomialService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DistribuicaoBinomialService", function() { return DistribuicaoBinomialService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DistribuicaoBinomialService = /** @class */ (function () {
+    function DistribuicaoBinomialService() {
+    }
+    DistribuicaoBinomialService.prototype.calculate = function (n, k, p, q, pelomenos, maximo) {
+        return {
+            probSucess: this.probSucess(p, q),
+            probFracasso: this.probFracasso(p, q),
+            fatorial: this.fatorial(n, k),
+            probabilidadeTotal: this.probabilidadeTotal(n, k, p, q),
+            fatorialp: this.fatorialP(n, pelomenos),
+            pelomenos: this.pelomenos(pelomenos, n, p, q),
+            fatorialm: this.fatorialM(n, maximo),
+            maximo: this.maximo(maximo, n, p, q)
+        };
+    };
+    DistribuicaoBinomialService.prototype.probabilidadeTotal = function (n, k, p, q) {
+        var probabilidade = (this.fatorial(n, k)) * (Math.pow(this.probSucess(p, q), k)) * (Math.pow(this.probFracasso(p, q), n - k));
+        return probabilidade;
+    };
+    DistribuicaoBinomialService.prototype.pelomenos = function (pelomenos, n, p, q) {
+        var probP = 0;
+        while (pelomenos <= n) {
+            probP += (this.fatorialP(n, pelomenos)) * (Math.pow(this.probSucess(p, q), pelomenos)) * (Math.pow(this.probFracasso(p, q), n - pelomenos));
+            pelomenos++;
+        }
+        return probP;
+    };
+    DistribuicaoBinomialService.prototype.maximo = function (maximo, n, p, q) {
+        var probM = 0;
+        while (maximo >= 0) {
+            probM += (this.fatorialP(n, maximo)) * (Math.pow(this.probSucess(p, q), maximo)) * (Math.pow(this.probFracasso(p, q), n - maximo));
+            console.log(maximo);
+            maximo--;
+        }
+        return probM;
+    };
+    // Fatoriais
+    DistribuicaoBinomialService.prototype.fatorialM = function (n, maximo) {
+        var fatN = n;
+        var fatK = maximo;
+        var fatNK = (n - maximo);
+        var fatorialNK = (n - maximo);
+        if (n < 0 || maximo < 0 || fatNK < 0) {
+            return -1;
+        }
+        else if (n == 0 || maximo == 0 || fatNK == 0) {
+            return 1;
+        }
+        while (n-- > 2) {
+            fatN *= n;
+        }
+        while (maximo-- > 2) {
+            fatK *= maximo;
+        }
+        while (fatNK-- > 2) {
+            fatorialNK *= fatNK;
+        }
+        return (fatN / (fatK * fatorialNK));
+    };
+    DistribuicaoBinomialService.prototype.fatorialP = function (n, pelomenos) {
+        var fatN = n;
+        var fatK = pelomenos;
+        var fatNK = (n - pelomenos);
+        var fatorialNK = (n - pelomenos);
+        if (n < 0 || pelomenos < 0 || fatNK < 0) {
+            return -1;
+        }
+        else if (n == 0 || pelomenos == 0 || fatNK == 0) {
+            return 1;
+        }
+        while (n-- > 2) {
+            fatN *= n;
+        }
+        while (pelomenos-- > 2) {
+            fatK *= pelomenos;
+        }
+        while (fatNK-- > 2) {
+            fatorialNK *= fatNK;
+        }
+        return (fatN / (fatK * fatorialNK));
+    };
+    DistribuicaoBinomialService.prototype.fatorial = function (n, k) {
+        var fatN = n;
+        var fatK = k;
+        var fatNK = (n - k);
+        var fatorialNK = (n - k);
+        if (n < 0 || k < 0 || fatNK < 0) {
+            return -1;
+        }
+        else if (n == 0 || k == 0 || fatNK == 0) {
+            return 1;
+        }
+        while (n-- > 2) {
+            fatN *= n;
+        }
+        while (k-- > 2) {
+            fatK *= k;
+        }
+        while (fatNK-- > 2) {
+            fatorialNK *= fatNK;
+        }
+        return (fatN / (fatK * fatorialNK));
+    };
+    // prob(n, k, p, q) {
+    // }
+    DistribuicaoBinomialService.prototype.probSucess = function (p, q) {
+        return (p / (p + q));
+    };
+    DistribuicaoBinomialService.prototype.probFracasso = function (p, q) {
+        return (q / (p + q));
+    };
+    DistribuicaoBinomialService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], DistribuicaoBinomialService);
+    return DistribuicaoBinomialService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/main/distribuicao-uniforme/distribuicao-uniforme.component.html":
 /*!*********************************************************************************!*\
   !*** ./src/app/main/distribuicao-uniforme/distribuicao-uniforme.component.html ***!
@@ -2950,12 +3199,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data_insertion_data_insertion_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data-insertion/data-insertion.module */ "./src/app/main/data-insertion/data-insertion.module.ts");
 /* harmony import */ var _distribuicao_uniforme_distribuicao_uniforme_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./distribuicao-uniforme/distribuicao-uniforme.component */ "./src/app/main/distribuicao-uniforme/distribuicao-uniforme.component.ts");
 /* harmony import */ var _correlacao_regressao_correlacao_regressao_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./correlacao-regressao/correlacao-regressao.module */ "./src/app/main/correlacao-regressao/correlacao-regressao.module.ts");
+/* harmony import */ var _distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./distribuicao-binomial/distribuicao-binomial.component */ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2977,7 +3228,7 @@ var MainModule = /** @class */ (function () {
                 _data_insertion_data_insertion_module__WEBPACK_IMPORTED_MODULE_6__["DataInsertionModule"],
                 _correlacao_regressao_correlacao_regressao_module__WEBPACK_IMPORTED_MODULE_8__["CorrelacaoRegressaoModule"]
             ],
-            declarations: [_main_component__WEBPACK_IMPORTED_MODULE_1__["MainComponent"], _distribuicao_uniforme_distribuicao_uniforme_component__WEBPACK_IMPORTED_MODULE_7__["DistribuicaoUniformeComponent"]],
+            declarations: [_main_component__WEBPACK_IMPORTED_MODULE_1__["MainComponent"], _distribuicao_uniforme_distribuicao_uniforme_component__WEBPACK_IMPORTED_MODULE_7__["DistribuicaoUniformeComponent"], _distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_9__["DistribuicaoBinomialComponent"]],
             exports: [_main_component__WEBPACK_IMPORTED_MODULE_1__["MainComponent"]],
             providers: [_statistics_service__WEBPACK_IMPORTED_MODULE_2__["StatisticsService"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["CUSTOM_ELEMENTS_SCHEMA"]]
