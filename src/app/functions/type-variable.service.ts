@@ -7,6 +7,7 @@ import {MediaService} from './media.service';
 import {MedianaService} from './mediana.service';
 import {DataGroupsService} from './data-groups.service';
 import {MedidasParatrizesService} from './medidas-paratrizes.service';
+import {CoeficienteVariacaoService} from './coeficiente-variacao.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class TypeVariableService {
     private mediaService: MediaService,
     private medianaService: MedianaService,
     private dataGroupsService: DataGroupsService,
-    private medidasSeparatrizesService: MedidasParatrizesService) {
+    private medidasSeparatrizesService: MedidasParatrizesService,
+    private coeficienteVariacaoService: CoeficienteVariacaoService) {
   }
 
   /*
@@ -84,8 +86,6 @@ export class TypeVariableService {
     const content = this.tableService.init(this.response)
       .runAll()
       .finish();
-    console.log(content);
-    console.log('QUALITATIVA');
 
     const response = {
       title: this.response.title,
@@ -96,7 +96,6 @@ export class TypeVariableService {
   }
 
   discreta() {
-    console.log('DISCRETA');
     const content = this.tableService.init(this.response)
       .runAll()
       .finish();
@@ -105,6 +104,7 @@ export class TypeVariableService {
     const moda = this.modaService.comum(content);
     const media = this.mediaService.ponderada(content);
     const mediana = this.medianaService.comum(content);
+    const coeficienteVariacao = this.coeficienteVariacaoService.calculate(DPR, media);
     let medidaSeparatriz = null;
     if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
       medidaSeparatriz = this.medidasSeparatrizesService.comum(
@@ -120,7 +120,8 @@ export class TypeVariableService {
       moda: moda,
       media: media,
       mediana: mediana,
-      medidaSeparatriz: medidaSeparatriz
+      medidaSeparatriz: medidaSeparatriz,
+      coeficienteVariacao: coeficienteVariacao
     };
     this.response = response;
     return this;
@@ -140,6 +141,7 @@ export class TypeVariableService {
     const mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
     const pearson = this.modaService.pearson(mediana, media);
     let medidaSeparatriz = null;
+    const coeficienteVariacao = this.coeficienteVariacaoService.calculate(DPR, media);
     if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
       medidaSeparatriz = this.medidasSeparatrizesService.continua(
         groups,
@@ -158,13 +160,13 @@ export class TypeVariableService {
         {title: 'comum', value: moda},
         {title: 'pearson', value: pearson},
       ],
+      coeficienteVariacao: coeficienteVariacao
     };
     this.response = response;
     return this;
   }
 
   setInService() {
-    console.log(this.response);
     this.statisticsService.set(this.response);
   }
 
