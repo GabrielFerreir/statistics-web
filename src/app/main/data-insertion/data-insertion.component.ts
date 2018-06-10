@@ -31,7 +31,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               public _location: Location,
               private MOCK: MockService,
               private typeVariable: TypeVariableService) {
-    this.info = this.MOCK.EXEMPLO_8_1;
+    this.info = this.MOCK.vContinua2;
     this.dragDrop = {};
 
     this.selectMedidaSeparatriz = [

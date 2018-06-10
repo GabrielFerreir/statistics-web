@@ -140,6 +140,7 @@ export class TypeVariableService {
     const moda = this.modaService.continua(groups);
     const mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
     const pearson = this.modaService.pearson(mediana, media);
+    const king = this.modaService.king(groups);
     let medidaSeparatriz = null;
     const coeficienteVariacao = this.coeficienteVariacaoService.calculate(DPR, media);
     if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
@@ -159,6 +160,7 @@ export class TypeVariableService {
       moda: [
         {title: 'comum', value: moda},
         {title: 'pearson', value: pearson},
+        {title: 'king', value: king},
       ],
       coeficienteVariacao: coeficienteVariacao
     };

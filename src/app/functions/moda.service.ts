@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {UtilsService} from './utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModaService {
 
-  constructor() { }
+  constructor(private utilsService: UtilsService) {
+  }
 
   comum(content) {
     let maior = 1;
@@ -54,5 +56,21 @@ export class ModaService {
 
   pearson(mediana, media) {
     return (3 * mediana) - (2 * media);
+  }
+
+  king(groups) {
+    let classeModal = null;
+    let maxValue = 0;
+    groups.forEach(item => {
+      if (item.qtd > maxValue) {
+        maxValue = item.qtd;
+        classeModal = item;
+      }
+    });
+    const limiteInferior = classeModal.class.min;
+    const amplitude = classeModal.class.max - classeModal.class.min;
+    const fPost = this.utilsService.findClassForId(groups, classeModal.class.id + 1) ? this.utilsService.findClassForId(groups, classeModal.class.id + 1)['qtd'] : 0;
+    const fAnt = this.utilsService.findClassForId(groups, classeModal.class.id - 1) ? this.utilsService.findClassForId(groups, classeModal.class.id - 1)['qtd'] : 0;
+    return limiteInferior + (amplitude * (fPost / (fAnt + fPost)));
   }
 }
