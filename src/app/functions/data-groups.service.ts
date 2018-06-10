@@ -121,7 +121,7 @@ export class DataGroupsService {
         soma.facP = 1;
         soma.percent += obje.percent || 0;
         soma.qtd += obje.qtd || 0;
-        soma.group = `De ${group.min} á ${group.max}`;
+        soma.group = `${group.min} |-- ${group.max}`;
         soma.class = {
           min: group.min,
           max: group.max,
