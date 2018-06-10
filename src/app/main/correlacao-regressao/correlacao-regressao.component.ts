@@ -54,6 +54,11 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
     this.list.push(inset);
   }
 
+  removeInfo(index) {
+    console.log(index);
+    this.list.splice(index, 1);
+  }
+
   onSubmit(values) {
     this.correlacaoService.calculate(values);
     this.router.navigate(['/correlacao-regressao/response']);

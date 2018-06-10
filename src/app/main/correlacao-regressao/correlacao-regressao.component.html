@@ -40,10 +40,14 @@
       <tr>
         <th>Xs</th>
         <th>Ys</th>
+        <th></th>
       </tr>
-      <tr *ngFor="let item of list">
+      <tr *ngFor="let item of list; let index = index">
         <td data-title="Xs" >{{item.x}}</td>
         <td data-title="Ys"> {{item.y}} </td>
+        <td data-title="Excluir" class="align-right">
+          <button class="ui-button flat icon error" (click)="removeInfo(index)"><i class="material-icons">clear</i></button>
+        </td>
       </tr>
       <tr *ngIf="list && !list.length">
         <td colspan="2" style="text-align: center;">Não existem informações</td>
