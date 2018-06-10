@@ -19,6 +19,7 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
   info: any;
   selectSufixo: any[];
   selectMedidaSeparatriz: any[];
+  selectTipoVariavel: any[];
   dragDrop: any;
 
 
@@ -45,6 +46,13 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
       {id: 2, nome: 'Metro'},
       {id: 3, nome: 'Kg'},
       {id: 4, nome: 'Centimetros'}
+    ];
+
+    this.selectTipoVariavel = [
+      {id: 1, nome: 'Automatico'},
+      {id: 2, nome: 'Qualitativa'},
+      {id: 3, nome: 'Discreta'},
+      {id: 4, nome: 'Continua'}
     ];
 
   }

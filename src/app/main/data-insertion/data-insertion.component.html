@@ -68,7 +68,13 @@
                 Sufixo
               </label>
             </ui-input-container>
-
+          <ui-input-container>
+            <ui-select id="tipoDeVariavel" #tipoDeVariavel="ngModel" name="tipoDeVarivel" [(ngModel)]="info.tipoDeVariavel" [options]="selectTipoVariavel" value="id" label="nome"
+                       uiInput></ui-select>
+            <label for="tipoDeVariavel">
+              Tipo de variavel
+            </label>
+          </ui-input-container>
         </div>
         <ui-chips>
           <ui-input-container>

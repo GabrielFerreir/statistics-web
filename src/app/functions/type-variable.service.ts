@@ -171,9 +171,25 @@ export class TypeVariableService {
   run(info) {
     this.response = JSON.parse(JSON.stringify(info));
     console.log(this.response);
-    this.identify(this.response.content)
-      .callFunction()
-      .setInService();
+
+    if (this.response.tipoDeVariavel === 2) {
+      this.type = 0;
+      this.callFunction()
+        .setInService();
+    } else if (this.response.tipoDeVariavel === 3) {
+      this.type = 1;
+      this.callFunction()
+        .setInService();
+    } else if (this.response.tipoDeVariavel === 4) {
+      console.log('CAIU AQUI');
+      this.type = 2;
+      this.callFunction()
+        .setInService();
+    } else {
+      this.identify(this.response.content)
+        .callFunction()
+        .setInService();
+    }
   }
 
 }
