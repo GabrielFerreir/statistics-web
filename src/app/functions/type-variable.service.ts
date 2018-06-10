@@ -141,6 +141,7 @@ export class TypeVariableService {
     const mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
     const pearson = this.modaService.pearson(mediana, media);
     const king = this.modaService.king(groups);
+    const czuber = this.modaService.czuber(groups);
     let medidaSeparatriz = null;
     const coeficienteVariacao = this.coeficienteVariacaoService.calculate(DPR, media);
     if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
@@ -161,6 +162,7 @@ export class TypeVariableService {
         {title: 'comum', value: moda},
         {title: 'pearson', value: pearson},
         {title: 'king', value: king},
+        {title: 'czuber', value: czuber},
       ],
       coeficienteVariacao: coeficienteVariacao
     };

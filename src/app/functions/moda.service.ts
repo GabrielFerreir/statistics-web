@@ -59,6 +59,25 @@ export class ModaService {
   }
 
   king(groups) {
+    const classeModal = this.getClassModal(groups);
+    const limiteInferior = classeModal.class.min;
+    const amplitude = classeModal.class.max - classeModal.class.min;
+    const fPost = this.utilsService.findClassForId(groups, classeModal.class.id + 1) ? this.utilsService.findClassForId(groups, classeModal.class.id + 1)['qtd'] : 0;
+    const fAnt = this.utilsService.findClassForId(groups, classeModal.class.id - 1) ? this.utilsService.findClassForId(groups, classeModal.class.id - 1)['qtd'] : 0;
+    return limiteInferior + (amplitude * (fPost / (fAnt + fPost)));
+  }
+
+  czuber(groups) {
+    const classeModal = this.getClassModal(groups);
+    const limiteInferior = classeModal.class.min;
+    const amplitude = classeModal.class.max - classeModal.class.min;
+    const fModal = classeModal.qtd;
+    const fAnt = this.utilsService.findClassForId(groups, classeModal.class.id - 1) ? this.utilsService.findClassForId(groups, classeModal.class.id - 1)['qtd'] : 0;
+    const fPost = this.utilsService.findClassForId(groups, classeModal.class.id + 1) ? this.utilsService.findClassForId(groups, classeModal.class.id + 1)['qtd'] : 0;
+    return limiteInferior + (amplitude * ((fModal - fAnt) / ((2 * fModal) - (fAnt + fPost))));
+  }
+
+  getClassModal(groups) {
     let classeModal = null;
     let maxValue = 0;
     groups.forEach(item => {
@@ -67,10 +86,6 @@ export class ModaService {
         classeModal = item;
       }
     });
-    const limiteInferior = classeModal.class.min;
-    const amplitude = classeModal.class.max - classeModal.class.min;
-    const fPost = this.utilsService.findClassForId(groups, classeModal.class.id + 1) ? this.utilsService.findClassForId(groups, classeModal.class.id + 1)['qtd'] : 0;
-    const fAnt = this.utilsService.findClassForId(groups, classeModal.class.id - 1) ? this.utilsService.findClassForId(groups, classeModal.class.id - 1)['qtd'] : 0;
-    return limiteInferior + (amplitude * (fPost / (fAnt + fPost)));
+    return classeModal;
   }
 }
