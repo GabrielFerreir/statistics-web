@@ -7,6 +7,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { DataInsertionModule } from './data-insertion/data-insertion.module';
 import { DistribuicaoUniformeComponent } from './distribuicao-uniforme/distribuicao-uniforme.component';
 import {CorrelacaoRegressaoModule} from './correlacao-regressao/correlacao-regressao.module';
+import {DistribuicaoBinomialComponent} from './distribuicao-binomial/distribuicao-binomial.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import {CorrelacaoRegressaoModule} from './correlacao-regressao/correlacao-regre
     DataInsertionModule,
     CorrelacaoRegressaoModule
   ],
-  declarations: [MainComponent, DistribuicaoUniformeComponent],
+  declarations: [MainComponent, DistribuicaoUniformeComponent, DistribuicaoBinomialComponent],
   exports: [ MainComponent ],
   providers: [ StatisticsService ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

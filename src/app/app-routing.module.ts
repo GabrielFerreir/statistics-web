@@ -6,6 +6,7 @@ import { DataInsertionComponent } from './main/data-insertion/data-insertion.com
 import {CorrelacaoRegressaoComponent} from './main/correlacao-regressao/correlacao-regressao.component';
 import {DistribuicaoUniformeComponent} from './main/distribuicao-uniforme/distribuicao-uniforme.component';
 import {ResponseComponent} from './main/correlacao-regressao/response/response.component';
+import {DistribuicaoBinomialComponent} from './main/distribuicao-binomial/distribuicao-binomial.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
         ]
       },
       {path: 'distribuicao-uniforme', component: DistribuicaoUniformeComponent},
+      {path: 'distribuicao-binomial', component: DistribuicaoBinomialComponent},
     ]
   }];
 
