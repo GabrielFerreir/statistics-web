@@ -764,6 +764,46 @@ var TableComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/functions/coeficiente-variacao.service.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/functions/coeficiente-variacao.service.ts ***!
+  \***********************************************************/
+/*! exports provided: CoeficienteVariacaoService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoeficienteVariacaoService", function() { return CoeficienteVariacaoService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CoeficienteVariacaoService = /** @class */ (function () {
+    function CoeficienteVariacaoService() {
+    }
+    CoeficienteVariacaoService.prototype.calculate = function (DV, media) {
+        return DV / media;
+    };
+    CoeficienteVariacaoService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], CoeficienteVariacaoService);
+    return CoeficienteVariacaoService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/functions/data-groups.service.ts":
 /*!**************************************************!*\
   !*** ./src/app/functions/data-groups.service.ts ***!
@@ -882,7 +922,7 @@ var DataGroupsService = /** @class */ (function () {
                 soma.facP = 1;
                 soma.percent += obje.percent || 0;
                 soma.qtd += obje.qtd || 0;
-                soma.group = "De " + group.min + " \u00E1 " + group.max;
+                soma.group = group.min + " |-- " + group.max;
                 soma.class = {
                     min: group.min,
                     max: group.max,
@@ -1208,6 +1248,7 @@ var MedidasParatrizesService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModaService", function() { return ModaService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _utils_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.service */ "./src/app/functions/utils.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1218,8 +1259,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ModaService = /** @class */ (function () {
-    function ModaService() {
+    function ModaService(utilsService) {
+        this.utilsService = utilsService;
     }
     ModaService.prototype.comum = function (content) {
         var maior = 1;
@@ -1262,11 +1305,39 @@ var ModaService = /** @class */ (function () {
     ModaService.prototype.pearson = function (mediana, media) {
         return (3 * mediana) - (2 * media);
     };
+    ModaService.prototype.king = function (groups) {
+        var classeModal = this.getClassModal(groups);
+        var limiteInferior = classeModal.class.min;
+        var amplitude = classeModal.class.max - classeModal.class.min;
+        var fPost = this.utilsService.findClassForId(groups, classeModal.class.id + 1) ? this.utilsService.findClassForId(groups, classeModal.class.id + 1)['qtd'] : 0;
+        var fAnt = this.utilsService.findClassForId(groups, classeModal.class.id - 1) ? this.utilsService.findClassForId(groups, classeModal.class.id - 1)['qtd'] : 0;
+        return limiteInferior + (amplitude * (fPost / (fAnt + fPost)));
+    };
+    ModaService.prototype.czuber = function (groups) {
+        var classeModal = this.getClassModal(groups);
+        var limiteInferior = classeModal.class.min;
+        var amplitude = classeModal.class.max - classeModal.class.min;
+        var fModal = classeModal.qtd;
+        var fAnt = this.utilsService.findClassForId(groups, classeModal.class.id - 1) ? this.utilsService.findClassForId(groups, classeModal.class.id - 1)['qtd'] : 0;
+        var fPost = this.utilsService.findClassForId(groups, classeModal.class.id + 1) ? this.utilsService.findClassForId(groups, classeModal.class.id + 1)['qtd'] : 0;
+        return limiteInferior + (amplitude * ((fModal - fAnt) / ((2 * fModal) - (fAnt + fPost))));
+    };
+    ModaService.prototype.getClassModal = function (groups) {
+        var classeModal = null;
+        var maxValue = 0;
+        groups.forEach(function (item) {
+            if (item.qtd > maxValue) {
+                maxValue = item.qtd;
+                classeModal = item;
+            }
+        });
+        return classeModal;
+    };
     ModaService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_utils_service__WEBPACK_IMPORTED_MODULE_1__["UtilsService"]])
     ], ModaService);
     return ModaService;
 }());
@@ -1372,6 +1443,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mediana_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mediana.service */ "./src/app/functions/mediana.service.ts");
 /* harmony import */ var _data_groups_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./data-groups.service */ "./src/app/functions/data-groups.service.ts");
 /* harmony import */ var _medidas_paratrizes_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./medidas-paratrizes.service */ "./src/app/functions/medidas-paratrizes.service.ts");
+/* harmony import */ var _coeficiente_variacao_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./coeficiente-variacao.service */ "./src/app/functions/coeficiente-variacao.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1390,8 +1462,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var TypeVariableService = /** @class */ (function () {
-    function TypeVariableService(statisticsService, tableService, desvioPadraoService, modaService, mediaService, medianaService, dataGroupsService, medidasSeparatrizesService) {
+    function TypeVariableService(statisticsService, tableService, desvioPadraoService, modaService, mediaService, medianaService, dataGroupsService, medidasSeparatrizesService, coeficienteVariacaoService) {
         this.statisticsService = statisticsService;
         this.tableService = tableService;
         this.desvioPadraoService = desvioPadraoService;
@@ -1400,6 +1473,7 @@ var TypeVariableService = /** @class */ (function () {
         this.medianaService = medianaService;
         this.dataGroupsService = dataGroupsService;
         this.medidasSeparatrizesService = medidasSeparatrizesService;
+        this.coeficienteVariacaoService = coeficienteVariacaoService;
         this.MAX_VALUE_FOR_DISCRETA = 10;
     }
     /*
@@ -1455,8 +1529,6 @@ var TypeVariableService = /** @class */ (function () {
         var content = this.tableService.init(this.response)
             .runAll()
             .finish();
-        console.log(content);
-        console.log('QUALITATIVA');
         var response = {
             title: this.response.title,
             content: content
@@ -1465,7 +1537,6 @@ var TypeVariableService = /** @class */ (function () {
         return this;
     };
     TypeVariableService.prototype.discreta = function () {
-        console.log('DISCRETA');
         var content = this.tableService.init(this.response)
             .runAll()
             .finish();
@@ -1473,6 +1544,7 @@ var TypeVariableService = /** @class */ (function () {
         var moda = this.modaService.comum(content);
         var media = this.mediaService.ponderada(content);
         var mediana = this.medianaService.comum(content);
+        var coeficienteVariacao = this.coeficienteVariacaoService.calculate(DPR, media);
         var medidaSeparatriz = null;
         if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
             medidaSeparatriz = this.medidasSeparatrizesService.comum(content, this.response.medidaSeparatriz, this.response.valueMedidaSeparatriz);
@@ -1484,7 +1556,8 @@ var TypeVariableService = /** @class */ (function () {
             moda: moda,
             media: media,
             mediana: mediana,
-            medidaSeparatriz: medidaSeparatriz
+            medidaSeparatriz: medidaSeparatriz,
+            coeficienteVariacao: coeficienteVariacao
         };
         this.response = response;
         return this;
@@ -1500,7 +1573,10 @@ var TypeVariableService = /** @class */ (function () {
         var moda = this.modaService.continua(groups);
         var mediana = this.medianaService.continua(groups, this.dataGroupsService.intervalClass);
         var pearson = this.modaService.pearson(mediana, media);
+        var king = this.modaService.king(groups);
+        var czuber = this.modaService.czuber(groups);
         var medidaSeparatriz = null;
+        var coeficienteVariacao = this.coeficienteVariacaoService.calculate(DPR, media);
         if (this.response.medidaSeparatriz && this.response.valueMedidaSeparatriz) {
             medidaSeparatriz = this.medidasSeparatrizesService.continua(groups, this.response.medidaSeparatriz, this.response.valueMedidaSeparatriz);
         }
@@ -1514,13 +1590,15 @@ var TypeVariableService = /** @class */ (function () {
             moda: [
                 { title: 'comum', value: moda },
                 { title: 'pearson', value: pearson },
+                { title: 'king', value: king },
+                { title: 'czuber', value: czuber },
             ],
+            coeficienteVariacao: coeficienteVariacao
         };
         this.response = response;
         return this;
     };
     TypeVariableService.prototype.setInService = function () {
-        console.log(this.response);
         this.statisticsService.set(this.response);
     };
     TypeVariableService.prototype.run = function (info) {
@@ -1558,7 +1636,8 @@ var TypeVariableService = /** @class */ (function () {
             _media_service__WEBPACK_IMPORTED_MODULE_5__["MediaService"],
             _mediana_service__WEBPACK_IMPORTED_MODULE_6__["MedianaService"],
             _data_groups_service__WEBPACK_IMPORTED_MODULE_7__["DataGroupsService"],
-            _medidas_paratrizes_service__WEBPACK_IMPORTED_MODULE_8__["MedidasParatrizesService"]])
+            _medidas_paratrizes_service__WEBPACK_IMPORTED_MODULE_8__["MedidasParatrizesService"],
+            _coeficiente_variacao_service__WEBPACK_IMPORTED_MODULE_9__["CoeficienteVariacaoService"]])
     ], TypeVariableService);
     return TypeVariableService;
 }());
@@ -2240,7 +2319,7 @@ var DataInsertionComponent = /** @class */ (function () {
         this._location = _location;
         this.MOCK = MOCK;
         this.typeVariable = typeVariable;
-        this.info = this.MOCK.EXEMPLO_8_1;
+        this.info = this.MOCK.vContinua2;
         this.dragDrop = {};
         this.selectMedidaSeparatriz = [
             { id: 4, nome: 'Quartil' },
