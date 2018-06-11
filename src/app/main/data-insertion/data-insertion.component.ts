@@ -104,9 +104,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   onSubmit(form, info) {
-    console.log(info);
-    // console.log(form);
-    // this.saving = true;
     for (const control in form.controls) {
       if (form.controls.hasOwnProperty(control)) {
         form.controls[control].markAsTouched();
@@ -117,7 +114,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
-    // this.statisticsService.identifyTypeVariable(this.info);
 
     this.typeVariable.run(this.info);
 

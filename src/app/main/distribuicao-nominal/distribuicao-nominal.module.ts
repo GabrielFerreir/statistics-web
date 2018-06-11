@@ -1,11 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DistribuicaoNominalComponent } from './distribuicao-nominal.component';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {DistribuicaoNominalComponent} from './distribuicao-nominal.component';
+import {DistribuicaoNominalService} from './distribuicao-nominal.service';
+import {SharedModule} from '../../shared.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    SharedModule
   ],
-  declarations: [DistribuicaoNominalComponent]
+  declarations: [DistribuicaoNominalComponent],
+  providers: [DistribuicaoNominalService],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class DistribuicaoNominalModule { }
+export class DistribuicaoNominalModule {
+}

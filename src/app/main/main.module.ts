@@ -8,6 +8,7 @@ import { DataInsertionModule } from './data-insertion/data-insertion.module';
 import { DistribuicaoUniformeComponent } from './distribuicao-uniforme/distribuicao-uniforme.component';
 import {CorrelacaoRegressaoModule} from './correlacao-regressao/correlacao-regressao.module';
 import {DistribuicaoBinomialComponent} from './distribuicao-binomial/distribuicao-binomial.component';
+import {DistribuicaoNominalModule} from './distribuicao-nominal/distribuicao-nominal.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {DistribuicaoBinomialComponent} from './distribuicao-binomial/distribuica
     ComponentsModule,
     DashboardModule,
     DataInsertionModule,
-    CorrelacaoRegressaoModule
+    CorrelacaoRegressaoModule,
+    DistribuicaoNominalModule
   ],
   declarations: [MainComponent, DistribuicaoUniformeComponent, DistribuicaoBinomialComponent],
   exports: [ MainComponent ],
