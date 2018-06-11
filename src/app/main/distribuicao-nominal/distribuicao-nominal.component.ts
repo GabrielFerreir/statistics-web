@@ -17,12 +17,7 @@ export class DistribuicaoNominalComponent implements OnInit {
 
   constructor(private distribuicaoNominalService: DistribuicaoNominalService,
               private element: ElementRef) {
-    this.info = {
-      media: 8,
-      dv: 2,
-      type: 1,
-      menor: 5
-    };
+    this.info = {};
   }
 
   ngOnInit() {
