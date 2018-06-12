@@ -62,7 +62,8 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit() {
-    this.toolbarService.activateExtendedToolbar(480);
+    this.toolbarService.activateExtendedToolbar(840);
+    this.toolbarService.set('Estatistica discreta');
     this.addListenerMulti(document, 'mousemove touchmove', this.chipMove);
     this.addListenerMulti(document, 'mouseup touchend', this.chipUp);
     this.initDragDrop();

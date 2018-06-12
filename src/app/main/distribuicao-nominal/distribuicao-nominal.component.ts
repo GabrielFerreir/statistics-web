@@ -1,13 +1,14 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {DistribuicaoNominalService} from './distribuicao-nominal.service';
-import {UiElement} from '../../smn-ui/smn-ui.module';
+import {UiElement, UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-distribuicao-nominal',
   templateUrl: './distribuicao-nominal.component.html',
   styleUrls: ['./distribuicao-nominal.component.scss']
 })
-export class DistribuicaoNominalComponent implements OnInit {
+export class DistribuicaoNominalComponent implements AfterViewInit, OnDestroy {
   info: any;
   selectTypes = [
     {id: 1, nome: 'Menor que'},
@@ -16,11 +17,19 @@ export class DistribuicaoNominalComponent implements OnInit {
   ];
 
   constructor(private distribuicaoNominalService: DistribuicaoNominalService,
-              private element: ElementRef) {
+              private element: ElementRef,
+              private toolbarService: UiToolbarService,
+              public _location: Location) {
     this.info = {};
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.toolbarService.activateExtendedToolbar(840);
+    this.toolbarService.set('Distribuição nominal');
+  }
+
+  ngOnDestroy() {
+    this.toolbarService.deactivateExtendedToolbar();
   }
 
   onSubmit(form) {

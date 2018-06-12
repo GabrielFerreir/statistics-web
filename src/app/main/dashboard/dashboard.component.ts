@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
               public graphicService: GraphicService,
               public router: Router) {
     this.dados = this.statistics.getDados();
-    console.log(this.dados);
   }
 
   ngOnInit() {
@@ -37,7 +36,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.toolbarService.activateExtendedToolbar(480);
+    this.toolbarService.activateExtendedToolbar(1280);
+    this.toolbarService.set('Dashboard');
   }
 
   ngOnDestroy() {

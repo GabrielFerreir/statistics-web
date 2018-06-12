@@ -42,7 +42,9 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
   }
 
   ngAfterViewInit() {
-    this.toolbarService.activateExtendedToolbar(480);
+    this.toolbarService.activateExtendedToolbar(840);
+    this.toolbarService.set('Correlação e Regressão');
+
   }
 
   ngOnDestroy() {

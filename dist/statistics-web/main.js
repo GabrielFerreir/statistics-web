@@ -1788,7 +1788,8 @@ var CorrelacaoRegressaoComponent = /** @class */ (function () {
     CorrelacaoRegressaoComponent.prototype.ngOnInit = function () {
     };
     CorrelacaoRegressaoComponent.prototype.ngAfterViewInit = function () {
-        this.toolbarService.activateExtendedToolbar(480);
+        this.toolbarService.activateExtendedToolbar(840);
+        this.toolbarService.set('Correlação e Regressão');
     };
     CorrelacaoRegressaoComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
@@ -2145,7 +2146,6 @@ var DashboardComponent = /** @class */ (function () {
         this.router = router;
         this.numModa = 0;
         this.dados = this.statistics.getDados();
-        console.log(this.dados);
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2162,7 +2162,8 @@ var DashboardComponent = /** @class */ (function () {
         }
     };
     DashboardComponent.prototype.ngAfterViewInit = function () {
-        this.toolbarService.activateExtendedToolbar(480);
+        this.toolbarService.activateExtendedToolbar(1280);
+        this.toolbarService.set('Dashboard');
     };
     DashboardComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
@@ -2336,7 +2337,8 @@ var DataInsertionComponent = /** @class */ (function () {
     DataInsertionComponent.prototype.ngOnInit = function () {
     };
     DataInsertionComponent.prototype.ngAfterViewInit = function () {
-        this.toolbarService.activateExtendedToolbar(480);
+        this.toolbarService.activateExtendedToolbar(840);
+        this.toolbarService.set('Estatistica discreta');
         this.addListenerMulti(document, 'mousemove touchmove', this.chipMove);
         this.addListenerMulti(document, 'mouseup touchend', this.chipUp);
         this.initDragDrop();
@@ -2859,7 +2861,8 @@ var DistribuicaoBinomialComponent = /** @class */ (function () {
     DistribuicaoBinomialComponent.prototype.ngOnInit = function () {
     };
     DistribuicaoBinomialComponent.prototype.ngAfterViewInit = function () {
-        this.toolbarService.activateExtendedToolbar(480);
+        this.toolbarService.activateExtendedToolbar(840);
+        this.toolbarService.set('Distribuição Binomial');
     };
     DistribuicaoBinomialComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
@@ -3074,6 +3077,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _distribuicao_nominal_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./distribuicao-nominal.service */ "./src/app/main/distribuicao-nominal/distribuicao-nominal.service.ts");
 /* harmony import */ var _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../smn-ui/smn-ui.module */ "./src/app/smn-ui/smn-ui.module.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3086,10 +3090,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DistribuicaoNominalComponent = /** @class */ (function () {
-    function DistribuicaoNominalComponent(distribuicaoNominalService, element) {
+    function DistribuicaoNominalComponent(distribuicaoNominalService, element, toolbarService, _location) {
         this.distribuicaoNominalService = distribuicaoNominalService;
         this.element = element;
+        this.toolbarService = toolbarService;
+        this._location = _location;
         this.selectTypes = [
             { id: 1, nome: 'Menor que' },
             { id: 2, nome: 'Maior que' },
@@ -3097,7 +3104,12 @@ var DistribuicaoNominalComponent = /** @class */ (function () {
         ];
         this.info = {};
     }
-    DistribuicaoNominalComponent.prototype.ngOnInit = function () {
+    DistribuicaoNominalComponent.prototype.ngAfterViewInit = function () {
+        this.toolbarService.activateExtendedToolbar(840);
+        this.toolbarService.set('Distribuição nominal');
+    };
+    DistribuicaoNominalComponent.prototype.ngOnDestroy = function () {
+        this.toolbarService.deactivateExtendedToolbar();
     };
     DistribuicaoNominalComponent.prototype.onSubmit = function (form) {
         for (var control in form.controls) {
@@ -3127,7 +3139,9 @@ var DistribuicaoNominalComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./distribuicao-nominal.component.scss */ "./src/app/main/distribuicao-nominal/distribuicao-nominal.component.scss")]
         }),
         __metadata("design:paramtypes", [_distribuicao_nominal_service__WEBPACK_IMPORTED_MODULE_1__["DistribuicaoNominalService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]])
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"],
+            _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_2__["UiToolbarService"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]])
     ], DistribuicaoNominalComponent);
     return DistribuicaoNominalComponent;
 }());
@@ -3420,7 +3434,8 @@ var DistribuicaoUniformeComponent = /** @class */ (function () {
     DistribuicaoUniformeComponent.prototype.ngOnInit = function () {
     };
     DistribuicaoUniformeComponent.prototype.ngAfterViewInit = function () {
-        this.toolbarService.activateExtendedToolbar(480);
+        this.toolbarService.activateExtendedToolbar(840);
+        this.toolbarService.set('Distribuição uniforme');
     };
     DistribuicaoUniformeComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
@@ -3546,6 +3561,7 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _smn_ui_toolbar_toolbar_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../smn-ui/toolbar/toolbar.service */ "./src/app/smn-ui/toolbar/toolbar.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3556,10 +3572,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(toolbarService) {
+        this.toolbarService = toolbarService;
     }
-    HomeComponent.prototype.ngOnInit = function () {
+    HomeComponent.prototype.ngAfterViewInit = function () {
+        this.toolbarService.activateExtendedToolbar(840);
+        this.toolbarService.set('Home');
+    };
+    HomeComponent.prototype.ngOnDestroy = function () {
+        this.toolbarService.deactivateExtendedToolbar();
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3567,7 +3590,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/main/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/main/home/home.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_smn_ui_toolbar_toolbar_service__WEBPACK_IMPORTED_MODULE_1__["UiToolbarService"]])
     ], HomeComponent);
     return HomeComponent;
 }());

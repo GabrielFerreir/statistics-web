@@ -24,7 +24,8 @@ export class DistribuicaoUniformeComponent implements OnInit, AfterViewInit, OnD
   }
 
   ngAfterViewInit() {
-    this.toolbarService.activateExtendedToolbar(480);
+    this.toolbarService.activateExtendedToolbar(840);
+    this.toolbarService.set('Distribuição uniforme');
   }
 
   ngOnDestroy() {
