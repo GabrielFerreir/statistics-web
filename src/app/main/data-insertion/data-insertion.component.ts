@@ -88,7 +88,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
           qtd: 1
         };
         this.info.content.push(obj);
-        console.log(this.info.content);
       }
       this.info.currentDado = null;
     }
@@ -154,10 +153,8 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
       this.dragDrop.offsetY = (event['offsetY'] || event['targetTouches'][0].pageY - elTarget.getBoundingClientRect().top);
       el[1].classList.add('selected');
       this.buildShadow();
-      // console.log();
       this.dragDrop.value = JSON.parse(JSON.stringify(this.info.content[el[1].getAttribute('data-value')]));
       this.dragDrop.forDelete = el[1].getAttribute('data-value');
-      console.log(this.dragDrop);
     }
   }
 

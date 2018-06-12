@@ -129,7 +129,6 @@ export class TypeVariableService {
   }
 
   continua() {
-    console.log('CONTINUA');
     const content = this.tableService.init(this.response)
       .runAll()
       .finish();
@@ -176,7 +175,6 @@ export class TypeVariableService {
 
   run(info) {
     this.response = JSON.parse(JSON.stringify(info));
-    console.log(this.response);
 
     if (this.response.tipoDeVariavel === 2) {
       this.type = 0;

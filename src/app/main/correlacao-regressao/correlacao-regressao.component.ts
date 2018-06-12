@@ -55,7 +55,6 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
   }
 
   removeInfo(index) {
-    console.log(index);
     this.list.splice(index, 1);
   }
 

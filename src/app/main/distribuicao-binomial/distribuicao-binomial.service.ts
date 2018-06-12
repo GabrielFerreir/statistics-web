@@ -39,7 +39,6 @@ export class DistribuicaoBinomialService {
     let probM = 0;
     while (maximo >= 0) {
       probM += (this.fatorialP(n, maximo)) * (Math.pow(this.probSucess(p, q), maximo)) * (Math.pow(this.probFracasso(p, q), n - maximo));
-      console.log(maximo);
       maximo--;
 
     }

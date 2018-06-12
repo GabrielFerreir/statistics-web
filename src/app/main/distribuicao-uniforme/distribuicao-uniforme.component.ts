@@ -45,6 +45,5 @@ export class DistribuicaoUniformeComponent implements OnInit, AfterViewInit, OnD
     }
 
     this.response = this.uniformeService.calculate(values.intervaloA, values.intervaloB, values.menor, values.maior);
-    console.log(this.uniformeService.calculate(values.intervaloA, values.intervaloB, values.menor, values.maior));
   }
 }

@@ -1140,7 +1140,6 @@ var MedianaService = /** @class */ (function () {
     MedianaService.prototype.continua = function (groups, interval) {
         var somatorio = groups[groups.length - 1].fac;
         var arrayData = this.utilsService.listingItens(groups);
-        console.log('arrayData', arrayData);
         if (somatorio % 2 === 0) {
             var res_1 = [];
             var pos = [somatorio / 2, somatorio / 2 + 1];
@@ -1212,7 +1211,6 @@ var MedidasParatrizesService = /** @class */ (function () {
     MedidasParatrizesService.prototype.findGroup = function (position, content) {
         for (var i = 0; i < content.length; i++) {
             if (position <= content[i].fac) {
-                console.log('RESPOSTA: ', content[i].group);
                 return content[i];
             }
         }
@@ -1569,7 +1567,6 @@ var TypeVariableService = /** @class */ (function () {
         return this;
     };
     TypeVariableService.prototype.continua = function () {
-        console.log('CONTINUA');
         var content = this.tableService.init(this.response)
             .runAll()
             .finish();
@@ -1609,7 +1606,6 @@ var TypeVariableService = /** @class */ (function () {
     };
     TypeVariableService.prototype.run = function (info) {
         this.response = JSON.parse(JSON.stringify(info));
-        console.log(this.response);
         if (this.response.tipoDeVariavel === 2) {
             this.type = 0;
             this.callFunction()
@@ -1802,7 +1798,6 @@ var CorrelacaoRegressaoComponent = /** @class */ (function () {
         this.list.push(inset);
     };
     CorrelacaoRegressaoComponent.prototype.removeInfo = function (index) {
-        console.log(index);
         this.list.splice(index, 1);
     };
     CorrelacaoRegressaoComponent.prototype.onSubmit = function (values) {
@@ -1907,12 +1902,6 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
         this.calc = {};
     }
     CorrelacaoRegressaoService.prototype.calculate = function (values) {
-        console.log(values);
-        console.log('SomatorioX', this.somatorioX(values));
-        console.log('SomatorioY', this.somatorioY(values));
-        console.log('SomatorioXY', this.somatorioXY(values));
-        console.log('SomatorioX²', this.somatorioX2(values));
-        console.log('SomatorioY²', this.somatorioY2(values));
         var correlacao = this.correlacao(values.length, this.somatorioX(values), this.somatorioY(values), this.somatorioXY(values), this.somatorioX2(values), this.somatorioY2(values));
         var A = this.regressaoA(values.length, this.somatorioXY(values), this.somatorioX(values), this.somatorioY(values), this.somatorioY2(values));
         var B = this.regressaoB(values.length, this.somatorioX(values), this.somatorioY(values), A);
@@ -1920,7 +1909,6 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
         this.calc.nivel = this.nivelCorrelacao(correlacao);
         this.calc.A = A;
         this.calc.B = B;
-        console.log(this.regressao(A, B, 20, null));
     };
     CorrelacaoRegressaoService.prototype.somatorioX = function (values) {
         return values.reduce(function (acm, item) {
@@ -1949,9 +1937,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
     };
     CorrelacaoRegressaoService.prototype.correlacao = function (n, X, Y, XY, X2, Y2) {
         var numerador = (n * XY) - (X * Y);
-        console.log('Numerador', numerador);
         var denominador = Math.sqrt((n * X2 - Math.pow(X, 2)) * (n * Y2 - Math.pow(Y, 2)));
-        console.log('Denominador', denominador);
         return -numerador / denominador;
     };
     CorrelacaoRegressaoService.prototype.nivelCorrelacao = function (percent) {
@@ -2373,7 +2359,6 @@ var DataInsertionComponent = /** @class */ (function () {
                     qtd: 1
                 };
                 this.info.content.push(obj);
-                console.log(this.info.content);
             }
             this.info.currentDado = null;
         }
@@ -2432,10 +2417,8 @@ var DataInsertionComponent = /** @class */ (function () {
             this.dragDrop.offsetY = (event['offsetY'] || event['targetTouches'][0].pageY - elTarget.getBoundingClientRect().top);
             el[1].classList.add('selected');
             this.buildShadow();
-            // console.log();
             this.dragDrop.value = JSON.parse(JSON.stringify(this.info.content[el[1].getAttribute('data-value')]));
             this.dragDrop.forDelete = el[1].getAttribute('data-value');
-            console.log(this.dragDrop);
         }
     };
     DataInsertionComponent.prototype.chipMove = function () {
@@ -2892,7 +2875,6 @@ var DistribuicaoBinomialComponent = /** @class */ (function () {
             return false;
         }
         this.response = this.binomialService.calculate(values.totalProb, values.totalSucess, values.probSucess, values.probFracasso, values.pelomenos, values.maximo);
-        console.log(this.binomialService.calculate(values.totalProb, values.totalSucess, values.probSucess, values.probFracasso, values.pelomenos, values.maximo));
     };
     DistribuicaoBinomialComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2964,7 +2946,6 @@ var DistribuicaoBinomialService = /** @class */ (function () {
         var probM = 0;
         while (maximo >= 0) {
             probM += (this.fatorialP(n, maximo)) * (Math.pow(this.probSucess(p, q), maximo)) * (Math.pow(this.probFracasso(p, q), n - maximo));
-            console.log(maximo);
             maximo--;
         }
         return probM;
@@ -3455,7 +3436,6 @@ var DistribuicaoUniformeComponent = /** @class */ (function () {
             return false;
         }
         this.response = this.uniformeService.calculate(values.intervaloA, values.intervaloB, values.menor, values.maior);
-        console.log(this.uniformeService.calculate(values.intervaloA, values.intervaloB, values.menor, values.maior));
     };
     DistribuicaoUniformeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3517,9 +3497,6 @@ var DistribuicaoUniformeService = /** @class */ (function () {
         return (DP / media);
     };
     DistribuicaoUniformeService.prototype.probalidade = function (a, b, valueInterval) {
-        console.log('A', a);
-        console.log('B', b);
-        console.log('value', valueInterval);
         return -((1 / (a - b)) * valueInterval);
     };
     DistribuicaoUniformeService = __decorate([
@@ -15178,7 +15155,7 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].produc
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
 }
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
-    .catch(function (err) { return console.log(err); });
+    .catch(function (err) { return console.error(err); });
 
 
 /***/ }),

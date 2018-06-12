@@ -19,7 +19,6 @@ export class MedidasParatrizesService {
   findGroup(position, content) {
     for (let i = 0; i < content.length; i++) {
       if (position <= content[i].fac) {
-        console.log('RESPOSTA: ', content[i].group);
         return content[i];
       }
     }

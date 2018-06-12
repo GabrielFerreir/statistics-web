@@ -45,7 +45,6 @@ export class DistribuicaoBinomialComponent implements OnInit, AfterViewInit, OnD
     }
 
      this.response = this.binomialService.calculate(values.totalProb,values.totalSucess, values.probSucess, values.probFracasso,values.pelomenos, values.maximo);
-     console.log(this.binomialService.calculate(values.totalProb,values.totalSucess, values.probSucess, values.probFracasso,values.pelomenos, values.maximo));
   }
-  
+
 }

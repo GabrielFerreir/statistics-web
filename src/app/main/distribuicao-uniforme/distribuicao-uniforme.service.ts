@@ -29,9 +29,6 @@ export class DistribuicaoUniformeService {
   }
 
   probalidade(a, b, valueInterval) {
-    console.log('A', a);
-    console.log('B', b);
-    console.log('value', valueInterval);
     return -((1 / (a - b)) * valueInterval);
   }
 }
