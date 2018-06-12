@@ -43,6 +43,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_correlacao_regressao_response_response_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./main/correlacao-regressao/response/response.component */ "./src/app/main/correlacao-regressao/response/response.component.ts");
 /* harmony import */ var _main_distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./main/distribuicao-binomial/distribuicao-binomial.component */ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.ts");
 /* harmony import */ var _main_distribuicao_nominal_distribuicao_nominal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./main/distribuicao-nominal/distribuicao-nominal.component */ "./src/app/main/distribuicao-nominal/distribuicao-nominal.component.ts");
+/* harmony import */ var _main_home_home_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./main/home/home.component */ "./src/app/main/home/home.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,11 +60,13 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     {
         path: '',
         component: _main_main_component__WEBPACK_IMPORTED_MODULE_2__["MainComponent"],
         children: [
+            { path: '', component: _main_home_home_component__WEBPACK_IMPORTED_MODULE_10__["HomeComponent"] },
             { path: 'dashboard', component: _main_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__["DashboardComponent"] },
             { path: 'insert', component: _main_data_insertion_data_insertion_component__WEBPACK_IMPORTED_MODULE_4__["DataInsertionComponent"] },
             {
@@ -3532,6 +3535,69 @@ var DistribuicaoUniformeService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/main/home/home.component.html":
+/*!***********************************************!*\
+  !*** ./src/app/main/home/home.component.html ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"ui-s840\">\n  <ui-card class=\"elevate-on-toolbar\">\n    <ui-card-title>Software de estatistica</ui-card-title>\n    <ui-card-content>\n      Trabalho multidisciplinar do 3° semestre do curso de ADS da Fatec Thomaz Novelino.\n      <br><br>\n      <div style=\"text-align: right;\">Profa: Maria Luísa Cervi Uzun</div>\n    </ui-card-content>\n  </ui-card>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/main/home/home.component.scss":
+/*!***********************************************!*\
+  !*** ./src/app/main/home/home.component.scss ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/main/home/home.component.ts":
+/*!*********************************************!*\
+  !*** ./src/app/main/home/home.component.ts ***!
+  \*********************************************/
+/*! exports provided: HomeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HomeComponent = /** @class */ (function () {
+    function HomeComponent() {
+    }
+    HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-home',
+            template: __webpack_require__(/*! ./home.component.html */ "./src/app/main/home/home.component.html"),
+            styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/main/home/home.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HomeComponent);
+    return HomeComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/main/main.component.html":
 /*!******************************************!*\
   !*** ./src/app/main/main.component.html ***!
@@ -3623,12 +3689,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _correlacao_regressao_correlacao_regressao_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./correlacao-regressao/correlacao-regressao.module */ "./src/app/main/correlacao-regressao/correlacao-regressao.module.ts");
 /* harmony import */ var _distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./distribuicao-binomial/distribuicao-binomial.component */ "./src/app/main/distribuicao-binomial/distribuicao-binomial.component.ts");
 /* harmony import */ var _distribuicao_nominal_distribuicao_nominal_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./distribuicao-nominal/distribuicao-nominal.module */ "./src/app/main/distribuicao-nominal/distribuicao-nominal.module.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./home/home.component */ "./src/app/main/home/home.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -3653,7 +3721,7 @@ var MainModule = /** @class */ (function () {
                 _correlacao_regressao_correlacao_regressao_module__WEBPACK_IMPORTED_MODULE_8__["CorrelacaoRegressaoModule"],
                 _distribuicao_nominal_distribuicao_nominal_module__WEBPACK_IMPORTED_MODULE_10__["DistribuicaoNominalModule"]
             ],
-            declarations: [_main_component__WEBPACK_IMPORTED_MODULE_1__["MainComponent"], _distribuicao_uniforme_distribuicao_uniforme_component__WEBPACK_IMPORTED_MODULE_7__["DistribuicaoUniformeComponent"], _distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_9__["DistribuicaoBinomialComponent"]],
+            declarations: [_main_component__WEBPACK_IMPORTED_MODULE_1__["MainComponent"], _distribuicao_uniforme_distribuicao_uniforme_component__WEBPACK_IMPORTED_MODULE_7__["DistribuicaoUniformeComponent"], _distribuicao_binomial_distribuicao_binomial_component__WEBPACK_IMPORTED_MODULE_9__["DistribuicaoBinomialComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"]],
             exports: [_main_component__WEBPACK_IMPORTED_MODULE_1__["MainComponent"]],
             providers: [_statistics_service__WEBPACK_IMPORTED_MODULE_2__["StatisticsService"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["CUSTOM_ELEMENTS_SCHEMA"]]

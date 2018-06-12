@@ -9,6 +9,7 @@ import { DistribuicaoUniformeComponent } from './distribuicao-uniforme/distribui
 import {CorrelacaoRegressaoModule} from './correlacao-regressao/correlacao-regressao.module';
 import {DistribuicaoBinomialComponent} from './distribuicao-binomial/distribuicao-binomial.component';
 import {DistribuicaoNominalModule} from './distribuicao-nominal/distribuicao-nominal.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import {DistribuicaoNominalModule} from './distribuicao-nominal/distribuicao-nom
     CorrelacaoRegressaoModule,
     DistribuicaoNominalModule
   ],
-  declarations: [MainComponent, DistribuicaoUniformeComponent, DistribuicaoBinomialComponent],
+  declarations: [MainComponent, DistribuicaoUniformeComponent, DistribuicaoBinomialComponent, HomeComponent],
   exports: [ MainComponent ],
   providers: [ StatisticsService ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
