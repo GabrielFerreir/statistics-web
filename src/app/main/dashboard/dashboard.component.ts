@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
               public graphicService: GraphicService,
               public router: Router) {
     this.dados = this.statistics.getDados();
+    console.log(this.dados);
   }
 
   ngOnInit() {
