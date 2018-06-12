@@ -107,7 +107,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-toolbar class=\"fixed flat elevate-on-scroll primary elevate-on-s960\" id=\"app-header\">\r\n  <button class=\"ui-button flat icon\" (click)=\"menuOpen = true\" uiRipple>\r\n    <i class=\"material-icons\">menu</i>\r\n  </button>\r\n  <span class=\"title\">Home</span>\r\n</ui-toolbar>\r\n<ui-nav-drawer class=\"persistent\" [(open)]=\"menuOpen\">\r\n  <ui-toolbar class=\"flat\">\r\n    <button (click)=\"menuOpen = false\" class=\"ui-button flat icon\" uiRipple>\r\n      <i class=\"material-icons\">arrow_back</i>\r\n    </button>\r\n    <span class=\"title\">Home</span>\r\n  </ui-toolbar>\r\n  <div class=\"ui-nav-drawer-overflow\">\r\n    <div class=\"ui-list\">\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/'>Home</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/insert'>Inserir dados</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/correlacao-regressao'>Correlação/Regressão</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-uniforme'>Distribuição uniforme</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-nominal'>Distribuição nominal</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-binomial'>Distribuição binomial</a>\r\n    </div>\r\n  </div>\r\n</ui-nav-drawer>\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<ui-toolbar class=\"fixed flat elevate-on-scroll primary elevate-on-s960\" id=\"app-header\">\r\n  <button class=\"ui-button flat icon\" (click)=\"menuOpen = true\" uiRipple>\r\n    <i class=\"material-icons\">menu</i>\r\n  </button>\r\n  <span class=\"title\">{{ title }}</span>\r\n</ui-toolbar>\r\n<ui-nav-drawer class=\"persistent\" [(open)]=\"menuOpen\">\r\n  <ui-toolbar class=\"flat\">\r\n    <button (click)=\"menuOpen = false\" class=\"ui-button flat icon\" uiRipple>\r\n      <i class=\"material-icons\">arrow_back</i>\r\n    </button>\r\n    <span class=\"title\">{{ title }}</span>\r\n  </ui-toolbar>\r\n  <div class=\"ui-nav-drawer-overflow\">\r\n    <div class=\"ui-list\">\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/'>Home</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/insert'>Estatística discreta</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/correlacao-regressao'>Correlação/Regressão</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-uniforme'>Distribuição uniforme</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-nominal'>Distribuição nominal</a>\r\n      <a class=\"ui-list-item\" uiRipple routerLink='/distribuicao-binomial'>Distribuição binomial</a>\r\n    </div>\r\n  </div>\r\n</ui-nav-drawer>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -153,7 +153,11 @@ var AppComponent = /** @class */ (function () {
         this.toolbarService = toolbarService;
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.toolbarService.registerMainToolbar(document.getElementById('app-header'));
+        this.toolbarService.change.subscribe(function (title) {
+            _this.title = title;
+        });
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
