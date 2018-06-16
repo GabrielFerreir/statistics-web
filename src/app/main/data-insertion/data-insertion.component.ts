@@ -22,6 +22,8 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
   selectTipoVariavel: any[];
   dragDrop: any;
 
+  DataInsertHasFocus: boolean;
+
 
   constructor(private element: ElementRef,
               private statisticsService: StatisticsService,
@@ -31,7 +33,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
               public _location: Location,
               private MOCK: MockService,
               private typeVariable: TypeVariableService) {
-    this.info = this.MOCK.vContinua2;
+    this.info = {
+      content: []
+    };
     this.dragDrop = {};
 
     this.selectMedidaSeparatriz = [
@@ -43,9 +47,9 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
 
     this.selectSufixo = [
       {id: 1, nome: 'Sem sufixo'},
-      {id: 2, nome: 'Metro'},
+      {id: 2, nome: 'M'},
       {id: 3, nome: 'Kg'},
-      {id: 4, nome: 'Centimetros'}
+      {id: 4, nome: 'Cm'}
     ];
 
     this.selectTipoVariavel = [

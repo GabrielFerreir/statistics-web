@@ -78,7 +78,10 @@
         </div>
         <ui-chips>
           <ui-input-container>
-            <input id="dado" #dado="ngModel" type="text" [(ngModel)]="info.currentDado" uiInput name="dado" (keydown.enter)="insertData()">
+            <input id="dado" #dado="ngModel" type="text" [(ngModel)]="info.currentDado" uiInput name="dado"
+                   (focus)="focus = DataInsertHasFocus;" (blur)="focus = DataInsertHasFocus"
+                   [persistPlaceholder]="DataInsertHasFocus" placeholder="Pressione enter para inserir"
+                   (keydown.enter)="insertData()">
             <label for="dado">Dado</label>
           </ui-input-container>
 
