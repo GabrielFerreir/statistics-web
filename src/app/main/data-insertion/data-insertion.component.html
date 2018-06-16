@@ -5,11 +5,6 @@
         <i class="material-icons">arrow_back</i>
       </button>
       <span class="title">Entrada de dados</span>
-      <div class="align-right">
-        <button class="ui-button flat icon" uiRipple>
-          <i class="material-icons">cloud_upload</i>
-        </button>
-      </div>
     </ui-toolbar>
     <ui-card-content>
       <form #form="ngForm" class="ui-validate on-dirty on-submit">
@@ -83,6 +78,12 @@
                    [persistPlaceholder]="DataInsertHasFocus" placeholder="Pressione enter para inserir"
                    (keydown.enter)="insertData()">
             <label for="dado">Dado</label>
+            <div class="icon">
+              <button class="ui-button icon flat" type="button"
+                      uiRipple>
+                <i class="material-icons">cloud_upload</i>
+              </button>
+            </div>
           </ui-input-container>
 
           <div class="container-chips">
