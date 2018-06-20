@@ -14,7 +14,7 @@ import {TypeVariableService} from '../../functions/type-variable.service';
   templateUrl: './data-insertion.component.html',
   styleUrls: ['./data-insertion.component.scss']
 })
-export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DataInsertionComponent implements AfterViewInit, OnDestroy {
 
   info: any;
   selectSufixo: any[];
@@ -36,6 +36,8 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
     this.info = {
       content: []
     };
+
+    this.info = this.MOCK.QUALI;
     this.dragDrop = {};
 
     this.selectMedidaSeparatriz = [
@@ -58,10 +60,6 @@ export class DataInsertionComponent implements OnInit, AfterViewInit, OnDestroy 
       {id: 3, nome: 'Discreta'},
       {id: 4, nome: 'Continua'}
     ];
-
-  }
-
-  ngOnInit() {
 
   }
 

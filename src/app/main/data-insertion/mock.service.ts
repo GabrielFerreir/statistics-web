@@ -151,8 +151,12 @@ export class MockService {
     ]
   };
 
-
-
-  constructor() {
-  }
+  QUALI = {
+    title: 'Qualitativa',
+    content: [
+      {group: 'bom', qtd: 1},
+      {group: 'ruim', qtd: 1},
+      {group: 'regular', qtd: 1},
+    ]
+  };
 }

@@ -1,7 +1,7 @@
 <div class="ui-s1280">
   <div class="content" *ngIf="dados.content">
 
-    <ui-card class="content__cards elevate-on-toolbar">
+    <ui-card class="content__cards elevate-on-toolbar" *ngIf="dados.media">
       <section class="content__cards__card">
         <h1 class="content__cards__card__title">Média</h1>
         <h1 class="content__cards__card__subtitle">{{ dados.media | number:'1.2-2' }}</h1>
