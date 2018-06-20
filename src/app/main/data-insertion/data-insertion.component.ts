@@ -1,10 +1,8 @@
-import {Component, OnInit, ElementRef, AfterViewInit, Renderer2, OnDestroy} from '@angular/core';
-import {UiToolbarService, UiElement, UiSnackbar} from '../../smn-ui/smn-ui.module';
-
+import {Component, ElementRef, AfterViewInit, Renderer2, OnDestroy} from '@angular/core';
+import {UiToolbarService, UiElement} from '../../smn-ui/smn-ui.module';
 import {Location} from '@angular/common';
 import {StatisticsService} from '../statistics.service';
 import {Router} from '@angular/router';
-import {forEach} from '@angular/router/src/utils/collection';
 import {MockService} from './mock.service';
 import {TypeVariableService} from '../../functions/type-variable.service';
 
