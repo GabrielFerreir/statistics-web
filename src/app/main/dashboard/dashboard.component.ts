@@ -15,6 +15,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   dados;
   graphic: any;
   numModa = 0;
+  COLORS = [
+    '#F44336', '#E53935', '#D32F2F', '#C62828', '#B71C1C',  // RED
+    '#E91E63', '#D81B60', '#C2185B', '#AD1457', '#880E4F',  // PINK
+    '#9C27B0', '#8E24AA', '#7B1FA2', '#6A1B9A', '#4A148C',  // PURPLE
+    '#673AB7', '#5E35B1', '#512DA8', '#4527A0', '#311B92',  // DEEP PURPLE
+    '#3F51B5', '#3949AB', '#303F9F', '#283593', '#1A237E',  // INDIGO
+    '#2196F3', '#1E88E5', '#1976D2', '#1565C0', '#0D47A1',  // BLUE
+  ];
 
   constructor(private statistics: StatisticsService,
               private toolbarService: UiToolbarService,
@@ -42,28 +50,32 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     // PIE GRAPHICS
-    const canvas = <any>document.getElementById('pie');
-    const ctx = canvas.getContext('2d');
-    const myChart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['New', 'In Progress', 'On Hold'],
-        datasets: [{
-          label: '# of Votes',
-          data: [1, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: false,
-        display: true
-      }
-    });
+    if (this.dados.type === 0) {
+      const canvas = <any>document.getElementById('pie');
+      const ctx = canvas.getContext('2d');
+
+      const labels = this.dados.content.map((label) => {
+        return label.group;
+      });
+      const values = this.dados.content.map((value) => {
+        return value.qtd;
+      });
+      const myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: this.COLORS,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: false,
+          display: true
+        }
+      });
+    }
     // END PIE GRAPHICS
 
   }
@@ -81,5 +93,37 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
   }
+
+
+  // IMPLEMENTAR FUNÇÂO PARA GERAR CORES
+
+  // selectColors(length) {
+  //   const COLORS = [
+  //     '#F44336', '#E53935', '#D32F2F', '#C62828', '#B71C1C',  // RED
+  //     '#E91E63', '#D81B60', '#C2185B', '#AD1457', '#880E4F',  // PINK
+  //     '#9C27B0', '#8E24AA', '#7B1FA2', '#6A1B9A', '#4A148C',  // PURPLE
+  //     '#673AB7', '#5E35B1', '#512DA8', '#4527A0', '#311B92',  // DEEP PURPLE
+  //     '#3F51B5', '#3949AB', '#303F9F', '#283593', '#1A237E',  // INDIGO
+  //     '#2196F3', '#1E88E5', '#1976D2', '#1565C0', '#0D47A1',  // BLUE
+  //   ];
+  //   const numbers = [];
+  //   for (let i = 0; i < length; i++) {
+  //     const randomNumber = Math.floor(Math.random() * length);
+  //     if (!i) {
+  //       numbers.push(randomNumber);
+  //     } else {
+  //       let find = false;
+  //       numbers.forEach((number) => {
+  //         if (number = randomNumber) {
+  //           find = true;
+  //         }
+  //       });
+  //       if (!find) {
+  //         numbers.push(randomNumber);
+  //       }
+  //     }
+  //   }
+  //   return numbers;
+  // }
 
 }

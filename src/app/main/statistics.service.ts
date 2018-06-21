@@ -31,6 +31,7 @@ export class StatisticsService {
 
   set(object) {
     this.response = object;
+    console.log(this.response);
   }
   get() {
     return this.response;

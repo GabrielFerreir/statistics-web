@@ -103,7 +103,7 @@ export class DataInsertionComponent implements AfterViewInit, OnDestroy {
     this.info.content.splice(index, 1);
   }
 
-  onSubmit(form, info) {
+  onSubmit(form) {
     for (const control in form.controls) {
       if (form.controls.hasOwnProperty(control)) {
         form.controls[control].markAsTouched();

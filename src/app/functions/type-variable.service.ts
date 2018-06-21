@@ -89,7 +89,8 @@ export class TypeVariableService {
 
     const response = {
       title: this.response.title,
-      content: content
+      content: content,
+      type: this.type
     };
     this.response = response;
     return this;
@@ -121,7 +122,8 @@ export class TypeVariableService {
       media: media,
       mediana: mediana,
       medidaSeparatriz: medidaSeparatriz,
-      coeficienteVariacao: coeficienteVariacao
+      coeficienteVariacao: coeficienteVariacao,
+      type: this.type
     };
     this.response = response;
     return this;
@@ -163,7 +165,8 @@ export class TypeVariableService {
         {title: 'king', value: king},
         {title: 'czuber', value: czuber},
       ],
-      coeficienteVariacao: coeficienteVariacao
+      coeficienteVariacao: coeficienteVariacao,
+      type: this.type
     };
     this.response = response;
     return this;
@@ -171,6 +174,7 @@ export class TypeVariableService {
 
   setInService() {
     this.statisticsService.set(this.response);
+
   }
 
   run(info) {

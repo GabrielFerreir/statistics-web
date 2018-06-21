@@ -32,7 +32,7 @@
       <app-table [data]="dados.content" [title]="dados.title"></app-table>
     </div>
     <div class="content__card">
-      <ui-card class="elevate-on-toolbar">
+      <ui-card class="elevate-on-toolbar" *ngIf="dados.type !== 0">
         <smn-graphic [data]="graphic"
                      [legend]="[]"
                      [config]="{
@@ -57,7 +57,7 @@
         </smn-graphic>
       </ui-card>
 
-      <ui-card class="elevate-on-toolbar" style="margin-top: 16px;">
+      <ui-card class="elevate-on-toolbar" style="margin-top: 16px;" *ngIf="dados.type === 0">
         <ui-card-title>Gráfico</ui-card-title>
         <ui-card-content style="display: flex; justify-content: center;">
           <canvas id="pie" height="400"></canvas>
