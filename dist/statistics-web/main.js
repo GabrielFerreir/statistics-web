@@ -1,5 +1,285 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "./node_modules/moment/locale sync recursive ^\\.\\/.*$":
+/*!**************************************************!*\
+  !*** ./node_modules/moment/locale sync ^\.\/.*$ ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": "./node_modules/moment/locale/af.js",
+	"./af.js": "./node_modules/moment/locale/af.js",
+	"./ar": "./node_modules/moment/locale/ar.js",
+	"./ar-dz": "./node_modules/moment/locale/ar-dz.js",
+	"./ar-dz.js": "./node_modules/moment/locale/ar-dz.js",
+	"./ar-kw": "./node_modules/moment/locale/ar-kw.js",
+	"./ar-kw.js": "./node_modules/moment/locale/ar-kw.js",
+	"./ar-ly": "./node_modules/moment/locale/ar-ly.js",
+	"./ar-ly.js": "./node_modules/moment/locale/ar-ly.js",
+	"./ar-ma": "./node_modules/moment/locale/ar-ma.js",
+	"./ar-ma.js": "./node_modules/moment/locale/ar-ma.js",
+	"./ar-sa": "./node_modules/moment/locale/ar-sa.js",
+	"./ar-sa.js": "./node_modules/moment/locale/ar-sa.js",
+	"./ar-tn": "./node_modules/moment/locale/ar-tn.js",
+	"./ar-tn.js": "./node_modules/moment/locale/ar-tn.js",
+	"./ar.js": "./node_modules/moment/locale/ar.js",
+	"./az": "./node_modules/moment/locale/az.js",
+	"./az.js": "./node_modules/moment/locale/az.js",
+	"./be": "./node_modules/moment/locale/be.js",
+	"./be.js": "./node_modules/moment/locale/be.js",
+	"./bg": "./node_modules/moment/locale/bg.js",
+	"./bg.js": "./node_modules/moment/locale/bg.js",
+	"./bm": "./node_modules/moment/locale/bm.js",
+	"./bm.js": "./node_modules/moment/locale/bm.js",
+	"./bn": "./node_modules/moment/locale/bn.js",
+	"./bn.js": "./node_modules/moment/locale/bn.js",
+	"./bo": "./node_modules/moment/locale/bo.js",
+	"./bo.js": "./node_modules/moment/locale/bo.js",
+	"./br": "./node_modules/moment/locale/br.js",
+	"./br.js": "./node_modules/moment/locale/br.js",
+	"./bs": "./node_modules/moment/locale/bs.js",
+	"./bs.js": "./node_modules/moment/locale/bs.js",
+	"./ca": "./node_modules/moment/locale/ca.js",
+	"./ca.js": "./node_modules/moment/locale/ca.js",
+	"./cs": "./node_modules/moment/locale/cs.js",
+	"./cs.js": "./node_modules/moment/locale/cs.js",
+	"./cv": "./node_modules/moment/locale/cv.js",
+	"./cv.js": "./node_modules/moment/locale/cv.js",
+	"./cy": "./node_modules/moment/locale/cy.js",
+	"./cy.js": "./node_modules/moment/locale/cy.js",
+	"./da": "./node_modules/moment/locale/da.js",
+	"./da.js": "./node_modules/moment/locale/da.js",
+	"./de": "./node_modules/moment/locale/de.js",
+	"./de-at": "./node_modules/moment/locale/de-at.js",
+	"./de-at.js": "./node_modules/moment/locale/de-at.js",
+	"./de-ch": "./node_modules/moment/locale/de-ch.js",
+	"./de-ch.js": "./node_modules/moment/locale/de-ch.js",
+	"./de.js": "./node_modules/moment/locale/de.js",
+	"./dv": "./node_modules/moment/locale/dv.js",
+	"./dv.js": "./node_modules/moment/locale/dv.js",
+	"./el": "./node_modules/moment/locale/el.js",
+	"./el.js": "./node_modules/moment/locale/el.js",
+	"./en-au": "./node_modules/moment/locale/en-au.js",
+	"./en-au.js": "./node_modules/moment/locale/en-au.js",
+	"./en-ca": "./node_modules/moment/locale/en-ca.js",
+	"./en-ca.js": "./node_modules/moment/locale/en-ca.js",
+	"./en-gb": "./node_modules/moment/locale/en-gb.js",
+	"./en-gb.js": "./node_modules/moment/locale/en-gb.js",
+	"./en-ie": "./node_modules/moment/locale/en-ie.js",
+	"./en-ie.js": "./node_modules/moment/locale/en-ie.js",
+	"./en-il": "./node_modules/moment/locale/en-il.js",
+	"./en-il.js": "./node_modules/moment/locale/en-il.js",
+	"./en-nz": "./node_modules/moment/locale/en-nz.js",
+	"./en-nz.js": "./node_modules/moment/locale/en-nz.js",
+	"./eo": "./node_modules/moment/locale/eo.js",
+	"./eo.js": "./node_modules/moment/locale/eo.js",
+	"./es": "./node_modules/moment/locale/es.js",
+	"./es-do": "./node_modules/moment/locale/es-do.js",
+	"./es-do.js": "./node_modules/moment/locale/es-do.js",
+	"./es-us": "./node_modules/moment/locale/es-us.js",
+	"./es-us.js": "./node_modules/moment/locale/es-us.js",
+	"./es.js": "./node_modules/moment/locale/es.js",
+	"./et": "./node_modules/moment/locale/et.js",
+	"./et.js": "./node_modules/moment/locale/et.js",
+	"./eu": "./node_modules/moment/locale/eu.js",
+	"./eu.js": "./node_modules/moment/locale/eu.js",
+	"./fa": "./node_modules/moment/locale/fa.js",
+	"./fa.js": "./node_modules/moment/locale/fa.js",
+	"./fi": "./node_modules/moment/locale/fi.js",
+	"./fi.js": "./node_modules/moment/locale/fi.js",
+	"./fo": "./node_modules/moment/locale/fo.js",
+	"./fo.js": "./node_modules/moment/locale/fo.js",
+	"./fr": "./node_modules/moment/locale/fr.js",
+	"./fr-ca": "./node_modules/moment/locale/fr-ca.js",
+	"./fr-ca.js": "./node_modules/moment/locale/fr-ca.js",
+	"./fr-ch": "./node_modules/moment/locale/fr-ch.js",
+	"./fr-ch.js": "./node_modules/moment/locale/fr-ch.js",
+	"./fr.js": "./node_modules/moment/locale/fr.js",
+	"./fy": "./node_modules/moment/locale/fy.js",
+	"./fy.js": "./node_modules/moment/locale/fy.js",
+	"./gd": "./node_modules/moment/locale/gd.js",
+	"./gd.js": "./node_modules/moment/locale/gd.js",
+	"./gl": "./node_modules/moment/locale/gl.js",
+	"./gl.js": "./node_modules/moment/locale/gl.js",
+	"./gom-latn": "./node_modules/moment/locale/gom-latn.js",
+	"./gom-latn.js": "./node_modules/moment/locale/gom-latn.js",
+	"./gu": "./node_modules/moment/locale/gu.js",
+	"./gu.js": "./node_modules/moment/locale/gu.js",
+	"./he": "./node_modules/moment/locale/he.js",
+	"./he.js": "./node_modules/moment/locale/he.js",
+	"./hi": "./node_modules/moment/locale/hi.js",
+	"./hi.js": "./node_modules/moment/locale/hi.js",
+	"./hr": "./node_modules/moment/locale/hr.js",
+	"./hr.js": "./node_modules/moment/locale/hr.js",
+	"./hu": "./node_modules/moment/locale/hu.js",
+	"./hu.js": "./node_modules/moment/locale/hu.js",
+	"./hy-am": "./node_modules/moment/locale/hy-am.js",
+	"./hy-am.js": "./node_modules/moment/locale/hy-am.js",
+	"./id": "./node_modules/moment/locale/id.js",
+	"./id.js": "./node_modules/moment/locale/id.js",
+	"./is": "./node_modules/moment/locale/is.js",
+	"./is.js": "./node_modules/moment/locale/is.js",
+	"./it": "./node_modules/moment/locale/it.js",
+	"./it.js": "./node_modules/moment/locale/it.js",
+	"./ja": "./node_modules/moment/locale/ja.js",
+	"./ja.js": "./node_modules/moment/locale/ja.js",
+	"./jv": "./node_modules/moment/locale/jv.js",
+	"./jv.js": "./node_modules/moment/locale/jv.js",
+	"./ka": "./node_modules/moment/locale/ka.js",
+	"./ka.js": "./node_modules/moment/locale/ka.js",
+	"./kk": "./node_modules/moment/locale/kk.js",
+	"./kk.js": "./node_modules/moment/locale/kk.js",
+	"./km": "./node_modules/moment/locale/km.js",
+	"./km.js": "./node_modules/moment/locale/km.js",
+	"./kn": "./node_modules/moment/locale/kn.js",
+	"./kn.js": "./node_modules/moment/locale/kn.js",
+	"./ko": "./node_modules/moment/locale/ko.js",
+	"./ko.js": "./node_modules/moment/locale/ko.js",
+	"./ky": "./node_modules/moment/locale/ky.js",
+	"./ky.js": "./node_modules/moment/locale/ky.js",
+	"./lb": "./node_modules/moment/locale/lb.js",
+	"./lb.js": "./node_modules/moment/locale/lb.js",
+	"./lo": "./node_modules/moment/locale/lo.js",
+	"./lo.js": "./node_modules/moment/locale/lo.js",
+	"./lt": "./node_modules/moment/locale/lt.js",
+	"./lt.js": "./node_modules/moment/locale/lt.js",
+	"./lv": "./node_modules/moment/locale/lv.js",
+	"./lv.js": "./node_modules/moment/locale/lv.js",
+	"./me": "./node_modules/moment/locale/me.js",
+	"./me.js": "./node_modules/moment/locale/me.js",
+	"./mi": "./node_modules/moment/locale/mi.js",
+	"./mi.js": "./node_modules/moment/locale/mi.js",
+	"./mk": "./node_modules/moment/locale/mk.js",
+	"./mk.js": "./node_modules/moment/locale/mk.js",
+	"./ml": "./node_modules/moment/locale/ml.js",
+	"./ml.js": "./node_modules/moment/locale/ml.js",
+	"./mn": "./node_modules/moment/locale/mn.js",
+	"./mn.js": "./node_modules/moment/locale/mn.js",
+	"./mr": "./node_modules/moment/locale/mr.js",
+	"./mr.js": "./node_modules/moment/locale/mr.js",
+	"./ms": "./node_modules/moment/locale/ms.js",
+	"./ms-my": "./node_modules/moment/locale/ms-my.js",
+	"./ms-my.js": "./node_modules/moment/locale/ms-my.js",
+	"./ms.js": "./node_modules/moment/locale/ms.js",
+	"./mt": "./node_modules/moment/locale/mt.js",
+	"./mt.js": "./node_modules/moment/locale/mt.js",
+	"./my": "./node_modules/moment/locale/my.js",
+	"./my.js": "./node_modules/moment/locale/my.js",
+	"./nb": "./node_modules/moment/locale/nb.js",
+	"./nb.js": "./node_modules/moment/locale/nb.js",
+	"./ne": "./node_modules/moment/locale/ne.js",
+	"./ne.js": "./node_modules/moment/locale/ne.js",
+	"./nl": "./node_modules/moment/locale/nl.js",
+	"./nl-be": "./node_modules/moment/locale/nl-be.js",
+	"./nl-be.js": "./node_modules/moment/locale/nl-be.js",
+	"./nl.js": "./node_modules/moment/locale/nl.js",
+	"./nn": "./node_modules/moment/locale/nn.js",
+	"./nn.js": "./node_modules/moment/locale/nn.js",
+	"./pa-in": "./node_modules/moment/locale/pa-in.js",
+	"./pa-in.js": "./node_modules/moment/locale/pa-in.js",
+	"./pl": "./node_modules/moment/locale/pl.js",
+	"./pl.js": "./node_modules/moment/locale/pl.js",
+	"./pt": "./node_modules/moment/locale/pt.js",
+	"./pt-br": "./node_modules/moment/locale/pt-br.js",
+	"./pt-br.js": "./node_modules/moment/locale/pt-br.js",
+	"./pt.js": "./node_modules/moment/locale/pt.js",
+	"./ro": "./node_modules/moment/locale/ro.js",
+	"./ro.js": "./node_modules/moment/locale/ro.js",
+	"./ru": "./node_modules/moment/locale/ru.js",
+	"./ru.js": "./node_modules/moment/locale/ru.js",
+	"./sd": "./node_modules/moment/locale/sd.js",
+	"./sd.js": "./node_modules/moment/locale/sd.js",
+	"./se": "./node_modules/moment/locale/se.js",
+	"./se.js": "./node_modules/moment/locale/se.js",
+	"./si": "./node_modules/moment/locale/si.js",
+	"./si.js": "./node_modules/moment/locale/si.js",
+	"./sk": "./node_modules/moment/locale/sk.js",
+	"./sk.js": "./node_modules/moment/locale/sk.js",
+	"./sl": "./node_modules/moment/locale/sl.js",
+	"./sl.js": "./node_modules/moment/locale/sl.js",
+	"./sq": "./node_modules/moment/locale/sq.js",
+	"./sq.js": "./node_modules/moment/locale/sq.js",
+	"./sr": "./node_modules/moment/locale/sr.js",
+	"./sr-cyrl": "./node_modules/moment/locale/sr-cyrl.js",
+	"./sr-cyrl.js": "./node_modules/moment/locale/sr-cyrl.js",
+	"./sr.js": "./node_modules/moment/locale/sr.js",
+	"./ss": "./node_modules/moment/locale/ss.js",
+	"./ss.js": "./node_modules/moment/locale/ss.js",
+	"./sv": "./node_modules/moment/locale/sv.js",
+	"./sv.js": "./node_modules/moment/locale/sv.js",
+	"./sw": "./node_modules/moment/locale/sw.js",
+	"./sw.js": "./node_modules/moment/locale/sw.js",
+	"./ta": "./node_modules/moment/locale/ta.js",
+	"./ta.js": "./node_modules/moment/locale/ta.js",
+	"./te": "./node_modules/moment/locale/te.js",
+	"./te.js": "./node_modules/moment/locale/te.js",
+	"./tet": "./node_modules/moment/locale/tet.js",
+	"./tet.js": "./node_modules/moment/locale/tet.js",
+	"./tg": "./node_modules/moment/locale/tg.js",
+	"./tg.js": "./node_modules/moment/locale/tg.js",
+	"./th": "./node_modules/moment/locale/th.js",
+	"./th.js": "./node_modules/moment/locale/th.js",
+	"./tl-ph": "./node_modules/moment/locale/tl-ph.js",
+	"./tl-ph.js": "./node_modules/moment/locale/tl-ph.js",
+	"./tlh": "./node_modules/moment/locale/tlh.js",
+	"./tlh.js": "./node_modules/moment/locale/tlh.js",
+	"./tr": "./node_modules/moment/locale/tr.js",
+	"./tr.js": "./node_modules/moment/locale/tr.js",
+	"./tzl": "./node_modules/moment/locale/tzl.js",
+	"./tzl.js": "./node_modules/moment/locale/tzl.js",
+	"./tzm": "./node_modules/moment/locale/tzm.js",
+	"./tzm-latn": "./node_modules/moment/locale/tzm-latn.js",
+	"./tzm-latn.js": "./node_modules/moment/locale/tzm-latn.js",
+	"./tzm.js": "./node_modules/moment/locale/tzm.js",
+	"./ug-cn": "./node_modules/moment/locale/ug-cn.js",
+	"./ug-cn.js": "./node_modules/moment/locale/ug-cn.js",
+	"./uk": "./node_modules/moment/locale/uk.js",
+	"./uk.js": "./node_modules/moment/locale/uk.js",
+	"./ur": "./node_modules/moment/locale/ur.js",
+	"./ur.js": "./node_modules/moment/locale/ur.js",
+	"./uz": "./node_modules/moment/locale/uz.js",
+	"./uz-latn": "./node_modules/moment/locale/uz-latn.js",
+	"./uz-latn.js": "./node_modules/moment/locale/uz-latn.js",
+	"./uz.js": "./node_modules/moment/locale/uz.js",
+	"./vi": "./node_modules/moment/locale/vi.js",
+	"./vi.js": "./node_modules/moment/locale/vi.js",
+	"./x-pseudo": "./node_modules/moment/locale/x-pseudo.js",
+	"./x-pseudo.js": "./node_modules/moment/locale/x-pseudo.js",
+	"./yo": "./node_modules/moment/locale/yo.js",
+	"./yo.js": "./node_modules/moment/locale/yo.js",
+	"./zh-cn": "./node_modules/moment/locale/zh-cn.js",
+	"./zh-cn.js": "./node_modules/moment/locale/zh-cn.js",
+	"./zh-hk": "./node_modules/moment/locale/zh-hk.js",
+	"./zh-hk.js": "./node_modules/moment/locale/zh-hk.js",
+	"./zh-tw": "./node_modules/moment/locale/zh-tw.js",
+	"./zh-tw.js": "./node_modules/moment/locale/zh-tw.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	var module = __webpack_require__(id);
+	return module;
+}
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) { // check for number or string
+		var e = new Error('Cannot find module "' + req + '".');
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return id;
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
 /***/ "./src/$$_lazy_route_resource lazy recursive":
 /*!**********************************************************!*\
   !*** ./src/$$_lazy_route_resource lazy namespace object ***!
@@ -1539,7 +1819,8 @@ var TypeVariableService = /** @class */ (function () {
             .finish();
         var response = {
             title: this.response.title,
-            content: content
+            content: content,
+            type: this.type
         };
         this.response = response;
         return this;
@@ -1565,7 +1846,8 @@ var TypeVariableService = /** @class */ (function () {
             media: media,
             mediana: mediana,
             medidaSeparatriz: medidaSeparatriz,
-            coeficienteVariacao: coeficienteVariacao
+            coeficienteVariacao: coeficienteVariacao,
+            type: this.type
         };
         this.response = response;
         return this;
@@ -1600,7 +1882,8 @@ var TypeVariableService = /** @class */ (function () {
                 { title: 'king', value: king },
                 { title: 'czuber', value: czuber },
             ],
-            coeficienteVariacao: coeficienteVariacao
+            coeficienteVariacao: coeficienteVariacao,
+            type: this.type
         };
         this.response = response;
         return this;
@@ -2098,7 +2381,7 @@ var ResponseComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s1280\">\r\n  <div class=\"content\" *ngIf=\"dados.content\">\r\n\r\n    <ui-card class=\"content__cards elevate-on-toolbar\">\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Média</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.media | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Mediana</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.mediana }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" (click)=\"nextModa()\">\r\n        <h1 class=\"content__cards__card__title\">Moda {{ dados.moda[numModa].title }}</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.moda[numModa].value || dados.moda }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" *ngIf=\"dados.medidaSeparatriz\">\r\n        <h1 class=\"content__cards__card__title\">Medida Separatriz</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.medidaSeparatriz | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Desvio Padrao</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.DPR | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Coeficiente de variação</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.coeficienteVariacao | number:'1.2-2' }}</h1>\r\n      </section>\r\n    </ui-card>\r\n\r\n    <div class=\"content__card\">\r\n      <app-table [data]=\"dados.content\" [title]=\"dados.title\"></app-table>\r\n    </div>\r\n    <div class=\"content__card\">\r\n      <ui-card class=\"elevate-on-toolbar\">\r\n        <smn-graphic [data]=\"graphic\"\r\n                     [legend]=\"[]\"\r\n                     [config]=\"{\r\n                   colorSelected: '#263238',\r\n                   lineColor: '#E0E0E0',\r\n                   colors: ['#78909C', '#546E7A'],\r\n                   noSpace: true\r\n             }\"\r\n                     [title]=\"'Grafico'\"\r\n                     [subtitle]=\"'Elementos de um grafico'\">\r\n          <section class=\"menu-info\">\r\n            <div class=\"menu-info__header\">\r\n              {{ graphicService.info.legend }}\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              <b>Quantidade: {{ graphicService.info.value }}</b>\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              Data: {{ graphicService.info.column }}\r\n            </div>\r\n          </section>\r\n        </smn-graphic>\r\n      </ui-card>\r\n    </div>\r\n    <div style=\"height: 80px;\"></div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s1280\">\r\n  <div class=\"content\" *ngIf=\"dados.content\">\r\n\r\n    <ui-card class=\"content__cards elevate-on-toolbar\" *ngIf=\"dados.media\">\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Média</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.media | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Mediana</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.mediana }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" (click)=\"nextModa()\">\r\n        <h1 class=\"content__cards__card__title\">Moda {{ dados.moda[numModa].title }}</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.moda[numModa].value || dados.moda }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\" *ngIf=\"dados.medidaSeparatriz\">\r\n        <h1 class=\"content__cards__card__title\">Medida Separatriz</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.medidaSeparatriz | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Desvio Padrao</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.DPR | number:'1.2-2' }}</h1>\r\n      </section>\r\n      <section class=\"content__cards__card\">\r\n        <h1 class=\"content__cards__card__title\">Coeficiente de variação</h1>\r\n        <h1 class=\"content__cards__card__subtitle\">{{ dados.coeficienteVariacao | number:'1.2-2' }}</h1>\r\n      </section>\r\n    </ui-card>\r\n\r\n    <div class=\"content__card\">\r\n      <app-table [data]=\"dados.content\" [title]=\"dados.title\"></app-table>\r\n    </div>\r\n    <div class=\"content__card\">\r\n      <ui-card class=\"elevate-on-toolbar\" *ngIf=\"dados.type !== 0\">\r\n        <smn-graphic [data]=\"graphic\"\r\n                     [legend]=\"[]\"\r\n                     [config]=\"{\r\n                   colorSelected: '#263238',\r\n                   lineColor: '#E0E0E0',\r\n                   colors: ['#78909C', '#546E7A'],\r\n                   noSpace: dados.type === 2 ? true : false\r\n             }\"\r\n                     [title]=\"'Grafico'\"\r\n                     [subtitle]=\"'Elementos de um grafico'\">\r\n          <section class=\"menu-info\">\r\n            <div class=\"menu-info__header\">\r\n              {{ graphicService.info.legend }}\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              <b>Quantidade: {{ graphicService.info.value }}</b>\r\n            </div>\r\n            <div class=\"menu-info__header\">\r\n              Data: {{ graphicService.info.column }}\r\n            </div>\r\n          </section>\r\n        </smn-graphic>\r\n      </ui-card>\r\n\r\n      <ui-card class=\"elevate-on-toolbar\" style=\"margin-top: 16px;\" *ngIf=\"dados.type === 0\">\r\n        <ui-card-title>Gráfico</ui-card-title>\r\n        <ui-card-content style=\"display: flex; justify-content: center;\">\r\n          <canvas id=\"pie\" height=\"400\"></canvas>\r\n        </ui-card-content>\r\n      </ui-card>\r\n    </div>\r\n    <div style=\"height: 80px;\"></div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2128,6 +2411,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _smn_ui_toolbar_toolbar_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../smn-ui/toolbar/toolbar.service */ "./src/app/smn-ui/toolbar/toolbar.service.ts");
 /* harmony import */ var _components_graphic_graphic_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/graphic/graphic.service */ "./src/app/components/graphic/graphic.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/src/chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2142,6 +2427,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(statistics, toolbarService, graphicService, router) {
         this.statistics = statistics;
@@ -2149,6 +2435,14 @@ var DashboardComponent = /** @class */ (function () {
         this.graphicService = graphicService;
         this.router = router;
         this.numModa = 0;
+        this.COLORS = [
+            '#673AB7', '#3949AB', '#1976D2', '#C62828', '#880E4F',
+            '#3F51B5', '#5E35B1', '#303F9F', '#283593', '#1A237E',
+            '#2196F3', '#1E88E5', '#512DA8', '#1565C0', '#0D47A1',
+            '#F44336', '#E53935', '#D32F2F', '#4527A0', '#B71C1C',
+            '#E91E63', '#D81B60', '#C2185B', '#AD1457', '#311B92',
+            '#9C27B0', '#8E24AA', '#7B1FA2', '#6A1B9A', '#4A148C',
+        ];
         this.dados = this.statistics.getDados();
     }
     DashboardComponent.prototype.ngOnInit = function () {
@@ -2168,6 +2462,33 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.ngAfterViewInit = function () {
         this.toolbarService.activateExtendedToolbar(1280);
         this.toolbarService.set('Dashboard');
+        // PIE GRAPHICS
+        if (this.dados.type === 0) {
+            var canvas = document.getElementById('pie');
+            var ctx = canvas.getContext('2d');
+            var labels = this.dados.content.map(function (label) {
+                return label.group;
+            });
+            var values = this.dados.content.map(function (value) {
+                return value.qtd;
+            });
+            var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_5__(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                            data: values,
+                            backgroundColor: this.COLORS,
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    responsive: false,
+                    display: true
+                }
+            });
+        }
+        // END PIE GRAPHICS
     };
     DashboardComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
@@ -2259,7 +2580,7 @@ var DashboardModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Entrada de dados</span>\r\n      <div class=\"align-right\">\r\n        <button class=\"ui-button flat icon\" uiRipple>\r\n          <i class=\"material-icons\">cloud_upload</i>\r\n        </button>\r\n      </div>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <ui-input-container>\r\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\r\n          <label for=\"title\">Titulo</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"title.errors && title.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\r\n                Digite o titulo\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"medidaSeparatriz\"\r\n                       #medidaSeparatriz=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.medidaSeparatriz\"\r\n                       [options]=\"selectMedidaSeparatriz\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"medidaSeparatriz\">\r\n              Medida Separatriz\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"valueMedidaSeparatriz\"\r\n                   #valueMedidaSeparatriz=\"ngModel\"\r\n                   type=\"number\"\r\n                   [(ngModel)]=\"info.valueMedidaSeparatriz\"\r\n                   uiInput\r\n                   name=\"valueMedidaSeparatriz\">\r\n            <label for=\"valueMedidaSeparatriz\">Valor</label>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\r\n              <span>Ordinal</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.amostra\" [checked]=\"info.amostra\">\r\n              <span>Amostra</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n            <ui-input-container>\r\n              <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\" value=\"nome\" label=\"nome\"\r\n                uiInput></ui-select>\r\n              <label for=\"sufixo\">\r\n                Sufixo\r\n              </label>\r\n            </ui-input-container>\r\n          <ui-input-container>\r\n            <ui-select id=\"tipoDeVariavel\" #tipoDeVariavel=\"ngModel\" name=\"tipoDeVarivel\" [(ngModel)]=\"info.tipoDeVariavel\" [options]=\"selectTipoVariavel\" value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"tipoDeVariavel\">\r\n              Tipo de variavel\r\n            </label>\r\n          </ui-input-container>\r\n        </div>\r\n        <ui-chips>\r\n          <ui-input-container>\r\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\"\r\n                   (focus)=\"focus = DataInsertHasFocus;\" (blur)=\"focus = DataInsertHasFocus\"\r\n                   [persistPlaceholder]=\"DataInsertHasFocus\" placeholder=\"Pressione enter para inserir\"\r\n                   (keydown.enter)=\"insertData()\">\r\n            <label for=\"dado\">Dado</label>\r\n          </ui-input-container>\r\n\r\n          <div class=\"container-chips\">\r\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\" class=\"ui-chip js-chips-dado\">\r\n              <div class=\"icon chip-cont\">\r\n                {{ dadoInserido.qtd }}\r\n              </div>\r\n              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\r\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\r\n                <i class=\"material-icons\">add_circle</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-chips>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n\r\n</div>\r\n\r\n<br><br><br><br><br>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Entrada de dados</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <ui-input-container>\r\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\r\n          <label for=\"title\">Titulo</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"title.errors && title.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\r\n                Digite o titulo\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"medidaSeparatriz\"\r\n                       #medidaSeparatriz=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.medidaSeparatriz\"\r\n                       [options]=\"selectMedidaSeparatriz\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"medidaSeparatriz\">\r\n              Medida Separatriz\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"valueMedidaSeparatriz\"\r\n                   #valueMedidaSeparatriz=\"ngModel\"\r\n                   type=\"number\"\r\n                   [(ngModel)]=\"info.valueMedidaSeparatriz\"\r\n                   uiInput\r\n                   name=\"valueMedidaSeparatriz\">\r\n            <label for=\"valueMedidaSeparatriz\">Valor</label>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\r\n              <span>Ordinal</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.amostra\" [checked]=\"info.amostra\">\r\n              <span>Amostra</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n            <ui-input-container>\r\n              <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\" value=\"nome\" label=\"nome\"\r\n                uiInput></ui-select>\r\n              <label for=\"sufixo\">\r\n                Sufixo\r\n              </label>\r\n            </ui-input-container>\r\n          <ui-input-container>\r\n            <ui-select id=\"tipoDeVariavel\" #tipoDeVariavel=\"ngModel\" name=\"tipoDeVarivel\" [(ngModel)]=\"info.tipoDeVariavel\" [options]=\"selectTipoVariavel\" value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"tipoDeVariavel\">\r\n              Tipo de variavel\r\n            </label>\r\n          </ui-input-container>\r\n        </div>\r\n        <ui-chips>\r\n          <ui-input-container>\r\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\"\r\n                   (focus)=\"focus = DataInsertHasFocus;\" (blur)=\"focus = DataInsertHasFocus\"\r\n                   [persistPlaceholder]=\"DataInsertHasFocus\" placeholder=\"Pressione enter para inserir\"\r\n                   (keydown.enter)=\"insertData()\">\r\n            <label for=\"dado\">Dado</label>\r\n            <div class=\"icon\">\r\n              <button class=\"ui-button icon flat\" type=\"button\"\r\n                      uiRipple>\r\n                <i class=\"material-icons\">cloud_upload</i>\r\n              </button>\r\n            </div>\r\n          </ui-input-container>\r\n\r\n          <div class=\"container-chips\">\r\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\" class=\"ui-chip js-chips-dado\">\r\n              <div class=\"icon chip-cont\">\r\n                {{ dadoInserido.qtd }}\r\n              </div>\r\n              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\r\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\r\n                <i class=\"material-icons\">add_circle</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-chips>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n\r\n</div>\r\n\r\n<br><br><br><br><br>\r\n"
 
 /***/ }),
 
@@ -2320,6 +2641,7 @@ var DataInsertionComponent = /** @class */ (function () {
         this.info = {
             content: []
         };
+        this.info = this.MOCK.EXEMPLO_8_1;
         this.dragDrop = {};
         this.selectMedidaSeparatriz = [
             { id: 4, nome: 'Quartil' },
@@ -2340,8 +2662,6 @@ var DataInsertionComponent = /** @class */ (function () {
             { id: 4, nome: 'Continua' }
         ];
     }
-    DataInsertionComponent.prototype.ngOnInit = function () {
-    };
     DataInsertionComponent.prototype.ngAfterViewInit = function () {
         this.toolbarService.activateExtendedToolbar(840);
         this.toolbarService.set('Estatistica discreta');
@@ -2380,7 +2700,7 @@ var DataInsertionComponent = /** @class */ (function () {
         }
         this.info.content.splice(index, 1);
     };
-    DataInsertionComponent.prototype.onSubmit = function (form, info) {
+    DataInsertionComponent.prototype.onSubmit = function (form) {
         for (var control in form.controls) {
             if (form.controls.hasOwnProperty(control)) {
                 form.controls[control].markAsTouched();
@@ -2648,9 +2968,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 
 var MockService = /** @class */ (function () {
     function MockService() {
@@ -2793,12 +3110,19 @@ var MockService = /** @class */ (function () {
                 { group: 19, qtd: 1 }
             ]
         };
+        this.QUALI = {
+            title: 'Qualitativa',
+            content: [
+                { group: 'bom', qtd: 1 },
+                { group: 'ruim', qtd: 1 },
+                { group: 'regular', qtd: 1 },
+            ]
+        };
     }
     MockService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [])
+        })
     ], MockService);
     return MockService;
 }());
@@ -3790,6 +4114,7 @@ var StatisticsService = /** @class */ (function () {
     };
     StatisticsService.prototype.set = function (object) {
         this.response = object;
+        console.log(this.response);
     };
     StatisticsService.prototype.get = function () {
         return this.response;
