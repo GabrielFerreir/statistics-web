@@ -16,12 +16,12 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   graphic: any;
   numModa = 0;
   COLORS = [
-    '#F44336', '#E53935', '#D32F2F', '#C62828', '#B71C1C',  // RED
-    '#E91E63', '#D81B60', '#C2185B', '#AD1457', '#880E4F',  // PINK
-    '#9C27B0', '#8E24AA', '#7B1FA2', '#6A1B9A', '#4A148C',  // PURPLE
-    '#673AB7', '#5E35B1', '#512DA8', '#4527A0', '#311B92',  // DEEP PURPLE
-    '#3F51B5', '#3949AB', '#303F9F', '#283593', '#1A237E',  // INDIGO
-    '#2196F3', '#1E88E5', '#1976D2', '#1565C0', '#0D47A1',  // BLUE
+    '#673AB7', '#3949AB', '#1976D2', '#C62828', '#880E4F',
+    '#3F51B5', '#5E35B1', '#303F9F', '#283593', '#1A237E',
+    '#2196F3', '#1E88E5', '#512DA8', '#1565C0', '#0D47A1',
+    '#F44336', '#E53935', '#D32F2F', '#4527A0', '#B71C1C',
+    '#E91E63', '#D81B60', '#C2185B', '#AD1457', '#311B92',
+    '#9C27B0', '#8E24AA', '#7B1FA2', '#6A1B9A', '#4A148C',
   ];
 
   constructor(private statistics: StatisticsService,
