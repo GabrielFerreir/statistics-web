@@ -8,33 +8,34 @@
     </ui-toolbar>
     <ui-card-content>
       <form #form="ngForm" class="ui-validate on-dirty on-submit">
-      <div class="ui-flex-container">
-        <ui-input-container>
-          <ui-select id="letter" #letter="ngModel" name="letter" [(ngModel)]="calc.letter" [options]="letters" value="id" label="nome"
-                     uiInput required></ui-select>
-          <label for="letter">
-            Qual valor você deseja descobrir?
-          </label>
-          <div class="ui-messages">
-            <div *ngIf="letter.errors && letter.dirty">
-              <div class="ui-message error" [hidden]="!letter.pristine && !letter.errors.required">
-                Selecione uma letra
+        <div class="ui-flex-container">
+          <ui-input-container>
+            <ui-select id="letter" #letter="ngModel" name="letter" [(ngModel)]="calc.letter" [options]="letters"
+                       value="id" label="nome"
+                       uiInput required></ui-select>
+            <label for="letter">
+              Qual valor você deseja descobrir?
+            </label>
+            <div class="ui-messages">
+              <div *ngIf="letter.errors && letter.dirty">
+                <div class="ui-message error" [hidden]="!letter.pristine && !letter.errors.required">
+                  Selecione uma letra
+                </div>
               </div>
             </div>
-          </div>
-        </ui-input-container>
-        <ui-input-container>
-          <input id="value" #value="ngModel" type="number" [(ngModel)]="calc.value" uiInput name="value" required>
-          <label for="value">Valor</label>
-          <div class="ui-messages">
-            <div *ngIf="value.errors && value.dirty">
-              <div class="ui-message error" [hidden]="!value.pristine && !value.errors.required">
-                Digite o Valor
+          </ui-input-container>
+          <ui-input-container>
+            <input id="value" #value="ngModel" type="number" [(ngModel)]="calc.value" uiInput name="value" required>
+            <label for="value">Valor</label>
+            <div class="ui-messages">
+              <div *ngIf="value.errors && value.dirty">
+                <div class="ui-message error" [hidden]="!value.pristine && !value.errors.required">
+                  Digite o Valor
+                </div>
               </div>
             </div>
-          </div>
-        </ui-input-container>
-      </div>
+          </ui-input-container>
+        </div>
         <div class="ui-button-container align-right">
           <button class="ui-button primary" (click)="onSubmit(form, calc.letter, calc.value)">Calcular</button>
         </div>
@@ -48,8 +49,9 @@
       <span>Equação: Y = {{ calc.A }} * X + {{ calc.B }}</span><br>
     </ui-card-content>
 
-
-    <canvas id="graphic"></canvas>
-
+    <ui-card-content>
+      <canvas id="graphic"></canvas>
+    </ui-card-content>
   </ui-card>
+  <div style="height: 80px;"></div>
 </div>
