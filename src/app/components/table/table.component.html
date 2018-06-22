@@ -5,16 +5,16 @@
   <ui-data-table class="responsive">
     <tbody>
     <tr>
-      <th uiDataTableOrderBy >Grupo</th>
-      <th uiDataTableOrderBy class="align-right">N° Func</th>
-      <th uiDataTableOrderBy class="align-right">Fe%</th>
+      <th uiDataTableOrderBy >Variavel</th>
+      <th uiDataTableOrderBy class="align-right">Frequencia</th>
+      <th uiDataTableOrderBy class="align-right">FR%</th>
       <th uiDataTableOrderBy class="align-right">F</th>
       <th uiDataTableOrderBy class="align-right">F%</th>
     </tr>
     <tr *ngFor="let item of data">
-      <td data-title="Grupo" >{{item.group}}</td>
-      <td data-title="N° Func" class="align-right"> {{item.qtd}} </td>
-      <td data-title="Fe%" class="align-right"> {{item.percent | percent: '1.2-2' }} </td>
+      <td data-title="Variavel" >{{item.group}}</td>
+      <td data-title="Frequencia" class="align-right"> {{item.qtd}} </td>
+      <td data-title="FR%" class="align-right"> {{item.percent | percent: '1.2-2' }} </td>
       <td data-title="F" class="align-right"> {{item.fac}} </td>
       <td data-title="F%" class="align-right"> {{item.facP | percent: '1.2-2' }} </td>
     </tr>
