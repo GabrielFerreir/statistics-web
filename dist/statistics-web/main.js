@@ -2190,6 +2190,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
         this.calc = {};
     }
     CorrelacaoRegressaoService.prototype.calculate = function (values) {
+        this.calc.list = values;
         var correlacao = this.correlacao(values.length, this.somatorioX(values), this.somatorioY(values), this.somatorioXY(values), this.somatorioX2(values), this.somatorioY2(values));
         var A = this.regressaoA(values.length, this.somatorioXY(values), this.somatorioX(values), this.somatorioY(values), this.somatorioY2(values));
         var B = this.regressaoB(values.length, this.somatorioX(values), this.somatorioY(values), A);
@@ -2226,7 +2227,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
     CorrelacaoRegressaoService.prototype.correlacao = function (n, X, Y, XY, X2, Y2) {
         var numerador = (n * XY) - (X * Y);
         var denominador = Math.sqrt((n * X2 - Math.pow(X, 2)) * (n * Y2 - Math.pow(Y, 2)));
-        return -numerador / denominador;
+        return numerador / denominador;
     };
     CorrelacaoRegressaoService.prototype.nivelCorrelacao = function (percent) {
         if (percent >= 0 && percent < 0.3) {
@@ -2248,9 +2249,14 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
         return numerador / denominador;
     };
     CorrelacaoRegressaoService.prototype.regressaoB = function (n, X, Y, A) {
-        var _Y = Y / n;
-        var _X = (X / n) / 1000; // NÃO ME PERGUNTE O MOTIVO DISSO;
-        return _X - A * _Y;
+        /* A FUNÇÂO RECEBE OS VALORES AO CONTRARIO
+          CONST _X = X / n;
+          CONST _T = Y / n;
+          ISSO SERIA O CORRETO
+         */
+        var _X = Y / n;
+        var _Y = X / n;
+        return _Y - A * _X;
     };
     CorrelacaoRegressaoService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -2272,7 +2278,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n      <div class=\"ui-flex-container\">\r\n        <ui-input-container>\r\n          <ui-select id=\"letter\" #letter=\"ngModel\" name=\"letter\" [(ngModel)]=\"calc.letter\" [options]=\"letters\" value=\"id\" label=\"nome\"\r\n                     uiInput required></ui-select>\r\n          <label for=\"letter\">\r\n            Letra\r\n          </label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"letter.errors && letter.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!letter.pristine && !letter.errors.required\">\r\n                Selecione uma letra\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <ui-input-container>\r\n          <input id=\"value\" #value=\"ngModel\" type=\"number\" [(ngModel)]=\"calc.value\" uiInput name=\"value\" required>\r\n          <label for=\"value\">Valor</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"value.errors && value.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!value.pristine && !value.errors.required\">\r\n                Digite o Valor\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n      </div>\r\n        <div class=\"ui-button-container align-right\">\r\n          <button class=\"ui-button primary\" (click)=\"onSubmit(form, calc.letter, calc.value)\">Calcular</button>\r\n        </div>\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <ui-card-content>\r\n      <span *ngIf=\"calc.result\">Resultado: {{ calc.result }}</span><br>\r\n      <span>Correlação: {{ calc.correlacao}}</span><br>\r\n      <span>Nivel: {{ calc.nivel}}</span><br>\r\n      <span>Equação: Y = - {{ calc.A }} * X + {{ calc.B }}</span><br>\r\n    </ui-card-content>\r\n\r\n  </ui-card>\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <div class=\"ui-flex-container\">\r\n          <ui-input-container>\r\n            <ui-select id=\"letter\" #letter=\"ngModel\" name=\"letter\" [(ngModel)]=\"calc.letter\" [options]=\"letters\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput required></ui-select>\r\n            <label for=\"letter\">\r\n              Qual valor você deseja descobrir?\r\n            </label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"letter.errors && letter.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!letter.pristine && !letter.errors.required\">\r\n                  Selecione uma letra\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"value\" #value=\"ngModel\" type=\"number\" [(ngModel)]=\"calc.value\" uiInput name=\"value\" required>\r\n            <label for=\"value\">Valor</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"value.errors && value.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!value.pristine && !value.errors.required\">\r\n                  Digite o Valor\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-button-container align-right\">\r\n          <button class=\"ui-button primary\" (click)=\"onSubmit(form, calc.letter, calc.value)\">Calcular</button>\r\n        </div>\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <ui-card-content>\r\n      <span *ngIf=\"calc.result\">Resultado: {{ calc.result }}</span><br>\r\n      <span>Correlação: {{ calc.correlacao}}</span><br>\r\n      <span>Nivel: {{ calc.nivel}}</span><br>\r\n      <span>Equação: Y = {{ calc.A }} * X + {{ calc.B }}</span><br>\r\n    </ui-card-content>\r\n\r\n    <ui-card-content>\r\n      <canvas id=\"graphic\"></canvas>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div style=\"height: 80px;\"></div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2302,6 +2308,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../smn-ui/smn-ui.module */ "./src/app/smn-ui/smn-ui.module.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/src/chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2311,6 +2319,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2328,11 +2337,64 @@ var ResponseComponent = /** @class */ (function () {
             { id: 2, nome: 'Y' }
         ];
         this.calc = this.correlacaoService.calc;
+        if (!this.calc.list || !this.calc.list.length) {
+            this.router.navigate(['/correlacao-regressao']);
+        }
     }
     ResponseComponent.prototype.ngOnInit = function () {
     };
     ResponseComponent.prototype.ngAfterViewInit = function () {
         this.toolbarService.activateExtendedToolbar(480);
+        var canvas = document.getElementById('graphic');
+        var ctx = canvas.getContext('2d');
+        var maior, menor;
+        this.correlacaoService.calc.list.forEach(function (item, index) {
+            if (!index) {
+                maior = menor = item;
+            }
+            else {
+                if (item.x > maior.x) {
+                    maior = item;
+                }
+                if (item.x < menor.x) {
+                    menor = item;
+                }
+            }
+        });
+        var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_5__(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Correlação',
+                        data: this.correlacaoService.calc.list,
+                        backgroundColor: 'black'
+                    },
+                    {
+                        type: 'line',
+                        label: 'line',
+                        data: [
+                            menor,
+                            maior
+                        ],
+                        showLine: true,
+                        backgroundColor: 'rgba(0,0,255,0)',
+                        pointBorderColor: 'rgba(0,0,255,0)',
+                        borderColor: 'rgba(0,0,255,.5)'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                            beginAtZero: true
+                        }],
+                    xAxes: [{
+                            beginAtZero: true
+                        }]
+                }
+            }
+        });
     };
     ResponseComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
