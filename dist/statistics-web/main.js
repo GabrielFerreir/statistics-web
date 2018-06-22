@@ -2345,23 +2345,16 @@ var ResponseComponent = /** @class */ (function () {
     };
     ResponseComponent.prototype.ngAfterViewInit = function () {
         this.toolbarService.activateExtendedToolbar(480);
+        this.generateChart();
+    };
+    ResponseComponent.prototype.ngOnDestroy = function () {
+        this.toolbarService.deactivateExtendedToolbar();
+    };
+    ResponseComponent.prototype.generateChart = function () {
         var canvas = document.getElementById('graphic');
         var ctx = canvas.getContext('2d');
-        var maior, menor;
-        this.correlacaoService.calc.list.forEach(function (item, index) {
-            if (!index) {
-                maior = menor = item;
-            }
-            else {
-                if (item.x > maior.x) {
-                    maior = item;
-                }
-                if (item.x < menor.x) {
-                    menor = item;
-                }
-            }
-        });
-        var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_5__(ctx, {
+        this.generateLine();
+        this.graphic = new chart_js__WEBPACK_IMPORTED_MODULE_5__(ctx, {
             type: 'scatter',
             data: {
                 datasets: [
@@ -2373,10 +2366,7 @@ var ResponseComponent = /** @class */ (function () {
                     {
                         type: 'line',
                         label: 'line',
-                        data: [
-                            menor,
-                            maior
-                        ],
+                        data: this.line,
                         showLine: true,
                         backgroundColor: 'rgba(0,0,255,0)',
                         pointBorderColor: 'rgba(0,0,255,0)',
@@ -2396,8 +2386,22 @@ var ResponseComponent = /** @class */ (function () {
             }
         });
     };
-    ResponseComponent.prototype.ngOnDestroy = function () {
-        this.toolbarService.deactivateExtendedToolbar();
+    ResponseComponent.prototype.generateLine = function () {
+        var maior, menor;
+        this.correlacaoService.calc.list.forEach(function (item, index) {
+            if (!index) {
+                maior = menor = item;
+            }
+            else {
+                if (item.x > maior.x) {
+                    maior = item;
+                }
+                if (item.x < menor.x) {
+                    menor = item;
+                }
+            }
+        });
+        this.line = [menor, maior];
     };
     ResponseComponent.prototype.onSubmit = function (form, type, value) {
         for (var control in form.controls) {
@@ -2412,9 +2416,17 @@ var ResponseComponent = /** @class */ (function () {
         }
         if (type === 1) {
             this.calc.result = this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, value, null);
+            this.correlacaoService.calc.list.push({ x: this.calc.result, y: value });
+            this.generateLine();
+            this.graphic.data.datasets[1].data = this.line;
+            this.graphic.update();
         }
         else {
             this.calc.result = this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, null, value);
+            this.correlacaoService.calc.list.push({ x: value, y: this.calc.result });
+            this.generateLine();
+            this.graphic.data.datasets[1].data = this.line;
+            this.graphic.update();
         }
     };
     ResponseComponent = __decorate([
