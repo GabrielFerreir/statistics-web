@@ -24,6 +24,9 @@ export class ResponseComponent implements OnInit, AfterViewInit, OnDestroy {
               private correlacaoService: CorrelacaoRegressaoService,
               private router: Router) {
     this.calc = this.correlacaoService.calc;
+    if (!this.calc.list || !this.calc.list.length) {
+      this.router.navigate(['/correlacao-regressao']);
+    }
   }
 
   ngOnInit() {
