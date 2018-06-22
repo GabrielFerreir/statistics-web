@@ -13,7 +13,7 @@
           <ui-select id="letter" #letter="ngModel" name="letter" [(ngModel)]="calc.letter" [options]="letters" value="id" label="nome"
                      uiInput required></ui-select>
           <label for="letter">
-            Letra
+            Qual valor você deseja descobrir?
           </label>
           <div class="ui-messages">
             <div *ngIf="letter.errors && letter.dirty">
@@ -45,7 +45,7 @@
       <span *ngIf="calc.result">Resultado: {{ calc.result }}</span><br>
       <span>Correlação: {{ calc.correlacao}}</span><br>
       <span>Nivel: {{ calc.nivel}}</span><br>
-      <span>Equação: Y = - {{ calc.A }} * X + {{ calc.B }}</span><br>
+      <span>Equação: Y = {{ calc.A }} * X + {{ calc.B }}</span><br>
     </ui-card-content>
 
   </ui-card>
