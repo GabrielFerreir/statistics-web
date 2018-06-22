@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +19,30 @@ export class CorrelacaoRegressaoService {
       this.somatorioX2(values),
       this.somatorioY2(values));
 
+    console.log('Total', values.length);
+    console.log('SomarioX', this.somatorioX(values));
+    console.log('SomatorioY', this.somatorioY(values));
+    console.log('SomatorioXY', this.somatorioXY(values));
+    console.log('SomatorioX2', this.somatorioX2(values));
+    console.log('SomatorioY2', this.somatorioY2(values));
+
+    console.log('Correlação', correlacao);
+
     const A = this.regressaoA(values.length,
       this.somatorioXY(values),
       this.somatorioX(values),
       this.somatorioY(values),
       this.somatorioY2(values));
 
+    console.log('Regressão A', A);
+
     const B = this.regressaoB(values.length,
       this.somatorioX(values),
       this.somatorioY(values),
       A);
+
+    console.log('Regressão B', B);
+
 
     this.calc.correlacao = correlacao;
     this.calc.nivel = this.nivelCorrelacao(correlacao);
@@ -69,7 +83,9 @@ export class CorrelacaoRegressaoService {
   correlacao(n, X, Y, XY, X2, Y2) {
     const numerador = (n * XY) - (X * Y);
     const denominador = Math.sqrt((n * X2 - Math.pow(X, 2)) * (n * Y2 - Math.pow(Y, 2)));
-    return -numerador / denominador;
+    console.log('numerador', numerador);
+    console.log('denominador', denominador);
+    return numerador / denominador;
   }
 
   nivelCorrelacao(percent) {
@@ -93,9 +109,14 @@ export class CorrelacaoRegressaoService {
   }
 
   regressaoB(n, X, Y, A) {
-    const _Y = Y / n;
-    const _X = (X / n) / 1000; // NÃO ME PERGUNTE O MOTIVO DISSO;
-    return _X - A * _Y;
+    /* A FUNÇÂO RECEBE OS VALORES AO CONTRARIO
+      CONST _X = X / n;
+      CONST _T = Y / n;
+      ISSO SERIA O CORRETO
+     */
+    const _X = Y / n;
+    const _Y = X / n;
+    return _Y - A * _X;
   }
 
 }
