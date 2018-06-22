@@ -12,6 +12,8 @@ export class CorrelacaoRegressaoService {
   }
 
   calculate(values) {
+    this.calc.list = values;
+
     const correlacao = this.correlacao(values.length,
       this.somatorioX(values),
       this.somatorioY(values),
@@ -19,30 +21,16 @@ export class CorrelacaoRegressaoService {
       this.somatorioX2(values),
       this.somatorioY2(values));
 
-    console.log('Total', values.length);
-    console.log('SomarioX', this.somatorioX(values));
-    console.log('SomatorioY', this.somatorioY(values));
-    console.log('SomatorioXY', this.somatorioXY(values));
-    console.log('SomatorioX2', this.somatorioX2(values));
-    console.log('SomatorioY2', this.somatorioY2(values));
-
-    console.log('Correlação', correlacao);
-
     const A = this.regressaoA(values.length,
       this.somatorioXY(values),
       this.somatorioX(values),
       this.somatorioY(values),
       this.somatorioY2(values));
 
-    console.log('Regressão A', A);
-
     const B = this.regressaoB(values.length,
       this.somatorioX(values),
       this.somatorioY(values),
       A);
-
-    console.log('Regressão B', B);
-
 
     this.calc.correlacao = correlacao;
     this.calc.nivel = this.nivelCorrelacao(correlacao);

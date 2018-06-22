@@ -3,6 +3,7 @@ import {CorrelacaoRegressaoService} from '../correlacao-regressao.service';
 import {Location} from '@angular/common';
 import {UiElement, UiToolbarService} from '../../../smn-ui/smn-ui.module';
 import {Router} from '@angular/router';
+import * as Chart from 'chart.js';
 
 @Component({
   selector: 'app-response',
@@ -16,6 +17,7 @@ export class ResponseComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   calc: any;
+
   constructor(private element: ElementRef,
               private toolbarService: UiToolbarService,
               public _location: Location,
@@ -29,6 +31,60 @@ export class ResponseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.toolbarService.activateExtendedToolbar(480);
+
+    const canvas = <any>document.getElementById('graphic');
+    const ctx = canvas.getContext('2d');
+
+    let maior, menor;
+    this.correlacaoService.calc.list.forEach((item, index) => {
+      if (!index) {
+        maior = menor = item;
+      } else {
+        if (item.x > maior.x) {
+          maior = item;
+        }
+
+        if (item.x < menor.x) {
+          menor = item;
+        }
+      }
+    });
+
+    const myChart = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+        datasets: [
+          {
+            label: 'Correlação',
+            data: this.correlacaoService.calc.list,
+            backgroundColor: 'black'
+          },
+          {
+            type: 'line',
+            label: 'line',
+            data: [
+              menor,
+              maior
+            ],
+            showLine: true,
+            backgroundColor: 'rgba(0,0,255,0)',
+            pointBorderColor: 'rgba(0,0,255,0)',
+            borderColor: 'rgba(0,0,255,.5)'
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            beginAtZero: true
+          }],
+          xAxes: [{
+            beginAtZero: true
+          }]
+        }
+      }
+    });
+
   }
 
   ngOnDestroy() {
