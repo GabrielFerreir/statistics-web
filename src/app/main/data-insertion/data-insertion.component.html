@@ -38,6 +38,8 @@
                    type="number"
                    [(ngModel)]="info.valueMedidaSeparatriz"
                    uiInput
+                   [min]="1"
+                   [max]="(info.medidaSeparatriz === 4) ? 4 : (info.medidaSeparatriz === 5) ? 5 : (info.medidaSeparatriz === 10) ? 10 : 100"
                    name="valueMedidaSeparatriz">
             <label for="valueMedidaSeparatriz">Valor</label>
           </ui-input-container>
@@ -56,15 +58,17 @@
               <span>Amostra</span>
             </ui-option>
           </ui-option-container>
-            <ui-input-container>
-              <ui-select id="sufixo" #sufixo="ngModel" name="sufixo" [(ngModel)]="info.sufixo" [options]="selectSufixo" value="nome" label="nome"
-                uiInput></ui-select>
-              <label for="sufixo">
-                Sufixo
-              </label>
-            </ui-input-container>
           <ui-input-container>
-            <ui-select id="tipoDeVariavel" #tipoDeVariavel="ngModel" name="tipoDeVarivel" [(ngModel)]="info.tipoDeVariavel" [options]="selectTipoVariavel" value="id" label="nome"
+            <ui-select id="sufixo" #sufixo="ngModel" name="sufixo" [(ngModel)]="info.sufixo" [options]="selectSufixo"
+                       value="nome" label="nome"
+                       uiInput></ui-select>
+            <label for="sufixo">
+              Sufixo
+            </label>
+          </ui-input-container>
+          <ui-input-container>
+            <ui-select id="tipoDeVariavel" #tipoDeVariavel="ngModel" name="tipoDeVarivel"
+                       [(ngModel)]="info.tipoDeVariavel" [options]="selectTipoVariavel" value="id" label="nome"
                        uiInput></ui-select>
             <label for="tipoDeVariavel">
               Tipo de variavel
@@ -87,11 +91,12 @@
           </ui-input-container>
 
           <div class="container-chips">
-            <div *ngFor="let dadoInserido of info.content; let index = index" [attr.data-value]="index" class="ui-chip js-chips-dado">
+            <div *ngFor="let dadoInserido of info.content; let index = index" [attr.data-value]="index"
+                 class="ui-chip js-chips-dado">
               <div class="icon chip-cont">
                 {{ dadoInserido.qtd }}
               </div>
-              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}
+              {{ dadoInserido.group }} {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}
               <div class="close ripple-rounded" uiRipple (click)="removeData(index)">
                 <i class="material-icons">add_circle</i>
               </div>

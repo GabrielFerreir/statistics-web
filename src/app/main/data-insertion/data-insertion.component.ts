@@ -117,7 +117,6 @@ export class DataInsertionComponent implements AfterViewInit, OnDestroy {
 
     this.typeVariable.run(this.info);
 
-
     this.router.navigate(['/dashboard']);
   }
 
