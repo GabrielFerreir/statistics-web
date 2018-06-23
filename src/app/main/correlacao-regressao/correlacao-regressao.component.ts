@@ -2,7 +2,6 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2} from
 import {UiElement, UiSnackbar, UiToolbarService} from '../../smn-ui/smn-ui.module';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {StatisticsService} from '../statistics.service';
 import {CorrelacaoRegressaoService} from './correlacao-regressao.service';
 
 @Component({
@@ -29,12 +28,7 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
               private router: Router) {
     this.info = {};
     this.calc = {};
-    this.list = [
-      {x: 300000, y: 10},
-      {x: 400000, y: 8},
-      {x: 320000, y: 9},
-      {x: 450000, y: 6},
-    ];
+    this.list = [];
   }
 
   ngOnInit() {
@@ -62,8 +56,7 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
-    const inset = JSON.parse(JSON.stringify(info));
-    console.log('insert', inset);
+    const inset = JSON.parse(JSON.stringify(info));;
     this.list.push(inset);
     form.reset();
     UiElement.focus(this.element.nativeElement.querySelector('#x'));
