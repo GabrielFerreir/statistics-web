@@ -80,13 +80,14 @@
             <input id="dado" #dado="ngModel" type="text" [(ngModel)]="info.currentDado" uiInput name="dado"
                    (focus)="focus = DataInsertHasFocus;" (blur)="focus = DataInsertHasFocus"
                    [persistPlaceholder]="DataInsertHasFocus" placeholder="Pressione enter para inserir"
-                   (keydown.enter)="insertData()">
+                   (keydown.enter)="insertData(info.currentDado)">
             <label for="dado">Dado</label>
             <div class="icon">
-              <button class="ui-button icon flat" type="button"
+              <button class="ui-button icon flat" type="button" (click)="openFile()"
                       uiRipple>
                 <i class="material-icons">cloud_upload</i>
               </button>
+              <input class="openfile" style="display: none;" name="file" type="file" [(ngModel)]="info.file" (change)="readFile($event.target)">
             </div>
           </ui-input-container>
 
@@ -106,6 +107,9 @@
       </form>
     </ui-card-content>
   </ui-card>
+  <pre>
+    {{ info | json }}
+  </pre>
   <div class="ui-fab-container">
     <a class="ui-button accent fab" uiRipple (click)="onSubmit(form, info)">
       <i class="material-icons">send</i>

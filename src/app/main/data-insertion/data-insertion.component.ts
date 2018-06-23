@@ -73,9 +73,9 @@ export class DataInsertionComponent implements AfterViewInit, OnDestroy {
     this.toolbarService.deactivateExtendedToolbar();
   }
 
-  insertData() {
-    if (this.info.currentDado && this.info.currentDado.length) {
-      const dataTratada = this.info.currentDado.trim().toLowerCase();
+  insertData(currentDado) {
+    if (currentDado && currentDado.length) {
+      const dataTratada = currentDado.trim().toLowerCase();
       let isExists = false;
       this.info.content.forEach((dado) => {
         if (dado.group === dataTratada) {
@@ -118,6 +118,29 @@ export class DataInsertionComponent implements AfterViewInit, OnDestroy {
     this.typeVariable.run(this.info);
 
     this.router.navigate(['/dashboard']);
+  }
+
+  openFile() {
+    console.log('open');
+    const button = <any>document.querySelector('.openfile');
+    button.click();
+  }
+
+  readFile(event) {
+    const file = event.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      const arrayResult = result.split(';');
+      this.info.content = [];
+      arrayResult.forEach((item) => {
+        this.insertData(item);
+      });
+
+    };
+    if (file) {
+      reader.readAsText(file);
+    }
   }
 
 
