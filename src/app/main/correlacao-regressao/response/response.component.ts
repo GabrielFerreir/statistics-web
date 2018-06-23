@@ -129,6 +129,13 @@ export class ResponseComponent implements OnInit, AfterViewInit, OnDestroy {
       this.graphic.data.datasets[1].data = this.line;
       this.graphic.update();
     }
+
+    form.reset();
+    UiElement.focus(this.element.nativeElement.querySelector('#letter'));
+  }
+
+  focusValor() {
+    UiElement.focus(this.element.nativeElement.querySelector('#value'));
   }
 
 }

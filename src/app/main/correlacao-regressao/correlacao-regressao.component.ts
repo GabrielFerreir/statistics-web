@@ -62,9 +62,10 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
-
     const inset = JSON.parse(JSON.stringify(info));
     this.list.push(inset);
+    form.reset();
+    UiElement.focus(this.element.nativeElement.querySelector('#x'));
   }
 
   removeInfo(index) {

@@ -12,7 +12,9 @@
           <ui-input-container>
             <ui-select id="letter" #letter="ngModel" name="letter" [(ngModel)]="calc.letter" [options]="letters"
                        value="id" label="nome"
-                       uiInput required></ui-select>
+                       uiInput required
+                      (ngModelChange)="focusValor()"
+            ></ui-select>
             <label for="letter">
               Qual valor você deseja descobrir?
             </label>
@@ -25,7 +27,8 @@
             </div>
           </ui-input-container>
           <ui-input-container>
-            <input id="value" #value="ngModel" type="number" [(ngModel)]="calc.value" uiInput name="value" required>
+            <input id="value" #value="ngModel" type="number" [(ngModel)]="calc.value" uiInput name="value" required
+                   (keydown.enter)="onSubmit(form, calc.letter, calc.value)">
             <label for="value">Valor</label>
             <div class="icon">
               <button class="ui-button icon flat" type="button" (click)="onSubmit(form, calc.letter, calc.value)"
