@@ -71,7 +71,7 @@ export class CorrelacaoRegressaoService {
   correlacao(n, X, Y, XY, X2, Y2) {
     const numerador = (n * XY) - (X * Y);
     const denominador = Math.sqrt((n * X2 - Math.pow(X, 2)) * (n * Y2 - Math.pow(Y, 2)));
-    return numerador / denominador;
+    return (numerador / denominador) * 100;
   }
 
   nivelCorrelacao(percent) {

@@ -8,6 +8,6 @@ export class CoeficienteVariacaoService {
   constructor() { }
 
   calculate(DV, media) {
-    return DV / media;
+    return (DV / media) * 100;
   }
 }
