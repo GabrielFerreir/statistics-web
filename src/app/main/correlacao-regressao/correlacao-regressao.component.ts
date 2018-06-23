@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {UiElement, UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {UiElement, UiSnackbar, UiToolbarService} from '../../smn-ui/smn-ui.module';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {StatisticsService} from '../statistics.service';
@@ -63,6 +63,7 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
       return false;
     }
     const inset = JSON.parse(JSON.stringify(info));
+    console.log('insert', inset);
     this.list.push(inset);
     form.reset();
     UiElement.focus(this.element.nativeElement.querySelector('#x'));
@@ -77,5 +78,37 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
     this.router.navigate(['/correlacao-regressao/response']);
   }
 
+  openFile() {
+    const button = <any>document.querySelector('.openfile');
+    button.click();
+  }
+
+  readFile(event) {
+    const file = event.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      const lines = result.split('\n');
+      const lineX = lines[0].replace(/"/g, '').replace(/,/g, '.').split(';');
+      const lineY = lines[1].replace(/"/g, '').replace(/,/g, '.').split(';');
+
+      if (lineX.length != lineY.length) {
+        UiSnackbar.show({
+          text: 'O tamanho dos dados é diferente'
+        });
+        return;
+      }
+
+      this.list = [];
+
+      for (let i = 0; i < lineX.length; i++) {
+        this.list.push({x: parseFloat(lineX[i]), y: parseFloat(lineY[i])});
+      }
+
+    };
+    if (file) {
+      reader.readAsText(file);
+    }
+  }
 
 }
