@@ -34,7 +34,7 @@ export class DataInsertionComponent implements AfterViewInit, OnDestroy {
     this.info = {
       content: []
     };
-    
+
     this.dragDrop = {};
 
     this.selectMedidaSeparatriz = [

@@ -11,7 +11,8 @@
 
         <div class="ui-flex-container break-on-s840">
           <ui-input-container>
-            <input id="intervaloA" #intervaloA="ngModel" type="number" [(ngModel)]="info.intervaloA" uiInput name="intervaloA" required>
+            <input id="intervaloA" #intervaloA="ngModel" type="number" [(ngModel)]="info.intervaloA" uiInput
+                   name="intervaloA" required>
             <label for="intervaloA">Intervalo A</label>
             <div class="ui-messages">
               <div *ngIf="intervaloA.errors && intervaloA.dirty">
@@ -22,7 +23,8 @@
             </div>
           </ui-input-container>
           <ui-input-container>
-            <input id="intervaloB" #intervaloB="ngModel" type="number" [(ngModel)]="info.intervaloB" uiInput name="intervaloB" required>
+            <input id="intervaloB" #intervaloB="ngModel" type="number" [(ngModel)]="info.intervaloB" uiInput
+                   name="intervaloB" required>
             <label for="intervaloB">Intervalo B</label>
             <div class="ui-messages">
               <div *ngIf="intervaloB.errors && intervaloB.dirty">
@@ -65,14 +67,42 @@
     <div *ngIf="response">
       <ui-card-title>Resultado</ui-card-title>
       <ui-card-content>
-        <span>Media: {{ response.media }}</span><br>
-        <span>CV: {{ response.CV }}</span><br>
-        <span>DP: {{ response.DP }}</span><br>
-        <span>Probalidade: {{ response.probalidade }}</span><br>
+
+        <ul class="ui-list">
+          <li class="ui-list-item multi-line">
+            <div class="line">
+              <div class="primary">Media</div>
+              <div class="secondary">{{ response.media }}</div>
+            </div>
+          </li>
+
+          <li class="ui-list-item multi-line">
+            <div class="line">
+              <div class="primary">CV</div>
+              <div class="secondary">{{ response.CV }}</div>
+            </div>
+          </li>
+
+          <li class="ui-list-item multi-line">
+            <div class="line">
+              <div class="primary">DP</div>
+              <div class="secondary">{{ response.DP }}</div>
+            </div>
+          </li>
+
+          <li class="ui-list-item multi-line">
+            <div class="line">
+              <div class="primary">Probalidade</div>
+              <div class="secondary">{{ response.probalidade | percent: '1.2-2' }}</div>
+            </div>
+          </li>
+
+        </ul>
       </ui-card-content>
     </div>
 
   </ui-card>
+  <div style="height: 80px;"></div>
 
   <div class="ui-fab-container">
     <a class="ui-button accent fab" uiRipple (click)="onSubmit(form, info)">
