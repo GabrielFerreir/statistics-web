@@ -121,7 +121,6 @@ export class DataInsertionComponent implements AfterViewInit, OnDestroy {
   }
 
   openFile() {
-    console.log('open');
     const button = <any>document.querySelector('.openfile');
     button.click();
   }
