@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {UiElement, UiToolbarService} from '../../smn-ui/smn-ui.module';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {StatisticsService} from '../statistics.service';
@@ -51,7 +51,18 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
     this.toolbarService.deactivateExtendedToolbar();
   }
 
-  addInfo(info) {
+  addInfo(form, info) {
+    for (const control in form.controls) {
+      if (form.controls.hasOwnProperty(control)) {
+        form.controls[control].markAsTouched();
+        form.controls[control].markAsDirty();
+      }
+    }
+    if (!form.valid) {
+      UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
+      return false;
+    }
+
     const inset = JSON.parse(JSON.stringify(info));
     this.list.push(inset);
   }
