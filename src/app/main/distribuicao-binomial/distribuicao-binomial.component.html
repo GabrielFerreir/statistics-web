@@ -26,7 +26,7 @@
 
           <ui-input-container>
             <input id="probSucess" #probSucess="ngModel" type="number" [(ngModel)]="info.probSucess" uiInput
-                   uiMaskFloat name="probSucess" required>
+                   name="probSucess" required>
             <label for="probSucess">Probabilidade de Sucesso</label>
             <div class="ui-messages">
               <div *ngIf="probSucess.errors && probSucess.dirty">
@@ -54,10 +54,9 @@
         </div>
 
         <div class="ui-flex-container break-on-s840">
-
           <ui-input-container>
             <input id="totalSucess" #totalSucess="ngModel" type="number" [(ngModel)]="info.totalSucess" uiInput
-                   name="totalSucess">
+                   name="totalSucess" required>
             <label for="totalSucess">Total de sucessos desejados</label>
             <div class="ui-messages">
               <div *ngIf="totalSucess.errors && totalSucess.dirty">
@@ -70,7 +69,7 @@
 
           <ui-input-container>
             <input id="pelomenos" #pelomenos="ngModel" type="number" [(ngModel)]="info.pelomenos" uiInput
-                   name="pelomenos">
+                   name="pelomenos" required>
             <label for="pelomenos">Pelo Menos</label>
             <div class="ui-messages">
               <div *ngIf="pelomenos.errors && pelomenos.dirty">
@@ -82,7 +81,7 @@
           </ui-input-container>
 
           <ui-input-container>
-            <input id="maximo" #maximo="ngModel" type="number" [(ngModel)]="info.maximo" uiInput name="maximo">
+            <input id="maximo" #maximo="ngModel" type="number" [(ngModel)]="info.maximo" uiInput name="maximo" required>
             <label for="maximo">No Máximo</label>
             <div class="ui-messages">
               <div *ngIf="maximo.errors && maximo.dirty">
@@ -92,7 +91,6 @@
               </div>
             </div>
           </ui-input-container>
-
         </div>
 
       </form>
@@ -108,18 +106,19 @@
           <th>Até {{info.maximo}}</th>
         </tr>
         <tr>
-          <td data-title="Probabilidade">{{ response.probabilidadeTotal }}</td>
-          <td data-title="De x á y>">{{ response.pelomenos }}</td>
-          <td data-title="Até x">{{ response.maximo }}</td>
+          <td>{{ response.probabilidadeTotal }}</td>
+          <td>{{ response.pelomenos }}</td>
+          <td>{{ response.maximo }}</td>
         </tr>
         </tbody>
+        <tfoot>
 
-        <tfoot></tfoot>
+        </tfoot>
       </ui-data-table>
     </div>
 
   </ui-card>
-  <div style="height: 80px;"></div>
+
   <div class="ui-fab-container">
     <a class="ui-button accent fab" uiRipple (click)="onSubmit(form, info)">
       <i class="material-icons">send</i>
