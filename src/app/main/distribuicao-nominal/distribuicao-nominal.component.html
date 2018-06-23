@@ -78,16 +78,22 @@
           </ui-input-container>
         </div>
       </form>
+
+      <div *ngIf="info && info.response">
+        <ul class="ui-list">
+          <li class="ui-list-item multi-line">
+            <div class="line">
+              <div class="primary">Probalidade</div>
+              <div class="secondary">{{ info.response.message ? info.response.message : info.response | percent: '1.2-2'
+                }}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </ui-card-content>
-
-    <div *ngIf="info && info.response">
-      <ui-card-title>Resultado</ui-card-title>
-      <ui-card-content>
-        Valor: {{ info.response.message ? info.response.message : info.response | percent }}
-      </ui-card-content>
-    </div>
   </ui-card>
-
+  <div style="height: 80px;"></div>
   <div class="ui-fab-container">
     <a class="ui-button accent fab" uiRipple (click)="onSubmit(form)">
       <i class="material-icons">send</i>
