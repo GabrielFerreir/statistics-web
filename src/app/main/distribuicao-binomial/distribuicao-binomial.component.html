@@ -100,22 +100,22 @@
 
     <div *ngIf="response">
       <ui-card-title>Resultado</ui-card-title>
-        <ui-data-table class="responsive">
-          <tbody>
-          <tr>
-            <th>Probabilidade = {{info.totalSucess}}</th>
-            <th>De {{info.pelomenos}} á {{info.totalProb}}></th>
-            <th>Até {{info.maximo}}</th>
-          </tr>
-          <tr>
-            <td data-title="Probabilidade = {{info.totalSucess}}">{{ response.probabilidadeTotal }}</td>
-            <td data-title="De {{info.pelomenos}} á {{info.totalProb}}>">{{ response.pelomenos }}</td>
-            <td data-title="Até {{info.maximo}}">{{ response.maximo }}</td>
-          </tr>
-          </tbody>
+      <ui-data-table class="responsive">
+        <tbody>
+        <tr>
+          <th>Probabilidade = {{info.totalSucess}}</th>
+          <th>De {{info.pelomenos}} á {{info.totalProb}}></th>
+          <th>Até {{info.maximo}}</th>
+        </tr>
+        <tr>
+          <td data-title="Probabilidade = {{info.totalSucess}}">{{ response.probabilidadeTotal }}</td>
+          <td data-title="De {{info.pelomenos}} á {{info.totalProb}}>">{{ response.pelomenos }}</td>
+          <td data-title="Até {{info.maximo}}">{{ response.maximo }}</td>
+        </tr>
+        </tbody>
 
-          <tfoot></tfoot>
-        </ui-data-table>
+        <tfoot></tfoot>
+      </ui-data-table>
     </div>
 
   </ui-card>
