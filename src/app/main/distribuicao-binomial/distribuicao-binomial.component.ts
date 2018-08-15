@@ -32,20 +32,20 @@ export class DistribuicaoBinomialComponent implements OnInit, AfterViewInit, OnD
     this.toolbarService.deactivateExtendedToolbar();
   }
 
- onSubmit(form, values) {
+  onSubmit(form, values) {
 
-     for (const control in form.controls) {
-       if (form.controls.hasOwnProperty(control)) {
-         form.controls[control].markAsTouched();
-         form.controls[control].markAsDirty();
-       }
-     }
+    for (const control in form.controls) {
+      if (form.controls.hasOwnProperty(control)) {
+        form.controls[control].markAsTouched();
+        form.controls[control].markAsDirty();
+      }
+    }
     if (!form.valid) {
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
 
-     this.response = this.binomialService.calculate(values.totalProb,values.totalSucess, values.probSucess, values.probFracasso,values.pelomenos, values.maximo);
+    this.response = this.binomialService.calculate(values.totalProb, values.totalSucess, values.probSucess, values.probFracasso, values.pelomenos, values.maximo);
   }
 
 }

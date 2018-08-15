@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,8 @@ export class CorrelacaoRegressaoService {
   }
 
   calculate(values) {
+    this.calc.list = values;
+
     const correlacao = this.correlacao(values.length,
       this.somatorioX(values),
       this.somatorioY(values),
@@ -69,7 +71,7 @@ export class CorrelacaoRegressaoService {
   correlacao(n, X, Y, XY, X2, Y2) {
     const numerador = (n * XY) - (X * Y);
     const denominador = Math.sqrt((n * X2 - Math.pow(X, 2)) * (n * Y2 - Math.pow(Y, 2)));
-    return -numerador / denominador;
+    return (numerador / denominador) * 100;
   }
 
   nivelCorrelacao(percent) {
@@ -93,9 +95,14 @@ export class CorrelacaoRegressaoService {
   }
 
   regressaoB(n, X, Y, A) {
-    const _Y = Y / n;
-    const _X = (X / n) / 1000; // NÃO ME PERGUNTE O MOTIVO DISSO;
-    return _X - A * _Y;
+    /* A FUNÇÂO RECEBE OS VALORES AO CONTRARIO
+      CONST _X = X / n;
+      CONST _T = Y / n;
+      ISSO SERIA O CORRETO
+     */
+    const _X = Y / n;
+    const _Y = X / n;
+    return _Y - A * _X;
   }
 
 }

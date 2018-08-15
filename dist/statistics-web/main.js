@@ -990,7 +990,7 @@ var GraphicService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ui-card class=\"elevate-on-toolbar\">\r\n  <ui-toolbar class=\"flat\">\r\n    <span class=\"title\">{{ title }}</span>\r\n  </ui-toolbar>\r\n  <ui-data-table class=\"responsive\">\r\n    <tbody>\r\n    <tr>\r\n      <th uiDataTableOrderBy >Grupo</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">N° Func</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">Fe%</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">F</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">F%</th>\r\n    </tr>\r\n    <tr *ngFor=\"let item of data\">\r\n      <td data-title=\"Grupo\" >{{item.group}}</td>\r\n      <td data-title=\"N° Func\" class=\"align-right\"> {{item.qtd}} </td>\r\n      <td data-title=\"Fe%\" class=\"align-right\"> {{item.percent | percent: '1.2-2' }} </td>\r\n      <td data-title=\"F\" class=\"align-right\"> {{item.fac}} </td>\r\n      <td data-title=\"F%\" class=\"align-right\"> {{item.facP | percent: '1.2-2' }} </td>\r\n    </tr>\r\n    </tbody>\r\n    <tfoot></tfoot>\r\n  </ui-data-table>\r\n</ui-card>\r\n"
+module.exports = "<ui-card class=\"elevate-on-toolbar\">\r\n  <ui-toolbar class=\"flat\">\r\n    <span class=\"title\">{{ title }}</span>\r\n  </ui-toolbar>\r\n  <ui-data-table class=\"responsive\">\r\n    <tbody>\r\n    <tr>\r\n      <th uiDataTableOrderBy>Variavel</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">Frequencia</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">FR%</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">F</th>\r\n      <th uiDataTableOrderBy class=\"align-right\">F%</th>\r\n    </tr>\r\n    <tr *ngFor=\"let item of data\">\r\n      <td data-title=\"Variavel\">{{item.group}}</td>\r\n      <td data-title=\"Frequencia\" class=\"align-right\"> {{item.qtd}}</td>\r\n      <td data-title=\"FR%\" class=\"align-right\"> {{item.percent | percent: '1.2-2' }}</td>\r\n      <td data-title=\"F\" class=\"align-right\"> {{item.fac}}</td>\r\n      <td data-title=\"F%\" class=\"align-right\"> {{item.facP | percent: '1.2-2' }}</td>\r\n    </tr>\r\n    </tbody>\r\n    <tfoot></tfoot>\r\n  </ui-data-table>\r\n</ui-card>\r\n"
 
 /***/ }),
 
@@ -1079,7 +1079,7 @@ var CoeficienteVariacaoService = /** @class */ (function () {
     function CoeficienteVariacaoService() {
     }
     CoeficienteVariacaoService.prototype.calculate = function (DV, media) {
-        return DV / media;
+        return (DV / media) * 100;
     };
     CoeficienteVariacaoService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -1429,7 +1429,7 @@ var MedianaService = /** @class */ (function () {
             var pos = [somatorio / 2, somatorio / 2 + 1];
             pos.forEach(function (position) {
                 var limiteInferior = arrayData[position].class.min;
-                var freqAA = groups[arrayData[position].class.id - 2].fac;
+                var freqAA = groups[arrayData[position].class.id - 2] ? groups[arrayData[position].class.id - 2].fac : 0;
                 var freq = groups[arrayData[position].class.id - 1].qtd;
                 var pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
                 res_1.push(limiteInferior + (pre * interval));
@@ -1439,7 +1439,7 @@ var MedianaService = /** @class */ (function () {
         else {
             var pos = (somatorio + 1) / 2;
             var limiteInferior = arrayData[pos].class.min;
-            var freqAA = groups[arrayData[pos].class.id - 2].fac;
+            var freqAA = groups[arrayData[pos].class.id - 2] ? groups[arrayData[pos].class.id - 2].fac : 0;
             var freq = groups[arrayData[pos].class.id - 1].qtd;
             var pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
             return limiteInferior + (pre * interval);
@@ -2008,7 +2008,7 @@ var UtilsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <div class=\"ui-flex-container break-on-s840\">\r\n        <ui-input-container>\r\n          <input id=\"x\" #x=\"ngModel\" type=\"number\" [(ngModel)]=\"info.x\" uiInput name=\"x\" required>\r\n          <label for=\"x\">X</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"x.errors && x.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!x.pristine && !x.errors.required\">\r\n                Digite o X\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <ui-input-container>\r\n          <input id=\"y\" #y=\"ngModel\" type=\"number\" [(ngModel)]=\"info.y\" uiInput name=\"y\" required>\r\n          <label for=\"y\">Y</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"y.errors && y.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!y.pristine && !y.errors.required\">\r\n                Digite o Y\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n      </div>\r\n      <div class=\"ui-button-container align-right\">\r\n        <button class=\"ui-button primary\" (click)=\"addInfo(info)\">Adicionar</button>\r\n      </div>\r\n    </ui-card-content>\r\n    <ui-data-table class=\"responsive\">\r\n      <tbody>\r\n      <tr>\r\n        <th>Xs</th>\r\n        <th>Ys</th>\r\n        <th></th>\r\n      </tr>\r\n      <tr *ngFor=\"let item of list; let index = index\">\r\n        <td data-title=\"Xs\" >{{item.x}}</td>\r\n        <td data-title=\"Ys\"> {{item.y}} </td>\r\n        <td data-title=\"Excluir\" class=\"align-right\">\r\n          <button class=\"ui-button flat icon error\" (click)=\"removeInfo(index)\"><i class=\"material-icons\">clear</i></button>\r\n        </td>\r\n      </tr>\r\n      <tr *ngIf=\"list && !list.length\">\r\n        <td colspan=\"2\" style=\"text-align: center;\">Não existem informações</td>\r\n      </tr>\r\n      </tbody>\r\n\r\n      <tfoot>\r\n      </tfoot>\r\n\r\n    </ui-data-table>\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(list)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n      <div class=\"align-right\">\r\n        <button class=\"ui-button icon flat\" type=\"button\" (click)=\"openFile()\"\r\n                uiRipple>\r\n          <i class=\"material-icons\">cloud_upload</i>\r\n        </button>\r\n        <input class=\"openfile\" style=\"display: none;\" name=\"file\" type=\"file\" [(ngModel)]=\"info.file\"\r\n               (change)=\"readFile($event.target)\">\r\n      </div>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"x\" #x=\"ngModel\" type=\"number\" [(ngModel)]=\"info.x\" uiInput name=\"x\" required>\r\n            <label for=\"x\">X</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"x.errors && x.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!x.pristine && !x.errors.required\">\r\n                  Digite o X\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"y\" #y=\"ngModel\" type=\"number\" [(ngModel)]=\"info.y\" uiInput name=\"y\" required\r\n                   (keydown.enter)=\"addInfo(form, info)\">\r\n            <label for=\"y\">Y</label>\r\n            <div class=\"icon\">\r\n              <button class=\"ui-button icon flat\" type=\"button\" (click)=\"addInfo(form, info)\"\r\n                      uiRipple>\r\n                <i class=\"material-icons\">add</i>\r\n              </button>\r\n            </div>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"y.errors && y.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!y.pristine && !y.errors.required\">\r\n                  Digite o Y\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n      </form>\r\n    </ui-card-content>\r\n\r\n\r\n    <ui-data-table class=\"responsive\">\r\n      <tbody>\r\n      <tr>\r\n        <th>Xs</th>\r\n        <th>Ys</th>\r\n        <th></th>\r\n      </tr>\r\n      <tr *ngFor=\"let item of list; let index = index\">\r\n        <td data-title=\"Xs\">{{item.x}}</td>\r\n        <td data-title=\"Ys\"> {{item.y}}</td>\r\n        <td data-title=\"Excluir\" class=\"align-right\">\r\n          <div class=\"icon\">\r\n            <button class=\"ui-button icon flat error\" type=\"button\" (click)=\"removeInfo(index)\"\r\n                    uiRipple>\r\n              <i class=\"material-icons\">clear</i>\r\n            </button>\r\n          </div>\r\n        </td>\r\n      </tr>\r\n      <tr *ngIf=\"list && !list.length\">\r\n        <td colspan=\"3\" style=\"text-align: center;\">Não existem informações</td>\r\n      </tr>\r\n      </tbody>\r\n\r\n      <tfoot>\r\n      </tfoot>\r\n\r\n    </ui-data-table>\r\n  </ui-card>\r\n\r\n  <div style=\"height: 80px;\"></div>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(list)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2065,12 +2065,7 @@ var CorrelacaoRegressaoComponent = /** @class */ (function () {
         ];
         this.info = {};
         this.calc = {};
-        this.list = [
-            { x: 300000, y: 10 },
-            { x: 400000, y: 8 },
-            { x: 320000, y: 9 },
-            { x: 450000, y: 6 },
-        ];
+        this.list = [];
     }
     CorrelacaoRegressaoComponent.prototype.ngOnInit = function () {
     };
@@ -2081,9 +2076,22 @@ var CorrelacaoRegressaoComponent = /** @class */ (function () {
     CorrelacaoRegressaoComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
     };
-    CorrelacaoRegressaoComponent.prototype.addInfo = function (info) {
+    CorrelacaoRegressaoComponent.prototype.addInfo = function (form, info) {
+        for (var control in form.controls) {
+            if (form.controls.hasOwnProperty(control)) {
+                form.controls[control].markAsTouched();
+                form.controls[control].markAsDirty();
+            }
+        }
+        if (!form.valid) {
+            _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_1__["UiElement"].focus(this.element.nativeElement.querySelector('form .ng-invalid'));
+            return false;
+        }
         var inset = JSON.parse(JSON.stringify(info));
+        ;
         this.list.push(inset);
+        form.reset();
+        _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_1__["UiElement"].focus(this.element.nativeElement.querySelector('#x'));
     };
     CorrelacaoRegressaoComponent.prototype.removeInfo = function (index) {
         this.list.splice(index, 1);
@@ -2091,6 +2099,34 @@ var CorrelacaoRegressaoComponent = /** @class */ (function () {
     CorrelacaoRegressaoComponent.prototype.onSubmit = function (values) {
         this.correlacaoService.calculate(values);
         this.router.navigate(['/correlacao-regressao/response']);
+    };
+    CorrelacaoRegressaoComponent.prototype.openFile = function () {
+        var button = document.querySelector('.openfile');
+        button.click();
+    };
+    CorrelacaoRegressaoComponent.prototype.readFile = function (event) {
+        var _this = this;
+        var file = event.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            var result = reader.result;
+            var lines = result.split('\n');
+            var lineX = lines[0].replace(/"/g, '').replace(/,/g, '.').split(';');
+            var lineY = lines[1].replace(/"/g, '').replace(/,/g, '.').split(';');
+            if (lineX.length != lineY.length) {
+                _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_1__["UiSnackbar"].show({
+                    text: 'O tamanho dos dados é diferente'
+                });
+                return;
+            }
+            _this.list = [];
+            for (var i = 0; i < lineX.length; i++) {
+                _this.list.push({ x: parseFloat(lineX[i]), y: parseFloat(lineY[i]) });
+            }
+        };
+        if (file) {
+            reader.readAsText(file);
+        }
     };
     CorrelacaoRegressaoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2190,6 +2226,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
         this.calc = {};
     }
     CorrelacaoRegressaoService.prototype.calculate = function (values) {
+        this.calc.list = values;
         var correlacao = this.correlacao(values.length, this.somatorioX(values), this.somatorioY(values), this.somatorioXY(values), this.somatorioX2(values), this.somatorioY2(values));
         var A = this.regressaoA(values.length, this.somatorioXY(values), this.somatorioX(values), this.somatorioY(values), this.somatorioY2(values));
         var B = this.regressaoB(values.length, this.somatorioX(values), this.somatorioY(values), A);
@@ -2226,7 +2263,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
     CorrelacaoRegressaoService.prototype.correlacao = function (n, X, Y, XY, X2, Y2) {
         var numerador = (n * XY) - (X * Y);
         var denominador = Math.sqrt((n * X2 - Math.pow(X, 2)) * (n * Y2 - Math.pow(Y, 2)));
-        return -numerador / denominador;
+        return (numerador / denominador) * 100;
     };
     CorrelacaoRegressaoService.prototype.nivelCorrelacao = function (percent) {
         if (percent >= 0 && percent < 0.3) {
@@ -2248,9 +2285,14 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
         return numerador / denominador;
     };
     CorrelacaoRegressaoService.prototype.regressaoB = function (n, X, Y, A) {
-        var _Y = Y / n;
-        var _X = (X / n) / 1000; // NÃO ME PERGUNTE O MOTIVO DISSO;
-        return _X - A * _Y;
+        /* A FUNÇÂO RECEBE OS VALORES AO CONTRARIO
+          CONST _X = X / n;
+          CONST _T = Y / n;
+          ISSO SERIA O CORRETO
+         */
+        var _X = Y / n;
+        var _Y = X / n;
+        return _Y - A * _X;
     };
     CorrelacaoRegressaoService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -2272,7 +2314,7 @@ var CorrelacaoRegressaoService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n      <div class=\"ui-flex-container\">\r\n        <ui-input-container>\r\n          <ui-select id=\"letter\" #letter=\"ngModel\" name=\"letter\" [(ngModel)]=\"calc.letter\" [options]=\"letters\" value=\"id\" label=\"nome\"\r\n                     uiInput required></ui-select>\r\n          <label for=\"letter\">\r\n            Letra\r\n          </label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"letter.errors && letter.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!letter.pristine && !letter.errors.required\">\r\n                Selecione uma letra\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <ui-input-container>\r\n          <input id=\"value\" #value=\"ngModel\" type=\"number\" [(ngModel)]=\"calc.value\" uiInput name=\"value\" required>\r\n          <label for=\"value\">Valor</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"value.errors && value.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!value.pristine && !value.errors.required\">\r\n                Digite o Valor\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n      </div>\r\n        <div class=\"ui-button-container align-right\">\r\n          <button class=\"ui-button primary\" (click)=\"onSubmit(form, calc.letter, calc.value)\">Calcular</button>\r\n        </div>\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <ui-card-content>\r\n      <span *ngIf=\"calc.result\">Resultado: {{ calc.result }}</span><br>\r\n      <span>Correlação: {{ calc.correlacao}}</span><br>\r\n      <span>Nivel: {{ calc.nivel}}</span><br>\r\n      <span>Equação: Y = - {{ calc.A }} * X + {{ calc.B }}</span><br>\r\n    </ui-card-content>\r\n\r\n  </ui-card>\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Correlação/Regressão</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"letter\" #letter=\"ngModel\" name=\"letter\" [(ngModel)]=\"calc.letter\" [options]=\"letters\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput required\r\n                      (ngModelChange)=\"focusValor()\"\r\n            ></ui-select>\r\n            <label for=\"letter\">\r\n              Qual valor você deseja descobrir?\r\n            </label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"letter.errors && letter.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!letter.pristine && !letter.errors.required\">\r\n                  Selecione uma letra\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"value\" #value=\"ngModel\" type=\"number\" [(ngModel)]=\"calc.value\" uiInput name=\"value\" required\r\n                   (keydown.enter)=\"onSubmit(form, calc.letter, calc.value)\">\r\n            <label for=\"value\">Valor</label>\r\n            <div class=\"icon\">\r\n              <button class=\"ui-button icon flat\" type=\"button\" (click)=\"onSubmit(form, calc.letter, calc.value)\"\r\n                      uiRipple>\r\n                <i class=\"material-icons\">add</i>\r\n              </button>\r\n            </div>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"value.errors && value.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!value.pristine && !value.errors.required\">\r\n                  Digite o Valor\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n\r\n  <ui-card style=\"margin-top: 16px;\">\r\n    <ui-card-title>Resultados</ui-card-title>\r\n    <ui-card-content>\r\n\r\n      <ul class=\"ui-list\">\r\n        <li class=\"ui-list-item multi-line\" *ngIf=\"calc.result\">\r\n          <div class=\"line\">\r\n            <div class=\"primary full\">Valor atual</div>\r\n            <div class=\"secondary full\">{{ calc.result }}</div>\r\n          </div>\r\n        </li>\r\n\r\n        <li class=\"ui-list-item multi-line\">\r\n          <div class=\"line\">\r\n            <div class=\"primary full\">Correlação</div>\r\n            <div class=\"secondary full\">{{ calc.correlacao | percent: '1.2-2' }}</div>\r\n          </div>\r\n        </li>\r\n\r\n        <li class=\"ui-list-item multi-line\">\r\n          <div class=\"line\">\r\n            <div class=\"primary full\">Nivel</div>\r\n            <div class=\"secondary full\">{{ calc.nivel }}</div>\r\n          </div>\r\n        </li>\r\n\r\n        <li class=\"ui-list-item multi-line\">\r\n          <div class=\"line\">\r\n            <div class=\"primary full\">Equação</div>\r\n            <div class=\"secondary full\">Y = {{ calc.B }} * X + {{ calc.A }}</div>\r\n          </div>\r\n        </li>\r\n\r\n      </ul>\r\n\r\n    </ui-card-content>\r\n  </ui-card>\r\n\r\n  <ui-card style=\"margin-top: 16px;\">\r\n    <ui-card-content>\r\n      <canvas id=\"graphic\"></canvas>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div style=\"height: 80px;\"></div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2302,6 +2344,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../smn-ui/smn-ui.module */ "./src/app/smn-ui/smn-ui.module.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/src/chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2311,6 +2355,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2328,14 +2373,71 @@ var ResponseComponent = /** @class */ (function () {
             { id: 2, nome: 'Y' }
         ];
         this.calc = this.correlacaoService.calc;
+        if (!this.calc.list || !this.calc.list.length) {
+            this.router.navigate(['/correlacao-regressao']);
+        }
     }
     ResponseComponent.prototype.ngOnInit = function () {
     };
     ResponseComponent.prototype.ngAfterViewInit = function () {
         this.toolbarService.activateExtendedToolbar(480);
+        this.generateChart();
     };
     ResponseComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
+    };
+    ResponseComponent.prototype.generateChart = function () {
+        var canvas = document.getElementById('graphic');
+        var ctx = canvas.getContext('2d');
+        this.generateLine();
+        this.graphic = new chart_js__WEBPACK_IMPORTED_MODULE_5__(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Correlação',
+                        data: this.correlacaoService.calc.list,
+                        backgroundColor: 'black'
+                    },
+                    {
+                        type: 'line',
+                        label: 'line',
+                        data: this.line,
+                        showLine: true,
+                        backgroundColor: 'rgba(0,0,255,0)',
+                        pointBorderColor: 'rgba(0,0,255,0)',
+                        borderColor: 'rgba(0,0,255,.5)'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                            beginAtZero: true
+                        }],
+                    xAxes: [{
+                            beginAtZero: true
+                        }]
+                }
+            }
+        });
+    };
+    ResponseComponent.prototype.generateLine = function () {
+        var maior, menor;
+        this.correlacaoService.calc.list.forEach(function (item, index) {
+            if (!index) {
+                maior = menor = item;
+            }
+            else {
+                if (item.x > maior.x) {
+                    maior = item;
+                }
+                if (item.x < menor.x) {
+                    menor = item;
+                }
+            }
+        });
+        this.line = [menor, maior];
     };
     ResponseComponent.prototype.onSubmit = function (form, type, value) {
         for (var control in form.controls) {
@@ -2350,10 +2452,23 @@ var ResponseComponent = /** @class */ (function () {
         }
         if (type === 1) {
             this.calc.result = this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, value, null);
+            this.correlacaoService.calc.list.push({ x: this.calc.result, y: value });
+            this.generateLine();
+            this.graphic.data.datasets[1].data = this.line;
+            this.graphic.update();
         }
         else {
             this.calc.result = this.correlacaoService.regressao(this.correlacaoService.calc.A, this.correlacaoService.calc.B, null, value);
+            this.correlacaoService.calc.list.push({ x: value, y: this.calc.result });
+            this.generateLine();
+            this.graphic.data.datasets[1].data = this.line;
+            this.graphic.update();
         }
+        form.reset();
+        _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_3__["UiElement"].focus(this.element.nativeElement.querySelector('#letter'));
+    };
+    ResponseComponent.prototype.focusValor = function () {
+        _smn_ui_smn_ui_module__WEBPACK_IMPORTED_MODULE_3__["UiElement"].focus(this.element.nativeElement.querySelector('#value'));
     };
     ResponseComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2580,7 +2695,7 @@ var DashboardModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Entrada de dados</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <ui-input-container>\r\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\r\n          <label for=\"title\">Titulo</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"title.errors && title.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\r\n                Digite o titulo\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"medidaSeparatriz\"\r\n                       #medidaSeparatriz=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.medidaSeparatriz\"\r\n                       [options]=\"selectMedidaSeparatriz\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"medidaSeparatriz\">\r\n              Medida Separatriz\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"valueMedidaSeparatriz\"\r\n                   #valueMedidaSeparatriz=\"ngModel\"\r\n                   type=\"number\"\r\n                   [(ngModel)]=\"info.valueMedidaSeparatriz\"\r\n                   uiInput\r\n                   name=\"valueMedidaSeparatriz\">\r\n            <label for=\"valueMedidaSeparatriz\">Valor</label>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\r\n              <span>Ordinal</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.amostra\" [checked]=\"info.amostra\">\r\n              <span>Amostra</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n            <ui-input-container>\r\n              <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\" value=\"nome\" label=\"nome\"\r\n                uiInput></ui-select>\r\n              <label for=\"sufixo\">\r\n                Sufixo\r\n              </label>\r\n            </ui-input-container>\r\n          <ui-input-container>\r\n            <ui-select id=\"tipoDeVariavel\" #tipoDeVariavel=\"ngModel\" name=\"tipoDeVarivel\" [(ngModel)]=\"info.tipoDeVariavel\" [options]=\"selectTipoVariavel\" value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"tipoDeVariavel\">\r\n              Tipo de variavel\r\n            </label>\r\n          </ui-input-container>\r\n        </div>\r\n        <ui-chips>\r\n          <ui-input-container>\r\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\"\r\n                   (focus)=\"focus = DataInsertHasFocus;\" (blur)=\"focus = DataInsertHasFocus\"\r\n                   [persistPlaceholder]=\"DataInsertHasFocus\" placeholder=\"Pressione enter para inserir\"\r\n                   (keydown.enter)=\"insertData()\">\r\n            <label for=\"dado\">Dado</label>\r\n            <div class=\"icon\">\r\n              <button class=\"ui-button icon flat\" type=\"button\"\r\n                      uiRipple>\r\n                <i class=\"material-icons\">cloud_upload</i>\r\n              </button>\r\n            </div>\r\n          </ui-input-container>\r\n\r\n          <div class=\"container-chips\">\r\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\" class=\"ui-chip js-chips-dado\">\r\n              <div class=\"icon chip-cont\">\r\n                {{ dadoInserido.qtd }}\r\n              </div>\r\n              {{ dadoInserido.group }}  {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\r\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\r\n                <i class=\"material-icons\">add_circle</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-chips>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n\r\n</div>\r\n\r\n<br><br><br><br><br>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Entrada de dados</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <ui-input-container>\r\n          <input id=\"title\" #title=\"ngModel\" type=\"text\" [(ngModel)]=\"info.title\" uiInput name=\"title\" required>\r\n          <label for=\"title\">Titulo</label>\r\n          <div class=\"ui-messages\">\r\n            <div *ngIf=\"title.errors && title.dirty\">\r\n              <div class=\"ui-message error\" [hidden]=\"!title.pristine && !title.errors.required\">\r\n                Digite o titulo\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-input-container>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"medidaSeparatriz\"\r\n                       #medidaSeparatriz=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.medidaSeparatriz\"\r\n                       [options]=\"selectMedidaSeparatriz\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"medidaSeparatriz\">\r\n              Medida Separatriz\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"valueMedidaSeparatriz\"\r\n                   #valueMedidaSeparatriz=\"ngModel\"\r\n                   type=\"number\"\r\n                   [(ngModel)]=\"info.valueMedidaSeparatriz\"\r\n                   uiInput\r\n                   [min]=\"1\"\r\n                   [max]=\"(info.medidaSeparatriz === 4) ? 4 : (info.medidaSeparatriz === 5) ? 5 : (info.medidaSeparatriz === 10) ? 10 : 100\"\r\n                   name=\"valueMedidaSeparatriz\">\r\n            <label for=\"valueMedidaSeparatriz\">Valor</label>\r\n          </ui-input-container>\r\n        </div>\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.ordinal\" [checked]=\"info.ordinal\">\r\n              <span>Ordinal</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n\r\n          <ui-option-container class=\"v-space-4 b-space-16\">\r\n            <ui-option class=\"primary\">\r\n              <input name=\"legenda\" type=\"checkbox\" [(ngModel)]=\"info.amostra\" [checked]=\"info.amostra\">\r\n              <span>Amostra</span>\r\n            </ui-option>\r\n          </ui-option-container>\r\n          <ui-input-container>\r\n            <ui-select id=\"sufixo\" #sufixo=\"ngModel\" name=\"sufixo\" [(ngModel)]=\"info.sufixo\" [options]=\"selectSufixo\"\r\n                       value=\"nome\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"sufixo\">\r\n              Sufixo\r\n            </label>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <ui-select id=\"tipoDeVariavel\" #tipoDeVariavel=\"ngModel\" name=\"tipoDeVarivel\"\r\n                       [(ngModel)]=\"info.tipoDeVariavel\" [options]=\"selectTipoVariavel\" value=\"id\" label=\"nome\"\r\n                       uiInput></ui-select>\r\n            <label for=\"tipoDeVariavel\">\r\n              Tipo de variavel\r\n            </label>\r\n          </ui-input-container>\r\n        </div>\r\n        <ui-chips>\r\n          <ui-input-container>\r\n            <input id=\"dado\" #dado=\"ngModel\" type=\"text\" [(ngModel)]=\"info.currentDado\" uiInput name=\"dado\"\r\n                   (focus)=\"focus = DataInsertHasFocus;\" (blur)=\"focus = DataInsertHasFocus\"\r\n                   [persistPlaceholder]=\"DataInsertHasFocus\" placeholder=\"Pressione enter para inserir\"\r\n                   (keydown.enter)=\"insertData(info.currentDado)\">\r\n            <label for=\"dado\">Dado</label>\r\n            <div class=\"icon\">\r\n              <button class=\"ui-button icon flat\" type=\"button\" (click)=\"openFile()\"\r\n                      uiRipple>\r\n                <i class=\"material-icons\">cloud_upload</i>\r\n              </button>\r\n              <input class=\"openfile\" style=\"display: none;\" name=\"file\" type=\"file\" [(ngModel)]=\"info.file\"\r\n                     (change)=\"readFile($event.target)\">\r\n            </div>\r\n          </ui-input-container>\r\n\r\n          <div class=\"container-chips\">\r\n            <div *ngFor=\"let dadoInserido of info.content; let index = index\" [attr.data-value]=\"index\"\r\n                 class=\"ui-chip js-chips-dado\">\r\n              <div class=\"icon chip-cont\">\r\n                {{ dadoInserido.qtd }}\r\n              </div>\r\n              {{ dadoInserido.group }} {{ info.sufixo && info.sufixo !== 'Sem sufixo' ? ' ' + info.sufixo : '' }}\r\n              <div class=\"close ripple-rounded\" uiRipple (click)=\"removeData(index)\">\r\n                <i class=\"material-icons\">add_circle</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </ui-chips>\r\n      </form>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n\r\n</div>\r\n\r\n<br><br><br><br><br>\r\n"
 
 /***/ }),
 
@@ -2641,7 +2756,6 @@ var DataInsertionComponent = /** @class */ (function () {
         this.info = {
             content: []
         };
-        this.info = this.MOCK.EXEMPLO_8_1;
         this.dragDrop = {};
         this.selectMedidaSeparatriz = [
             { id: 4, nome: 'Quartil' },
@@ -2672,9 +2786,9 @@ var DataInsertionComponent = /** @class */ (function () {
     DataInsertionComponent.prototype.ngOnDestroy = function () {
         this.toolbarService.deactivateExtendedToolbar();
     };
-    DataInsertionComponent.prototype.insertData = function () {
-        if (this.info.currentDado && this.info.currentDado.length) {
-            var dataTratada_1 = this.info.currentDado.trim().toLowerCase();
+    DataInsertionComponent.prototype.insertData = function (currentDado) {
+        if (currentDado && currentDado.length) {
+            var dataTratada_1 = currentDado.trim().toLowerCase();
             var isExists_1 = false;
             this.info.content.forEach(function (dado) {
                 if (dado.group === dataTratada_1) {
@@ -2713,6 +2827,26 @@ var DataInsertionComponent = /** @class */ (function () {
         }
         this.typeVariable.run(this.info);
         this.router.navigate(['/dashboard']);
+    };
+    DataInsertionComponent.prototype.openFile = function () {
+        var button = document.querySelector('.openfile');
+        button.click();
+    };
+    DataInsertionComponent.prototype.readFile = function (event) {
+        var _this = this;
+        var file = event.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            var result = reader.result;
+            var arrayResult = result.split(';');
+            _this.info.content = [];
+            arrayResult.forEach(function (item) {
+                _this.insertData(item);
+            });
+        };
+        if (file) {
+            reader.readAsText(file);
+        }
     };
     /* DRAG-DROP */
     DataInsertionComponent.prototype.initDragDrop = function () {
@@ -3138,7 +3272,7 @@ var MockService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n    <ui-card class=\"elevate-on-toolbar\">\r\n        <ui-toolbar class=\"flat\">\r\n            <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n            <span class=\"title\">Distribuição binomial</span>\r\n        </ui-toolbar>\r\n        <ui-card-content>\r\n            <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n\r\n                <div class=\"ui-flex-container break-on-s840\">\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"totalProb\" #totalProb=\"ngModel\" type=\"number\" [(ngModel)]=\"info.totalProb\" uiInput name=\"totalProb\" required>\r\n                        <label for=\"totalProb\">Total de probabilidades</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"totalProb.errors && totalProb.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!totalProb.pristine && !totalProb.errors.required\">\r\n                                    Digite o Total de probabilidades\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"totalSucess\" #totalSucess=\"ngModel\" type=\"number\" [(ngModel)]=\"info.totalSucess\" uiInput name=\"totalSucess\" required>\r\n                        <label for=\"totalSucess\">Total de sucessos desejados</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"totalSucess.errors && totalSucess.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!totalSucess.pristine && !totalSucess.errors.required\">\r\n                                    Digite o Total de sucessos desejados\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                </div>\r\n\r\n                <div class=\"ui-flex-container break-on-s840\">\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"probSucess\" #probSucess=\"ngModel\" type=\"number\" [(ngModel)]=\"info.probSucess\" uiInput name=\"probSucess\" required>\r\n                        <label for=\"probSucess\">Probabilidade de Sucesso</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"probSucess.errors && probSucess.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!probSucess.pristine && !probSucess.errors.required\">\r\n                                    Digite o valor de \"Probabilidade de Sucesso\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"probFracasso\" #probFracasso=\"ngModel\" type=\"number\" [(ngModel)]=\"info.probFracasso\" uiInput name=\"probFracasso\"\r\n                            required>\r\n                        <label for=\"probFracasso\">Probabilidade de Fracasso</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"probFracasso.errors && probFracasso.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!probFracasso.pristine && !probFracasso.errors.required\">\r\n                                    Digite o valor de \"Probabilidade de Fracasso\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n\r\n                </div>\r\n\r\n                <div class=\"ui-flex-container break-on-s840\">\r\n\r\n                    <ui-input-container>\r\n                        <input id=\"pelomenos\" #pelomenos=\"ngModel\" type=\"number\" [(ngModel)]=\"info.pelomenos\" uiInput name=\"pelomenos\" required>\r\n                        <label for=\"pelomenos\">Pelo Menos</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"pelomenos.errors && pelomenos.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!pelomenos.pristine && !pelomenos.errors.required\">\r\n                                    Digite o valor de \"Pelo Menos\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n                    <ui-input-container>\r\n                        <input id=\"maximo\" #maximo=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maximo\" uiInput name=\"maximo\" required>\r\n                        <label for=\"maximo\">No Máximo</label>\r\n                        <div class=\"ui-messages\">\r\n                            <div *ngIf=\"maximo.errors && maximo.dirty\">\r\n                                <div class=\"ui-message error\" [hidden]=\"!maximo.pristine && !maximo.errors.required\">\r\n                                    Digite o valor de \"No Máximo\"\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </ui-input-container>\r\n                </div>\r\n\r\n            </form>\r\n        </ui-card-content>\r\n\r\n        <div *ngIf=\"response\">\r\n            <ui-card-title>Resultado</ui-card-title>\r\n            <ui-card-content>\r\n                <ui-data-table  class=\"responsive\">\r\n                    <tbody >\r\n                        <tr >\r\n                            <th>Probabilidade = {{info.totalProb}}</th>\r\n                            <th>De {{info.pelomenos}} á {{info.totalProb}}></th>\r\n                            <th>Até {{info.maximo}}</th>\r\n                        </tr>\r\n                        <tr >\r\n                            <td>{{ response.probabilidadeTotal }}</td>\r\n                            <td>{{ response.pelomenos }} </td>\r\n                            <td>{{ response.maximo }} </td>\r\n                        </tr>\r\n                    </tbody>\r\n                    <tfoot>\r\n                        \r\n                    </tfoot>\r\n                </ui-data-table>                \r\n            </ui-card-content>\r\n        </div>\r\n\r\n    </ui-card>\r\n\r\n    <div class=\"ui-fab-container\">\r\n        <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Distribuição binomial</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n\r\n          <ui-input-container>\r\n            <input id=\"totalProb\" #totalProb=\"ngModel\" type=\"number\" [(ngModel)]=\"info.totalProb\" uiInput\r\n                   name=\"totalProb\" required>\r\n            <label for=\"totalProb\">Total de probabilidades</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"totalProb.errors && totalProb.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!totalProb.pristine && !totalProb.errors.required\">\r\n                  Digite o Total de probabilidades\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n\r\n          <ui-input-container>\r\n            <input id=\"probSucess\" #probSucess=\"ngModel\" type=\"number\" [(ngModel)]=\"info.probSucess\" uiInput\r\n                   name=\"probSucess\" required>\r\n            <label for=\"probSucess\">Probabilidade de Sucesso</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"probSucess.errors && probSucess.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!probSucess.pristine && !probSucess.errors.required\">\r\n                  Digite o valor de \"Probabilidade de Sucesso\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n\r\n          <ui-input-container>\r\n            <input id=\"probFracasso\" #probFracasso=\"ngModel\" type=\"number\" [(ngModel)]=\"info.probFracasso\" uiInput\r\n                   name=\"probFracasso\"\r\n                   required>\r\n            <label for=\"probFracasso\">Probabilidade de Fracasso</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"probFracasso.errors && probFracasso.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!probFracasso.pristine && !probFracasso.errors.required\">\r\n                  Digite o valor de \"Probabilidade de Fracasso\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n\r\n        </div>\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"totalSucess\" #totalSucess=\"ngModel\" type=\"number\" [(ngModel)]=\"info.totalSucess\" uiInput\r\n                   name=\"totalSucess\" required>\r\n            <label for=\"totalSucess\">Total de sucessos desejados</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"totalSucess.errors && totalSucess.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!totalSucess.pristine && !totalSucess.errors.required\">\r\n                  Digite o Total de sucessos desejados\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n\r\n          <ui-input-container>\r\n            <input id=\"pelomenos\" #pelomenos=\"ngModel\" type=\"number\" [(ngModel)]=\"info.pelomenos\" uiInput\r\n                   name=\"pelomenos\" required>\r\n            <label for=\"pelomenos\">Pelo Menos</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"pelomenos.errors && pelomenos.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!pelomenos.pristine && !pelomenos.errors.required\">\r\n                  Digite o valor de \"Pelo Menos\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n\r\n          <ui-input-container>\r\n            <input id=\"maximo\" #maximo=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maximo\" uiInput name=\"maximo\" required>\r\n            <label for=\"maximo\">No Máximo</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"maximo.errors && maximo.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!maximo.pristine && !maximo.errors.required\">\r\n                  Digite o valor de \"No Máximo\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <div *ngIf=\"response\">\r\n      <ui-card-title>Resultado</ui-card-title>\r\n      <ui-data-table class=\"responsive\">\r\n        <tbody>\r\n        <tr>\r\n          <th>Probabilidade = {{info.totalSucess}}</th>\r\n          <th>De {{info.pelomenos}} á {{info.totalProb}}></th>\r\n          <th>Até {{info.maximo}}</th>\r\n        </tr>\r\n        <tr>\r\n          <td>{{ response.probabilidadeTotal }}</td>\r\n          <td>{{ response.pelomenos }}</td>\r\n          <td>{{ response.maximo }}</td>\r\n        </tr>\r\n        </tbody>\r\n        <tfoot>\r\n\r\n        </tfoot>\r\n      </ui-data-table>\r\n    </div>\r\n\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3379,7 +3513,7 @@ var DistribuicaoBinomialService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Distribuição Nominal</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"media\" #inputMedia=\"ngModel\" type=\"number\" [(ngModel)]=\"info.media\" uiInput name=\"media\"\r\n                   required>\r\n            <label for=\"media\">Média</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputMedia.errors && inputMedia.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputMedia.pristine && !inputMedia.errors.required\">\r\n                  Digite a média\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"dv\" #inputDV=\"ngModel\" type=\"number\" [(ngModel)]=\"info.dv\" uiInput name=\"dv\" required>\r\n            <label for=\"dv\">Desvio padrão</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputDV.errors && inputDV.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputDV.pristine && !inputDV.errors.required\">\r\n                  Digite o desvio padrão\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"type\"\r\n                       #inputType=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.type\"\r\n                       [options]=\"selectTypes\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput required></ui-select>\r\n            <label for=\"type\">Tipo</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputType.errors && inputType.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputType.pristine && !inputType.errors.required\">\r\n                  Selecione um tipo de intervalo\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container *ngIf=\"info.type === 1 || info.type === 3\">\r\n            <input id=\"menor\" #inputMenor=\"ngModel\" type=\"number\" [(ngModel)]=\"info.menor\" uiInput name=\"menor\"\r\n                   required>\r\n            <label for=\"menor\">Menor que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputMenor.errors && inputMenor.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputMenor.pristine && !inputMenor.errors.required\">\r\n                  Digite o menor valor a ser pesquisado\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container *ngIf=\"info.type === 2 || info.type === 3\">\r\n            <input id=\"maior\" #inputMaior=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maior\" uiInput name=\"maior\"\r\n                   required>\r\n            <label for=\"maior\">Maior que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputMaior.errors && inputMaior.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputMaior.pristine && !inputMaior.errors.required\">\r\n                  Digite o maior valor a ser pesquisado\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <div *ngIf=\"info && info.response\">\r\n      <ui-card-title>Resultado</ui-card-title>\r\n      <ui-card-content>\r\n        Valor: {{ info.response.message ? info.response.message : info.response | percent }}\r\n      </ui-card-content>\r\n    </div>\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Distribuição Nominal</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"media\" #inputMedia=\"ngModel\" type=\"number\" [(ngModel)]=\"info.media\" uiInput name=\"media\"\r\n                   required>\r\n            <label for=\"media\">Média</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputMedia.errors && inputMedia.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputMedia.pristine && !inputMedia.errors.required\">\r\n                  Digite a média\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"dv\" #inputDV=\"ngModel\" type=\"number\" [(ngModel)]=\"info.dv\" uiInput name=\"dv\" required>\r\n            <label for=\"dv\">Desvio padrão</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputDV.errors && inputDV.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputDV.pristine && !inputDV.errors.required\">\r\n                  Digite o desvio padrão\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <ui-select id=\"type\"\r\n                       #inputType=\"ngModel\"\r\n                       name=\"medidaSeparatriz\"\r\n                       [(ngModel)]=\"info.type\"\r\n                       [options]=\"selectTypes\"\r\n                       value=\"id\" label=\"nome\"\r\n                       uiInput required></ui-select>\r\n            <label for=\"type\">Tipo</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputType.errors && inputType.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputType.pristine && !inputType.errors.required\">\r\n                  Selecione um tipo de intervalo\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container *ngIf=\"info.type === 1 || info.type === 3\">\r\n            <input id=\"menor\" #inputMenor=\"ngModel\" type=\"number\" [(ngModel)]=\"info.menor\" uiInput name=\"menor\"\r\n                   required>\r\n            <label for=\"menor\">Menor que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputMenor.errors && inputMenor.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputMenor.pristine && !inputMenor.errors.required\">\r\n                  Digite o menor valor a ser pesquisado\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container *ngIf=\"info.type === 2 || info.type === 3\">\r\n            <input id=\"maior\" #inputMaior=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maior\" uiInput name=\"maior\"\r\n                   required>\r\n            <label for=\"maior\">Maior que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"inputMaior.errors && inputMaior.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!inputMaior.pristine && !inputMaior.errors.required\">\r\n                  Digite o maior valor a ser pesquisado\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n      </form>\r\n\r\n      <div *ngIf=\"info && info.response\">\r\n        <ul class=\"ui-list\">\r\n          <li class=\"ui-list-item multi-line\">\r\n            <div class=\"line\">\r\n              <div class=\"primary\">Probalidade</div>\r\n              <div class=\"secondary\">{{ info.response.message ? info.response.message : info.response | percent: '1.2-2'\r\n                }}\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </ui-card-content>\r\n  </ui-card>\r\n  <div style=\"height: 80px;\"></div>\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3711,7 +3845,7 @@ var DistribuicaoNominalService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Distribuição uniforme</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"intervaloA\" #intervaloA=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloA\" uiInput name=\"intervaloA\" required>\r\n            <label for=\"intervaloA\">Intervalo A</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"intervaloA.errors && intervaloA.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!intervaloA.pristine && !intervaloA.errors.required\">\r\n                  Digite o intervalo A\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"intervaloB\" #intervaloB=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloB\" uiInput name=\"intervaloB\" required>\r\n            <label for=\"intervaloB\">Intervalo B</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"intervaloB.errors && intervaloB.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!intervaloB.pristine && !intervaloB.errors.required\">\r\n                  Digite o intervalo B\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"maior\" #maior=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maior\" uiInput name=\"maior\" required>\r\n            <label for=\"maior\">Maior que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"maior.errors && maior.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!maior.pristine && !maior.errors.required\">\r\n                  Digite o \"maior que\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"menor\" #menor=\"ngModel\" type=\"number\" [(ngModel)]=\"info.menor\" uiInput name=\"menor\" required>\r\n            <label for=\"menor\">Menor que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"menor.errors && menor.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!menor.pristine && !menor.errors.required\">\r\n                  Digite o \"menor que\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <div *ngIf=\"response\">\r\n      <ui-card-title>Resultado</ui-card-title>\r\n      <ui-card-content>\r\n        <span>Media: {{ response.media }}</span><br>\r\n        <span>CV: {{ response.CV }}</span><br>\r\n        <span>DP: {{ response.DP }}</span><br>\r\n        <span>Probalidade: {{ response.probalidade }}</span><br>\r\n      </ui-card-content>\r\n    </div>\r\n\r\n  </ui-card>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"ui-s840\">\r\n  <ui-card class=\"elevate-on-toolbar\">\r\n    <ui-toolbar class=\"flat\">\r\n      <button class=\"ui-button flat icon\" type=\"button\" uiRipple (click)=\"_location.back()\">\r\n        <i class=\"material-icons\">arrow_back</i>\r\n      </button>\r\n      <span class=\"title\">Distribuição uniforme</span>\r\n    </ui-toolbar>\r\n    <ui-card-content>\r\n      <form #form=\"ngForm\" class=\"ui-validate on-dirty on-submit\">\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"intervaloA\" #intervaloA=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloA\" uiInput\r\n                   name=\"intervaloA\" required>\r\n            <label for=\"intervaloA\">Intervalo A</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"intervaloA.errors && intervaloA.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!intervaloA.pristine && !intervaloA.errors.required\">\r\n                  Digite o intervalo A\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"intervaloB\" #intervaloB=\"ngModel\" type=\"number\" [(ngModel)]=\"info.intervaloB\" uiInput\r\n                   name=\"intervaloB\" required>\r\n            <label for=\"intervaloB\">Intervalo B</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"intervaloB.errors && intervaloB.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!intervaloB.pristine && !intervaloB.errors.required\">\r\n                  Digite o intervalo B\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n        <div class=\"ui-flex-container break-on-s840\">\r\n          <ui-input-container>\r\n            <input id=\"maior\" #maior=\"ngModel\" type=\"number\" [(ngModel)]=\"info.maior\" uiInput name=\"maior\" required>\r\n            <label for=\"maior\">Maior que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"maior.errors && maior.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!maior.pristine && !maior.errors.required\">\r\n                  Digite o \"maior que\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n          <ui-input-container>\r\n            <input id=\"menor\" #menor=\"ngModel\" type=\"number\" [(ngModel)]=\"info.menor\" uiInput name=\"menor\" required>\r\n            <label for=\"menor\">Menor que</label>\r\n            <div class=\"ui-messages\">\r\n              <div *ngIf=\"menor.errors && menor.dirty\">\r\n                <div class=\"ui-message error\" [hidden]=\"!menor.pristine && !menor.errors.required\">\r\n                  Digite o \"menor que\"\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </ui-input-container>\r\n        </div>\r\n\r\n      </form>\r\n    </ui-card-content>\r\n\r\n    <div *ngIf=\"response\">\r\n      <ui-card-title>Resultado</ui-card-title>\r\n      <ui-card-content>\r\n\r\n        <ul class=\"ui-list\">\r\n          <li class=\"ui-list-item multi-line\">\r\n            <div class=\"line\">\r\n              <div class=\"primary\">Media</div>\r\n              <div class=\"secondary\">{{ response.media }}</div>\r\n            </div>\r\n          </li>\r\n\r\n          <li class=\"ui-list-item multi-line\">\r\n            <div class=\"line\">\r\n              <div class=\"primary\">CV</div>\r\n              <div class=\"secondary\">{{ response.CV }}</div>\r\n            </div>\r\n          </li>\r\n\r\n          <li class=\"ui-list-item multi-line\">\r\n            <div class=\"line\">\r\n              <div class=\"primary\">DP</div>\r\n              <div class=\"secondary\">{{ response.DP }}</div>\r\n            </div>\r\n          </li>\r\n\r\n          <li class=\"ui-list-item multi-line\">\r\n            <div class=\"line\">\r\n              <div class=\"primary\">Probalidade</div>\r\n              <div class=\"secondary\">{{ response.probalidade | percent: '1.2-2' }}</div>\r\n            </div>\r\n          </li>\r\n\r\n        </ul>\r\n      </ui-card-content>\r\n    </div>\r\n\r\n  </ui-card>\r\n  <div style=\"height: 80px;\"></div>\r\n\r\n  <div class=\"ui-fab-container\">\r\n    <a class=\"ui-button accent fab\" uiRipple (click)=\"onSubmit(form, info)\">\r\n      <i class=\"material-icons\">send</i>\r\n    </a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3936,7 +4070,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\r\n"
+module.exports = "<router-outlet></router-outlet>\r\n<ui-snackbar-container></ui-snackbar-container>\r\n"
 
 /***/ }),
 
@@ -4114,7 +4248,6 @@ var StatisticsService = /** @class */ (function () {
     };
     StatisticsService.prototype.set = function (object) {
         this.response = object;
-        console.log(this.response);
     };
     StatisticsService.prototype.get = function () {
         return this.response;

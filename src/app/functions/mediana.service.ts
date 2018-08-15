@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UtilsService} from './utils.service';
 
 @Injectable({
@@ -6,7 +6,8 @@ import {UtilsService} from './utils.service';
 })
 export class MedianaService {
 
-  constructor(private utilsService: UtilsService) { }
+  constructor(private utilsService: UtilsService) {
+  }
 
   comum(content) {
     const somatorio = content[content.length - 1].fac;
@@ -40,7 +41,7 @@ export class MedianaService {
       const pos = [somatorio / 2, somatorio / 2 + 1];
       pos.forEach((position) => {
         const limiteInferior = arrayData[position].class.min;
-        const freqAA = groups[arrayData[position].class.id - 2].fac;
+        const freqAA = groups[arrayData[position].class.id - 2] ? groups[arrayData[position].class.id - 2].fac : 0;
         const freq = groups[arrayData[position].class.id - 1].qtd;
         const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
         res.push(limiteInferior + (pre * interval));
@@ -49,7 +50,7 @@ export class MedianaService {
     } else {
       const pos = (somatorio + 1) / 2;
       const limiteInferior = arrayData[pos].class.min;
-      const freqAA = groups[arrayData[pos].class.id - 2].fac;
+      const freqAA = groups[arrayData[pos].class.id - 2] ? groups[arrayData[pos].class.id - 2].fac : 0;
       const freq = groups[arrayData[pos].class.id - 1].qtd;
       const pre = ((parseFloat(somatorio) / 2) - parseFloat(freqAA)) / parseFloat(freq);
 

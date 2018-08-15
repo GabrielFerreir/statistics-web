@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {UiElement, UiSnackbar, UiToolbarService} from '../../smn-ui/smn-ui.module';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {StatisticsService} from '../statistics.service';
 import {CorrelacaoRegressaoService} from './correlacao-regressao.service';
 
 @Component({
@@ -29,12 +28,7 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
               private router: Router) {
     this.info = {};
     this.calc = {};
-    this.list = [
-      {x: 300000, y: 10},
-      {x: 400000, y: 8},
-      {x: 320000, y: 9},
-      {x: 450000, y: 6},
-    ];
+    this.list = [];
   }
 
   ngOnInit() {
@@ -51,9 +45,21 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
     this.toolbarService.deactivateExtendedToolbar();
   }
 
-  addInfo(info) {
-    const inset = JSON.parse(JSON.stringify(info));
+  addInfo(form, info) {
+    for (const control in form.controls) {
+      if (form.controls.hasOwnProperty(control)) {
+        form.controls[control].markAsTouched();
+        form.controls[control].markAsDirty();
+      }
+    }
+    if (!form.valid) {
+      UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
+      return false;
+    }
+    const inset = JSON.parse(JSON.stringify(info));;
     this.list.push(inset);
+    form.reset();
+    UiElement.focus(this.element.nativeElement.querySelector('#x'));
   }
 
   removeInfo(index) {
@@ -65,5 +71,37 @@ export class CorrelacaoRegressaoComponent implements OnInit, AfterViewInit, OnDe
     this.router.navigate(['/correlacao-regressao/response']);
   }
 
+  openFile() {
+    const button = <any>document.querySelector('.openfile');
+    button.click();
+  }
+
+  readFile(event) {
+    const file = event.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      const lines = result.split('\n');
+      const lineX = lines[0].replace(/"/g, '').replace(/,/g, '.').split(';');
+      const lineY = lines[1].replace(/"/g, '').replace(/,/g, '.').split(';');
+
+      if (lineX.length != lineY.length) {
+        UiSnackbar.show({
+          text: 'O tamanho dos dados é diferente'
+        });
+        return;
+      }
+
+      this.list = [];
+
+      for (let i = 0; i < lineX.length; i++) {
+        this.list.push({x: parseFloat(lineX[i]), y: parseFloat(lineY[i])});
+      }
+
+    };
+    if (file) {
+      reader.readAsText(file);
+    }
+  }
 
 }

@@ -43,11 +43,13 @@ export class DistribuicaoNominalComponent implements AfterViewInit, OnDestroy {
       UiElement.focus(this.element.nativeElement.querySelector('form .ng-invalid'));
       return false;
     }
+
     if (this.info.type === 1) {
       this.info.response = this.distribuicaoNominalService.calculate(this.info.menor, null, this.info.media, this.info.dv);
     } else if (this.info.type === 2) {
       this.info.response = this.distribuicaoNominalService.calculate(null, this.info.maior, this.info.media, this.info.dv);
     } else if (this.info.type === 3) {
+
       this.info.response = this.distribuicaoNominalService.calculate(this.info.menor, this.info.maior, this.info.media, this.info.dv);
     }
   }
