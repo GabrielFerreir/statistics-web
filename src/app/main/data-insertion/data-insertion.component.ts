@@ -19,6 +19,7 @@ export class DataInsertionComponent implements AfterViewInit, OnDestroy {
   selectMedidaSeparatriz: any[];
   selectTipoVariavel: any[];
   dragDrop: any;
+  focus: any;
 
   DataInsertHasFocus: boolean;
 
